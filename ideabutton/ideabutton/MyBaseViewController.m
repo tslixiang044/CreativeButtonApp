@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     
-   self.view.backgroundColor=[UIColor redColor];
+   self.view.backgroundColor=[UIColor whiteColor];
     
     
     if (IS_iOS7)
