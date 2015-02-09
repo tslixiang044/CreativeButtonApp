@@ -28,6 +28,7 @@
     [super viewDidLoad];
     self.title=@"我霸占的";
     //---------------------
+
     mTabbarController=[[UITabBarController alloc]init];
     mTabbarController.view.frame=CGRectMake(0,0, 320, kMainScreenBoundheight);
     mTabbarController.delegate=self;
@@ -42,31 +43,32 @@
     //----------------
     IoccupyViewController *occupy=[[IoccupyViewController alloc]init];
     occupy.view.tag=1;
-    occupy.tabBarItem.image=[UIImage imageNamed:@"find-icon.png"];
+    occupy.tabBarItem.image=[UIImage imageNamed:@"icon_wbzd.png"];
     occupy.tabBarItem.title=@"我霸占的";
     //---------------------
     ISavedViewController *save=[[ISavedViewController alloc]init];
     save.view.tag=2;
-    save.tabBarItem.image=[UIImage imageNamed:@"find-icon.png"];
+    save.tabBarItem.image=[UIImage imageNamed:@"icon_wscd.png"];
     save.tabBarItem.title=@"我收藏的";
     //---------------------
     IChangedViewController *change=[[IChangedViewController alloc]init];
     change.view.tag=3;
-    change.tabBarItem.image=[UIImage imageNamed:@"find-icon.png"];
+    change.tabBarItem.image=[UIImage imageNamed:@"icon_wgzd.png"];
     change.tabBarItem.title=@"我改造的";
     //---------------------
     UIViewController *back=[[UIViewController alloc]init];
     back.view.tag=4;
-    back.tabBarItem.image=[UIImage imageNamed:@"find-icon.png"];
-    back.tabBarItem.title=@"我改造的";
+    back.tabBarItem.image=[UIImage imageNamed:@"icon_wbzd.png"];
+    back.tabBarItem.title=@"大家霸的";
     //---------------------
     NSMutableArray *  marr=[[NSMutableArray alloc]initWithObjects:occupy,save,change,back,nil];
     mTabbarController.viewControllers=marr;
     
     [self.view addSubview:mTabbarController.view];
-    
-    
+    //-------
+    [self settoolbarColor];
 }
+
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     if(viewController.view.tag==1)
@@ -83,10 +85,45 @@
     }
     else if(viewController.view.tag==4)
     {
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
+-(void)settoolbarColor
+{
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+    {
+        
+        
+        
+        [mTabbarController.tabBar setSelectedImageTintColor:[UIColor redColor]];
+        UIColor *txtcolor=[UIColor whiteColor];
+        
+        for(int i=0;i<[mTabbarController.tabBar.items count];i++)
+        {
+            
+            [[mTabbarController.tabBar.items objectAtIndex:i] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                      txtcolor, UITextAttributeTextColor,
+                                                                                      [NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,
+                                                                                      [UIFont fontWithName:@"Helvetica" size:12], UITextAttributeFont, nil]
+                                                                            forState:UIControlStateNormal];
+        }
+        
+        for(int i=0;i<[mTabbarController.tabBar.items count];i++)
+        {
+            
+            
+            [[mTabbarController.tabBar.items objectAtIndex:i] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                      [UIColor grayColor], UITextAttributeTextColor,
+                                                                                      [NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,
+                                                                                      [UIFont fontWithName:@"Helvetica" size:12], UITextAttributeFont, nil]
+                                                                            forState:UIControlStateHighlighted];
+        }
+        
+        
+        
+    }
+}
 
 
 @end

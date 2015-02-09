@@ -11,9 +11,10 @@
 
 
 
-@interface MainViewController ()
+@interface MainViewController ()<UITextFieldDelegate>
 {
     UISegmentedControl *segmentedControl;
+    UITextField *txtsearch;
 }
 @end
 
@@ -22,7 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
+   //-------------
     segmentedControl=[[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44) ];
     [segmentedControl insertSegmentWithTitle:@"按友圈" atIndex:0 animated:YES];
     [segmentedControl insertSegmentWithTitle:@"我也要按" atIndex:1 animated:YES];
@@ -30,6 +31,27 @@
     segmentedControl.selectedSegmentIndex=0;
     [segmentedControl addTarget:self action:@selector(Selectbutton:) forControlEvents:UIControlEventValueChanged];
     [self.navigationController.navigationBar addSubview:segmentedControl];
+    //-------------
+    UIView *view_search_bg=[[UIView alloc]initWithFrame:CGRectMake(10, 5, kMainScreenBoundwidth-20, 50)];
+    view_search_bg.backgroundColor=COLOR(123, 95, 33);
+    [self.view addSubview:view_search_bg];
+    //-------------
+    txtsearch=[[UITextField alloc]initWithFrame:CGRectMake(2, 2, view_search_bg.bounds.size.width-100, view_search_bg.bounds.size.height-4)];
+    txtsearch.clearButtonMode=UITextFieldViewModeWhileEditing;
+    txtsearch.backgroundColor=[UIColor clearColor];
+    txtsearch.placeholder=@"按产品类别搜索";
+    txtsearch.delegate=self;
+    
+    [txtsearch.layer setBackgroundColor:[COLOR(4, 4, 4) CGColor]];
+    [txtsearch.layer setBorderColor: [[UIColor grayColor] CGColor]];
+    [txtsearch.layer setBorderWidth: 1.0];
+//    [txtsearch.layer setCornerRadius:8.0f];
+    [txtsearch.layer setMasksToBounds:YES];
+    [view_search_bg addSubview:txtsearch];
+    //-------------
+    
+    
+    
 }
 -(void)Selectbutton:(UISegmentedControl*)mseg
 {
