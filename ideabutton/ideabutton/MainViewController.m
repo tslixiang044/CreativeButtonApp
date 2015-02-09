@@ -61,10 +61,10 @@
     {
         mseg.hidden=YES;
         
-        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+//        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
         
-//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-//        [self.navigationController pushViewController:press animated:YES];
+        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+        [self.navigationController pushViewController:press animated:YES];
         
     }
 }

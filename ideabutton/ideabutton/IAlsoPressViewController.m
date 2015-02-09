@@ -34,10 +34,12 @@
     mTabbarController.delegate=self;
     mTabbarController.tabBar.frame=CGRectMake(0, kMainScreenBoundheight-50+1, kMainScreenBoundwidth, 50);
     UIColor *mcolor=[UIColor blackColor];
-    if (IS_iOS7) {
+    if (IS_iOS7)
+    {
         mTabbarController.tabBar.barTintColor=mcolor;
     }
-    else{
+    else
+    {
         mTabbarController.tabBar.tintColor= mcolor;
     }
     //----------------
@@ -89,19 +91,16 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
 -(void)settoolbarColor
 {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
     {
-        
-        
-        
         [mTabbarController.tabBar setSelectedImageTintColor:[UIColor redColor]];
         UIColor *txtcolor=[UIColor whiteColor];
         
         for(int i=0;i<[mTabbarController.tabBar.items count];i++)
         {
-            
             [[mTabbarController.tabBar.items objectAtIndex:i] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                                       txtcolor, UITextAttributeTextColor,
                                                                                       [NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,
@@ -111,17 +110,12 @@
         
         for(int i=0;i<[mTabbarController.tabBar.items count];i++)
         {
-            
-            
             [[mTabbarController.tabBar.items objectAtIndex:i] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                                       [UIColor grayColor], UITextAttributeTextColor,
                                                                                       [NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,
                                                                                       [UIFont fontWithName:@"Helvetica" size:12], UITextAttributeFont, nil]
                                                                             forState:UIControlStateHighlighted];
         }
-        
-        
-        
     }
 }
 
