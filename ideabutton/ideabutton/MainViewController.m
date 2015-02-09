@@ -32,20 +32,17 @@
     [segmentedControl addTarget:self action:@selector(Selectbutton:) forControlEvents:UIControlEventValueChanged];
     [self.navigationController.navigationBar addSubview:segmentedControl];
     //-------------
-    UIView *view_search_bg=[[UIView alloc]initWithFrame:CGRectMake(10, 5, kMainScreenBoundwidth-20, 50)];
+    UIView *view_search_bg=[[UIView alloc]initWithFrame:CGRectMake(10, 5, kMainScreenBoundwidth-20, 44)];
     view_search_bg.backgroundColor=COLOR(123, 95, 33);
     [self.view addSubview:view_search_bg];
     //-------------
     txtsearch=[[UITextField alloc]initWithFrame:CGRectMake(2, 2, view_search_bg.bounds.size.width-100, view_search_bg.bounds.size.height-4)];
+    txtsearch.textColor=[UIColor whiteColor];
     txtsearch.clearButtonMode=UITextFieldViewModeWhileEditing;
     txtsearch.backgroundColor=[UIColor clearColor];
-    txtsearch.placeholder=@"按产品类别搜索";
     txtsearch.delegate=self;
-    
     [txtsearch.layer setBackgroundColor:[COLOR(4, 4, 4) CGColor]];
-    [txtsearch.layer setBorderColor: [[UIColor grayColor] CGColor]];
-    [txtsearch.layer setBorderWidth: 1.0];
-//    [txtsearch.layer setCornerRadius:8.0f];
+    txtsearch.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"按产品类别搜索" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [txtsearch.layer setMasksToBounds:YES];
     [view_search_bg addSubview:txtsearch];
     //-------------
