@@ -25,7 +25,11 @@
     
     
    self.view.backgroundColor=[UIColor whiteColor];
-    
+    //----------------------------------
+    UIBarButtonItem *backitem = [[UIBarButtonItem alloc] init];
+    backitem.title = @"";
+    self.navigationItem.backBarButtonItem = backitem;
+    //----------------------------------
     
     if (IS_iOS7)
     { // 判断是否是IOS7

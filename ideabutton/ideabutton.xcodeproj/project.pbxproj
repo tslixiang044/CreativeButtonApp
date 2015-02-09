@@ -37,6 +37,11 @@
 		E91E77CF1A84B1C2000174D4 /* MyBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CA1A84B1C2000174D4 /* MyBaseViewController.m */; };
 		E91E77D01A84B1C2000174D4 /* MyUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CC1A84B1C2000174D4 /* MyUIButton.m */; };
 		E91E77D11A84B1C2000174D4 /* MyUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CE1A84B1C2000174D4 /* MyUILabel.m */; };
+		E98190701A884BC20025F284 /* MyNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E981906F1A884BC20025F284 /* MyNavigationViewController.m */; };
+		E98190741A8850030025F284 /* IAlsoPressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190731A8850030025F284 /* IAlsoPressViewController.m */; };
+		E98190771A8851D60025F284 /* IoccupyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190761A8851D60025F284 /* IoccupyViewController.m */; };
+		E981907A1A8852110025F284 /* ISavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190791A8852110025F284 /* ISavedViewController.m */; };
+		E981907D1A88526E0025F284 /* IChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E981907C1A88526E0025F284 /* IChangedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +103,16 @@
 		E91E77CC1A84B1C2000174D4 /* MyUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUIButton.m; sourceTree = "<group>"; };
 		E91E77CD1A84B1C2000174D4 /* MyUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUILabel.h; sourceTree = "<group>"; };
 		E91E77CE1A84B1C2000174D4 /* MyUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUILabel.m; sourceTree = "<group>"; };
+		E981906E1A884BC20025F284 /* MyNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationViewController.h; sourceTree = "<group>"; };
+		E981906F1A884BC20025F284 /* MyNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationViewController.m; sourceTree = "<group>"; };
+		E98190721A8850030025F284 /* IAlsoPressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAlsoPressViewController.h; sourceTree = "<group>"; };
+		E98190731A8850030025F284 /* IAlsoPressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAlsoPressViewController.m; sourceTree = "<group>"; };
+		E98190751A8851D60025F284 /* IoccupyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoccupyViewController.h; sourceTree = "<group>"; };
+		E98190761A8851D60025F284 /* IoccupyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoccupyViewController.m; sourceTree = "<group>"; };
+		E98190781A8852110025F284 /* ISavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISavedViewController.h; sourceTree = "<group>"; };
+		E98190791A8852110025F284 /* ISavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISavedViewController.m; sourceTree = "<group>"; };
+		E981907B1A88526E0025F284 /* IChangedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IChangedViewController.h; sourceTree = "<group>"; };
+		E981907C1A88526E0025F284 /* IChangedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IChangedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +169,7 @@
 		E91E77501A849E87000174D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E981907F1A8853EC0025F284 /* Images */,
 				E91E77511A849E87000174D4 /* Info.plist */,
 				E91E77521A849E87000174D4 /* main.m */,
 			);
@@ -175,6 +191,7 @@
 		E91E777A1A84A760000174D4 /* GroupClass */ = {
 			isa = PBXGroup;
 			children = (
+				E98190711A884FDA0025F284 /* IAlsoPress */,
 				E91E77861A84A86B000174D4 /* Main */,
 				E91E77851A84A81F000174D4 /* Register */,
 				E91E77841A84A818000174D4 /* Login */,
@@ -191,6 +208,8 @@
 				E91E77CC1A84B1C2000174D4 /* MyUIButton.m */,
 				E91E77CD1A84B1C2000174D4 /* MyUILabel.h */,
 				E91E77CE1A84B1C2000174D4 /* MyUILabel.m */,
+				E981906E1A884BC20025F284 /* MyNavigationViewController.h */,
+				E981906F1A884BC20025F284 /* MyNavigationViewController.m */,
 			);
 			name = BasseClass;
 			sourceTree = "<group>";
@@ -294,6 +313,28 @@
 			path = RMMapper;
 			sourceTree = "<group>";
 		};
+		E98190711A884FDA0025F284 /* IAlsoPress */ = {
+			isa = PBXGroup;
+			children = (
+				E98190721A8850030025F284 /* IAlsoPressViewController.h */,
+				E98190731A8850030025F284 /* IAlsoPressViewController.m */,
+				E98190751A8851D60025F284 /* IoccupyViewController.h */,
+				E98190761A8851D60025F284 /* IoccupyViewController.m */,
+				E98190781A8852110025F284 /* ISavedViewController.h */,
+				E98190791A8852110025F284 /* ISavedViewController.m */,
+				E981907B1A88526E0025F284 /* IChangedViewController.h */,
+				E981907C1A88526E0025F284 /* IChangedViewController.m */,
+			);
+			name = IAlsoPress;
+			sourceTree = "<group>";
+		};
+		E981907F1A8853EC0025F284 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -363,13 +404,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E91E77C61A84B143000174D4 /* NSObject+RMCopyable.m in Sources */,
+				E981907D1A88526E0025F284 /* IChangedViewController.m in Sources */,
 				E91E77A61A84A8CD000174D4 /* Reachability.m in Sources */,
 				E91E77BB1A84B12C000174D4 /* BaseEntity.m in Sources */,
 				E91E779F1A84A8CD000174D4 /* ASIDataCompressor.m in Sources */,
+				E98190701A884BC20025F284 /* MyNavigationViewController.m in Sources */,
 				E91E77831A84A7EB000174D4 /* Global.m in Sources */,
 				E91E77D01A84B1C2000174D4 /* MyUIButton.m in Sources */,
+				E98190771A8851D60025F284 /* IoccupyViewController.m in Sources */,
 				E91E77561A849E87000174D4 /* AppDelegate.m in Sources */,
 				E91E77C51A84B143000174D4 /* NSObject+RMArchivable.m in Sources */,
+				E98190741A8850030025F284 /* IAlsoPressViewController.m in Sources */,
 				E91E77B81A84B0EE000174D4 /* BaseCell.m in Sources */,
 				E91E779E1A84A8CD000174D4 /* ASIAuthenticationDialog.m in Sources */,
 				E91E77C71A84B143000174D4 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
@@ -381,6 +426,7 @@
 				E91E77A41A84A8CD000174D4 /* ASIInputStream.m in Sources */,
 				E91E77C81A84B143000174D4 /* RMMapper.m in Sources */,
 				E91E77A51A84A8CD000174D4 /* ASINetworkQueue.m in Sources */,
+				E981907A1A8852110025F284 /* ISavedViewController.m in Sources */,
 				E91E77A31A84A8CD000174D4 /* ASIHTTPRequest.m in Sources */,
 				E91E77A11A84A8CD000174D4 /* ASIDownloadCache.m in Sources */,
 				E91E77531A849E87000174D4 /* main.m in Sources */,
@@ -505,6 +551,7 @@
 				E91E77721A849E87000174D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

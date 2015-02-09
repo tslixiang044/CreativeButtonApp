@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-
+#import "MyNavigationViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +23,10 @@
     [self.window makeKeyAndVisible];
     //-----------------------------------
     MainViewController *main=[[MainViewController alloc]init];
-    self.window.rootViewController=main;
+    MyNavigationViewController *nav=[[MyNavigationViewController alloc]initWithRootViewController:main];
+    
+    
+    self.window.rootViewController=nav;
     
     return YES;
 }
