@@ -23,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //------
    //-------------
     segmentedControl=[[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44) ];
     [segmentedControl insertSegmentWithTitle:@"按友圈" atIndex:0 animated:YES];
