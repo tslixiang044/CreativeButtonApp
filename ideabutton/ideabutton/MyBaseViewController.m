@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     
-   self.view.backgroundColor=[UIColor whiteColor];
+   self.view.backgroundColor=[UIColor blackColor];
     //----------------------------------
     UIBarButtonItem *backitem = [[UIBarButtonItem alloc] init];
     backitem.title = @"";

@@ -55,9 +55,12 @@
     change.tabBarItem.image=[UIImage imageNamed:@"find-icon.png"];
     change.tabBarItem.title=@"我改造的";
     //---------------------
-    
+    UIViewController *back=[[UIViewController alloc]init];
+    back.view.tag=4;
+    back.tabBarItem.image=[UIImage imageNamed:@"find-icon.png"];
+    back.tabBarItem.title=@"我改造的";
     //---------------------
-    NSMutableArray *  marr=[[NSMutableArray alloc]initWithObjects:occupy,save,change,nil];
+    NSMutableArray *  marr=[[NSMutableArray alloc]initWithObjects:occupy,save,change,back,nil];
     mTabbarController.viewControllers=marr;
     
     [self.view addSubview:mTabbarController.view];
@@ -77,6 +80,10 @@
     else if(viewController.view.tag==3)
     {
         self.title=@"我改造的";
+    }
+    else if(viewController.view.tag==4)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
