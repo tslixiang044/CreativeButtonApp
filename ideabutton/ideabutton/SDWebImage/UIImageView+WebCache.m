@@ -8,10 +8,7 @@
 
 #import "UIImageView+WebCache.h"
 
-
-
-
-static void * MyObjectMyCustomPorpertyKey = (void *)@"MyObjectMyCustomPorpertyKey";
+//static void * MyObjectMyCustomPorpertyKey = (void *)@"MyObjectMyCustomPorpertyKey";
 
 @implementation UIImageView (WebCache)
 
@@ -25,6 +22,10 @@ static void * MyObjectMyCustomPorpertyKey = (void *)@"MyObjectMyCustomPorpertyKe
     [self setImageWithURL:url placeholderImage:placeholder options:0];
 }
 
+- (void)setImageWithURL2:(NSURL *)url placeholderImage_day:(UIImage *)placeholder_day placeholderImage_night:(UIImage *)placeholder_night
+{
+    
+}
 
 
 //设置图片并将图片转换为正方形图片
@@ -64,15 +65,9 @@ static void * MyObjectMyCustomPorpertyKey = (void *)@"MyObjectMyCustomPorpertyKe
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
    // NSLog(@"img_width=%f     height=%f      tag=%i",image.size.width,image.size.height,self.tag);
-    
-   
-    
-    
-    self.image = image;
-    
 
-    
-    
+    self.image = image;
+
 }
 
 

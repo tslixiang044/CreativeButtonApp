@@ -11,19 +11,10 @@
 #import "SDWebImageManager.h"
 
 
-
-
-
-
-
-
-
-
-
 @interface UIImageView (WebCache) <SDWebImageManagerDelegate>
 
     
-@property (nonatomic, strong, readwrite) id myCustomProperty;
+//@property (nonatomic, strong, readwrite) id myCustomProperty;
 /**
  * Set the imageView `image` with an `url`.
  *

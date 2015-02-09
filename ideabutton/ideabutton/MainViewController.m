@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "IAlsoPressViewController.h"
-
+#import "LoginViewController.h"
 
 
 @interface MainViewController ()<UITextFieldDelegate>
@@ -60,8 +60,11 @@
     else  if(mseg.selectedSegmentIndex==1)
     {
         mseg.hidden=YES;
-        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-        [self.navigationController pushViewController:press animated:YES];
+        
+        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+        
+//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//        [self.navigationController pushViewController:press animated:YES];
         
     }
 }
