@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
+
+
+//---------------------
+@class IoccupyViewController;
+@protocol IoccupyViewControllerDelegate <NSObject>
+-(void)gotoviewcontroller_Ioccupy:(UIViewController *)mviewcontroller;
+@end
+//---------------------
+
 @interface IoccupyViewController : MyBaseViewController
 
+
+@property(nonatomic,assign)id<IoccupyViewControllerDelegate>delegate;
 @end

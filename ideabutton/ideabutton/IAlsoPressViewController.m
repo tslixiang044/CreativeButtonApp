@@ -15,7 +15,7 @@
 
 
 
-@interface IAlsoPressViewController ()<UITabBarControllerDelegate>
+@interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate>
 {
     UITabBarController *mTabbarController;
 }
@@ -45,6 +45,7 @@
     //----------------
     IoccupyViewController *occupy=[[IoccupyViewController alloc]init];
     occupy.view.tag=1;
+    occupy.delegate=self;
     occupy.tabBarItem.image=[UIImage imageNamed:@"icon_wbzd"];
     occupy.tabBarItem.title=@"我霸占的";
     //---------------------
@@ -118,6 +119,9 @@
         }
     }
 }
-
+-(void)gotoviewcontroller_Ioccupy:(UIViewController *)mviewcontroller
+{
+    [self.navigationController pushViewController:mviewcontroller animated:YES];
+}
 
 @end

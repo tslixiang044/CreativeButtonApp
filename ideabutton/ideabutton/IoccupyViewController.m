@@ -21,6 +21,8 @@
 @end
 
 @implementation IoccupyViewController
+@synthesize delegate;
+
 
 - (void)viewDidLoad
 {
@@ -114,8 +116,13 @@
     switch (sender.tag)
     {
         case PrintAdBtnTag:
-//            [ pushViewController:[[ProContentViewController alloc]init] animated:YES];
-            
+
+              if(delegate)
+              {
+                  ProContentViewController *pro= [[ProContentViewController alloc]init];
+                  [delegate gotoviewcontroller_Ioccupy:pro];
+                  
+              }
             break;
         case InteractionAdBtnTag:
             
