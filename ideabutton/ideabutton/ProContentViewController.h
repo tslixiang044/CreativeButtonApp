@@ -6,8 +6,11 @@
 //  Copyright (c) 2015年 ttt. All rights reserved.
 //
 
-#ifndef ideabutton_ProContentViewController_h
-#define ideabutton_ProContentViewController_h
+#import <UIKit/UIKit.h>
+#import "MyBaseViewController.h"
 
-
-#endif
+@interface ProContentViewController : MyBaseViewController
+{
+    
+}
+@end

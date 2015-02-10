@@ -45,22 +45,22 @@
     //----------------
     IoccupyViewController *occupy=[[IoccupyViewController alloc]init];
     occupy.view.tag=1;
-    occupy.tabBarItem.image=[UIImage imageNamed:@"icon_wbzd.png"];
+    occupy.tabBarItem.image=[UIImage imageNamed:@"icon_wbzd"];
     occupy.tabBarItem.title=@"我霸占的";
     //---------------------
     ISavedViewController *save=[[ISavedViewController alloc]init];
     save.view.tag=2;
-    save.tabBarItem.image=[UIImage imageNamed:@"icon_wscd.png"];
+    save.tabBarItem.image=[UIImage imageNamed:@"icon_wscd"];
     save.tabBarItem.title=@"我收藏的";
     //---------------------
     IChangedViewController *change=[[IChangedViewController alloc]init];
     change.view.tag=3;
-    change.tabBarItem.image=[UIImage imageNamed:@"icon_wgzd.png"];
+    change.tabBarItem.image=[UIImage imageNamed:@"icon_chuizi"];
     change.tabBarItem.title=@"我改造的";
     //---------------------
     UIViewController *back=[[UIViewController alloc]init];
     back.view.tag=4;
-    back.tabBarItem.image=[UIImage imageNamed:@"icon_wbzd.png"];
+    back.tabBarItem.image=[UIImage imageNamed:@"icon_brbz"];
     back.tabBarItem.title=@"大家霸的";
     //---------------------
     NSMutableArray *  marr=[[NSMutableArray alloc]initWithObjects:occupy,save,change,back,nil];

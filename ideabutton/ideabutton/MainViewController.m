@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "IAlsoPressViewController.h"
 #import "LoginViewController.h"
+#import "ProContentViewController.h"
 
 
 @interface MainViewController ()<UITextFieldDelegate>
@@ -63,9 +64,10 @@
         
 //        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
         
-        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-        [self.navigationController pushViewController:press animated:YES];
-        
+//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//        [self.navigationController pushViewController:press animated:YES];
+
+        [self.navigationController pushViewController:[[ProContentViewController alloc]init] animated:YES];
     }
 }
 -(void)viewWillAppear:(BOOL)animated

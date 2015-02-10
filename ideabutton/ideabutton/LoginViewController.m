@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "Config.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -65,7 +66,7 @@
 -(void)createInputView
 {
     UIView* loginView = [[UIView alloc] initWithFrame:CGRectMake(20, 60, 280, 380)];
-    loginView.backgroundColor = [UIColor colorWithRed:21/255.0 green:21/255.0 blue:22/255.0 alpha:1.0];
+    loginView.backgroundColor = COLOR(21, 21, 22);
     [self.view addSubview:loginView];
     
     UIImageView *loginNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];

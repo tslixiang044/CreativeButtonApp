@@ -7,6 +7,14 @@
 //
 
 #import "IoccupyViewController.h"
+#import "ProContentViewController.h"
+
+#define PrintAdBtnTag   100
+#define InteractionAdBtnTag 101
+#define VideoAdBtnTag   102
+#define PrCampaignBtnTag   103
+#define AudioAdBtnTag   104
+#define MediaCreateBtnTag   105
 
 @interface IoccupyViewController ()
 
@@ -30,7 +38,9 @@
     
     UIButton* printAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 100, 70, 70)];
     [printAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [printAdBtn setImage:[UIImage imageNamed:@"btn_icon_shouji"] forState:UIControlStateNormal];
+    [printAdBtn setImage:[UIImage imageNamed:@"btn_icon_plane"] forState:UIControlStateNormal];
+    printAdBtn.tag = PrintAdBtnTag;
+    [printAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:printAdBtn];
     
     UILabel* printAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 170, 80, 30)];
@@ -41,6 +51,8 @@
     UIButton* interactionAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 100, 70, 70)];
     [interactionAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
     [interactionAdBtn setImage:[UIImage imageNamed:@"btn_icon_hdym"] forState:UIControlStateNormal];
+    interactionAdBtn.tag = InteractionAdBtnTag;
+    [interactionAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:interactionAdBtn];
     
     UILabel* interactionAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(195, 170, 80, 30)];
@@ -50,7 +62,9 @@
     
     UIButton* videoAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 220, 70, 70)];
     [videoAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [videoAdBtn setImage:[UIImage imageNamed:@"btn_icon_shouji"] forState:UIControlStateNormal];
+    [videoAdBtn setImage:[UIImage imageNamed:@"btn_icon_camera"] forState:UIControlStateNormal];
+    videoAdBtn.tag = VideoAdBtnTag;
+    [videoAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:videoAdBtn];
     
     UILabel* videoAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 290, 80, 30)];
@@ -61,6 +75,8 @@
     UIButton* prCampaignBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 220, 70, 70)];
     [prCampaignBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
     [prCampaignBtn setImage:[UIImage imageNamed:@"btn_icon_gghd"] forState:UIControlStateNormal];
+    prCampaignBtn.tag = PrCampaignBtnTag;
+    [prCampaignBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:prCampaignBtn];
     
     UILabel* prCampaignLabel = [[UILabel alloc] initWithFrame:CGRectMake(195, 290, 80, 30)];
@@ -70,7 +86,9 @@
     
     UIButton* audioAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 340, 70, 70)];
     [audioAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [audioAdBtn setImage:[UIImage imageNamed:@"btn_icon_shouji"] forState:UIControlStateNormal];
+    [audioAdBtn setImage:[UIImage imageNamed:@"btn_icon_suona"] forState:UIControlStateNormal];
+    audioAdBtn.tag = AudioAdBtnTag;
+    [audioAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:audioAdBtn];
     
     UILabel* audioAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 410, 80, 30)];
@@ -81,12 +99,43 @@
     UIButton* mediaCreateBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 340, 70, 70)];
     [mediaCreateBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
     [mediaCreateBtn setImage:[UIImage imageNamed:@"btn_icon_shouji"] forState:UIControlStateNormal];
+    mediaCreateBtn.tag = MediaCreateBtnTag;
+    [mediaCreateBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mediaCreateBtn];
     
     UILabel* mediaCreateLabel = [[UILabel alloc] initWithFrame:CGRectMake(195, 410, 80, 30)];
     mediaCreateLabel.textColor = [UIColor whiteColor];
     mediaCreateLabel.text = @"媒体创新";
     [self.view addSubview:mediaCreateLabel];
+}
+
+-(void)buttonSelected:(UIButton*)sender
+{
+    switch (sender.tag)
+    {
+        case PrintAdBtnTag:
+//            [ pushViewController:[[ProContentViewController alloc]init] animated:YES];
+            
+            break;
+        case InteractionAdBtnTag:
+            
+            break;
+        case VideoAdBtnTag:
+            
+            break;
+        case PrCampaignBtnTag:
+            
+            break;
+        case AudioAdBtnTag:
+            
+            break;
+        case MediaCreateBtnTag:
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning
