@@ -40,7 +40,7 @@
     
     UIButton* interactionAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 100, 70, 70)];
     [interactionAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [interactionAdBtn setImage:[UIImage imageNamed:@"btn_icon_shouji"] forState:UIControlStateNormal];
+    [interactionAdBtn setImage:[UIImage imageNamed:@"btn_icon_hdym"] forState:UIControlStateNormal];
     [self.view addSubview:interactionAdBtn];
     
     UILabel* interactionAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(195, 170, 80, 30)];
@@ -60,7 +60,7 @@
     
     UIButton* prCampaignBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 220, 70, 70)];
     [prCampaignBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [prCampaignBtn setImage:[UIImage imageNamed:@"btn_icon_shouji"] forState:UIControlStateNormal];
+    [prCampaignBtn setImage:[UIImage imageNamed:@"btn_icon_gghd"] forState:UIControlStateNormal];
     [self.view addSubview:prCampaignBtn];
     
     UILabel* prCampaignLabel = [[UILabel alloc] initWithFrame:CGRectMake(195, 290, 80, 30)];
