@@ -78,6 +78,7 @@
 		E98190A71A886E5E0025F284 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E981909E1A886E5E0025F284 /* SDWebImagePrefetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E98190A81A886E5E0025F284 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190A01A886E5E0025F284 /* UIButton+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E98190A91A886E5E0025F284 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190A21A886E5E0025F284 /* UIImageView+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E98C48E21A8B378700287EF8 /* InteractivePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +202,8 @@
 		E98190A01A886E5E0025F284 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		E98190A11A886E5E0025F284 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		E98190A21A886E5E0025F284 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		E98C48E01A8B378700287EF8 /* InteractivePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractivePageViewController.h; sourceTree = "<group>"; };
+		E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +285,7 @@
 		E91E777A1A84A760000174D4 /* GroupClass */ = {
 			isa = PBXGroup;
 			children = (
+				E97258B71A8B310700F0ABB8 /* InteractivePage */,
 				E97258531A89A8E800F0ABB8 /* ProjectContent */,
 				E98190711A884FDA0025F284 /* IAlsoPress */,
 				E91E77861A84A86B000174D4 /* Main */,
@@ -416,6 +420,15 @@
 				E97258551A89A96300F0ABB8 /* ProContentViewController.m */,
 			);
 			name = ProjectContent;
+			sourceTree = "<group>";
+		};
+		E97258B71A8B310700F0ABB8 /* InteractivePage */ = {
+			isa = PBXGroup;
+			children = (
+				E98C48E01A8B378700287EF8 /* InteractivePageViewController.h */,
+				E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */,
+			);
+			name = InteractivePage;
 			sourceTree = "<group>";
 		};
 		E98190711A884FDA0025F284 /* IAlsoPress */ = {
@@ -619,6 +632,7 @@
 				E91E77A01A84A8CD000174D4 /* ASIDataDecompressor.m in Sources */,
 				E98190A31A886E5E0025F284 /* SDImageCache.m in Sources */,
 				E91E77781A84A6FA000174D4 /* MainViewController.m in Sources */,
+				E98C48E21A8B378700287EF8 /* InteractivePageViewController.m in Sources */,
 				E972583A1A88B8D400F0ABB8 /* RegisterViewController.m in Sources */,
 				E91E77CF1A84B1C2000174D4 /* MyBaseViewController.m in Sources */,
 				E91E77A41A84A8CD000174D4 /* ASIInputStream.m in Sources */,
