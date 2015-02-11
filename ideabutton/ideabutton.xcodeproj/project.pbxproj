@@ -79,6 +79,12 @@
 		E98190A81A886E5E0025F284 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190A01A886E5E0025F284 /* UIButton+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E98190A91A886E5E0025F284 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190A21A886E5E0025F284 /* UIImageView+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E98C48E21A8B378700287EF8 /* InteractivePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */; };
+		E98C48E71A8B68DB00287EF8 /* InteractivePageViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E41A8B68DB00287EF8 /* InteractivePageViewController1.m */; };
+		E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E61A8B68DB00287EF8 /* InteractivePageViewController2.m */; };
+		E98C48EA1A8B74AD00287EF8 /* bg_interaction_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98C48E91A8B74AD00287EF8 /* bg_interaction_split@2x.png */; };
+		E98C48ED1A8B761F00287EF8 /* NumberChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */; };
+		E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */; };
+		E98C48F21A8B7BA300287EF8 /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = E98C48F11A8B7BA300287EF8 /* gif.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,6 +210,16 @@
 		E98190A21A886E5E0025F284 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		E98C48E01A8B378700287EF8 /* InteractivePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractivePageViewController.h; sourceTree = "<group>"; };
 		E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePageViewController.m; sourceTree = "<group>"; };
+		E98C48E31A8B68DB00287EF8 /* InteractivePageViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractivePageViewController1.h; sourceTree = "<group>"; };
+		E98C48E41A8B68DB00287EF8 /* InteractivePageViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePageViewController1.m; sourceTree = "<group>"; };
+		E98C48E51A8B68DB00287EF8 /* InteractivePageViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractivePageViewController2.h; sourceTree = "<group>"; };
+		E98C48E61A8B68DB00287EF8 /* InteractivePageViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePageViewController2.m; sourceTree = "<group>"; };
+		E98C48E91A8B74AD00287EF8 /* bg_interaction_split@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_interaction_split@2x.png"; sourceTree = "<group>"; };
+		E98C48EB1A8B761F00287EF8 /* NumberChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberChooseViewController.h; sourceTree = "<group>"; };
+		E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberChooseViewController.m; sourceTree = "<group>"; };
+		E98C48EE1A8B794800287EF8 /* WaitPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitPageViewController.h; sourceTree = "<group>"; };
+		E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitPageViewController.m; sourceTree = "<group>"; };
+		E98C48F11A8B7BA300287EF8 /* gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +441,14 @@
 		E97258B71A8B310700F0ABB8 /* InteractivePage */ = {
 			isa = PBXGroup;
 			children = (
+				E98C48EE1A8B794800287EF8 /* WaitPageViewController.h */,
+				E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */,
+				E98C48EB1A8B761F00287EF8 /* NumberChooseViewController.h */,
+				E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */,
+				E98C48E31A8B68DB00287EF8 /* InteractivePageViewController1.h */,
+				E98C48E41A8B68DB00287EF8 /* InteractivePageViewController1.m */,
+				E98C48E51A8B68DB00287EF8 /* InteractivePageViewController2.h */,
+				E98C48E61A8B68DB00287EF8 /* InteractivePageViewController2.m */,
 				E98C48E01A8B378700287EF8 /* InteractivePageViewController.h */,
 				E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */,
 			);
@@ -449,6 +473,8 @@
 		E981907F1A8853EC0025F284 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E98C48F11A8B7BA300287EF8 /* gif.gif */,
+				E98C48E91A8B74AD00287EF8 /* bg_interaction_split@2x.png */,
 				E97258491A89A41E00F0ABB8 /* btn_icon_camera@2x.png */,
 				E97258B51A89A9EF00F0ABB8 /* btn_logo@2x.png */,
 				E972584A1A89A41E00F0ABB8 /* btn_icon_plane@2x.png */,
@@ -581,6 +607,7 @@
 				E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */,
 				E97258341A88A49400F0ABB8 /* icon_mail@2x.png in Resources */,
 				E91E775E1A849E87000174D4 /* Images.xcassets in Resources */,
+				E98C48F21A8B7BA300287EF8 /* gif.gif in Resources */,
 				E97258361A88A49400F0ABB8 /* icon_more_all@2x.png in Resources */,
 				E97258401A88E1C300F0ABB8 /* btn_bg@2x.png in Resources */,
 				E97258351A88A49400F0ABB8 /* icon_mima@2x.png in Resources */,
@@ -593,6 +620,7 @@
 				E972582D1A88A14F00F0ABB8 /* checkbox-unchecked@2x.png in Resources */,
 				E97258B61A89A9EF00F0ABB8 /* btn_logo@2x.png in Resources */,
 				E97258461A88E2E700F0ABB8 /* btn_icon_gghd@2x.png in Resources */,
+				E98C48EA1A8B74AD00287EF8 /* bg_interaction_split@2x.png in Resources */,
 				E972584E1A89A41E00F0ABB8 /* btn_icon_camera@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,14 +661,18 @@
 				E98190A31A886E5E0025F284 /* SDImageCache.m in Sources */,
 				E91E77781A84A6FA000174D4 /* MainViewController.m in Sources */,
 				E98C48E21A8B378700287EF8 /* InteractivePageViewController.m in Sources */,
+				E98C48ED1A8B761F00287EF8 /* NumberChooseViewController.m in Sources */,
 				E972583A1A88B8D400F0ABB8 /* RegisterViewController.m in Sources */,
 				E91E77CF1A84B1C2000174D4 /* MyBaseViewController.m in Sources */,
+				E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */,
 				E91E77A41A84A8CD000174D4 /* ASIInputStream.m in Sources */,
 				E98190A51A886E5E0025F284 /* SDWebImageDownloader.m in Sources */,
 				E981908F1A885FBB0025F284 /* EGORefreshTableHeaderView.m in Sources */,
+				E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */,
 				E91E77C81A84B143000174D4 /* RMMapper.m in Sources */,
 				E91E77A51A84A8CD000174D4 /* ASINetworkQueue.m in Sources */,
 				E981907A1A8852110025F284 /* ISavedViewController.m in Sources */,
+				E98C48E71A8B68DB00287EF8 /* InteractivePageViewController1.m in Sources */,
 				E91E77A31A84A8CD000174D4 /* ASIHTTPRequest.m in Sources */,
 				E91E77A11A84A8CD000174D4 /* ASIDownloadCache.m in Sources */,
 				E91E77531A849E87000174D4 /* main.m in Sources */,

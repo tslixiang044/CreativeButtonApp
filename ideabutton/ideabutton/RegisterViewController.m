@@ -81,7 +81,7 @@
     registerView.backgroundColor = [UIColor colorWithRed:21/255.0 green:21/255.0 blue:22/255.0 alpha:1.0];
     
     UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"zhuce_icon"]];
-    imageView.frame = CGRectMake(100, 20, 50, 50);
+    imageView.frame = CGRectMake(110, 20, 50, 50);
     [registerView addSubview:imageView];
     
     UIImageView* line = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"line"]];
