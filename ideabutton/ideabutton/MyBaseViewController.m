@@ -83,7 +83,7 @@
 
 
 
--(void)showalertview:(NSString *)mstr autoHiden:(BOOL)isautohiden imgname:(NSString *)mimgname
+-(void)showalertview_text:(NSString *)mstr imgname:(NSString *)mimgname autoHiden:(BOOL)isautohiden
 {
 
     if(alertView==nil)
@@ -115,7 +115,7 @@
     
     
     UILabel *lblaert=(UILabel *)[alertView viewWithTag:100];
-    if(![mimgname isEqualToString:@""])
+    if(![mimgname isEqualToString:@""] || mimgname != nil)
     {
         UIImageView *imgview=(UIImageView *)[alertView viewWithTag:99];
         imgview.hidden=NO;

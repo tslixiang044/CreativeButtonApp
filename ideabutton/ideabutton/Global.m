@@ -38,7 +38,7 @@ static Global *mglobal;
 {
     @try
     {
-        [self cancerallrequest:mkey];
+        [self cancerRequest_key:mkey];
         
         self.delegate=mdelegate;
         //-----------------------------
@@ -80,12 +80,12 @@ static Global *mglobal;
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingUTF8);
     NSString *myRespoonseStr=[[NSString alloc]initWithData:myResponseData encoding:enc ] ;
     
-    //NSLog(@"responseStr=%@",myRespoonseStr);
+    NSLog(@"responseStr=%@",myRespoonseStr);
     
     
     if(delegate)
     {
-        [delegate  uploadfinished_global:myRespoonseStr key:request.username];
+        [delegate  uploadfinished_global:[request responseData] key:request.username];
     }
 }
 
@@ -104,7 +104,7 @@ static Global *mglobal;
     self.delegate=mdelegate;
     NSLog(@"post开始请求=%@",urlstr);
     
-    [self cancerallrequest:mkey];
+    [self cancerRequest_key:mkey];
     
     NSURL *murl=[[NSURL alloc]initWithString:urlstr];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:murl];
@@ -153,14 +153,16 @@ static Global *mglobal;
    
     NSLog(@"post请求成功:%@",request.username);
     NSData *myResponseData=[request responseData];
+    
+    
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingUTF8);
-    
     NSString *myRespoonseStr= [[NSString alloc]initWithData:myResponseData encoding:enc ]  ;
+    NSLog(@"str=%@",myRespoonseStr);
     
-    //NSLog(@"str=%@",myRespoonseStr);
+    
     if(delegate)
     {
-        [delegate  uploadfinished_global:myRespoonseStr key:request.username];
+        [delegate  uploadfinished_global:[request responseData] key:request.username];
     }
 }
 - (void)uploadfailed_post:(ASIHTTPRequest *)request
@@ -184,10 +186,18 @@ static Global *mglobal;
         }
     }
 }
-
++(NSDictionary*)GetdicwithData:(NSData*)mdata
+{
+    NSError *error = nil;
+    
+    NSDictionary *mdic=[NSJSONSerialization JSONObjectWithData:mdata options:NSJSONReadingAllowFragments error:&error];
+    
+    return mdic;
+    
+}
 //--------------
 
--(void)cancerallrequest
+-(void)cancerAllRequest
 {
     int i=0;
     for(ASIHTTPRequest *request in [netWorkQueue operations])
@@ -200,7 +210,7 @@ static Global *mglobal;
         NSLog(@"请求已取消");
     }
 }
--(void)cancerallrequest:(NSString *)mkey
+-(void)cancerRequest_key:(NSString *)mkey
 {
     int i=0;
     

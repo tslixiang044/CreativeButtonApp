@@ -11,16 +11,19 @@
 #import "ASIFormDataRequest.h"
 #import "ASINetworkQueue.h"
 
-
+//-------------------------------------------------delegate
 @protocol Globaldelegate <NSObject>
 
--(void)uploadfinished_global:(NSString *)responseData key:(NSString *)mkey ;
+-(void)uploadfinished_global:(NSData *)responseData key:(NSString *)mkey ;
 -(void)uploadfaild_global:(NSString *)mkey;
-
+//----
 -(void)uploadfinished_post_global:(NSString *)resultStr key:(NSString *)mkey;
 -(void)uploadfaild_post_global:(NSString *)mkey;
 
 @end
+//-------------------------------------------------
+
+
 
 @interface Global : NSObject
 {
@@ -28,11 +31,11 @@
 }
 @property(assign)id<Globaldelegate>delegate;
 
-
++(Global *)getInstanse;
 -(void)getHttpRequest_url:(NSString *)murlstr  key:(NSString *)mkey delegate:(id)mdelegate;
 -(void)postHttprequest_urlstr:(NSString *)urlstr dic:(NSMutableDictionary *)mdic imgdata:(NSMutableDictionary*)mimgdatadic key :(NSString *)mkey  delegate:(id)mdelegate;
 
--(void)cancerallrequest;
--(void)cancerallrequest:(NSString *)mkey;
-
+-(void)cancerAllRequest;
+-(void)cancerRequest_key:(NSString *)mkey;
++(NSDictionary*)GetdicwithData:(NSData*)mdata;
 @end
