@@ -128,7 +128,6 @@
     UIButton* loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(90, 200, 100, 50)];
     loginBtn.layer.cornerRadius = 5;
     loginBtn.backgroundColor = COLOR(124, 96, 33);
-//    [loginBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg_login"] forState:UIControlStateNormal];
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginView addSubview:loginBtn];
     

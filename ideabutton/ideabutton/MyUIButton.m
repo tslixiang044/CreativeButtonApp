@@ -40,7 +40,6 @@
          
         }
         
-        
         [self setTitle:mtitle forState:UIControlStateNormal];
         
         self.titleLabel.font=[UIFont boldSystemFontOfSize:15];
