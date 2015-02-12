@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 #import "IAlsoPressViewController.h"
 #import "LoginViewController.h"
-#import "InteractivePageViewController.h"
+#import "IdeaGenerateViewController.h"
 
 
 @interface MainViewController ()<UITextFieldDelegate>
@@ -67,7 +67,7 @@
 //        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
 //        [self.navigationController pushViewController:press animated:YES];
 
-        [self.navigationController pushViewController:[[InteractivePageViewController alloc]init] animated:YES];
+        [self.navigationController pushViewController:[[IdeaGenerateViewController alloc]init] animated:YES];
     }
 }
 -(void)viewWillAppear:(BOOL)animated

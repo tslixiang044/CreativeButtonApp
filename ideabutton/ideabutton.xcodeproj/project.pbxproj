@@ -85,6 +85,8 @@
 		E98C48ED1A8B761F00287EF8 /* NumberChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */; };
 		E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */; };
 		E98C48F21A8B7BA300287EF8 /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = E98C48F11A8B7BA300287EF8 /* gif.gif */; };
+		E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */; };
+		E98C48FA1A8C467200287EF8 /* input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98C48F81A8C467200287EF8 /* input_bg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +222,9 @@
 		E98C48EE1A8B794800287EF8 /* WaitPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitPageViewController.h; sourceTree = "<group>"; };
 		E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitPageViewController.m; sourceTree = "<group>"; };
 		E98C48F11A8B7BA300287EF8 /* gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif.gif; sourceTree = "<group>"; };
+		E98C48F41A8C447100287EF8 /* IdeaGenerateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdeaGenerateViewController.h; sourceTree = "<group>"; };
+		E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaGenerateViewController.m; sourceTree = "<group>"; };
+		E98C48F81A8C467200287EF8 /* input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_bg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +306,7 @@
 		E91E777A1A84A760000174D4 /* GroupClass */ = {
 			isa = PBXGroup;
 			children = (
+				E98C48F31A8C443000287EF8 /* IdeaGenerate */,
 				E97258B71A8B310700F0ABB8 /* InteractivePage */,
 				E97258531A89A8E800F0ABB8 /* ProjectContent */,
 				E98190711A884FDA0025F284 /* IAlsoPress */,
@@ -473,6 +479,7 @@
 		E981907F1A8853EC0025F284 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E98C48F81A8C467200287EF8 /* input_bg@2x.png */,
 				E98C48F11A8B7BA300287EF8 /* gif.gif */,
 				E98C48E91A8B74AD00287EF8 /* bg_interaction_split@2x.png */,
 				E97258491A89A41E00F0ABB8 /* btn_icon_camera@2x.png */,
@@ -536,6 +543,15 @@
 				E98190A21A886E5E0025F284 /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		E98C48F31A8C443000287EF8 /* IdeaGenerate */ = {
+			isa = PBXGroup;
+			children = (
+				E98C48F41A8C447100287EF8 /* IdeaGenerateViewController.h */,
+				E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */,
+			);
+			name = IdeaGenerate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -618,6 +634,7 @@
 				E972582C1A88A14F00F0ABB8 /* checkbox-checked@2x.png in Resources */,
 				E972583D1A88BBC000F0ABB8 /* icon_admin@2x.png in Resources */,
 				E972582D1A88A14F00F0ABB8 /* checkbox-unchecked@2x.png in Resources */,
+				E98C48FA1A8C467200287EF8 /* input_bg@2x.png in Resources */,
 				E97258B61A89A9EF00F0ABB8 /* btn_logo@2x.png in Resources */,
 				E97258461A88E2E700F0ABB8 /* btn_icon_gghd@2x.png in Resources */,
 				E98C48EA1A8B74AD00287EF8 /* bg_interaction_split@2x.png in Resources */,
@@ -649,6 +666,7 @@
 				E91E77561A849E87000174D4 /* AppDelegate.m in Sources */,
 				E98190A91A886E5E0025F284 /* UIImageView+WebCache.m in Sources */,
 				E98190A61A886E5E0025F284 /* SDWebImageManager.m in Sources */,
+				E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */,
 				E91E77C51A84B143000174D4 /* NSObject+RMArchivable.m in Sources */,
 				E98190741A8850030025F284 /* IAlsoPressViewController.m in Sources */,
 				E97258561A89A96300F0ABB8 /* ProContentViewController.m in Sources */,

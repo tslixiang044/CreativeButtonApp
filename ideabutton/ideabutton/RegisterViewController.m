@@ -164,7 +164,9 @@
     [confirmPSWView addSubview:confirmPSWTextField];
     
     UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(90, 320, 100, 50)];
-    [registerBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg_login"] forState:UIControlStateNormal];
+    registerBtn.layer.cornerRadius = 5;
+    registerBtn.backgroundColor = COLOR(124, 96, 33);
+//    [registerBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg_login"] forState:UIControlStateNormal];
     [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
 //    [registerBtn addTarget:self action:@selector(showRegisterViewController) forControlEvents:UIControlEventTouchUpInside];
     [registerView addSubview:registerBtn];
