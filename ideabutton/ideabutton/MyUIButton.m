@@ -73,8 +73,8 @@
         
         self.titleLabel.font=[UIFont boldSystemFontOfSize:15];
         
-        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         
         self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         //------------------------------------

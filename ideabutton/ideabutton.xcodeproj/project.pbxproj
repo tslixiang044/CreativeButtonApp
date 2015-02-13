@@ -37,6 +37,7 @@
 		E91E77CF1A84B1C2000174D4 /* MyBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CA1A84B1C2000174D4 /* MyBaseViewController.m */; };
 		E91E77D01A84B1C2000174D4 /* MyUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CC1A84B1C2000174D4 /* MyUIButton.m */; };
 		E91E77D11A84B1C2000174D4 /* MyUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CE1A84B1C2000174D4 /* MyUILabel.m */; };
+		E94107401A8DA6E5002D78B2 /* PopMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E941073F1A8DA6E5002D78B2 /* PopMenuViewController.m */; };
 		E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97258231A888D3500F0ABB8 /* LoginViewController.m */; };
 		E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258261A888EB700F0ABB8 /* Default-568h@2x.png */; };
 		E97258291A88958900F0ABB8 /* input_bai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258281A88958900F0ABB8 /* input_bai@2x.png */; };
@@ -153,6 +154,8 @@
 		E91E77CC1A84B1C2000174D4 /* MyUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUIButton.m; sourceTree = "<group>"; };
 		E91E77CD1A84B1C2000174D4 /* MyUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUILabel.h; sourceTree = "<group>"; };
 		E91E77CE1A84B1C2000174D4 /* MyUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUILabel.m; sourceTree = "<group>"; };
+		E941073E1A8DA6E5002D78B2 /* PopMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopMenuViewController.h; sourceTree = "<group>"; };
+		E941073F1A8DA6E5002D78B2 /* PopMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenuViewController.m; sourceTree = "<group>"; };
 		E97258231A888D3500F0ABB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E97258251A888D6600F0ABB8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E97258261A888EB700F0ABB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				E981906F1A884BC20025F284 /* MyNavigationViewController.m */,
 				E9F0E0E01A8CD5FB00CAC9E1 /* MyUIImageView.h */,
 				E9F0E0E11A8CD5FB00CAC9E1 /* MyUIImageView.m */,
+				E941073E1A8DA6E5002D78B2 /* PopMenuViewController.h */,
+				E941073F1A8DA6E5002D78B2 /* PopMenuViewController.m */,
 			);
 			name = BasseClass;
 			sourceTree = "<group>";
@@ -688,6 +693,7 @@
 				E981907D1A88526E0025F284 /* IChangedViewController.m in Sources */,
 				E91E77A61A84A8CD000174D4 /* Reachability.m in Sources */,
 				E91E77BB1A84B12C000174D4 /* BaseEntity.m in Sources */,
+				E94107401A8DA6E5002D78B2 /* PopMenuViewController.m in Sources */,
 				E9F0E0D91A8C862100CAC9E1 /* WaterFlowViewCell.m in Sources */,
 				E981908E1A885FBB0025F284 /* CircleView.m in Sources */,
 				E91E779F1A84A8CD000174D4 /* ASIDataCompressor.m in Sources */,

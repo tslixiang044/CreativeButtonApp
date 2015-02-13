@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NumberChooseViewController.h"
 #import "WaitPageViewController.h"
+#import "MyUIButton.h"
 
 #define Height  45
 
@@ -41,24 +42,18 @@
     view.frame = CGRectMake(35, 55, 245, 2);
     [self.view addSubview:view];
     
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(130, 120, 60, 60);
-    [button setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button setTitle:@"9" forState:UIControlStateNormal];
+    MyUIButton* button = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 120, 60, 60) bgimg:nil title:@"9"];
+    button.backgroundColor = COLOR(205, 38, 33);
     [button addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
-    UIButton* button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button1.frame = CGRectMake(130, 210, 60, 60);
-    [button1 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button1 setTitle:@"18" forState:UIControlStateNormal];
+    MyUIButton* button1 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 210, 60, 60) bgimg:nil title:@"18"];
+    button1.backgroundColor = COLOR(205, 38, 33);
     [button1 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button1];
     
-    UIButton* button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(130, 300, 60, 60);
-    [button2 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button2 setTitle:@"27" forState:UIControlStateNormal];
+    MyUIButton* button2 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 300, 60, 60) bgimg:nil title:@"27"];
+    button2.backgroundColor = COLOR(205, 38, 33);
     [button2 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button2];
 }

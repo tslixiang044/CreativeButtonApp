@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "InteractivePageViewController2.h"
 #import "NumberChooseViewController.h"
+#import "MyUIButton.h"
 
 #define Height  45
 
@@ -41,66 +42,48 @@
     view.frame = CGRectMake(35, 55, 245, 2);
     [self.view addSubview:view];
     
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(40, 120, 60, 60);
-    [button setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button setTitle:@"玖" forState:UIControlStateNormal];
+    MyUIButton* button = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 120, 60, 60) bgimg:nil title:@"玖"];
+    button.backgroundColor = COLOR(205, 38, 33);
     [button addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
-    UIButton* button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button1.frame = CGRectMake(130, 120, 60, 60);
-    [button1 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button1 setTitle:@"柒" forState:UIControlStateNormal];
+    MyUIButton* button1 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 120, 60, 60) bgimg:nil title:@"柒"];
+    button1.backgroundColor = COLOR(205, 38, 33);
     [button1 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button1];
     
-    UIButton* button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(220, 120, 60, 60);
-    [button2 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button2 setTitle:@"陆" forState:UIControlStateNormal];
+    MyUIButton* button2 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 120, 60, 60) bgimg:nil title:@"陆"];
+    button2.backgroundColor = COLOR(205, 38, 33);
     [button2 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button2];
     
-    UIButton* button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button3.frame = CGRectMake(40, 210, 60, 60);
-    [button3 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button3 setTitle:@"捌" forState:UIControlStateNormal];
+    MyUIButton* button3 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 210, 60, 60) bgimg:nil title:@"捌"];
+    button3.backgroundColor = COLOR(205, 38, 33);
     [button3 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button3];
     
-    UIButton* button4 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button4.frame = CGRectMake(130, 210, 60, 60);
-    [button4 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button4 setTitle:@"贰" forState:UIControlStateNormal];
+    MyUIButton* button4 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 210, 60, 60) bgimg:nil title:@"贰"];
+    button4.backgroundColor = COLOR(205, 38, 33);
     [button4 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button4];
     
-    UIButton* button5 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button5.frame = CGRectMake(220, 210, 60, 60);
-    [button5 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button5 setTitle:@"伍" forState:UIControlStateNormal];
+    MyUIButton* button5 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 210, 60, 60) bgimg:nil title:@"伍"];
+    button5.backgroundColor = COLOR(205, 38, 33);
     [button5 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button5];
     
-    UIButton* button6 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button6.frame = CGRectMake(40, 300, 60, 60);
-    [button6 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button6 setTitle:@"壹" forState:UIControlStateNormal];
+    MyUIButton* button6 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 300, 60, 60) bgimg:nil title:@"壹"];
+    button6.backgroundColor = COLOR(205, 38, 33);
     [button6 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button6];
     
-    UIButton* button7 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button7.frame = CGRectMake(130, 300, 60, 60);
-    [button7 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button7 setTitle:@"叁" forState:UIControlStateNormal];
+    MyUIButton* button7 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 300, 60, 60) bgimg:nil title:@"叁"];
+    button7.backgroundColor = COLOR(205, 38, 33);
     [button7 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button7];
     
-    UIButton* button8 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button8.frame = CGRectMake(220, 300, 60, 60);
-    [button8 setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
-    [button8 setTitle:@"肆" forState:UIControlStateNormal];
+    MyUIButton* button8 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 300, 60, 60) bgimg:nil title:@"肆"];
+    button8.backgroundColor = COLOR(205, 38, 33);
     [button8 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button8];
 }
