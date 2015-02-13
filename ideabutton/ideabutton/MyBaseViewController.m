@@ -43,7 +43,7 @@
 -(void)setrightbaritem_imgname:(NSString*)icon_img_name title:(NSString*)mtitle
 {
     UIImage* backImage = [UIImage imageNamed:icon_img_name];
-    CGRect backframe = CGRectMake(0,0,54,30);
+    CGRect backframe = CGRectMake(0,0,30,30);
     UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
     [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
     [backButton setTitle:mtitle forState:UIControlStateNormal];

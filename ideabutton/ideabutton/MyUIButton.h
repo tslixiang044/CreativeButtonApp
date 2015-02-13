@@ -22,7 +22,7 @@
 
 
 - (id)initWithFrame:(CGRect)frame bgimg:(NSString *)mimg title:(NSString*)mtitle ;
-
+- (id)initWithRoundButton_Frame:(CGRect)frame bgimg:(NSString *)mimg title:(NSString*)mtitle;
 
 
 

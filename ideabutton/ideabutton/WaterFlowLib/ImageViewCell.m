@@ -62,15 +62,20 @@
     
     originY = TOPMARGIN;
     height = CGRectGetHeight(self.frame) - TOPMARGIN;
-    if (self.indexPath.column == 0) {
+    if (self.indexPath.column == 0)
+    {
         
         originX = LEFTMARGIN;
         width = CGRectGetWidth(self.frame) - LEFTMARGIN - 1/2.0*LEFTMARGIN;
-    }else if (self.indexPath.column < self.columnCount - 1){
+    }
+    else if (self.indexPath.column < self.columnCount - 1)
+    {
     
         originX = LEFTMARGIN/2.0;
         width = CGRectGetWidth(self.frame) - LEFTMARGIN;
-    }else{
+    }
+    else
+    {
     
         originX = LEFTMARGIN/2.0;
         width = CGRectGetWidth(self.frame) - LEFTMARGIN - 1/2.0*LEFTMARGIN;

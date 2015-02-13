@@ -50,6 +50,9 @@ static Global *mglobal;
             [netWorkQueue reset];
             [netWorkQueue setShowAccurateProgress:NO];
         }
+
+        
+        
         NSURL *murl=  [[NSURL alloc] initWithString:murlstr];
         ASIHTTPRequest *mrequest = [[ASIHTTPRequest alloc] initWithURL:murl];
         [mrequest setDelegate:self];
@@ -115,8 +118,9 @@ static Global *mglobal;
     NSArray *keyarr=[mdic allKeys];
     for(int i=0;i<[keyarr count];i++)
     {
-        NSString *key=[keyarr objectAtIndex:i];
+        NSString *key= [keyarr objectAtIndex:i];
         NSString *value=[mdic valueForKey:key];
+
         NSLog(@"key=%@     value=%@",key,value);
         if(key && value)
         {
@@ -228,7 +232,21 @@ static Global *mglobal;
         NSLog(@"请求已取消  %@",mkey);
     }
 }
+//-----
++(NSString*) encodedUrlString:(NSString *)str
+{
+    if (str == nil) {
+        return @"";
+    }
+    
+    str = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)str, NULL, CFSTR("!*'();:@+$,/%#[]\" "),kCFStringEncodingUTF8));
+    return str;
+}
 
++(NSString *)deEncodedUrlString:(NSString *)str
+{
+    return   [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
 
 
 

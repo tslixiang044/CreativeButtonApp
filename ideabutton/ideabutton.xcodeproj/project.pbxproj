@@ -91,6 +91,7 @@
 		E9F0E0D91A8C862100CAC9E1 /* WaterFlowViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0D61A8C862100CAC9E1 /* WaterFlowViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E9F0E0DC1A8C8AF500CAC9E1 /* JsonResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0DB1A8C8AF500CAC9E1 /* JsonResult.m */; };
 		E9F0E0DF1A8C93BE00CAC9E1 /* WaterFlowObj.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0DE1A8C93BE00CAC9E1 /* WaterFlowObj.m */; };
+		E9F0E0E21A8CD5FB00CAC9E1 /* MyUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0E11A8CD5FB00CAC9E1 /* MyUIImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -238,6 +239,8 @@
 		E9F0E0DB1A8C8AF500CAC9E1 /* JsonResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonResult.m; sourceTree = "<group>"; };
 		E9F0E0DD1A8C93BE00CAC9E1 /* WaterFlowObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterFlowObj.h; sourceTree = "<group>"; };
 		E9F0E0DE1A8C93BE00CAC9E1 /* WaterFlowObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterFlowObj.m; sourceTree = "<group>"; };
+		E9F0E0E01A8CD5FB00CAC9E1 /* MyUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUIImageView.h; sourceTree = "<group>"; };
+		E9F0E0E11A8CD5FB00CAC9E1 /* MyUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUIImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +345,8 @@
 				E91E77CE1A84B1C2000174D4 /* MyUILabel.m */,
 				E981906E1A884BC20025F284 /* MyNavigationViewController.h */,
 				E981906F1A884BC20025F284 /* MyNavigationViewController.m */,
+				E9F0E0E01A8CD5FB00CAC9E1 /* MyUIImageView.h */,
+				E9F0E0E11A8CD5FB00CAC9E1 /* MyUIImageView.m */,
 			);
 			name = BasseClass;
 			sourceTree = "<group>";
@@ -679,6 +684,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E91E77C61A84B143000174D4 /* NSObject+RMCopyable.m in Sources */,
+				E9F0E0E21A8CD5FB00CAC9E1 /* MyUIImageView.m in Sources */,
 				E981907D1A88526E0025F284 /* IChangedViewController.m in Sources */,
 				E91E77A61A84A8CD000174D4 /* Reachability.m in Sources */,
 				E91E77BB1A84B12C000174D4 /* BaseEntity.m in Sources */,

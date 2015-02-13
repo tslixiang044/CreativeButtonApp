@@ -14,6 +14,7 @@
 //-------------------------------------------------delegate
 @protocol Globaldelegate <NSObject>
 
+@optional
 -(void)uploadfinished_global:(NSData *)responseData key:(NSString *)mkey ;
 -(void)uploadfaild_global:(NSString *)mkey;
 //----
@@ -38,4 +39,9 @@
 -(void)cancerAllRequest;
 -(void)cancerRequest_key:(NSString *)mkey;
 +(NSDictionary*)GetdicwithData:(NSData*)mdata;
+
++(NSString*) encodedUrlString:(NSString *)str;
++(NSString *)deEncodedUrlString:(NSString *)str;
+
+
 @end

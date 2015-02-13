@@ -14,8 +14,8 @@
 #import "ImageViewCell.h"
 #import "JsonResult.h"
 #import "WaterFlowObj.h"
-
-
+#import "WaitPageViewController.h"
+#import "MyUIButton.h"
 @interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate>
 {
     
@@ -57,15 +57,21 @@
     [txtsearch.layer setMasksToBounds:YES];
     [view_search_bg addSubview:txtsearch];
     //-------------
-    waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
+    
+    float y=view_search_bg.frame.origin.y+view_search_bg.frame.size.height+5;
+    waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, y, kMainScreenBoundwidth, kMainScreenBoundheight-64-y)];
     waterFlow.waterFlowViewDelegate = self;
     waterFlow.waterFlowViewDatasource = self;
-    waterFlow.backgroundColor = [UIColor whiteColor];
+    waterFlow.backgroundColor = [UIColor blackColor];
     [self.view addSubview:waterFlow];
     //----------------
     [self loadData];
    
+    
+    
+   
 }
+
 -(void)loadData
 {
     NSString *url=kgetWaterFlowUrl;
@@ -138,7 +144,7 @@
 //        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
 //        [self.navigationController pushViewController:press animated:YES];
 
-        [self.navigationController pushViewController:[[IdeaGenerateViewController alloc]init] animated:YES];
+        [self.navigationController pushViewController:[[WaitPageViewController alloc]init] animated:YES];
     }
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -174,7 +180,7 @@
     WaterFlowObj *obj = [mArr objectAtIndex:arrIndex];
     
     //    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
-    NSLog(@"img=%@",obj.img1);
+    //NSLog(@"img=%@",obj.img1);
     NSURL *URL = [NSURL URLWithString:obj.img1];
     
     ImageViewCell *imageViewCell = (ImageViewCell *)view;

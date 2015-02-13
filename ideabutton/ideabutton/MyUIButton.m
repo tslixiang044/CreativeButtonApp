@@ -55,5 +55,37 @@
     return self;
 }
 
-
+- (id)initWithRoundButton_Frame:(CGRect)frame bgimg:(NSString *)mimg title:(NSString*)mtitle
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        if(![mimg isEqualToString:@""])
+        {
+            NSString *imgpath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:mimg];
+            UIImage * img = [[UIImage alloc] initWithContentsOfFile:imgpath];
+            
+            [self setBackgroundImage:img forState:UIControlStateNormal];
+            
+        }
+        
+        [self setTitle:mtitle forState:UIControlStateNormal];
+        
+        self.titleLabel.font=[UIFont boldSystemFontOfSize:15];
+        
+        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+        
+        self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        //------------------------------------
+        CALayer *layer = [self layer];
+        [layer setMasksToBounds:YES];
+        CGFloat radius=frame.size.width/2; //设置圆角的半径为图片宽度的一半
+        [layer setCornerRadius:radius];
+        //[layer setBorderWidth:2.0];//添加白色的边框
+        //[layer setBorderColor:[UIColor whiteColor].CGColor];
+        
+    }
+    return self;
+}
 @end
