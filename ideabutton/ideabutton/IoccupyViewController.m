@@ -151,6 +151,10 @@
     
 }
 
+-(void)btnleft
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 
 @end

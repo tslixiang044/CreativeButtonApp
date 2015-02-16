@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ideabutton/RegisterViewController.m"
-            timestampString = "445341828.039988"
+            filePath = "ideabutton/API.m"
+            timestampString = "445772232.786525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-keyboardWillShow:"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-newUser:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ideabutton/RegisterViewController.m"
+            timestampString = "445772699.677971"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-registerAccount"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

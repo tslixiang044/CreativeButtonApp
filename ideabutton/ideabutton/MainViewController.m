@@ -16,9 +16,11 @@
 #import "WaterFlowObj.h"
 #import "WaitPageViewController.h"
 #import "MyUIButton.h"
+#import "ZTModel.h"
+#import "DB.h"
+
 @interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate>
 {
-    
     NSMutableArray *mArr;
     WaterFlowView *waterFlow;
     //------------------
@@ -65,11 +67,7 @@
     waterFlow.backgroundColor = [UIColor blackColor];
     [self.view addSubview:waterFlow];
     //----------------
-    [self loadData];
-   
-    
-    
-   
+//    [self loadData];
 }
 
 -(void)loadData
@@ -99,8 +97,7 @@
                 WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[typeArr objectAtIndex:i]];
                 [mArr addObject:wobj];
             }
-            
-            
+
             [waterFlow reloadData];
         }
         else
@@ -108,9 +105,6 @@
             [self showalertview_text:result.msg imgname:nil autoHiden:YES];
         }
     }
-    
-    
-    
 }
 
 -(void)uploadfaild_global:(NSString *)mkey
@@ -123,12 +117,6 @@
     [[Global getInstanse] cancerRequest_key:@"kgetWaterFlowUrl"];
 }
 
-
-
-
-
-
-
 -(void)Selectbutton:(UISegmentedControl*)mseg
 {
     if(mseg.selectedSegmentIndex==0)
@@ -138,13 +126,16 @@
     else  if(mseg.selectedSegmentIndex==1)
     {
         mseg.hidden=YES;
+        User* user = [[DB sharedInstance]queryUser];
+        if (user)
+        {
+            [self.navigationController pushViewController:[[IAlsoPressViewController alloc]init] animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+        }
         
-//        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
-        
-//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-//        [self.navigationController pushViewController:press animated:YES];
-
-        [self.navigationController pushViewController:[[WaitPageViewController alloc]init] animated:YES];
     }
 }
 -(void)viewWillAppear:(BOOL)animated

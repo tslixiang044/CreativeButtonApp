@@ -38,6 +38,14 @@
 		E91E77D01A84B1C2000174D4 /* MyUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CC1A84B1C2000174D4 /* MyUIButton.m */; };
 		E91E77D11A84B1C2000174D4 /* MyUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CE1A84B1C2000174D4 /* MyUILabel.m */; };
 		E94107401A8DA6E5002D78B2 /* PopMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E941073F1A8DA6E5002D78B2 /* PopMenuViewController.m */; };
+		E94107441A91B666002D78B2 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107431A91B666002D78B2 /* API.m */; };
+		E94107471A91B72E002D78B2 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107461A91B72E002D78B2 /* Base64.m */; };
+		E941074A1A91B850002D78B2 /* DB.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107491A91B850002D78B2 /* DB.m */; };
+		E94107521A91BA19002D78B2 /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = E94107501A91BA19002D78B2 /* APLevelDB.mm */; };
+		E94107531A91BA19002D78B2 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E94107511A91BA19002D78B2 /* libleveldb.a */; };
+		E94107651A91C75D002D78B2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107641A91C75D002D78B2 /* User.m */; };
+		E941076B1A91CC4A002D78B2 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E94107681A91CC4A002D78B2 /* SVProgressHUD.bundle */; };
+		E941076C1A91CC4A002D78B2 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E941076A1A91CC4A002D78B2 /* SVProgressHUD.m */; };
 		E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97258231A888D3500F0ABB8 /* LoginViewController.m */; };
 		E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258261A888EB700F0ABB8 /* Default-568h@2x.png */; };
 		E97258291A88958900F0ABB8 /* input_bai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258281A88958900F0ABB8 /* input_bai@2x.png */; };
@@ -156,6 +164,34 @@
 		E91E77CE1A84B1C2000174D4 /* MyUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUILabel.m; sourceTree = "<group>"; };
 		E941073E1A8DA6E5002D78B2 /* PopMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopMenuViewController.h; sourceTree = "<group>"; };
 		E941073F1A8DA6E5002D78B2 /* PopMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenuViewController.m; sourceTree = "<group>"; };
+		E94107421A91B666002D78B2 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
+		E94107431A91B666002D78B2 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
+		E94107451A91B72E002D78B2 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		E94107461A91B72E002D78B2 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		E94107481A91B850002D78B2 /* DB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB.h; sourceTree = "<group>"; };
+		E94107491A91B850002D78B2 /* DB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB.m; sourceTree = "<group>"; };
+		E941074C1A91B949002D78B2 /* ZTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTModel.h; sourceTree = "<group>"; };
+		E941074F1A91BA19002D78B2 /* APLevelDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APLevelDB.h; path = leveldb/APLevelDB.h; sourceTree = "<group>"; };
+		E94107501A91BA19002D78B2 /* APLevelDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = APLevelDB.mm; path = leveldb/APLevelDB.mm; sourceTree = "<group>"; };
+		E94107511A91BA19002D78B2 /* libleveldb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libleveldb.a; path = libs/libleveldb.a; sourceTree = "<group>"; };
+		E94107561A91BB54002D78B2 /* c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c.h; sourceTree = "<group>"; };
+		E94107571A91BB54002D78B2 /* cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cache.h; sourceTree = "<group>"; };
+		E94107581A91BB54002D78B2 /* comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comparator.h; sourceTree = "<group>"; };
+		E94107591A91BB54002D78B2 /* db.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = db.h; sourceTree = "<group>"; };
+		E941075A1A91BB54002D78B2 /* env.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = env.h; sourceTree = "<group>"; };
+		E941075B1A91BB54002D78B2 /* filter_policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filter_policy.h; sourceTree = "<group>"; };
+		E941075C1A91BB54002D78B2 /* iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iterator.h; sourceTree = "<group>"; };
+		E941075D1A91BB54002D78B2 /* options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = options.h; sourceTree = "<group>"; };
+		E941075E1A91BB54002D78B2 /* slice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slice.h; sourceTree = "<group>"; };
+		E941075F1A91BB54002D78B2 /* status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = status.h; sourceTree = "<group>"; };
+		E94107601A91BB54002D78B2 /* table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
+		E94107611A91BB54002D78B2 /* table_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table_builder.h; sourceTree = "<group>"; };
+		E94107621A91BB54002D78B2 /* write_batch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = write_batch.h; sourceTree = "<group>"; };
+		E94107641A91C75D002D78B2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		E94107671A91CC4A002D78B2 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		E94107681A91CC4A002D78B2 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		E94107691A91CC4A002D78B2 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		E941076A1A91CC4A002D78B2 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		E97258231A888D3500F0ABB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E97258251A888D6600F0ABB8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E97258261A888EB700F0ABB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -251,6 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E94107531A91BA19002D78B2 /* libleveldb.a in Frameworks */,
 				E91E77B51A84A9E3000174D4 /* libxml2.dylib in Frameworks */,
 				E91E77B31A84A9DA000174D4 /* MobileCoreServices.framework in Frameworks */,
 				E91E77B11A84A9D1000174D4 /* libz.dylib in Frameworks */,
@@ -285,6 +322,7 @@
 		E91E774F1A849E87000174D4 /* ideabutton */ = {
 			isa = PBXGroup;
 			children = (
+				E941074D1A91BA19002D78B2 /* libs */,
 				E91E777D1A84A77E000174D4 /* Cells */,
 				E91E777C1A84A772000174D4 /* EntityClass */,
 				E91E777B1A84A76A000174D4 /* BasseClass */,
@@ -301,6 +339,7 @@
 		E91E77501A849E87000174D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E94107511A91BA19002D78B2 /* libleveldb.a */,
 				E981907F1A8853EC0025F284 /* Images */,
 				E91E77511A849E87000174D4 /* Info.plist */,
 				E91E77521A849E87000174D4 /* main.m */,
@@ -311,6 +350,8 @@
 		E91E77791A84A756000174D4 /* ToolBox */ = {
 			isa = PBXGroup;
 			children = (
+				E941074B1A91B925002D78B2 /* model */,
+				E94107411A91B649002D78B2 /* API */,
 				E9F0E0D01A8C862100CAC9E1 /* WaterFlowLib */,
 				E98190901A886E5E0025F284 /* SDWebImage */,
 				E98190891A885FBB0025F284 /* RefreshTableHeaderView */,
@@ -461,6 +502,78 @@
 				E91E77C41A84B143000174D4 /* RMMapper.m */,
 			);
 			path = RMMapper;
+			sourceTree = "<group>";
+		};
+		E94107411A91B649002D78B2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E94107421A91B666002D78B2 /* API.h */,
+				E94107431A91B666002D78B2 /* API.m */,
+				E94107481A91B850002D78B2 /* DB.h */,
+				E94107491A91B850002D78B2 /* DB.m */,
+				E94107451A91B72E002D78B2 /* Base64.h */,
+				E94107461A91B72E002D78B2 /* Base64.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		E941074B1A91B925002D78B2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				E941074C1A91B949002D78B2 /* ZTModel.h */,
+				E94107641A91C75D002D78B2 /* User.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		E941074D1A91BA19002D78B2 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				E94107661A91CC4A002D78B2 /* SVProgressHUD */,
+				E941074F1A91BA19002D78B2 /* APLevelDB.h */,
+				E94107501A91BA19002D78B2 /* APLevelDB.mm */,
+				E94107541A91BB54002D78B2 /* include */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		E94107541A91BB54002D78B2 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E94107551A91BB54002D78B2 /* leveldb */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		E94107551A91BB54002D78B2 /* leveldb */ = {
+			isa = PBXGroup;
+			children = (
+				E94107561A91BB54002D78B2 /* c.h */,
+				E94107571A91BB54002D78B2 /* cache.h */,
+				E94107581A91BB54002D78B2 /* comparator.h */,
+				E94107591A91BB54002D78B2 /* db.h */,
+				E941075A1A91BB54002D78B2 /* env.h */,
+				E941075B1A91BB54002D78B2 /* filter_policy.h */,
+				E941075C1A91BB54002D78B2 /* iterator.h */,
+				E941075D1A91BB54002D78B2 /* options.h */,
+				E941075E1A91BB54002D78B2 /* slice.h */,
+				E941075F1A91BB54002D78B2 /* status.h */,
+				E94107601A91BB54002D78B2 /* table.h */,
+				E94107611A91BB54002D78B2 /* table_builder.h */,
+				E94107621A91BB54002D78B2 /* write_batch.h */,
+			);
+			path = leveldb;
+			sourceTree = "<group>";
+		};
+		E94107661A91CC4A002D78B2 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E94107671A91CC4A002D78B2 /* SVProgressHUD-Prefix.pch */,
+				E94107681A91CC4A002D78B2 /* SVProgressHUD.bundle */,
+				E94107691A91CC4A002D78B2 /* SVProgressHUD.h */,
+				E941076A1A91CC4A002D78B2 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		E97258531A89A8E800F0ABB8 /* ProjectContent */ = {
@@ -658,6 +771,7 @@
 				E97258481A88E2E700F0ABB8 /* btn_icon_shouji@2x.png in Resources */,
 				E98190881A885DF30025F284 /* icon_wscd@2x.png in Resources */,
 				E97258501A89A41E00F0ABB8 /* btn_icon_suona@2x.png in Resources */,
+				E941076B1A91CC4A002D78B2 /* SVProgressHUD.bundle in Resources */,
 				E97258371A88A49400F0ABB8 /* line@2x.png in Resources */,
 				E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */,
 				E97258341A88A49400F0ABB8 /* icon_mail@2x.png in Resources */,
@@ -697,6 +811,7 @@
 				E9F0E0D91A8C862100CAC9E1 /* WaterFlowViewCell.m in Sources */,
 				E981908E1A885FBB0025F284 /* CircleView.m in Sources */,
 				E91E779F1A84A8CD000174D4 /* ASIDataCompressor.m in Sources */,
+				E941076C1A91CC4A002D78B2 /* SVProgressHUD.m in Sources */,
 				E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */,
 				E98190701A884BC20025F284 /* MyNavigationViewController.m in Sources */,
 				E98190A81A886E5E0025F284 /* UIButton+WebCache.m in Sources */,
@@ -722,21 +837,26 @@
 				E9F0E0D81A8C862100CAC9E1 /* WaterFlowView.m in Sources */,
 				E91E77A01A84A8CD000174D4 /* ASIDataDecompressor.m in Sources */,
 				E98190A31A886E5E0025F284 /* SDImageCache.m in Sources */,
+				E94107471A91B72E002D78B2 /* Base64.m in Sources */,
 				E91E77781A84A6FA000174D4 /* MainViewController.m in Sources */,
 				E98C48E21A8B378700287EF8 /* InteractivePageViewController.m in Sources */,
 				E98C48ED1A8B761F00287EF8 /* NumberChooseViewController.m in Sources */,
+				E941074A1A91B850002D78B2 /* DB.m in Sources */,
 				E972583A1A88B8D400F0ABB8 /* RegisterViewController.m in Sources */,
 				E91E77CF1A84B1C2000174D4 /* MyBaseViewController.m in Sources */,
 				E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */,
 				E91E77A41A84A8CD000174D4 /* ASIInputStream.m in Sources */,
+				E94107521A91BA19002D78B2 /* APLevelDB.mm in Sources */,
 				E98190A51A886E5E0025F284 /* SDWebImageDownloader.m in Sources */,
 				E981908F1A885FBB0025F284 /* EGORefreshTableHeaderView.m in Sources */,
 				E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */,
 				E91E77C81A84B143000174D4 /* RMMapper.m in Sources */,
+				E94107441A91B666002D78B2 /* API.m in Sources */,
 				E91E77A51A84A8CD000174D4 /* ASINetworkQueue.m in Sources */,
 				E981907A1A8852110025F284 /* ISavedViewController.m in Sources */,
 				E9F0E0DF1A8C93BE00CAC9E1 /* WaterFlowObj.m in Sources */,
 				E98C48E71A8B68DB00287EF8 /* InteractivePageViewController1.m in Sources */,
+				E94107651A91C75D002D78B2 /* User.m in Sources */,
 				E91E77A31A84A8CD000174D4 /* ASIHTTPRequest.m in Sources */,
 				E91E77A11A84A8CD000174D4 /* ASIDownloadCache.m in Sources */,
 				E91E77531A849E87000174D4 /* main.m in Sources */,
@@ -826,8 +946,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/LX/Desktop/CreativeButtonApp/ideabutton/ideabutton/libs/include,
+				);
 				INFOPLIST_FILE = ideabutton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ideabutton/libs",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -836,8 +965,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/LX/Desktop/CreativeButtonApp/ideabutton/ideabutton/libs/include,
+				);
 				INFOPLIST_FILE = ideabutton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ideabutton/libs",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

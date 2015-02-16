@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "RegisterViewController.h"
+#import "SVProgressHUD.h"
+#import "API.h"
+#import "DB.h"
+#import "APLevelDB.h"
 
 #define Height  45
 
@@ -17,6 +21,11 @@
 
 @property(nonatomic, assign)CGFloat lastScrollOffset;
 @property(nonatomic, strong)UITextField *inFocusTextField;
+
+@property(nonatomic, strong)UITextField* registerNameTextField;
+@property(nonatomic, strong)UITextField* nickNameTextField;
+@property(nonatomic, strong)UITextField* registerPSWTextField;
+@property(nonatomic, strong)UITextField* confirmPSWTextField;
 
 @end
 
@@ -101,10 +110,9 @@
     nickNameLabel.text = @"昵称";
     [nickNameView addSubview:nickNameLabel];
     
-    UITextField* nickNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 145, 30)];
-    nickNameTextField.delegate = self;
-//    nickNameTextField.textAlignment = NSTextAlignmentCenter;
-    [nickNameView addSubview:nickNameTextField];
+    self.nickNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 145, 30)];
+    _nickNameTextField.delegate = self;
+    [nickNameView addSubview:_nickNameTextField];
     
     UIImageView *registerNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
     registerNameView.userInteractionEnabled = YES;
@@ -119,11 +127,10 @@
     registerNameLabel.text = @"帐号";
     [registerNameView addSubview:registerNameLabel];
     
-    UITextField* registerNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 145, 30)];
-    registerNameTextField.delegate = self;
-    registerNameTextField.textAlignment = NSTextAlignmentCenter;
-    registerNameTextField.placeholder = @"邮箱/手机/QQ";
-    [registerNameView addSubview:registerNameTextField];
+    self.registerNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 145, 30)];
+    _registerNameTextField.delegate = self;
+    _registerNameTextField.placeholder = @"邮箱/手机/QQ";
+    [registerNameView addSubview:_registerNameTextField];
     
     UIImageView *registerPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
     registerPSWView.userInteractionEnabled = YES;
@@ -138,11 +145,10 @@
     registerPSWLabel.text = @"密码";
     [registerPSWView addSubview:registerPSWLabel];
     
-    UITextField* registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(85, 5, 150, 30)];
-    registerPSWTextField.delegate = self;
-    registerPSWTextField.secureTextEntry = YES;
-//    registerPSWTextField.textAlignment = NSTextAlignmentCenter;
-    [registerPSWView addSubview:registerPSWTextField];
+    self.registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(85, 5, 150, 30)];
+    _registerPSWTextField.delegate = self;
+    _registerPSWTextField.secureTextEntry = YES;
+    [registerPSWView addSubview:_registerPSWTextField];
     
     UIImageView *confirmPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
     confirmPSWView.userInteractionEnabled = YES;
@@ -157,20 +163,80 @@
     confirmPSWLabel.text = @"确认密码";
     [confirmPSWView addSubview:confirmPSWLabel];
     
-    UITextField* confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 5, 115, 30)];
-    confirmPSWTextField.delegate = self;
-    confirmPSWTextField.secureTextEntry = YES;
-//    confirmPSWTextField.textAlignment = NSTextAlignmentCenter;
-    [confirmPSWView addSubview:confirmPSWTextField];
+    self.confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 5, 115, 30)];
+    _confirmPSWTextField.delegate = self;
+    _confirmPSWTextField.secureTextEntry = YES;
+    [confirmPSWView addSubview:_confirmPSWTextField];
     
     UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(90, 320, 100, 50)];
     registerBtn.layer.cornerRadius = 5;
     registerBtn.backgroundColor = COLOR(124, 96, 33);
     [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
-//    [registerBtn addTarget:self action:@selector(showRegisterViewController) forControlEvents:UIControlEventTouchUpInside];
+    [registerBtn addTarget:self action:@selector(registerAccount) forControlEvents:UIControlEventTouchUpInside];
     [registerView addSubview:registerBtn];
     
     return registerView;
+}
+
+-(void)registerAccount
+{
+    NSDictionary *params = [self invalidateInput];
+    if(!params)
+    {
+        return;
+    }
+    
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+    
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        User *user = [[API sharedInstance]newUser:params];
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            [SVProgressHUD dismiss];
+            if(user)
+            {
+                DB *db = [DB sharedInstance];
+                [db saveUser:user];
+                [db.indb setData:[user.userName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+            }
+        });
+    });
+}
+
+-(NSDictionary*)invalidateInput
+{
+    if (self.nickNameTextField.text == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"昵称不能为空"];
+        return nil;
+    }
+    
+    if (self.registerNameTextField.text == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"账号不能为空"];
+        return nil;
+    }
+    
+    if (self.registerPSWTextField.text == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
+        return nil;
+    }
+    
+    if (![self.registerPSWTextField.text isEqualToString:self.confirmPSWTextField.text])
+    {
+        [SVProgressHUD showErrorWithStatus:@"两次输入的密码不一致"];
+        return nil;
+    }
+    
+    return @{@"nickname":self.nickNameTextField.text,@"userName":self.registerNameTextField.text,@"password":self.registerPSWTextField.text};
 }
 
 @end
