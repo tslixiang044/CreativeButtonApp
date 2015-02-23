@@ -47,8 +47,7 @@
 
 - (User *)queryUser:(NSDictionary*)criteria
 {
-    NSMutableString *urlStr = [[NSMutableString alloc]initWithString:self.baseURL];
-    [urlStr appendString:@"login.pfv"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"login"];
     
     NSDictionary *userDict = [self doRequestAndParseWithURL:urlStr header:criteria];
     if(!userDict)
@@ -66,7 +65,7 @@
 
 - (User*)newUser:(NSDictionary*)userDict
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"register.pfv"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"register"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
     NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
     
@@ -81,6 +80,129 @@
         self.user = user;
     }
     return user;
+}
+
+-(User*)updateUser:(NSDictionary*)userDict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"updateUser"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if(!retDict)
+    {
+        return nil;
+    }
+    
+    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
+    if(user)
+    {
+        self.user = user;
+    }
+    return user;
+}
+
+- (NSDictionary*)createIdea:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"idea/genIdeas"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    return  [retDict objectForKey:@"data"];
+}
+
+- (NSDictionary*)occupyIdea:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/occupyIdea"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    return  [retDict objectForKey:@"data"];
+}
+
+- (NSDictionary*)collectIdea:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/collectIdea"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    return  [retDict objectForKey:@"data"];
+}
+
+- (NSDictionary*)reformIdea:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/reformIdea"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    return  [retDict objectForKey:@"data"];
+}
+
+- (NSDictionary*)updateReformedIdea:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/updateReformedIdea"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    return  [retDict objectForKey:@"data"];
+}
+
+- (NSDictionary*)deleteOccupiedIdea:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/deleteOccupiedIdea"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    return  [retDict objectForKey:@"data"];
+}
+
+- (NSDictionary*)deleteCollectedIdea:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/deleteCollectedIdea"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    return  [retDict objectForKey:@"data"];
+}
+
+- (NSDictionary*)deleteReformedIdea:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/deleteReformedIdea"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    return  [retDict objectForKey:@"data"];
 }
 
 - (id)doRequestAndParseWithURL:(NSString*)urlStr
@@ -171,7 +293,8 @@
     }
     
     id retObj = [NSJSONSerialization JSONObjectWithData:retData options:0 error:&err];
-    if(retObj==nil || [[retObj objectForKey:@"code"] isEqualToString:@"0"]!=YES)
+    NSInteger codeValue = [[retObj objectForKey:@"code"] integerValue];
+    if(retObj==nil || codeValue == 0 != YES)
     {
         self.code = [retObj objectForKey:@"code"];
         self.msg = [retObj objectForKey:@"msg"];

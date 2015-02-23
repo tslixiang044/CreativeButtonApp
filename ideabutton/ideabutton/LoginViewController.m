@@ -105,8 +105,10 @@
     [loginNameView addSubview:loginNameLabel];
     
     self.loginNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(100, 5, 145, 30)];
-    _loginNameTextField.placeholder = @"邮箱/手机/QQ";
     _loginNameTextField.delegate = self;
+    _loginNameTextField.placeholder = @"邮箱/手机/QQ";
+    _loginNameTextField.keyboardType = UIKeyboardTypeDefault;
+    
     if (user)
     {
         self.loginNameTextField.text = user.userName;
@@ -152,13 +154,13 @@
         [checkboxBtn setImage:[UIImage imageNamed:@"checkbox-checked"] forState:UIControlStateNormal];
         [checkboxBtn addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
-//    [loginView addSubview:checkboxBtn];
+//    [loginView addSubview:checkboxBtn];   //暂时屏蔽
     
     UILabel* rememberPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 138, 60, 25)];
     rememberPSWLabel.textColor = [UIColor whiteColor];
     rememberPSWLabel.font = [UIFont systemFontOfSize:14];
     rememberPSWLabel.text = @"记住密码";
-//    [loginView addSubview:rememberPSWLabel];
+//    [loginView addSubview:rememberPSWLabel];  //暂时屏蔽
     
     UIButton* forgetPSWBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     forgetPSWBtn.frame = CGRectMake(200, 138, 60, 25);

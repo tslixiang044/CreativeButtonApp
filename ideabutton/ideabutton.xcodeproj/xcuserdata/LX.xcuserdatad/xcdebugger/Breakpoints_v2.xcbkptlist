@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ideabutton/API.m"
-            timestampString = "445772232.786525"
+            filePath = "ideabutton/RegisterViewController.m"
+            timestampString = "445772699.677971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-newUser:"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-registerAccount"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ideabutton/RegisterViewController.m"
-            timestampString = "445772699.677971"
+            filePath = "ideabutton/API.m"
+            timestampString = "446396316.335625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-registerAccount"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-createIdea:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

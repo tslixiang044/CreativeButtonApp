@@ -19,5 +19,15 @@
 - (User *)queryUser:(NSDictionary*)criteria;
 - (User*)newUser:(NSDictionary*)userDict;
 //- (User*)resetPSWWithParams:(NSDictionary *)params;
+-(User*)updateUser:(NSDictionary*)userDict;
 
+- (NSDictionary*)createIdea:(NSDictionary*)dict;    //生成创意
+- (NSDictionary*)occupyIdea:(NSDictionary*)dict;    //霸占创意
+- (NSDictionary*)collectIdea:(NSDictionary*)dict;   //收藏创意
+- (NSDictionary*)reformIdea:(NSDictionary*)dict;    //改造创意
+- (NSDictionary*)updateReformedIdea:(NSDictionary*)dict;    //修改已改造创意
+
+- (NSDictionary*)deleteOccupiedIdea:(NSDictionary*)dict;    //删除霸占创意
+- (NSDictionary*)deleteCollectedIdea:(NSDictionary*)dict;    //删除收藏创意
+- (NSDictionary*)deleteReformedIdea:(NSDictionary*)dict;    //删除改造创意
 @end
