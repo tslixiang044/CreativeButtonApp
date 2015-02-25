@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "ProContentViewController.h"
+#import "InteractivePageViewController.h"
+#import "SVProgressHUD.h"
 
 #define Height  45
 
@@ -17,11 +19,27 @@
 
 @property(nonatomic, assign)CGFloat lastScrollOffset;
 @property(nonatomic, strong)UITextField *inFocusTextField;
+@property(nonatomic, strong)NSMutableDictionary* myDict;
+
+@property(nonatomic, strong)UITextField* brandTextField;
+@property(nonatomic, strong)UITextField* productTextField;
+@property(nonatomic, strong)UITextField* appealTextField;
 
 @end
 
 
 @implementation ProContentViewController
+
+-(id)initWithDict:(NSDictionary*)dict
+{
+    self = [super init];
+    if (self)
+    {
+        self.myDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
+    }
+    
+    return self;
+}
 
 -(void)viewDidLoad
 {
@@ -71,30 +89,30 @@
     inputView.frame = CGRectMake(20, 40, 240, 40);
     [contentView addSubview:inputView];
     
-    UITextField* textfield = [[UITextField alloc] initWithFrame:inputView.frame];
-    textfield.delegate = self;
-    textfield.placeholder = @"品牌/子品牌";
-    [contentView addSubview:textfield];
+    self.brandTextField = [[UITextField alloc] initWithFrame:inputView.frame];
+    self.brandTextField.delegate = self;
+    self.brandTextField.placeholder = @"品牌/子品牌";
+    [contentView addSubview:self.brandTextField];
     
     UIImageView *inputView1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
     inputView1.userInteractionEnabled = YES;
     inputView1.frame = CGRectMake(20, 100, 240, 40);
     [contentView addSubview:inputView1];
     
-    UITextField* textfield1 = [[UITextField alloc] initWithFrame:inputView1.frame];
-    textfield1.delegate = self;
-    textfield1.placeholder = @"品类/产品";
-    [contentView addSubview:textfield1];
+    self.productTextField = [[UITextField alloc] initWithFrame:inputView1.frame];
+    self.productTextField.delegate = self;
+    self.productTextField.placeholder = @"品类/产品";
+    [contentView addSubview:self.productTextField];
     
     UIImageView *inputView2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
     inputView2.userInteractionEnabled = YES;
     inputView2.frame = CGRectMake(20, 160, 240, 40);
     [contentView addSubview:inputView2];
     
-    UITextField* textfield2 = [[UITextField alloc] initWithFrame:inputView2.frame];
-    textfield2.delegate = self;
-    textfield2.placeholder = @"诉求点";
-    [contentView addSubview:textfield2];
+    self.appealTextField = [[UITextField alloc] initWithFrame:inputView2.frame];
+    self.appealTextField.delegate = self;
+    self.appealTextField.placeholder = @"诉求点";
+    [contentView addSubview:self.appealTextField];
     
     UIImageView* line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
     line.frame = CGRectMake(0, 230, 280, 5);
@@ -103,9 +121,37 @@
     UIButton* ideaButton = [UIButton buttonWithType:UIButtonTypeCustom];
     ideaButton.frame = CGRectMake(100, 270, 70, 70);
     [ideaButton setBackgroundImage:[UIImage imageNamed:@"btn_logo"] forState:UIControlStateNormal];
+    [ideaButton addTarget:self action:@selector(showNextPage) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:ideaButton];
 
     return contentView;
+}
+
+-(void)showNextPage
+{
+    if (self.brandTextField.text.length == 0 )
+    {
+        [SVProgressHUD showErrorWithStatus:@"品牌/子品牌不能为空"];
+        return;
+    }
+    
+    if (self.productTextField.text.length == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"品类/产品不能为空"];
+        return;
+    }
+    
+    if (self.appealTextField.text.length == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"诉求点不能为空"];
+        return;
+    }
+    [self.myDict setValue:self.brandTextField.text forKey:@"brand"];
+    [self.myDict setValue:self.productTextField.text forKey:@"product"];
+    [self.myDict setValue:self.appealTextField.text forKey:@"appeal"];
+    
+    InteractivePageViewController* interactivePage = [[InteractivePageViewController alloc] initWithDict:self.myDict];
+    [self.navigationController pushViewController:interactivePage animated:YES];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField

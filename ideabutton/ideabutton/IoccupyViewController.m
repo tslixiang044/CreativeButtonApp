@@ -119,7 +119,7 @@
 
               if(delegate)
               {
-                  ProContentViewController *pro= [[ProContentViewController alloc]init];
+                  ProContentViewController *pro= [[ProContentViewController alloc]initWithDict:@{@"adtype":@"1"}];
                   [delegate gotoviewcontroller_Ioccupy:pro];
                   
               }

@@ -13,4 +13,5 @@
 {
     
 }
+-(id)initWithDict:(NSDictionary*)dict;
 @end

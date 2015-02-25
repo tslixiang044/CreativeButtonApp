@@ -15,11 +15,22 @@
 
 @interface InteractivePageViewController()
 
+@property (nonatomic, strong)NSMutableDictionary* myDict;
 
 @end
 
 
 @implementation InteractivePageViewController
+
+-(id)initWithDict:(NSDictionary*)dict
+{
+    self = [super init];
+    if (self)
+    {
+        self.myDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
+    }
+    return self;
+}
 
 -(void)viewDidLoad
 {
@@ -44,53 +55,54 @@
     
     MyUIButton* button = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 120, 60, 60) bgimg:nil title:@"1"];
     button.backgroundColor = COLOR(205, 38, 33);
-    [button addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     MyUIButton* button1 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 120, 60, 60) bgimg:nil title:@"8"];
     button1.backgroundColor = COLOR(205, 38, 33);
-    [button1 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button1 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button1];
     
     MyUIButton* button2 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 120, 60, 60) bgimg:nil title:@"9"];
     button2.backgroundColor = COLOR(205, 38, 33);
-    [button2 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button2 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button2];
     
     MyUIButton* button3 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 210, 60, 60) bgimg:nil title:@"3"];
     button3.backgroundColor = COLOR(205, 38, 33);
-    [button3 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button3 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button3];
     
     MyUIButton* button4 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 210, 60, 60) bgimg:nil title:@"2"];
     button4.backgroundColor = COLOR(205, 38, 33);
-    [button4 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button4 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button4];
     
     MyUIButton* button5 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 210, 60, 60) bgimg:nil title:@"7"];
     button5.backgroundColor = COLOR(205, 38, 33);
-    [button5 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button5 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button5];
     
     MyUIButton* button6 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 300, 60, 60) bgimg:nil title:@"4"];
     button6.backgroundColor = COLOR(205, 38, 33);
-    [button6 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button6 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button6];
     
     MyUIButton* button7 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 300, 60, 60) bgimg:nil title:@"5"];
     button7.backgroundColor = COLOR(205, 38, 33);
-    [button7 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button7 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button7];
     
     MyUIButton* button8 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 300, 60, 60) bgimg:nil title:@"6"];
     button8.backgroundColor = COLOR(205, 38, 33);
-    [button8 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button8 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button8];
 }
 
--(void)buttonClicked
+-(void)buttonClicked:(UIButton*)sender
 {
-    [self.navigationController pushViewController:[[InteractivePageViewController1 alloc]init] animated:YES];
+    [self.myDict setValue:sender.titleLabel.text forKey:@"romanNum"];
+    [self.navigationController pushViewController:[[InteractivePageViewController1 alloc]initWithDict:self.myDict] animated:YES];
 }
 
 @end

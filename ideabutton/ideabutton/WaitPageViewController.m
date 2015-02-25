@@ -8,16 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import "WaitPageViewController.h"
+#import "API.h"
+#import "IdeaGenerateViewController.h"
 
 #define Height  45
 
 @interface WaitPageViewController()
 
+@property(nonatomic, strong)NSDictionary* myDict;
 
 @end
 
 
 @implementation WaitPageViewController
+
+-(id)initWithDict:(NSDictionary*)dict
+{
+    self = [super init];
+    if (self)
+    {
+        self.myDict = dict;
+    }
+    return self;
+}
 
 -(void)viewDidLoad
 {
@@ -26,6 +39,8 @@
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
     [self createInputView];
+    
+    [self createIdea];
     
 }
 
@@ -41,6 +56,24 @@
     webView.userInteractionEnabled = NO;//用户不可交互
     [webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
     [self.view addSubview:webView];
+}
+
+-(void)createIdea
+{
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        NSDictionary* dict = [[API sharedInstance]createIdea:self.myDict];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            if (dict)
+            {
+                [self.navigationController pushViewController:[[IdeaGenerateViewController alloc]initWithData:dict] animated:YES];
+            }
+        });
+    });
+
 }
 
 

@@ -16,11 +16,27 @@
 #define NextBtnTag  4
 
 @interface IdeaGenerateViewController()
+{
+    NSInteger IdeaNum;
+}
+@property(nonatomic, strong)NSDictionary* data;
 
 @end
 
 
 @implementation IdeaGenerateViewController
+
+-(id)initWithData:(NSDictionary *)dict
+{
+    self = [super init];
+    if (self)
+    {
+        self.data = dict;
+        IdeaNum = [[dict objectForKey:@"ideaNum"] integerValue];
+    }
+    
+    return self;
+}
 
 -(void)viewDidLoad
 {
@@ -42,6 +58,7 @@
     detailLabel.layer.borderWidth = 1.0;
     detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
     detailLabel.numberOfLines = 0;
+    detailLabel.text = [self.data objectForKey:@"sentence"];
     [self.view addSubview:detailLabel];
     
     UIButton* hoggedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -81,7 +98,7 @@
     nextBtn.tag = NextBtnTag;
     nextBtn.backgroundColor = COLOR(124, 96, 33);
     nextBtn.layer.cornerRadius = 5;
-    [nextBtn setTitle:@"下一个(今日剩余N个)" forState:UIControlStateNormal];
+    [nextBtn setTitle:[NSString stringWithFormat:@"下一个(今日剩余%d个)",IdeaNum--] forState:UIControlStateNormal];
     [self.view addSubview:nextBtn];
 }
 

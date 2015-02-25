@@ -126,12 +126,12 @@
     else  if(mseg.selectedSegmentIndex==1)
     {
         mseg.hidden=YES;
-        User* user = [[DB sharedInstance]queryUser];
-        if (user)
-        {
-            [self.navigationController pushViewController:[[IAlsoPressViewController alloc]init] animated:YES];
-        }
-        else
+//        User* user = [[DB sharedInstance]queryUser];
+//        if (user)
+//        {
+//            [self.navigationController pushViewController:[[IAlsoPressViewController alloc]init] animated:YES];
+//        }
+//        else
         {
             [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
         }

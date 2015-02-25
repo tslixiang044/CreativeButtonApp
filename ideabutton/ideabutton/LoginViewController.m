@@ -248,7 +248,7 @@
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
-            [self.navigationController popToRootViewControllerAnimated:NO];
+//            [self.navigationController popToRootViewControllerAnimated:NO];
             [SVProgressHUD dismiss];
             if(user)
             {

@@ -15,11 +15,22 @@
 
 @interface NumberChooseViewController()
 
+@property(nonatomic, strong)NSMutableDictionary* myDict;
 
 @end
 
 
 @implementation NumberChooseViewController
+
+-(id)initWithDict:(NSDictionary*)dict
+{
+    self = [super init];
+    if (self)
+    {
+        self.myDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
+    }
+    return self;
+}
 
 -(void)viewDidLoad
 {
@@ -44,23 +55,24 @@
     
     MyUIButton* button = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 120, 60, 60) bgimg:nil title:@"9"];
     button.backgroundColor = COLOR(205, 38, 33);
-    [button addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     MyUIButton* button1 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 210, 60, 60) bgimg:nil title:@"18"];
     button1.backgroundColor = COLOR(205, 38, 33);
-    [button1 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button1 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button1];
     
     MyUIButton* button2 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 300, 60, 60) bgimg:nil title:@"27"];
     button2.backgroundColor = COLOR(205, 38, 33);
-    [button2 addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button2 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button2];
 }
 
--(void)buttonClicked
+-(void)buttonClicked:(UIButton*)sender
 {
-    [self.navigationController pushViewController:[[WaitPageViewController alloc]init] animated:YES];
+    [self.myDict setValue:sender.titleLabel.text forKey:@"ideaNum"];
+    [self.navigationController pushViewController:[[WaitPageViewController alloc]initWithDict:self.myDict] animated:YES];
 }
 
 @end
