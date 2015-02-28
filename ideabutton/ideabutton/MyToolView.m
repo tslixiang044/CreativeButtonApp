@@ -137,9 +137,17 @@
 }
 -(void)showtoolView
 {
-    [UIView animateWithDuration:0.3f animations:^{
-        self.frame=CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-        self.hidden=NO;
-    }];
+    if([self isHidden])
+    {
+        [UIView animateWithDuration:0.3f animations:^{
+            self.frame=CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+            self.hidden=NO;
+        }];
+    }
+    else
+    {
+        [self hidentoolView];
+    }
+    
 }
 @end

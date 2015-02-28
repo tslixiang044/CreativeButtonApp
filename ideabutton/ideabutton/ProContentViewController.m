@@ -60,7 +60,10 @@
     //注册键盘通知获取键盘高度
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
 }
-
+-(void)btnright
+{
+    [self showMenuView];
+}
 - (void)keyboardWillShow:(NSNotification *)noti
 {
     NSDictionary* userInfo = [noti userInfo];

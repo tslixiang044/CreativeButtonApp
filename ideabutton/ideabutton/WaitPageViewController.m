@@ -43,7 +43,10 @@
     [self createIdea];
     
 }
-
+-(void)btnright
+{
+    [self showMenuView];
+}
 -(void)createInputView
 {
     // 设定位置和大小

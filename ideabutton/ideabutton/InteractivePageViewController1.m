@@ -41,7 +41,10 @@
     [self createInputView];
     
 }
-
+-(void)btnright
+{
+    [self showMenuView];
+}
 -(void)createInputView
 {
     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, 240, 30)];

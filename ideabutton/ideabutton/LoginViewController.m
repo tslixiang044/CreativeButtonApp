@@ -46,7 +46,10 @@
     
     [self createInputView];
 }
-
+-(void)btnright
+{
+    [self showMenuView];
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];

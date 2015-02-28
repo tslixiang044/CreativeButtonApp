@@ -58,7 +58,10 @@
     
     [self createInputView];
 }
-
+-(void)btnright
+{
+    [self showMenuView];
+}
 -(void)createInputView
 {
     UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"input_bg"]];

@@ -7,11 +7,14 @@
 //
 
 #import "MyBaseViewController.h"
+#import "MyToolView.h"
+
 
 @interface MyBaseViewController ()
 {
     UIView *alertView;
     UIView *loadView;
+    MyToolView *toolview;
 }
 @end
 
@@ -190,7 +193,20 @@
 {
     loadView.hidden=YES;
 }
-
-
+-(void)showMenuView
+{
+    if(toolview==nil)
+    {
+        toolview=[[MyToolView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
+        [self.view addSubview:toolview];
+    }
+    [self.view bringSubviewToFront:toolview];
+    
+    [toolview showtoolView];
+}
+-(void)hidenMenuView
+{
+    [toolview hidentoolView];
+}
 
 @end

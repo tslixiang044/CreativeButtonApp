@@ -25,4 +25,7 @@
 
 -(void)ShowLoadingView;
 -(void)hidenLoadingView;
+
+-(void)showMenuView;
+-(void)hidenMenuView;
 @end
