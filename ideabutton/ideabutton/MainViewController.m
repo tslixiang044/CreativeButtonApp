@@ -17,6 +17,7 @@
 #import "WaitPageViewController.h"
 #import "MyUIButton.h"
 #import "IdeaDetailViewController.h"
+#import "DB.h"
 
 @interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate>
 {
@@ -134,7 +135,16 @@
     {
         mseg.hidden=YES;
         
-        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+        User* user = [[DB sharedInstance]queryUser];
+        if (user)
+        {
+            IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+            [self.navigationController pushViewController:press animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+        }
     }
 }
 -(void)viewWillAppear:(BOOL)animated

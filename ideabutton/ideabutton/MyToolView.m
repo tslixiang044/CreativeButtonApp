@@ -9,7 +9,7 @@
 #import "MyToolView.h"
 #import "MytoolviewCell.h"
 #import "Config.h"
-
+#import "DB.h"
 
 @implementation MyToolView
 
@@ -18,8 +18,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        
-        
+        user = [[DB sharedInstance]queryUser];
         btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
         btnClose.frame = CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64);
         btnClose.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
@@ -36,10 +35,6 @@
         [self addSubview:mtableview];
         //---------
         marr=[[NSMutableArray alloc]init];
-        
-        
-        
-        
     }
     return self;
 }
@@ -51,7 +46,14 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    if (user)
+    {
+        return 6;
+    }
+    else
+    {
+        return 5;
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -59,7 +61,6 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     static NSString *Identifier = @"mytoolcell";
     
     MytoolviewCell *cell=(MytoolviewCell *)[tableView dequeueReusableCellWithIdentifier:Identifier];
@@ -68,50 +69,43 @@
        cell=[[MytoolviewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
        cell.backgroundColor=COLOR(21, 21, 23);
     }
-    
-    
+
     if(indexPath.row==0)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_wdzy"];
         cell.lbltitle.text=@"我的主页";
     }
     else if(indexPath.row==1)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_wyfx"];
         cell.lbltitle.text=@"我要分享";
     }
     else if(indexPath.row==2)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_sysm"];
         cell.lbltitle.text=@"使用说明";
     }
     else if(indexPath.row==3)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_gfwb"];
         cell.lbltitle.text=@"官方微博";
     }
     else if(indexPath.row==4)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_gfwx"];
         cell.lbltitle.text=@"官方微信";
     }
     else if(indexPath.row==5)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_gfwz"];
         cell.lbltitle.text=@"官方网站";
     }
-    else if(indexPath.row==6)
+    else if(indexPath.row==6 && user)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_tcdl"];
         cell.lbltitle.text=@"退出登录";
     }
-    else
-    {
-        cell.lbltitle.text=@"";
-    }
-    
-    
-    
+
     return cell;
 }
 

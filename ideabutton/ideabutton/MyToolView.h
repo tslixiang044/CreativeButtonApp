@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZTModel.h"
 
 //---------------------
 @class MyToolView;
@@ -23,9 +24,9 @@
     UIButton *btnClose;
     UITableView *mtableview;
     NSMutableArray *marr;
+    
+    User* user;
 }
-
-
 
 -(void)hidentoolView;
 -(void)showtoolView;
