@@ -112,16 +112,16 @@
         return nil;
     }
     
-    NSArray* array = [retDict objectForKey:@"data"];
-    NSMutableArray* dataArr = [[NSMutableArray alloc] init];
+//    NSArray* array = [retDict objectForKey:@"data"];
+//    NSMutableArray* dataArr = [[NSMutableArray alloc] init];
+//    
+//    for (int i = 0; i < array.count; i++)
+//    {
+//        NSDictionary* dict = array[i];
+//        [dataArr addObject:dict];
+//    }
     
-    for (int i = 0; i < array.count; i++)
-    {
-        NSDictionary* dict = array[i];
-        [dataArr addObject:dict];
-    }
-    
-    return  dataArr;
+    return  [retDict objectForKey:@"data"];
 }
 
 - (NSDictionary*)occupyIdea:(NSDictionary*)dict
@@ -215,6 +215,79 @@
     return  [retDict objectForKey:@"data"];
 }
 
+- (NSArray*)myOccupiedIdeas:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"check/idea/myOccupiedIdeas"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+- (NSArray*)myCollectedIdeas:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"check/idea/myCollectedIdeas"];
+   [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+- (NSArray*)myReformedIdeas:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"check/idea/myReformedIdeas"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+//Common
+- (NSString *)constructQueryParamStr:(NSDictionary *)criteria
+{
+    NSMutableString *paramStr = [[NSMutableString alloc]init];
+    [paramStr appendString:@"?"];
+    
+    NSArray *allKeys = [criteria allKeys];
+    NSInteger index = 0;
+    for(NSString *key in allKeys)
+    {
+        [paramStr appendString:key];
+        [paramStr appendString:@"="];
+        [paramStr appendString:[NSString stringWithFormat:@"%@",[criteria objectForKey:key]]];
+        
+        if(index++!=allKeys.count-1)
+        {
+            [paramStr appendString:@"&"];
+        }
+    }
+    
+    NSString *retStr = [paramStr stringByAppendingString:@""];
+    retStr = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)retStr, NULL, CFSTR("!*'();:@+$,/%#[]\" "),kCFStringEncodingUTF8));
+    return retStr;
+}
+
 - (id)doRequestAndParseWithURL:(NSString*)urlStr
 {
     return [self doRequestAndParseWithURL:urlStr header:nil];
@@ -260,7 +333,8 @@
 #endif
     
     id retObj = [NSJSONSerialization JSONObjectWithData:processedData options:NSJSONReadingMutableContainers error:&err];
-    if(retObj==nil || [[retObj objectForKey:@"code"] isEqualToString:@"0"]!=YES)
+    NSInteger codeValue = [[retObj objectForKey:@"code"] integerValue];
+    if(retObj==nil || codeValue == 0 != YES)
     {
         self.code = [retObj objectForKey:@"code"];
         self.msg = [retObj objectForKey:@"msg"];

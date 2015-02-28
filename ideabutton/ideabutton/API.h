@@ -31,4 +31,9 @@
 - (NSDictionary*)deleteOccupiedIdea:(NSDictionary*)dict;    //删除霸占创意
 - (NSDictionary*)deleteCollectedIdea:(NSDictionary*)dict;    //删除收藏创意
 - (NSDictionary*)deleteReformedIdea:(NSDictionary*)dict;    //删除改造创意
+
+- (NSArray*)myOccupiedIdeas:(NSDictionary*)dict;    //我霸占的创意
+- (NSArray*)myReformedIdeas:(NSDictionary*)dict;    //我改造的创意
+- (NSArray*)myCollectedIdeas:(NSDictionary*)dict;    //我收藏的创意
+
 @end

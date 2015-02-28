@@ -25,8 +25,31 @@
         lbltitle.font=[UIFont systemFontOfSize:14];
         lbltitle.textColor=[UIColor whiteColor];
         [self addSubview:lbltitle];
+        //----------------
+        UIButton *  btndelete = [UIButton buttonWithType:UIButtonTypeCustom];
+        btndelete.frame = CGRectMake(kMainScreenBoundwidth-100, 15, 30, 30);
+        [btndelete setImage:[UIImage imageNamed:@"icon_sc"] forState:UIControlStateNormal];
+        [btndelete addTarget:self action:@selector(btndeleteAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btndelete];
+        //----------------
+        UIButton *  btnadd = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnadd.frame = CGRectMake(kMainScreenBoundwidth-50, 15, 30, 30);
+        [btnadd setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
+        [btnadd addTarget:self action:@selector(btnaddAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btnadd];
+        
     }
+    
     return self;
+}
+
+-(void)btndeleteAction:(UIButton*)mbtn
+{
+    NSLog(@"delete");
+}
+-(void)btnaddAction:(UIButton*)mbtn
+{
+    NSLog(@"add");
 }
 
 @end

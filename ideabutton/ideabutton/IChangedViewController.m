@@ -8,20 +8,33 @@
 
 #import "IChangedViewController.h"
 #import "MychangedCell.h"
+#import "SVProgressHUD.h"
+#import "API.h"
+
 @interface IChangedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *mtableview;
-    NSMutableArray *marr;
+    NSArray *marr;
 }
 @end
 
 @implementation IChangedViewController
+-(id)init
+{
+    self = [super init];
+    if (self)
+    {
 
-- (void)viewDidLoad {
+    }
+    
+    return self;
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title=@"我改造的";
-  
-    
+
     mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-50) style:UITableViewStylePlain];
     
     mtableview.backgroundColor=COLOR(21, 21, 23);;
@@ -31,10 +44,24 @@
     mtableview.delegate=self;
     [self.view addSubview:mtableview];
     //---------
-    marr=[[NSMutableArray alloc]init];
+    marr=[[NSArray alloc]init];
+    
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+    
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        marr = [[API sharedInstance] myReformedIdeas:@{@"range":@"1-10"}];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            [SVProgressHUD dismiss];
+        });
+    });
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     
 }
@@ -44,7 +71,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [marr count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -52,7 +79,6 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     static NSString *Identifier = @"mytoolcell";
     
     MychangedCell *cell=(MychangedCell *)[tableView dequeueReusableCellWithIdentifier:Identifier];
@@ -63,9 +89,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone ;
     }
     
-    
-    //cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
-    cell.lbltitle.text=@"瓶酒瓶里插着莲花";
+    cell.lbltitle.text=[marr[indexPath.row] objectForKey:@"ideaContent"];
     
     
     return cell;
