@@ -18,10 +18,6 @@
 #import "MyUIButton.h"
 #import "IdeaDetailViewController.h"
 
-
-
-
-
 @interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate>
 {
     
@@ -34,10 +30,6 @@
 @end
 
 @implementation MainViewController
-
-
-
-
 
 -(void)dealloc
 {
@@ -82,10 +74,6 @@
     [waterFlow release];
     //------------------
     [self loadData];
-   
-    
-    
-   
 }
 
 -(void)loadData
@@ -117,16 +105,12 @@
             }
 
                [waterFlow reloadData];
-
         }
         else
         {
             [self showalertview_text:result.msg imgname:nil autoHiden:YES];
         }
     }
-    
-    
-    
 }
 
 -(void)uploadfaild_global:(NSString *)mkey
@@ -140,12 +124,6 @@
     segmentedControl.hidden=YES;
 }
 
-
-
-
-
-
-
 -(void)Selectbutton:(UISegmentedControl*)mseg
 {
     if(mseg.selectedSegmentIndex==0)
@@ -156,14 +134,7 @@
     {
         mseg.hidden=YES;
         
-//        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
-        
-        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-        [self.navigationController pushViewController:press animated:YES];
-        [press release];
-
-       // [self.navigationController pushViewController:[[WaitPageViewController alloc]init] animated:YES];
-       
+        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
     }
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -190,16 +161,13 @@
 }
 
 
--(void)waterFlowView:(WaterFlowView *)waterFlowView  relayoutCellSubview:(UIView *)view withIndexPath:(IndexPath *)indexPath{
-    
+-(void)waterFlowView:(WaterFlowView *)waterFlowView  relayoutCellSubview:(UIView *)view withIndexPath:(IndexPath *)indexPath
+{
     //arrIndex是某个数据在总数组中的索引
     int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-    
-    
+
     WaterFlowObj *obj = [mArr objectAtIndex:arrIndex];
-    
- 
-    
+
     ImageViewCell *imageViewCell = (ImageViewCell *)view;
     imageViewCell.indexPath = indexPath;
     imageViewCell.columnCount = waterFlowView.columnCount;
@@ -230,21 +198,8 @@
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
-    
-    NSLog(@"indexpath row == %d,column == %d",indexPath.row,indexPath.column);
-    
-    
-//    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-//    
-//    
-//    WaterFlowObj *obj = [mArr objectAtIndex:arrIndex];
-    
-    
-    
     IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
     [self.navigationController pushViewController:detail animated:YES];
     [detail release];
-    
-    
 }
 @end
