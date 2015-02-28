@@ -15,6 +15,7 @@
     UIView *alertView;
     UIView *loadView;
     MyToolView *toolview;
+    UIView *alertView2;
 }
 @end
 
@@ -199,6 +200,7 @@
     {
         toolview=[[MyToolView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
         [self.view addSubview:toolview];
+        toolview.hidden=YES;
     }
     [self.view bringSubviewToFront:toolview];
     
@@ -208,5 +210,73 @@
 {
     [toolview hidentoolView];
 }
-
+-(void)showAlertView_number:(int)Num
+{
+    if(alertView2==nil)
+    {
+        alertView2=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
+        alertView2.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        [[alertView2 layer]setCornerRadius:8.0];
+        [alertView2.layer setMasksToBounds:YES];
+        
+        [self.view addSubview:alertView2];
+        //------
+        
+        //-------
+        UIView *view_center=[[UIView alloc]initWithFrame:CGRectMake(20, (kMainScreenBoundheight-64-200)/2, kMainScreenBoundwidth-40, kMainScreenBoundheight-64-200)];
+        view_center.tag=886;
+        view_center.backgroundColor=COLOR(204, 41, 32);
+        [alertView2 addSubview:view_center];
+        //-------
+        UIButton *  btnclose = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnclose.frame = CGRectMake(view_center.frame.size.width-40, -20, 60, 60);
+        [btnclose setImage:[UIImage imageNamed:@"btn_close.png"] forState:UIControlStateNormal];
+        btnclose.backgroundColor=[UIColor clearColor];
+        [btnclose addTarget:self action:@selector(btncloseAction:) forControlEvents:UIControlEventTouchUpInside];
+        [view_center addSubview:btnclose];
+        //--------
+        float width=view_center.frame.size.width;
+        UILabel *lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(20, 40, width-40, 60)];
+        lbldesc.tag=888;
+        lbldesc.numberOfLines=0;
+        lbldesc.textAlignment = NSTextAlignmentCenter;
+        //自动折行设置
+        
+        lbldesc.lineBreakMode = NSLineBreakByWordWrapping;
+        lbldesc.textColor=[UIColor whiteColor];
+        [view_center addSubview:lbldesc];
+        //--------
+        UIButton *  btngo = [UIButton buttonWithType:UIButtonTypeCustom];
+        btngo.frame = CGRectMake((width-80)/2, 120, 80, 30);
+        
+        
+        
+        
+        [btngo setBackgroundImage:[UIImage imageNamed:@"btn_bg_bai.png"] forState:UIControlStateNormal];
+        [btngo setTitle:@"明天再来" forState:UIControlStateNormal];
+        btngo.titleLabel.font = [UIFont systemFontOfSize:14];
+        btngo.backgroundColor=COLOR(131, 131, 131);
+        [btngo setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [btngo setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+        [btngo addTarget:self action:@selector(btngoAction:) forControlEvents:UIControlEventTouchUpInside];
+        [view_center addSubview:btngo];
+        //--------
+        
+    }
+    UIView *view_center=[alertView2 viewWithTag:886];
+    UILabel *lbldesc=(UILabel *)[view_center viewWithTag:888];
+    lbldesc.text=[NSString stringWithFormat:@"今天免费产生的idea数量已达上限%i个",Num];
+    //---------
+    alertView2.hidden=NO;
+    [self.view bringSubviewToFront:alertView2];
+    
+}
+-(void)btngoAction:(UIButton*)mbtn
+{
+    alertView2.hidden=YES;
+}
+-(void)btncloseAction:(UIButton*)mbtn
+{
+    alertView2.hidden=YES;
+}
 @end

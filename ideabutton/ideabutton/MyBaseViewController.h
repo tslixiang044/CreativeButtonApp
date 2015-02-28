@@ -28,4 +28,6 @@
 
 -(void)showMenuView;
 -(void)hidenMenuView;
+
+-(void)showAlertView_number:(int)Num;
 @end
