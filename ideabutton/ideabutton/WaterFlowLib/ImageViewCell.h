@@ -10,14 +10,32 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WaterFlowViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "WaterFlowObj.h"
+
+
 
 @interface ImageViewCell : WaterFlowViewCell
 {
-    UIImageView *imageView;
+   // UIImageView *imageView;
+    UIView *view_bg;
+    
+    UIImageView *imgview_header;
+    UILabel *lblnickname;
+    UILabel *lblsource;
+    
+    
+    UIView *view_center;
+    UILabel *lbldesc;
+    UILabel *lblproduct;
+    UILabel *lbltime;
+    
+    
+    
+    
 }
 
 -(void)setImageWithURL:(NSURL *)imageUrl;
 -(void)setImage:(UIImage *)image;
 -(void)relayoutViews;
-
+-(void)setbtnObjct:(WaterFlowObj*)mobj;
 @end

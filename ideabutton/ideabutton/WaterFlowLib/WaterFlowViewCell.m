@@ -7,6 +7,9 @@
 //
 
 #import "WaterFlowViewCell.h"
+#define COLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+
 
 @implementation WaterFlowViewCell
 @synthesize columnCount = _columnCount;
@@ -18,12 +21,14 @@
 	if(self = [super init])
 	{
 		self.strReuseIndentifier = indentifier;
+        self.backgroundColor=COLOR(4, 4, 4);
 	}
 	
 	return self;
 }
 
--(void)relayoutViews{
+-(void)relayoutViews
+{
 
     
 }

@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89AC5C621AA15434005DA279 /* IdeaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C611AA15434005DA279 /* IdeaDetailViewController.m */; };
+		89AC5C671AA1544B005DA279 /* MychangedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C641AA1544B005DA279 /* MychangedCell.m */; };
+		89AC5C681AA1544B005DA279 /* MysaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C661AA1544B005DA279 /* MysaveCell.m */; };
+		89AC5C6B1AA1548B005DA279 /* MytoolviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C6A1AA1548B005DA279 /* MytoolviewCell.m */; };
+		89AC5C6E1AA154A4005DA279 /* MyToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C6D1AA154A4005DA279 /* MyToolView.m */; };
 		E91E77531A849E87000174D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77521A849E87000174D4 /* main.m */; };
 		E91E77561A849E87000174D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77551A849E87000174D4 /* AppDelegate.m */; };
 		E91E775E1A849E87000174D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91E775D1A849E87000174D4 /* Images.xcassets */; };
-		E91E77781A84A6FA000174D4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77771A84A6FA000174D4 /* MainViewController.m */; };
+		E91E77781A84A6FA000174D4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77771A84A6FA000174D4 /* MainViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E91E77831A84A7EB000174D4 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77821A84A7EB000174D4 /* Global.m */; };
 		E91E779E1A84A8CD000174D4 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77891A84A8CD000174D4 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E91E779F1A84A8CD000174D4 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E778C1A84A8CD000174D4 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -104,6 +109,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89AC5C601AA15434005DA279 /* IdeaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdeaDetailViewController.h; sourceTree = "<group>"; };
+		89AC5C611AA15434005DA279 /* IdeaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaDetailViewController.m; sourceTree = "<group>"; };
+		89AC5C631AA1544B005DA279 /* MychangedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MychangedCell.h; sourceTree = "<group>"; };
+		89AC5C641AA1544B005DA279 /* MychangedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MychangedCell.m; sourceTree = "<group>"; };
+		89AC5C651AA1544B005DA279 /* MysaveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MysaveCell.h; sourceTree = "<group>"; };
+		89AC5C661AA1544B005DA279 /* MysaveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MysaveCell.m; sourceTree = "<group>"; };
+		89AC5C691AA1548B005DA279 /* MytoolviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MytoolviewCell.h; sourceTree = "<group>"; };
+		89AC5C6A1AA1548B005DA279 /* MytoolviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MytoolviewCell.m; sourceTree = "<group>"; };
+		89AC5C6C1AA154A4005DA279 /* MyToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyToolView.h; sourceTree = "<group>"; };
+		89AC5C6D1AA154A4005DA279 /* MyToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyToolView.m; sourceTree = "<group>"; };
 		E91E774D1A849E87000174D4 /* ideabutton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ideabutton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91E77511A849E87000174D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E91E77521A849E87000174D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -393,6 +408,8 @@
 				E9F0E0E11A8CD5FB00CAC9E1 /* MyUIImageView.m */,
 				E941073E1A8DA6E5002D78B2 /* PopMenuViewController.h */,
 				E941073F1A8DA6E5002D78B2 /* PopMenuViewController.m */,
+				89AC5C6C1AA154A4005DA279 /* MyToolView.h */,
+				89AC5C6D1AA154A4005DA279 /* MyToolView.m */,
 			);
 			name = BasseClass;
 			sourceTree = "<group>";
@@ -415,6 +432,12 @@
 			children = (
 				E91E77B61A84B0EE000174D4 /* BaseCell.h */,
 				E91E77B71A84B0EE000174D4 /* BaseCell.m */,
+				89AC5C691AA1548B005DA279 /* MytoolviewCell.h */,
+				89AC5C6A1AA1548B005DA279 /* MytoolviewCell.m */,
+				89AC5C631AA1544B005DA279 /* MychangedCell.h */,
+				89AC5C641AA1544B005DA279 /* MychangedCell.m */,
+				89AC5C651AA1544B005DA279 /* MysaveCell.h */,
+				89AC5C661AA1544B005DA279 /* MysaveCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -442,6 +465,8 @@
 			children = (
 				E91E77761A84A6FA000174D4 /* MainViewController.h */,
 				E91E77771A84A6FA000174D4 /* MainViewController.m */,
+				89AC5C601AA15434005DA279 /* IdeaDetailViewController.h */,
+				89AC5C611AA15434005DA279 /* IdeaDetailViewController.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -820,8 +845,10 @@
 				E91E77D01A84B1C2000174D4 /* MyUIButton.m in Sources */,
 				E98190771A8851D60025F284 /* IoccupyViewController.m in Sources */,
 				E98190A41A886E5E0025F284 /* SDWebImageDecoder.m in Sources */,
+				89AC5C6B1AA1548B005DA279 /* MytoolviewCell.m in Sources */,
 				E91E77561A849E87000174D4 /* AppDelegate.m in Sources */,
 				E98190A91A886E5E0025F284 /* UIImageView+WebCache.m in Sources */,
+				89AC5C621AA15434005DA279 /* IdeaDetailViewController.m in Sources */,
 				E98190A61A886E5E0025F284 /* SDWebImageManager.m in Sources */,
 				E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */,
 				E91E77C51A84B143000174D4 /* NSObject+RMArchivable.m in Sources */,
@@ -835,6 +862,7 @@
 				E9F0E0DC1A8C8AF500CAC9E1 /* JsonResult.m in Sources */,
 				E9F0E0D71A8C862100CAC9E1 /* ImageViewCell.m in Sources */,
 				E9F0E0D81A8C862100CAC9E1 /* WaterFlowView.m in Sources */,
+				89AC5C681AA1544B005DA279 /* MysaveCell.m in Sources */,
 				E91E77A01A84A8CD000174D4 /* ASIDataDecompressor.m in Sources */,
 				E98190A31A886E5E0025F284 /* SDImageCache.m in Sources */,
 				E94107471A91B72E002D78B2 /* Base64.m in Sources */,
@@ -849,6 +877,7 @@
 				E94107521A91BA19002D78B2 /* APLevelDB.mm in Sources */,
 				E98190A51A886E5E0025F284 /* SDWebImageDownloader.m in Sources */,
 				E981908F1A885FBB0025F284 /* EGORefreshTableHeaderView.m in Sources */,
+				89AC5C6E1AA154A4005DA279 /* MyToolView.m in Sources */,
 				E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */,
 				E91E77C81A84B143000174D4 /* RMMapper.m in Sources */,
 				E94107441A91B666002D78B2 /* API.m in Sources */,
@@ -859,6 +888,7 @@
 				E94107651A91C75D002D78B2 /* User.m in Sources */,
 				E91E77A31A84A8CD000174D4 /* ASIHTTPRequest.m in Sources */,
 				E91E77A11A84A8CD000174D4 /* ASIDownloadCache.m in Sources */,
+				89AC5C671AA1544B005DA279 /* MychangedCell.m in Sources */,
 				E91E77531A849E87000174D4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

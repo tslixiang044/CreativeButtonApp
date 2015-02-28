@@ -16,11 +16,15 @@
 #import "WaterFlowObj.h"
 #import "WaitPageViewController.h"
 #import "MyUIButton.h"
-#import "ZTModel.h"
-#import "DB.h"
+#import "IdeaDetailViewController.h"
+
+
+
+
 
 @interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate>
 {
+    
     NSMutableArray *mArr;
     WaterFlowView *waterFlow;
     //------------------
@@ -31,6 +35,16 @@
 
 @implementation MainViewController
 
+
+
+
+
+-(void)dealloc
+{
+    [segmentedControl release];
+    [txtsearch release];
+    [super dealloc];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,15 +73,19 @@
     [txtsearch.layer setMasksToBounds:YES];
     [view_search_bg addSubview:txtsearch];
     //-------------
-    
     float y=view_search_bg.frame.origin.y+view_search_bg.frame.size.height+5;
     waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, y, kMainScreenBoundwidth, kMainScreenBoundheight-64-y)];
     waterFlow.waterFlowViewDelegate = self;
     waterFlow.waterFlowViewDatasource = self;
     waterFlow.backgroundColor = [UIColor blackColor];
     [self.view addSubview:waterFlow];
+    [waterFlow release];
     //----------------
-//    [self loadData];
+    [self loadData];
+   
+    
+    
+   
 }
 
 -(void)loadData
@@ -88,9 +106,9 @@
     
     if([mkey isEqualToString:@"kgetWaterFlowUrl"])
     {
-        if([result.code isEqualToString:@"0"])
+        if([result.code intValue] ==0)
         {
-            NSArray *typeArr=(NSArray *)result.list;
+            NSArray *typeArr=(NSArray *)result.data;
             
             for(int i=0;i<typeArr.count;i++)
             {
@@ -98,13 +116,17 @@
                 [mArr addObject:wobj];
             }
 
-            [waterFlow reloadData];
+               [waterFlow reloadData];
+
         }
         else
         {
             [self showalertview_text:result.msg imgname:nil autoHiden:YES];
         }
     }
+    
+    
+    
 }
 
 -(void)uploadfaild_global:(NSString *)mkey
@@ -115,7 +137,14 @@
 {
     [super viewWillDisappear:animated];
     [[Global getInstanse] cancerRequest_key:@"kgetWaterFlowUrl"];
+    segmentedControl.hidden=YES;
 }
+
+
+
+
+
+
 
 -(void)Selectbutton:(UISegmentedControl*)mseg
 {
@@ -126,16 +155,15 @@
     else  if(mseg.selectedSegmentIndex==1)
     {
         mseg.hidden=YES;
-//        User* user = [[DB sharedInstance]queryUser];
-//        if (user)
-//        {
-//            [self.navigationController pushViewController:[[IAlsoPressViewController alloc]init] animated:YES];
-//        }
-//        else
-        {
-            [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
-        }
         
+//        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+        
+        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+        [self.navigationController pushViewController:press animated:YES];
+        [press release];
+
+       // [self.navigationController pushViewController:[[WaitPageViewController alloc]init] animated:YES];
+       
     }
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -170,15 +198,14 @@
     
     WaterFlowObj *obj = [mArr objectAtIndex:arrIndex];
     
-    //    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
-    //NSLog(@"img=%@",obj.img1);
-    NSURL *URL = [NSURL URLWithString:obj.img1];
+ 
     
     ImageViewCell *imageViewCell = (ImageViewCell *)view;
     imageViewCell.indexPath = indexPath;
     imageViewCell.columnCount = waterFlowView.columnCount;
     [imageViewCell relayoutViews];
-    [(ImageViewCell *)view setImageWithURL:URL];
+    [imageViewCell setbtnObjct:obj];
+  
 }
 
 
@@ -194,13 +221,30 @@
     {
         width =100;// [[dict objectForKey:@"width"] floatValue];
         height = 150;//[[dict objectForKey:@"height"] floatValue];
+        if(arrIndex%2==0)
+            height=160;
     }
     
     return waterFlowView.cellWidth * (height/width);
 }
 
-- (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath{
+- (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
+{
     
     NSLog(@"indexpath row == %d,column == %d",indexPath.row,indexPath.column);
+    
+    
+//    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+//    
+//    
+//    WaterFlowObj *obj = [mArr objectAtIndex:arrIndex];
+    
+    
+    
+    IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
+    [self.navigationController pushViewController:detail animated:YES];
+    [detail release];
+    
+    
 }
 @end

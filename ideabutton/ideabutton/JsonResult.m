@@ -10,7 +10,7 @@
 
 @implementation JsonResult
 
-@synthesize code,msg;
+@synthesize code,msg,data;
 
 
 @end

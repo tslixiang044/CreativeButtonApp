@@ -8,7 +8,8 @@
 #define BASEURL @"http://223.6.252.147/web"
 
 #define kgetLoginUrl [BASEURL stringByAppendingString:@"/web/mobile/api/login"]//登录
-#define kgetWaterFlowUrl @"http://api.izhuzhou.com.cn/GetPicNews.ashx?m=img&page=1&num=10"//瀑布流 测试url
+#define kgetWaterFlowUrl [BASEURL stringByAppendingString:@"/mobile/api/idea/friendsIdeas?range=1-20"]//瀑布流 测试url
+
 
 
 

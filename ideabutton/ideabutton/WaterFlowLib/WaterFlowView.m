@@ -46,7 +46,8 @@
     [self relayoutDisplaySubviews];
     
     
-    for (UITableView *tableview in tableviews) {
+    for (UITableView *tableview in tableviews)
+    {
         
         [tableview setFrame:CGRectMake(tableview.frame.origin.x, self.contentOffset.y, CGRectGetWidth(tableview.frame), CGRectGetHeight(tableview.frame))];
         [tableview setContentOffset:self.contentOffset animated:NO];

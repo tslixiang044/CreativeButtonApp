@@ -13,7 +13,7 @@
 
 @property(nonatomic,retain)NSString *code;
 @property(nonatomic,retain)NSString *msg;
-@property(nonatomic,retain)NSArray *list;
+@property(nonatomic,retain)NSArray *data;
 
 
 @end
