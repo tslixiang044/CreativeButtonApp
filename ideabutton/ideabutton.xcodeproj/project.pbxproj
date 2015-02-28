@@ -12,6 +12,7 @@
 		89AC5C681AA1544B005DA279 /* MysaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C661AA1544B005DA279 /* MysaveCell.m */; };
 		89AC5C6B1AA1548B005DA279 /* MytoolviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C6A1AA1548B005DA279 /* MytoolviewCell.m */; };
 		89AC5C6E1AA154A4005DA279 /* MyToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C6D1AA154A4005DA279 /* MyToolView.m */; };
+		89AC5C701AA165D6005DA279 /* userheader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89AC5C6F1AA165D6005DA279 /* userheader@2x.png */; };
 		E91E77531A849E87000174D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77521A849E87000174D4 /* main.m */; };
 		E91E77561A849E87000174D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77551A849E87000174D4 /* AppDelegate.m */; };
 		E91E775E1A849E87000174D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91E775D1A849E87000174D4 /* Images.xcassets */; };
@@ -119,6 +120,7 @@
 		89AC5C6A1AA1548B005DA279 /* MytoolviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MytoolviewCell.m; sourceTree = "<group>"; };
 		89AC5C6C1AA154A4005DA279 /* MyToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyToolView.h; sourceTree = "<group>"; };
 		89AC5C6D1AA154A4005DA279 /* MyToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyToolView.m; sourceTree = "<group>"; };
+		89AC5C6F1AA165D6005DA279 /* userheader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userheader@2x.png"; sourceTree = "<group>"; };
 		E91E774D1A849E87000174D4 /* ideabutton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ideabutton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91E77511A849E87000174D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E91E77521A849E87000174D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 		E981907F1A8853EC0025F284 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				89AC5C6F1AA165D6005DA279 /* userheader@2x.png */,
 				E98C48F81A8C467200287EF8 /* input_bg@2x.png */,
 				E98C48F11A8B7BA300287EF8 /* gif.gif */,
 				E98C48E91A8B74AD00287EF8 /* bg_interaction_split@2x.png */,
@@ -797,6 +800,7 @@
 				E98190881A885DF30025F284 /* icon_wscd@2x.png in Resources */,
 				E97258501A89A41E00F0ABB8 /* btn_icon_suona@2x.png in Resources */,
 				E941076B1A91CC4A002D78B2 /* SVProgressHUD.bundle in Resources */,
+				89AC5C701AA165D6005DA279 /* userheader@2x.png in Resources */,
 				E97258371A88A49400F0ABB8 /* line@2x.png in Resources */,
 				E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */,
 				E97258341A88A49400F0ABB8 /* icon_mail@2x.png in Resources */,

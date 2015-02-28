@@ -23,5 +23,6 @@
 -(void)hidenalertView;
 -(void)alert:(NSString *)str;
 
-
+-(void)ShowLoadingView;
+-(void)hidenLoadingView;
 @end

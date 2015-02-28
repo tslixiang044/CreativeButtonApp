@@ -198,8 +198,9 @@
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
-    IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
-    [self.navigationController pushViewController:detail animated:YES];
-    [detail release];
+    [self ShowLoadingView];
+//    IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
+//    [self.navigationController pushViewController:detail animated:YES];
+//    [detail release];
 }
 @end

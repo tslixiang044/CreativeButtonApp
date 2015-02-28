@@ -11,6 +11,7 @@
 @interface MyBaseViewController ()
 {
     UIView *alertView;
+    UIView *loadView;
 }
 @end
 
@@ -24,7 +25,7 @@
     [super viewDidLoad];
     
     
-   self.view.backgroundColor=[UIColor blackColor];
+    self.view.backgroundColor=[UIColor blackColor];
     //----------------------------------
     UIBarButtonItem *backitem = [[UIBarButtonItem alloc] init];
     backitem.title = @"";
@@ -150,4 +151,46 @@
     [alert show];
     
 }
+
+
+
+-(void)ShowLoadingView
+{
+    
+    if(loadView==nil)
+    {
+        loadView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
+        loadView.backgroundColor=COLOR(1, 0, 0);
+        [self.view addSubview:loadView];
+        //-----------------------------
+        NSData *gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gif" ofType:@"gif"]];
+        CGRect frame = CGRectMake((kMainScreenBoundwidth-165)/2,(kMainScreenBoundheight-64-165)/2-50,165,165);
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
+        webView.userInteractionEnabled = NO;
+        [webView setBackgroundColor:[UIColor clearColor]];
+        [webView setOpaque:NO];
+        [webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+        [loadView addSubview:webView];
+        //--------------------------------
+        float y=webView.frame.origin.y+webView.frame.size.height+20;
+        UILabel *lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(0, y , kMainScreenBoundwidth, 25)];
+        lbldesc.text=@"人脑一思考，电脑就发笑";
+        lbldesc.textColor=[UIColor whiteColor];
+        lbldesc.textAlignment=NSTextAlignmentCenter;
+        lbldesc.font=[UIFont systemFontOfSize:12];
+        [loadView addSubview:lbldesc];
+    }
+    
+    loadView.hidden=NO;
+    [self.view bringSubviewToFront:loadView];
+    
+    
+}
+-(void)hidenLoadingView
+{
+    loadView.hidden=YES;
+}
+
+
+
 @end
