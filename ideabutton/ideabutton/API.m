@@ -101,7 +101,7 @@
     return user;
 }
 
-- (NSDictionary*)createIdea:(NSDictionary*)dict
+- (NSArray*)createIdea:(NSDictionary*)dict
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"idea/genIdeas"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
@@ -111,7 +111,17 @@
     {
         return nil;
     }
-    return  [retDict objectForKey:@"data"];
+    
+    NSArray* array = [retDict objectForKey:@"data"];
+    NSMutableArray* dataArr = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < array.count; i++)
+    {
+        NSDictionary* dict = array[i];
+        [dataArr addObject:dict];
+    }
+    
+    return  dataArr;
 }
 
 - (NSDictionary*)occupyIdea:(NSDictionary*)dict

@@ -26,12 +26,10 @@
 
 - (BOOL)clearCacheExcept:(NSArray*)keys;
 
-- (id<ZTModel>)queryModelWithID:(NSString*)modelID type:(enum ModelType)modelType;
+//- (id<ZTModel>)queryModelWithID:(NSString*)modelID type:(enum ModelType)modelType;
 - (BOOL)saveModel:(id<ZTModel>)model;
 
 - (BOOL)saveArbitraryObject:(id)obj withKey:(NSString*)key;
 - (id)queryArbitraryObjectWithKey:(NSString*)key;
 
-- (BOOL)saveCountOfUnReadMessages:(NSString*)msgCount;
-- (NSString*)queryCountOfUnReadMessages;
 @end

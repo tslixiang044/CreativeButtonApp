@@ -63,13 +63,13 @@
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        NSDictionary* dict = [[API sharedInstance]createIdea:self.myDict];
+        NSArray* ideaArr = [[API sharedInstance]createIdea:self.myDict];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
-            if (dict)
+            if ([ideaArr count] != 0)
             {
-                [self.navigationController pushViewController:[[IdeaGenerateViewController alloc]initWithData:dict] animated:YES];
+                [self.navigationController pushViewController:[[IdeaGenerateViewController alloc]initWithData:ideaArr] animated:YES];
             }
         });
     });

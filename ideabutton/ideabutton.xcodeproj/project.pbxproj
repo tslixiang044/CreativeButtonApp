@@ -949,7 +949,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/Users/LX/Desktop/CreativeButtonApp/ideabutton/ideabutton/libs/include,
+					"$(PROJECT_DIR)/ideabutton/libs/include",
 				);
 				INFOPLIST_FILE = ideabutton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -968,7 +968,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/Users/LX/Desktop/CreativeButtonApp/ideabutton/ideabutton/libs/include,
+					"$(PROJECT_DIR)/ideabutton/libs/include",
 				);
 				INFOPLIST_FILE = ideabutton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

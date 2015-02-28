@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 ttt. All rights reserved.
 //
 @class User;
+@class genIdeas;
 
 #import <Foundation/Foundation.h>
 
@@ -21,7 +22,7 @@
 //- (User*)resetPSWWithParams:(NSDictionary *)params;
 -(User*)updateUser:(NSDictionary*)userDict;
 
-- (NSDictionary*)createIdea:(NSDictionary*)dict;    //生成创意
+- (NSArray*)createIdea:(NSDictionary*)dict;    //生成创意
 - (NSDictionary*)occupyIdea:(NSDictionary*)dict;    //霸占创意
 - (NSDictionary*)collectIdea:(NSDictionary*)dict;   //收藏创意
 - (NSDictionary*)reformIdea:(NSDictionary*)dict;    //改造创意

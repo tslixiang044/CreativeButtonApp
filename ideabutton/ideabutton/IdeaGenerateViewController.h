@@ -14,6 +14,6 @@
     
 }
 
--(id)initWithData:(NSDictionary*)dict;
+-(id)initWithData:(NSArray*)dataArr;
 
 @end
