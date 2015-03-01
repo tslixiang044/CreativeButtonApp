@@ -88,6 +88,8 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone ;
     }
     
+    cell.lbltitle.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.lbltitle.numberOfLines = 0;
     cell.lbltitle.text=[marr[indexPath.row] objectForKey:@"ideaContent"];
 
     return cell;
