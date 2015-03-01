@@ -71,20 +71,6 @@
     }
 }
 
-- (NSDictionary*)invalidateInput
-{
-    if (self.loginNameTextField.text.length == 0)
-    {
-        
-    }
-    
-    if (self.loginPSWTextField.text.length == 0)
-    {
-        
-    }
-    return nil;
-}
-
 -(void)createInputView
 {
     User* user = [[DB sharedInstance]queryUser];
@@ -111,10 +97,11 @@
     _loginNameTextField.placeholder = @"邮箱/手机/QQ";
     _loginNameTextField.keyboardType = UIKeyboardTypeDefault;
     
-    if (user)
-    {
-        self.loginNameTextField.text = user.userName;
-    }
+    DB *db = [DB sharedInstance];
+    NSData *lastLoginNameData = [db.indb dataForKey:@"ctrler:login:last-login-name"];
+    NSString *lastLoginName = [[NSString alloc]initWithData:lastLoginNameData encoding:NSUTF8StringEncoding];
+    _loginNameTextField.text = lastLoginName;
+    
     [loginNameView addSubview:_loginNameTextField];
     
     UIImageView *loginPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
