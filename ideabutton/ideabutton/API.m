@@ -40,7 +40,9 @@
     {
         self.baseURL = @"http://121.41.123.182:8090/web/mobile/api/";//             测试
         
-        //        self.baseURL = @"http://mobile.zt906.com:8092/channel/api/mobile/";//         生产
+//        self.baseURL = @"http://223.6.252.147/web/mobile/api/";//         生产
+        
+        self.user = [[DB sharedInstance] queryUser];
     }
     return self;
 }
@@ -111,15 +113,6 @@
     {
         return nil;
     }
-    
-//    NSArray* array = [retDict objectForKey:@"data"];
-//    NSMutableArray* dataArr = [[NSMutableArray alloc] init];
-//    
-//    for (int i = 0; i < array.count; i++)
-//    {
-//        NSDictionary* dict = array[i];
-//        [dataArr addObject:dict];
-//    }
     
     return  [retDict objectForKey:@"data"];
 }

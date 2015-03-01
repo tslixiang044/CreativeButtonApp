@@ -184,22 +184,27 @@
 {
     [super didReceiveMemoryWarning];
 }
+
 -(void)btnzanAction:(UIButton*)mbtn
 {
     NSLog(@"a");
 }
+
 -(void)btnzhuanAction:(UIButton*)mbtn
 {
     NSLog(@"b");
 }
+
 -(void)btnpingAction:(UIButton*)mbtn
 {
     NSLog(@"c");
 }
+
 -(void)btnshanAction:(UIButton*)mbtn
 {
     NSLog(@"d");
 }
+
 -(void)btnright
 {
     if(toolview==nil)
@@ -208,17 +213,9 @@
         [self.view addSubview:toolview];
     }
     [self.view bringSubviewToFront:toolview];
-   
-    
     
     [toolview showtoolView];
     
 }
-
-
-
-
-
-
 
 @end

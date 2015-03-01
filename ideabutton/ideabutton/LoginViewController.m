@@ -16,7 +16,6 @@
 #import "RegisterViewController.h"
 #import "IAlsoPressViewController.h"
 
-
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property(nonatomic, strong)UITextField* loginNameTextField;
@@ -216,13 +215,13 @@
     
     if (self.loginNameTextField.text.length == 0)
     {
-        [SVProgressHUD showErrorWithStatus:@"用户名不能为空"];
+        [self showalertview_text:@"用户名不能为空" imgname:@"error" autoHiden:YES];
         return;
     }
     
     if (self.loginPSWTextField.text.length == 0)
     {
-        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
+        [self showalertview_text:@"密码不能为空" imgname:@"error" autoHiden:YES];
         return;
     }
     [SVProgressHUD showWithStatus:@"登录中" maskType:SVProgressHUDMaskTypeClear];
@@ -251,7 +250,6 @@
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
-//            [self.navigationController popToRootViewControllerAnimated:NO];
             [SVProgressHUD dismiss];
             if(user)
             {
@@ -261,7 +259,7 @@
             }
             else
             {
-                [SVProgressHUD showErrorWithStatus:@"用户名或者密码错误"];
+                [self showalertview_text:[API sharedInstance].msg imgname:@"error" autoHiden:YES];
             }
         });
     });

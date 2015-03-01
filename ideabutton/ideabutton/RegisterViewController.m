@@ -207,7 +207,7 @@
             }
             else
             {
-                [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+                [self showalertview_text:[API sharedInstance].msg imgname:@"error" autoHiden:YES];
             }
         });
     });
@@ -217,25 +217,25 @@
 {
     if (self.nickNameTextField.text == 0)
     {
-        [SVProgressHUD showErrorWithStatus:@"昵称不能为空"];
+        [self showalertview_text:@"昵称不能为空" imgname:@"error" autoHiden:YES];
         return nil;
     }
     
     if (self.registerNameTextField.text == 0)
     {
-        [SVProgressHUD showErrorWithStatus:@"账号不能为空"];
+        [self showalertview_text:@"账号不能为空" imgname:@"error" autoHiden:YES];
         return nil;
     }
     
     if (self.registerPSWTextField.text == 0)
     {
-        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
+        [self showalertview_text:@"密码不能为空" imgname:@"error" autoHiden:YES];
         return nil;
     }
     
     if (![self.registerPSWTextField.text isEqualToString:self.confirmPSWTextField.text])
     {
-        [SVProgressHUD showErrorWithStatus:@"两次输入的密码不一致"];
+        [self showalertview_text:@"两次输入的密码不一致" imgname:@"error" autoHiden:YES];
         return nil;
     }
     

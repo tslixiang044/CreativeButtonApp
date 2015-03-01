@@ -183,7 +183,6 @@
     imageViewCell.columnCount = waterFlowView.columnCount;
     [imageViewCell relayoutViews];
     [imageViewCell setbtnObjct:obj];
-  
 }
 
 
@@ -208,9 +207,8 @@
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
-    [self ShowLoadingView];
-//    IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
-//    [self.navigationController pushViewController:detail animated:YES];
-//    [detail release];
+    IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
+    [self.navigationController pushViewController:detail animated:YES];
+    [detail release];
 }
 @end

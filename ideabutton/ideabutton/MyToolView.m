@@ -10,6 +10,7 @@
 #import "MytoolviewCell.h"
 #import "Config.h"
 #import "DB.h"
+#import "API.h"
 
 @implementation MyToolView
 
@@ -44,21 +45,24 @@
 {
     return 1;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (user)
     {
-        return 6;
+        return 7;
     }
     else
     {
-        return 5;
+        return 6;
     }
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *Identifier = @"mytoolcell";
@@ -109,7 +113,33 @@
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row)
+    {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name"]];
+            [API sharedInstance].user = nil;
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self hidentoolView];
+}
 
 -(void)btnCloseAction:(UIButton *)mbtn
 {
@@ -117,6 +147,7 @@
     
     [self hidentoolView];
 }
+
 -(void)hidentoolView
 {
     [UIView animateWithDuration:0.3 animations:^{
@@ -129,6 +160,7 @@
         
     }];
 }
+
 -(void)showtoolView
 {
     if([self isHidden])

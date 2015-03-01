@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "IdeaGenerateViewController.h"
+#import "InteractivePageViewController.h"
+#import "DB.h"
 
 #define HoggedBtnTag    0
 #define CollectionBtnTag    1
@@ -17,7 +19,8 @@
 
 @interface IdeaGenerateViewController()
 {
-    NSInteger IdeaNum;
+    NSInteger IdeaNumCount;
+    NSInteger belongMeIdeaNum;
     NSInteger index;
     NSInteger titleNumber;
     
@@ -30,6 +33,7 @@
     UIButton* nextBtn;
 }
 @property(nonatomic, strong)NSArray* data;
+@property(nonatomic, strong)NSMutableDictionary* dict;
 
 @end
 
@@ -42,9 +46,24 @@
     if (self)
     {
         self.data = dataArr;
-        IdeaNum = [dataArr count];
+        belongMeIdeaNum = [dataArr count];
         index = 0;
         titleNumber = 1;
+        NSInteger ideaCount = [[[DB sharedInstance] queryArbitraryObjectWithKey:@"balanceIdea"] integerValue];
+        if ( ideaCount > 0)
+        {
+            IdeaNumCount = ideaCount;
+        }
+        else
+        {
+            IdeaNumCount = 80;
+        }
+        
+        self.dict = [[NSMutableDictionary alloc] init];
+        [self.dict setValue:[[self.data objectAtIndex:0] objectForKey:@"adtype"] forKey:@"adtype"];
+        [self.dict setValue:[[self.data objectAtIndex:0] objectForKey:@"appeal"] forKey:@"appeal"];
+        [self.dict setValue:[[self.data objectAtIndex:0] objectForKey:@"brand"] forKey:@"brand"];
+        [self.dict setValue:[[self.data objectAtIndex:0] objectForKey:@"product"] forKey:@"product"];
     }
     
     return self;
@@ -119,7 +138,7 @@
     nextBtn.tag = NextBtnTag;
     nextBtn.backgroundColor = COLOR(124, 96, 33);
     nextBtn.layer.cornerRadius = 5;
-    [nextBtn setTitle:[NSString stringWithFormat:@"下一个(今日剩余%d个)",--IdeaNum] forState:UIControlStateNormal];
+    [nextBtn setTitle:[NSString stringWithFormat:@"下一个(今日剩余%d个)",IdeaNumCount] forState:UIControlStateNormal];
     [nextBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextBtn];
 }
@@ -141,15 +160,25 @@
             
             break;
         case NextBtnTag:
-            if (IdeaNum > 0)
+            if (IdeaNumCount > 0)
             {
-                if (index < self.data.count)
+                if (index < belongMeIdeaNum - 1)
                 {
                     index++;
+                    
+                    [nextBtn setTitle:[NSString stringWithFormat:@"下一个(今日剩余%d个)",--IdeaNumCount] forState:UIControlStateNormal];
+                    detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
                 }
-                
-                [nextBtn setTitle:[NSString stringWithFormat:@"下一个(今日剩余%d个)",--IdeaNum] forState:UIControlStateNormal];
-                detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+                else
+                {
+                    [[DB sharedInstance] saveArbitraryObject:[NSString stringWithFormat:@"%d",IdeaNumCount] withKey:@"balanceIdea"];
+                    InteractivePageViewController* pageViewController = [[InteractivePageViewController alloc]initWithDict:self.dict];
+                    [self.navigationController pushViewController:pageViewController animated:YES];
+                }
+            }
+            else
+            {
+                [self showAlertView_number:81];
             }
             
             break;
