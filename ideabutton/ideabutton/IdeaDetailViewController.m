@@ -207,14 +207,7 @@
 
 -(void)btnright
 {
-    if(toolview==nil)
-    {
-        toolview=[[MyToolView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
-        [self.view addSubview:toolview];
-    }
-    [self.view bringSubviewToFront:toolview];
-    
-    [toolview showtoolView];
+    [self showMenuView];
     
 }
 

@@ -109,25 +109,20 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
     {
         [mTabbarController.tabBar setSelectedImageTintColor:[UIColor redColor]];
-        UIColor *txtcolor=[UIColor whiteColor];
+
         
-        for(int i=0;i<[mTabbarController.tabBar.items count];i++)
-        {
-            [[mTabbarController.tabBar.items objectAtIndex:i] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                      txtcolor, UITextAttributeTextColor,
-                                                                                      [NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,
-                                                                                      [UIFont fontWithName:@"Helvetica" size:12], UITextAttributeFont, nil]
-                                                                            forState:UIControlStateNormal];
-        }
+        [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor whiteColor], UITextAttributeTextColor,
+                                                           [UIFont fontWithName:@"Helvetica" size:12], UITextAttributeFont,
+                                                           nil] forState:UIControlStateNormal];
         
-        for(int i=0;i<[mTabbarController.tabBar.items count];i++)
-        {
-            [[mTabbarController.tabBar.items objectAtIndex:i] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                      [UIColor grayColor], UITextAttributeTextColor,
-                                                                                      [NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,
-                                                                                      [UIFont fontWithName:@"Helvetica" size:12], UITextAttributeFont, nil]
-                                                                            forState:UIControlStateHighlighted];
-        }
+        UIColor *titleHighlightedColor = [UIColor colorWithRed:153/255.0 green:192/255.0 blue:48/255.0 alpha:1.0];
+        [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           titleHighlightedColor, UITextAttributeTextColor,
+                                                           [UIFont fontWithName:@"Helvetica" size:12], UITextAttributeFont,
+                                                           nil] forState:UIControlStateHighlighted];
+        
+
     }
 }
 -(void)gotoviewcontroller_Ioccupy:(UIViewController *)mviewcontroller
