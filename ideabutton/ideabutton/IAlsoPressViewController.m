@@ -28,7 +28,8 @@
 //    [[API sharedInstance] createIdea:@{@"adtype":@"1",@"product":@"啤酒",@"brand":@"我是",@"appeal":@"你的",@"number":@"9",@"letter":@"A",@"romanNum":@"1",@"ideaNum":@"1"}];
     
     [super viewDidLoad];
-    self.title=@"我霸占的";
+    self.title=@"BUTTON 4 CREATIVE";
+    
     //[self setleftbaritem_imgname:@"icon_jiantou_zuo.png" title:nil];
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     //---------------------
@@ -87,15 +88,15 @@
 {
     if(viewController.view.tag==1)
     {
-        self.title=@"我霸占的";
+        //self.title=@"我霸占的";
     }
     else if(viewController.view.tag==2)
     {
-        self.title=@"我收藏的";
+        //self.title=@"我收藏的";
     }
     else if(viewController.view.tag==3)
     {
-        self.title=@"我改造的";
+        //self.title=@"我改造的";
     }
     else if(viewController.view.tag==4)
     {

@@ -13,7 +13,7 @@
 @class MyToolView;
 @protocol MyToolViewDelegate <NSObject>
 @optional
-
+-(void)LoginOUt;
 @end
 //---------------------
 
@@ -27,6 +27,8 @@
     
     User* user;
 }
+@property(assign)id<MyToolViewDelegate>delegate;
+
 
 -(void)hidentoolView;
 -(void)showtoolView;

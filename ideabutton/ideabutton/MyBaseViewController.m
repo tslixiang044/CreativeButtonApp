@@ -9,7 +9,7 @@
 #import "MyBaseViewController.h"
 #import "MyToolView.h"
 
-@interface MyBaseViewController ()
+@interface MyBaseViewController ()<MyToolViewDelegate>
 {
     UIView *alertView;
     UIView *loadView;
@@ -186,6 +186,7 @@
     if(toolview==nil)
     {
         toolview=[[MyToolView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
+        toolview.delegate=self;
         [self.view addSubview:toolview];
         toolview.hidden=YES;
     }
@@ -198,6 +199,14 @@
 {
     [toolview hidentoolView];
 }
+-(void)LoginOUt
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
+
+
 
 -(void)showAlertView_number:(int)Num
 {

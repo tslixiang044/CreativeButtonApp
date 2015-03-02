@@ -38,7 +38,23 @@
     
     //----------
     
-    mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-50) style:UITableViewStylePlain];
+    UILabel* describeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, kMainScreenBoundwidth, 30)];
+    describeLabel.textColor = [UIColor whiteColor];
+    describeLabel.textAlignment=NSTextAlignmentCenter;
+    describeLabel.text = @"我收藏的";
+    [self.view addSubview:describeLabel];
+    //----
+    UIImageView *imgview=[[UIImageView alloc]initWithFrame:CGRectMake(90, 30, 30, 30)];
+    imgview.image=[UIImage imageNamed:@"icon_wscd.png"];
+    [self.view addSubview:imgview];
+    //----
+    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0, 70, 320, 2)];
+    line.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:line];
+    
+    //----------
+    
+    mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 72, kMainScreenBoundwidth, kMainScreenBoundheight-64-50-72) style:UITableViewStylePlain];
     
     mtableview.backgroundColor=COLOR(21, 21, 23);;
     mtableview.backgroundView.backgroundColor=COLOR(21, 21, 23);

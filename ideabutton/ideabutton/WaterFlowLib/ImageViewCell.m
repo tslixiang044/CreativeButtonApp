@@ -118,7 +118,32 @@
         lbltime.font=[UIFont systemFontOfSize:12];
         lbltime.backgroundColor=[UIColor clearColor];
         [view_center addSubview:lbltime];
+        //---------------
+        x=10;
+        y=view_center.frame.origin.y+view_center.frame.size.height+5;
         
+        //--
+        lblPraise=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
+       
+        lblPraise.textColor=[UIColor grayColor];
+        lblPraise.font=[UIFont systemFontOfSize:12];
+        lblPraise.backgroundColor=[UIColor clearColor];
+        [view_bg addSubview:lblPraise];
+        //--
+        y=lblPraise.frame.origin.y+lblPraise.frame.size.height;
+        lblForward=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
+       
+        lblForward.textColor=[UIColor grayColor];
+        lblForward.font=[UIFont systemFontOfSize:12];
+        lblForward.backgroundColor=[UIColor clearColor];
+        [view_bg addSubview:lblForward];
+        //--
+        y=lblForward.frame.origin.y+lblForward.frame.size.height;
+        lblcomment=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
+        lblcomment.textColor=[UIColor grayColor];
+        lblcomment.font=[UIFont systemFontOfSize:12];
+        lblcomment.backgroundColor=[UIColor clearColor];
+        [view_bg addSubview:lblcomment];
         
         
         
@@ -153,6 +178,10 @@
     lbldesc.text=mobj.sentence;
     lblproduct.text=mobj.product;
     lbltime.text=mobj.timeStamp;
+    
+    lblPraise.text=@"1次赞";
+    lblForward.text=@"10次转发";
+    lblcomment.text=@"perter zhong也太酷了吧！";
 }
 //保持图片上下左右有固定间距
 -(void)relayoutViews

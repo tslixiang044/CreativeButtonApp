@@ -13,6 +13,7 @@
 #import "API.h"
 
 @implementation MyToolView
+@synthesize delegate;
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -132,6 +133,11 @@
         case 6:
             [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name"]];
             [API sharedInstance].user = nil;
+            if(delegate)
+            {
+                [delegate LoginOUt];
+            }
+            
             break;
             
         default:
@@ -143,7 +149,7 @@
 
 -(void)btnCloseAction:(UIButton *)mbtn
 {
-    NSLog(@"close");
+    //NSLog(@"close");
     
     [self hidentoolView];
 }

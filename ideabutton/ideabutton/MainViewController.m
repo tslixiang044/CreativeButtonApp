@@ -59,12 +59,25 @@
     txtsearch=[[UITextField alloc]initWithFrame:CGRectMake(2, 2, view_search_bg.bounds.size.width-100, view_search_bg.bounds.size.height-4)];
     txtsearch.textColor=[UIColor whiteColor];
     txtsearch.clearButtonMode=UITextFieldViewModeWhileEditing;
+    txtsearch.returnKeyType=UIReturnKeySearch;
     txtsearch.backgroundColor=[UIColor clearColor];
     txtsearch.delegate=self;
     [txtsearch.layer setBackgroundColor:[COLOR(4, 4, 4) CGColor]];
     txtsearch.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"按产品类别搜索" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [txtsearch.layer setMasksToBounds:YES];
     [view_search_bg addSubview:txtsearch];
+    //-------------
+    float x=txtsearch.frame.origin.x+txtsearch.frame.size.width;
+    UIButton *  btnsearch = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnsearch.frame = CGRectMake(x, 0, 100, 44);
+  
+    [btnsearch setTitle:@"search" forState:UIControlStateNormal];
+    btnsearch.titleLabel.font = [UIFont systemFontOfSize:14];
+   
+    [btnsearch setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnsearch setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [btnsearch addTarget:self action:@selector(btnsearchAction) forControlEvents:UIControlEventTouchUpInside];
+    [view_search_bg addSubview:btnsearch];
     //-------------
     float y=view_search_bg.frame.origin.y+view_search_bg.frame.size.height+5;
     waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, y, kMainScreenBoundwidth, kMainScreenBoundheight-64-y)];
@@ -76,7 +89,15 @@
     //------------------
     [self loadData];
 }
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [txtsearch resignFirstResponder];
+    return YES;
+}
+-(void)btnsearchAction
+{
+    [txtsearch resignFirstResponder];
+}
 -(void)loadData
 {
     NSString *url=kgetWaterFlowUrl;
@@ -206,9 +227,9 @@
     if (obj)
     {
         width =100;// [[dict objectForKey:@"width"] floatValue];
-        height = 150;//[[dict objectForKey:@"height"] floatValue];
+        height = 160;//[[dict objectForKey:@"height"] floatValue];
         if(arrIndex%2==0)
-            height=160;
+            height=170;
     }
     
     return waterFlowView.cellWidth * (height/width);

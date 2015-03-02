@@ -29,7 +29,9 @@
     UILabel *lblproduct;
     UILabel *lbltime;
     
-    
+    UILabel *lblPraise;
+    UILabel *lblForward;
+    UILabel *lblcomment;
     
     
 }
