@@ -59,6 +59,9 @@
     mtableview.dataSource=self;
     mtableview.delegate=self;
     [self.view addSubview:mtableview];
+    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    [mtableview setTableFooterView:v];
     //---------
     marr=[[NSArray alloc]init];
     

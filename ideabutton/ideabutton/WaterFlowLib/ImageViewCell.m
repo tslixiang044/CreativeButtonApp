@@ -121,25 +121,33 @@
         //---------------
         x=10;
         y=view_center.frame.origin.y+view_center.frame.size.height+5;
-        
         //--
-        lblPraise=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
-       
+        UIImageView *imgview_praise=[[UIImageView alloc]initWithFrame:CGRectMake(x, y+5, 15, 15)];
+        imgview_praise.image=[UIImage imageNamed:@"icon_aixin.png"];
+        [view_bg addSubview:imgview_praise];
+        //--
+        
+        lblPraise=[[UILabel alloc]initWithFrame:CGRectMake(x+20, y, 128, 25)];
         lblPraise.textColor=[UIColor grayColor];
         lblPraise.font=[UIFont systemFontOfSize:12];
         lblPraise.backgroundColor=[UIColor clearColor];
         [view_bg addSubview:lblPraise];
         //--
         y=lblPraise.frame.origin.y+lblPraise.frame.size.height;
-        lblForward=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
-       
-        lblForward.textColor=[UIColor grayColor];
-        lblForward.font=[UIFont systemFontOfSize:12];
-        lblForward.backgroundColor=[UIColor clearColor];
-        [view_bg addSubview:lblForward];
+//        lblForward=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
+//        lblForward.textColor=[UIColor grayColor];
+//        lblForward.font=[UIFont systemFontOfSize:12];
+//        lblForward.backgroundColor=[UIColor clearColor];
+//        [view_bg addSubview:lblForward];
+//        //--
+//        
+//        y=lblForward.frame.origin.y+lblForward.frame.size.height;
+        
+        UIImageView *imgview_comment=[[UIImageView alloc]initWithFrame:CGRectMake(x, y+5, 15, 15)];
+        imgview_comment.image=[UIImage imageNamed:@"icon_qipao.png"];
+        [view_bg addSubview:imgview_comment];
         //--
-        y=lblForward.frame.origin.y+lblForward.frame.size.height;
-        lblcomment=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
+        lblcomment=[[UILabel alloc]initWithFrame:CGRectMake(x+20, y, 128, 25)];
         lblcomment.textColor=[UIColor grayColor];
         lblcomment.font=[UIFont systemFontOfSize:12];
         lblcomment.backgroundColor=[UIColor clearColor];

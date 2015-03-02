@@ -54,6 +54,8 @@
     
     //----------
     
+    
+    
     mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 72, kMainScreenBoundwidth, kMainScreenBoundheight-64-50-72) style:UITableViewStylePlain];
     
     mtableview.backgroundColor=COLOR(21, 21, 23);;
@@ -62,6 +64,10 @@
     mtableview.dataSource=self;
     mtableview.delegate=self;
     [self.view addSubview:mtableview];
+    
+    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    [mtableview setTableFooterView:v];
     //---------
     marr=[[NSArray alloc]init];
     
@@ -102,12 +108,17 @@
         cell=[[MysaveCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
         cell.backgroundColor=COLOR(21, 21, 23);
         cell.selectionStyle=UITableViewCellSelectionStyleNone ;
+        
+        
     }
     
     cell.lbltitle.lineBreakMode = NSLineBreakByWordWrapping;
     cell.lbltitle.numberOfLines = 0;
     cell.lbltitle.text=[marr[indexPath.row] objectForKey:@"ideaContent"];
-
+    
+    
+    
+    
     return cell;
 }
 

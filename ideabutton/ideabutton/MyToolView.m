@@ -35,6 +35,9 @@
         mtableview.dataSource=self;
         mtableview.delegate=self;
         [self addSubview:mtableview];
+        
+        UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+        [mtableview setTableFooterView:v];
         //---------
         marr=[[NSMutableArray alloc]init];
     }
