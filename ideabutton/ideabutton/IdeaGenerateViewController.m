@@ -10,6 +10,8 @@
 #import "IdeaGenerateViewController.h"
 #import "InteractivePageViewController.h"
 #import "DB.h"
+#import "API.h"
+#import "SVProgressHUD.h"
 
 #define HoggedBtnTag    0
 #define CollectionBtnTag    1
@@ -148,10 +150,14 @@
     switch (sender.tag)
     {
         case HoggedBtnTag:
-            
+        {
+            [self occupyIdea];
+        }
             break;
         case CollectionBtnTag:
-            
+        {
+            [self collectIdea];
+        }
             break;
         case AchieveBtnTag:
             
@@ -186,6 +192,54 @@
         default:
             break;
     }
+}
+
+-(void)occupyIdea
+{
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        NSString* occupyIdeaID = [[API sharedInstance] occupyIdea:@{@"algorithmRule":[[self.data objectAtIndex:index] objectForKey:@"algorithmRule"],@"sentence":detailLabel.text,@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            [SVProgressHUD dismiss];
+            if (occupyIdeaID)
+            {
+                [self showalertview_text:@"创意霸占成功" imgname:nil autoHiden:YES];
+                [hoggedBtn setTitle:@"我已霸占" forState:UIControlStateNormal];
+            }
+            else
+            {
+                [self showalertview_text:@"创意霸占失败" imgname:@"error" autoHiden:YES];
+            }
+        });
+    });
+}
+
+-(void)collectIdea
+{
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        NSString* collectIdeaID = [[API sharedInstance] collectIdea:@{@"algorithmRule":[[self.data objectAtIndex:index] objectForKey:@"algorithmRule"],@"sentence":detailLabel.text,@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            [SVProgressHUD dismiss];
+            if (collectIdeaID)
+            {
+                [self showalertview_text:@"创意收藏成功" imgname:nil autoHiden:YES];
+                [collectionBtn setTitle:@"我已收藏" forState:UIControlStateNormal];
+            }
+            else
+            {
+                [self showalertview_text:@"创意收藏失败" imgname:@"error" autoHiden:YES];
+            }
+        });
+    });
 }
 
 @end

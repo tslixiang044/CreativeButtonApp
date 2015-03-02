@@ -117,7 +117,7 @@
     return  [retDict objectForKey:@"data"];
 }
 
-- (NSDictionary*)occupyIdea:(NSDictionary*)dict
+- (NSString*)occupyIdea:(NSDictionary*)dict
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/occupyIdea"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
@@ -130,7 +130,7 @@
     return  [retDict objectForKey:@"data"];
 }
 
-- (NSDictionary*)collectIdea:(NSDictionary*)dict
+- (NSString*)collectIdea:(NSDictionary*)dict
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/collectIdea"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
@@ -143,7 +143,7 @@
     return  [retDict objectForKey:@"data"];
 }
 
-- (NSDictionary*)reformIdea:(NSDictionary*)dict
+- (NSString*)reformIdea:(NSDictionary*)dict
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/reformIdea"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];

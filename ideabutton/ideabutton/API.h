@@ -23,9 +23,9 @@
 -(User*)updateUser:(NSDictionary*)userDict;
 
 - (NSArray*)createIdea:(NSDictionary*)dict;    //生成创意
-- (NSDictionary*)occupyIdea:(NSDictionary*)dict;    //霸占创意
-- (NSDictionary*)collectIdea:(NSDictionary*)dict;   //收藏创意
-- (NSDictionary*)reformIdea:(NSDictionary*)dict;    //改造创意
+- (NSString*)occupyIdea:(NSDictionary*)dict;    //霸占创意
+- (NSString*)collectIdea:(NSDictionary*)dict;   //收藏创意
+- (NSString*)reformIdea:(NSDictionary*)dict;    //改造创意
 - (NSDictionary*)updateReformedIdea:(NSDictionary*)dict;    //修改已改造创意
 
 - (NSDictionary*)deleteOccupiedIdea:(NSDictionary*)dict;    //删除霸占创意

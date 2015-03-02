@@ -8,6 +8,7 @@
 
 #import "IoccupyViewController.h"
 #import "ProContentViewController.h"
+#import "MyUIButton.h"
 
 #define PrintAdBtnTag   100
 #define InteractionAdBtnTag 101
@@ -38,8 +39,8 @@
     line.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:line];
     
-    UIButton* printAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 100, 70, 70)];
-    [printAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
+    MyUIButton* printAdBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(50, 100, 70, 70) bgimg:nil title:nil];
+    printAdBtn.backgroundColor = COLOR(205, 38, 33);
     [printAdBtn setImage:[UIImage imageNamed:@"btn_icon_plane"] forState:UIControlStateNormal];
     printAdBtn.tag = PrintAdBtnTag;
     [printAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -50,8 +51,8 @@
     printAdLabel.text = @"平面广告";
     [self.view addSubview:printAdLabel];
     
-    UIButton* interactionAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 100, 70, 70)];
-    [interactionAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
+    MyUIButton* interactionAdBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(190, 100, 70, 70) bgimg:nil title:nil];
+    interactionAdBtn.backgroundColor = COLOR(205, 38, 33);
     [interactionAdBtn setImage:[UIImage imageNamed:@"btn_icon_hdym"] forState:UIControlStateNormal];
     interactionAdBtn.tag = InteractionAdBtnTag;
     [interactionAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -62,8 +63,8 @@
     interactionAdLabel.text = @"互动广告";
     [self.view addSubview:interactionAdLabel];
     
-    UIButton* videoAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 220, 70, 70)];
-    [videoAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
+    MyUIButton* videoAdBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(50, 220, 70, 70) bgimg:nil title:nil];
+    videoAdBtn.backgroundColor = COLOR(205, 38, 33);
     [videoAdBtn setImage:[UIImage imageNamed:@"btn_icon_camera"] forState:UIControlStateNormal];
     videoAdBtn.tag = VideoAdBtnTag;
     [videoAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -74,8 +75,8 @@
     videoAdLabel.text = @"视频广告";
     [self.view addSubview:videoAdLabel];
     
-    UIButton* prCampaignBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 220, 70, 70)];
-    [prCampaignBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
+    MyUIButton* prCampaignBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(190, 220, 70, 70) bgimg:nil title:nil];
+    prCampaignBtn.backgroundColor = COLOR(205, 38, 33);
     [prCampaignBtn setImage:[UIImage imageNamed:@"btn_icon_gghd"] forState:UIControlStateNormal];
     prCampaignBtn.tag = PrCampaignBtnTag;
     [prCampaignBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -86,8 +87,8 @@
     prCampaignLabel.text = @"公关活动";
     [self.view addSubview:prCampaignLabel];
     
-    UIButton* audioAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 340, 70, 70)];
-    [audioAdBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
+    MyUIButton* audioAdBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(50, 340, 70, 70) bgimg:nil title:nil];
+    audioAdBtn.backgroundColor = COLOR(205, 38, 33);
     [audioAdBtn setImage:[UIImage imageNamed:@"btn_icon_suona"] forState:UIControlStateNormal];
     audioAdBtn.tag = AudioAdBtnTag;
     [audioAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -98,8 +99,8 @@
     audioAdLabel.text = @"音频广告";
     [self.view addSubview:audioAdLabel];
     
-    UIButton* mediaCreateBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 340, 70, 70)];
-    [mediaCreateBtn setBackgroundImage:[UIImage imageNamed:@"btn_bg"] forState:UIControlStateNormal];
+    MyUIButton* mediaCreateBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(190, 340, 70, 70) bgimg:nil title:nil];
+    mediaCreateBtn.backgroundColor = COLOR(205, 38, 33);
     [mediaCreateBtn setImage:[UIImage imageNamed:@"btn_icon_shouji"] forState:UIControlStateNormal];
     mediaCreateBtn.tag = MediaCreateBtnTag;
     [mediaCreateBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
