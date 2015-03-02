@@ -19,7 +19,7 @@
 #import "IdeaDetailViewController.h"
 #import "DB.h"
 
-@interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate>
+@interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate>
 {
     
     NSMutableArray *mArr;
@@ -143,9 +143,18 @@
         }
         else
         {
-            [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+            LoginViewController *login=[[LoginViewController alloc] init];
+            login.delegate=self;
+            [self.navigationController pushViewController:login animated:YES];
+            [login release];
         }
     }
+}
+-(void)loginSuccessfull
+{
+    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+    [self.navigationController pushViewController:press animated:YES];
+    [press release];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

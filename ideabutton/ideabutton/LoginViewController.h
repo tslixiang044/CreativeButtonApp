@@ -9,8 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
 
+
+//---------------------
+@class LoginViewController;
+@protocol LoginViewControllerDelegate <NSObject>
+@optional
+-(void)loginSuccessfull;
+@end
+//---------------------
+
 @interface LoginViewController : MyBaseViewController
 {
     
 }
+@property(assign)id<LoginViewControllerDelegate>delegate;
 @end

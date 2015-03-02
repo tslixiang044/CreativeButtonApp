@@ -26,6 +26,8 @@
 @end
 
 @implementation LoginViewController
+@synthesize delegate;
+
 
 - (id)init
 {
@@ -240,9 +242,12 @@
             [SVProgressHUD dismiss];
             if(user)
             {
-                IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-                [self.navigationController pushViewController:press animated:YES];
+                [self.navigationController popViewControllerAnimated:NO];
                 
+                if(delegate)
+                {
+                    [delegate loginSuccessfull];
+                }
             }
             else
             {

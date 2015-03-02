@@ -29,6 +29,8 @@
     
     [super viewDidLoad];
     self.title=@"我霸占的";
+    //[self setleftbaritem_imgname:@"icon_jiantou_zuo.png" title:nil];
+    [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     //---------------------
 
     mTabbarController=[[UITabBarController alloc]init];
@@ -73,7 +75,14 @@
     //-------
     [self settoolbarColor];
 }
-
+-(void)btnleft
+{
+    
+}
+-(void)btnright
+{
+    [self showMenuView];
+}
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     if(viewController.view.tag==1)
