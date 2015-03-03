@@ -11,7 +11,7 @@
 #import "ISavedViewController.h"
 #import "IChangedViewController.h"
 #import "API.h"
-
+#import "IoccupyDetailViewController.h"
 
 
 
@@ -89,6 +89,11 @@
     if(viewController.view.tag==1)
     {
         //self.title=@"我霸占的";
+        IoccupyDetailViewController *detail=[[IoccupyDetailViewController alloc]init];
+        
+        [self.navigationController pushViewController:detail animated:YES];
+        
+        
     }
     else if(viewController.view.tag==2)
     {

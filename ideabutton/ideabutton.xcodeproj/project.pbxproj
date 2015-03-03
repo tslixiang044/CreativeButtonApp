@@ -18,6 +18,7 @@
 		89AF6B371AA3FD4C004F88F1 /* icon_jiantou_zuo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89AF6B361AA3FD4C004F88F1 /* icon_jiantou_zuo@2x.png */; };
 		89AF6B3A1AA45D9D004F88F1 /* icon_aixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 89AF6B381AA45D9D004F88F1 /* icon_aixin.png */; };
 		89AF6B3B1AA45D9D004F88F1 /* icon_qipao.png in Resources */ = {isa = PBXBuildFile; fileRef = 89AF6B391AA45D9D004F88F1 /* icon_qipao.png */; };
+		89BF1FF11AA556780085CD58 /* IoccupyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1FF01AA556780085CD58 /* IoccupyDetailViewController.m */; };
 		E91E77531A849E87000174D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77521A849E87000174D4 /* main.m */; };
 		E91E77561A849E87000174D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77551A849E87000174D4 /* AppDelegate.m */; };
 		E91E775E1A849E87000174D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91E775D1A849E87000174D4 /* Images.xcassets */; };
@@ -139,6 +140,8 @@
 		89AF6B361AA3FD4C004F88F1 /* icon_jiantou_zuo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_jiantou_zuo@2x.png"; sourceTree = "<group>"; };
 		89AF6B381AA45D9D004F88F1 /* icon_aixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_aixin.png; sourceTree = "<group>"; };
 		89AF6B391AA45D9D004F88F1 /* icon_qipao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qipao.png; sourceTree = "<group>"; };
+		89BF1FEF1AA556780085CD58 /* IoccupyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoccupyDetailViewController.h; sourceTree = "<group>"; };
+		89BF1FF01AA556780085CD58 /* IoccupyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoccupyDetailViewController.m; sourceTree = "<group>"; };
 		E91E774D1A849E87000174D4 /* ideabutton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ideabutton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91E77511A849E87000174D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E91E77521A849E87000174D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -663,6 +666,8 @@
 				E98190791A8852110025F284 /* ISavedViewController.m */,
 				E981907B1A88526E0025F284 /* IChangedViewController.h */,
 				E981907C1A88526E0025F284 /* IChangedViewController.m */,
+				89BF1FEF1AA556780085CD58 /* IoccupyDetailViewController.h */,
+				89BF1FF01AA556780085CD58 /* IoccupyDetailViewController.m */,
 			);
 			name = IAlsoPress;
 			sourceTree = "<group>";
@@ -929,6 +934,7 @@
 				E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */,
 				E91E77A41A84A8CD000174D4 /* ASIInputStream.m in Sources */,
 				E94107521A91BA19002D78B2 /* APLevelDB.mm in Sources */,
+				89BF1FF11AA556780085CD58 /* IoccupyDetailViewController.m in Sources */,
 				E98190A51A886E5E0025F284 /* SDWebImageDownloader.m in Sources */,
 				E981908F1A885FBB0025F284 /* EGORefreshTableHeaderView.m in Sources */,
 				89AC5C6E1AA154A4005DA279 /* MyToolView.m in Sources */,

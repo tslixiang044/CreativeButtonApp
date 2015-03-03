@@ -76,6 +76,7 @@
     {
        cell=[[MytoolviewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
        cell.backgroundColor=COLOR(21, 21, 23);
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
 
     if(indexPath.row==0)
