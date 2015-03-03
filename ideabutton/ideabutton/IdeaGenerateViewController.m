@@ -12,6 +12,7 @@
 #import "DB.h"
 #import "API.h"
 #import "SVProgressHUD.h"
+#import "ReformIdeaViewController.h"
 
 #define HoggedBtnTag    0
 #define CollectionBtnTag    1
@@ -68,6 +69,8 @@
         [self.dict setValue:[[self.data objectAtIndex:0] objectForKey:@"product"] forKey:@"product"];
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeButtonTitle:) name:@"reformIdeaSuccess" object:nil];
+    
     return self;
 }
 
@@ -79,10 +82,12 @@
     
     [self createInputView];
 }
+
 -(void)btnright
 {
     [self showMenuView];
 }
+
 -(void)createInputView
 {
     UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"input_bg"]];
@@ -145,8 +150,15 @@
     [self.view addSubview:nextBtn];
 }
 
+-(void)changeButtonTitle:(NSNotification*)notify
+{
+    [hoggedBtn setTitle:@"我已霸占" forState:UIControlStateNormal];
+    [transformBtn setTitle:@"我已改造" forState:UIControlStateNormal];
+}
+
 -(void)buttonClick:(UIButton*)sender
 {
+    [self.dict setValue:[[self.data objectAtIndex:index] objectForKey:@"algorithmRule"] forKey:@"algorithmRule"];
     switch (sender.tag)
     {
         case HoggedBtnTag:
@@ -163,7 +175,9 @@
             
             break;
         case TransformBtnTag:
-            
+        {
+            [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:self.dict] animated:YES];
+        }
             break;
         case NextBtnTag:
             if (IdeaNumCount > 0)
@@ -200,7 +214,7 @@
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        NSString* occupyIdeaID = [[API sharedInstance] occupyIdea:@{@"algorithmRule":[[self.data objectAtIndex:index] objectForKey:@"algorithmRule"],@"sentence":detailLabel.text,@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
+        NSString* occupyIdeaID = [[API sharedInstance] occupyIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"sentence":detailLabel.text,@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -220,11 +234,11 @@
 
 -(void)collectIdea
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD showWithStatus:@"正在收藏" maskType:SVProgressHUDMaskTypeClear];
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        NSString* collectIdeaID = [[API sharedInstance] collectIdea:@{@"algorithmRule":[[self.data objectAtIndex:index] objectForKey:@"algorithmRule"],@"sentence":detailLabel.text,@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
+        NSString* collectIdeaID = [[API sharedInstance] collectIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"sentence":detailLabel.text,@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -240,6 +254,11 @@
             }
         });
     });
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

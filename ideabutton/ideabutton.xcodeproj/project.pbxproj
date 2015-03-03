@@ -67,6 +67,7 @@
 		E941077F1AA1B25D002D78B2 /* icon_wdzy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94107781AA1B25D002D78B2 /* icon_wdzy@2x.png */; };
 		E94107801AA1B25D002D78B2 /* icon_wyfx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94107791AA1B25D002D78B2 /* icon_wyfx@2x.png */; };
 		E941078C1AA2E4CC002D78B2 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E941078B1AA2E4CC002D78B2 /* error@2x.png */; };
+		E94107A31AA563CD002D78B2 /* ReformIdeaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107A21AA563CD002D78B2 /* ReformIdeaViewController.m */; };
 		E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97258231A888D3500F0ABB8 /* LoginViewController.m */; };
 		E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258261A888EB700F0ABB8 /* Default-568h@2x.png */; };
 		E97258291A88958900F0ABB8 /* input_bai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258281A88958900F0ABB8 /* input_bai@2x.png */; };
@@ -238,6 +239,8 @@
 		E94107781AA1B25D002D78B2 /* icon_wdzy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_wdzy@2x.png"; sourceTree = "<group>"; };
 		E94107791AA1B25D002D78B2 /* icon_wyfx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_wyfx@2x.png"; sourceTree = "<group>"; };
 		E941078B1AA2E4CC002D78B2 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
+		E94107A11AA563CD002D78B2 /* ReformIdeaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReformIdeaViewController.h; sourceTree = "<group>"; };
+		E94107A21AA563CD002D78B2 /* ReformIdeaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReformIdeaViewController.m; sourceTree = "<group>"; };
 		E97258231A888D3500F0ABB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E97258251A888D6600F0ABB8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E97258261A888EB700F0ABB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -412,6 +415,7 @@
 		E91E777A1A84A760000174D4 /* GroupClass */ = {
 			isa = PBXGroup;
 			children = (
+				E94107971AA55D38002D78B2 /* ReformIdea */,
 				E98C48F31A8C443000287EF8 /* IdeaGenerate */,
 				E97258B71A8B310700F0ABB8 /* InteractivePage */,
 				E97258531A89A8E800F0ABB8 /* ProjectContent */,
@@ -627,6 +631,15 @@
 				E941076A1A91CC4A002D78B2 /* SVProgressHUD.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		E94107971AA55D38002D78B2 /* ReformIdea */ = {
+			isa = PBXGroup;
+			children = (
+				E94107A11AA563CD002D78B2 /* ReformIdeaViewController.h */,
+				E94107A21AA563CD002D78B2 /* ReformIdeaViewController.m */,
+			);
+			name = ReformIdea;
 			sourceTree = "<group>";
 		};
 		E97258531A89A8E800F0ABB8 /* ProjectContent */ = {
@@ -905,6 +918,7 @@
 				E98190771A8851D60025F284 /* IoccupyViewController.m in Sources */,
 				E98190A41A886E5E0025F284 /* SDWebImageDecoder.m in Sources */,
 				89AC5C6B1AA1548B005DA279 /* MytoolviewCell.m in Sources */,
+				E94107A31AA563CD002D78B2 /* ReformIdeaViewController.m in Sources */,
 				E91E77561A849E87000174D4 /* AppDelegate.m in Sources */,
 				E98190A91A886E5E0025F284 /* UIImageView+WebCache.m in Sources */,
 				89AC5C621AA15434005DA279 /* IdeaDetailViewController.m in Sources */,
@@ -1036,6 +1050,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1055,6 +1070,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

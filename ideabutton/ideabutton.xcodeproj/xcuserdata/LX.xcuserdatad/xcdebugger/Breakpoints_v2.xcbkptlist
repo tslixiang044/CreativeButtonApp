@@ -162,11 +162,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ideabutton/IdeaGenerateViewController.m"
-            timestampString = "446995753.926126"
+            timestampString = "447046039.464855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "-initWithData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -178,11 +178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ideabutton/IdeaGenerateViewController.m"
-            timestampString = "446995753.926126"
+            timestampString = "447046039.464855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-buttonClick:"
             landmarkType = "5">
          </BreakpointContent>
