@@ -303,7 +303,7 @@
     
     if(self.user && [request valueForHTTPHeaderField:@"Auth"] ==nil)
     {
-        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.userName,self.user.token];
+        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.nickName,self.user.token];
         NSString *encodedAuthStr = [[authStr dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
         [request setValue:encodedAuthStr forHTTPHeaderField:@"Auth"];
     }
@@ -350,7 +350,7 @@
     
     if(self.user && [request valueForHTTPHeaderField:@"Auth"] ==nil)
     {
-        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.userName,self.user.token];
+        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.nickName,self.user.token];
         NSString *encodedAuthStr = [[authStr dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
         [request setValue:encodedAuthStr forHTTPHeaderField:@"Auth"];
     }
@@ -392,7 +392,7 @@
     
     if(self.user && [request valueForHTTPHeaderField:@"Auth"] ==nil)
     {
-        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.userName,self.user.token];
+        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.nickName,self.user.token];
         NSString *encodedAuthStr = [[authStr dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
         [request setValue:encodedAuthStr forHTTPHeaderField:@"Auth"];
     }
