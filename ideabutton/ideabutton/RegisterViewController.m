@@ -14,6 +14,9 @@
 #import "APLevelDB.h"
 
 #define Height  45
+#define AddHead     1
+#define SelectMan   2
+#define SelectWonman    3
 
 @interface RegisterViewController()<UITextFieldDelegate>
 
@@ -22,10 +25,17 @@
 @property(nonatomic, assign)CGFloat lastScrollOffset;
 @property(nonatomic, strong)UITextField *inFocusTextField;
 
-@property(nonatomic, strong)UITextField* registerNameTextField;
+@property(nonatomic, strong)UITextField* registerAddressTextField;
 @property(nonatomic, strong)UITextField* nickNameTextField;
+@property(nonatomic, strong)UITextField* registerMailTextField;
 @property(nonatomic, strong)UITextField* registerPSWTextField;
 @property(nonatomic, strong)UITextField* confirmPSWTextField;
+@property(nonatomic, strong)UIButton* manBtn;
+@property(nonatomic, strong)UIButton* womenBtn;
+@property(nonatomic, strong)UILabel* manLabel;
+@property(nonatomic, strong)UILabel* womenLabel;
+@property(nonatomic, assign)BOOL manSelected;
+@property(nonatomic, assign)BOOL womenSelected;
 
 @end
 
@@ -36,16 +46,19 @@
 {
     [super viewDidLoad];
     
+    self.manSelected = NO;
+    self.womenSelected = NO;
+    
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
-    CGFloat contentHeight = 380;
+    CGFloat contentHeight = 470;
     UIScrollView *mainScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height)];
     mainScroll.contentSize = CGSizeMake(320, contentHeight);
     self.mainScroll = mainScroll;
     [self.view addSubview:mainScroll];
     
     UIView *editingView = [self createInputView];
-    editingView.frame = CGRectMake(20, 60, 280, contentHeight);
+    editingView.frame = CGRectMake(20, 20, 280, contentHeight);
     [mainScroll addSubview:editingView];
     
     //注册键盘通知获取键盘高度
@@ -89,96 +102,169 @@
 
 -(UIView*)createInputView
 {
-    UIView* registerView = [[UIView alloc] initWithFrame:CGRectMake(20, 60, 280, 380)];
+    UIView* registerView = [[UIView alloc] init];
     registerView.backgroundColor = [UIColor colorWithRed:21/255.0 green:21/255.0 blue:22/255.0 alpha:1.0];
     
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"zhuce_icon"]];
-    imageView.frame = CGRectMake(110, 20, 50, 50);
+    UIImageView* imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg_admin_zc_add"]];
+    imageView.userInteractionEnabled = YES;
+    imageView.frame =  CGRectMake(30, 20, 220, 80);
     [registerView addSubview:imageView];
     
-    UIImageView* line = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"line"]];
-    line.frame = CGRectMake(0, 80, 280, 2);
-    [registerView addSubview:line];
+    UIButton* headBtn = [[UIButton alloc] initWithFrame:CGRectMake(25, 10, 65, 60)];
+    [headBtn setBackgroundImage:[UIImage imageNamed:@"icon_use_add"] forState:UIControlStateNormal];
+    [headBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    headBtn.tag = AddHead;
+    [imageView addSubview:headBtn];
+    
+    self.manBtn = [[UIButton alloc] initWithFrame:CGRectMake(140, 20, 25, 25)];
+    [self.manBtn setImage:[UIImage imageNamed:@"icon_use_man_secle"] forState:UIControlStateNormal];
+    [self.manBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    self.manBtn.tag = SelectMan;
+    [imageView addSubview:self.manBtn];
+    
+    self.manLabel = [[UILabel alloc] initWithFrame:CGRectMake(143, 45, 20, 20)];
+    self.manLabel.text = @"男";
+    [imageView addSubview:self.manLabel];
+    
+    self.womenBtn = [[UIButton alloc] initWithFrame:CGRectMake(175, 20, 25, 25)];
+    [self.womenBtn setImage:[UIImage imageNamed:@"icon_use_women_secle"] forState:UIControlStateNormal];
+    [self.womenBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    self.womenBtn.tag = SelectWonman;
+    [imageView addSubview:self.womenBtn];
+    
+    self.womenLabel = [[UILabel alloc] initWithFrame:CGRectMake(178, 45, 20, 20)];
+    self.womenLabel.text = @"女";
+    [imageView addSubview:self.womenLabel];
     
     UIImageView *nickNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
     nickNameView.userInteractionEnabled = YES;
-    nickNameView.frame = CGRectMake(20, 100, 240, 40);
+    nickNameView.frame = CGRectMake(30, 115, 220, 40);
     [registerView addSubview:nickNameView];
     
-    UIImageView* nickNameImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_admin"]];
-    nickNameImg.frame = CGRectMake(10, 5, 30, 30);
-    [nickNameView addSubview:nickNameImg];
-    
-    UILabel* nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 35, 30)];
+    UILabel* nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 35, 30)];
     nickNameLabel.text = @"昵称";
     [nickNameView addSubview:nickNameLabel];
     
-    self.nickNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 145, 30)];
+    self.nickNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 145, 30)];
     _nickNameTextField.delegate = self;
     [nickNameView addSubview:_nickNameTextField];
     
-    UIImageView *registerNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
-    registerNameView.userInteractionEnabled = YES;
-    registerNameView.frame = CGRectMake(20, 150, 240, 40);
-    [registerView addSubview:registerNameView];
+    UIImageView *registerMailView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    registerMailView.userInteractionEnabled = YES;
+    registerMailView.frame = CGRectMake(30, 170, 220, 40);
+    [registerView addSubview:registerMailView];
     
-    UIImageView* registerNameImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_mail"]];
-    registerNameImg.frame = CGRectMake(10, 5, 30, 30);
-    [registerNameView addSubview:registerNameImg];
+    UILabel* registerMailLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 35, 30)];
+    registerMailLabel.text = @"邮箱";
+    [registerMailView addSubview:registerMailLabel];
     
-    UILabel* registerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 35, 30)];
-    registerNameLabel.text = @"帐号";
-    [registerNameView addSubview:registerNameLabel];
+    self.registerMailTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 145, 30)];
+    _registerMailTextField.delegate = self;
+    _registerMailTextField.secureTextEntry = YES;
+    [registerMailView addSubview:_registerMailTextField];
     
-    self.registerNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 145, 30)];
-    _registerNameTextField.delegate = self;
-    _registerNameTextField.placeholder = @"邮箱/手机/QQ";
-    [registerNameView addSubview:_registerNameTextField];
+    UIImageView *registerAddressView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    registerAddressView.userInteractionEnabled = YES;
+    registerAddressView.frame = CGRectMake(30, 225, 220, 40);
+    [registerView addSubview:registerAddressView];
+    
+    UILabel* registerAddressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 30)];
+    registerAddressLabel.text = @"所在地";
+    [registerAddressView addSubview:registerAddressLabel];
+    
+    self.registerAddressTextField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 125, 30)];
+    _registerAddressTextField.delegate = self;
+    [registerAddressView addSubview:_registerAddressTextField];
     
     UIImageView *registerPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
     registerPSWView.userInteractionEnabled = YES;
-    registerPSWView.frame = CGRectMake(20, 200, 240, 40);
+    registerPSWView.frame = CGRectMake(30, 280, 220, 40);
     [registerView addSubview:registerPSWView];
     
-    UIImageView* registerPSWImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_mima"]];
-    registerPSWImg.frame = CGRectMake(10, 5, 30, 30);
-    [registerPSWView addSubview:registerPSWImg];
-    
-    UILabel* registerPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 5, 35, 30)];
+    UILabel* registerPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 35, 30)];
     registerPSWLabel.text = @"密码";
     [registerPSWView addSubview:registerPSWLabel];
     
-    self.registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(85, 5, 150, 30)];
+    self.registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 145, 30)];
     _registerPSWTextField.delegate = self;
     _registerPSWTextField.secureTextEntry = YES;
     [registerPSWView addSubview:_registerPSWTextField];
     
     UIImageView *confirmPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
     confirmPSWView.userInteractionEnabled = YES;
-    confirmPSWView.frame = CGRectMake(20, 250, 240, 40);
+    confirmPSWView.frame = CGRectMake(30, 335, 220, 40);
     [registerView addSubview:confirmPSWView];
     
-    UIImageView* confirmPSWImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_mima"]];
-    confirmPSWImg.frame = CGRectMake(10, 5, 30, 30);
-    [confirmPSWView addSubview:confirmPSWImg];
-    
-    UILabel* confirmPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 5, 70, 30)];
+    UILabel* confirmPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 70, 30)];
     confirmPSWLabel.text = @"确认密码";
     [confirmPSWView addSubview:confirmPSWLabel];
     
-    self.confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 5, 115, 30)];
+    self.confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 115, 30)];
     _confirmPSWTextField.delegate = self;
     _confirmPSWTextField.secureTextEntry = YES;
     [confirmPSWView addSubview:_confirmPSWTextField];
     
-    UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(90, 320, 100, 50)];
-    registerBtn.layer.cornerRadius = 5;
-    registerBtn.backgroundColor = COLOR(124, 96, 33);
-    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 390, 70, 70)];
+    [registerBtn setBackgroundImage:[UIImage imageNamed:@"all_btn_zc"] forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerAccount) forControlEvents:UIControlEventTouchUpInside];
     [registerView addSubview:registerBtn];
     
     return registerView;
+}
+
+-(void)buttonClicked:(UIButton*)sender
+{
+    switch (sender.tag)
+    {
+        case AddHead:
+            
+            break;
+        case SelectMan:
+            if (self.womenSelected)
+            {
+                self.womenSelected = NO;
+                [self.womenBtn setImage:[UIImage imageNamed:@"icon_use_women_secle"] forState:UIControlStateNormal];
+                [self.womenLabel setTextColor:[UIColor blackColor]];
+            }
+            
+            if (self.manSelected)
+            {
+                self.manSelected = NO;
+                [self.manBtn setImage:[UIImage imageNamed:@"icon_use_man_secle"] forState:UIControlStateNormal];
+                [self.manLabel setTextColor:[UIColor blackColor]];
+            }
+            else
+            {
+                self.manSelected = YES;
+                [self.manBtn setImage:[UIImage imageNamed:@"icon_use_man_secle_on"] forState:UIControlStateNormal];
+                [self.manLabel setTextColor:[UIColor redColor]];
+            }
+            break;
+        case SelectWonman:
+            if (self.manSelected)
+            {
+                self.manSelected = NO;
+                [self.manBtn setImage:[UIImage imageNamed:@"icon_use_man_secle"] forState:UIControlStateNormal];
+                [self.manLabel setTextColor:[UIColor blackColor]];
+            }
+            
+            if (self.womenSelected)
+            {
+                self.womenSelected = NO;
+                [self.womenBtn setImage:[UIImage imageNamed:@"icon_use_women_secle"] forState:UIControlStateNormal];
+                [self.womenLabel setTextColor:[UIColor blackColor]];
+            }
+            else
+            {
+                self.womenSelected = YES;
+                [self.womenBtn setImage:[UIImage imageNamed:@"icon_use_women_secle_on"] forState:UIControlStateNormal];
+                [self.womenLabel setTextColor:[UIColor redColor]];
+            }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 -(void)registerAccount
@@ -215,31 +301,38 @@
 
 -(NSDictionary*)invalidateInput
 {
-    if (self.nickNameTextField.text == 0)
+    CGRect frame = CGRectMake(90,380,150,20);
+    if (self.nickNameTextField.text.length == 0)
     {
-//        [self showalertview_text:@"昵称不能为空" imgname:@"error" autoHiden:YES];
+        [self showalertview_text:@"昵称不能为空" frame:frame autoHiden:YES];
         return nil;
     }
     
-    if (self.registerNameTextField.text == 0)
+    if (self.registerMailTextField.text.length == 0)
     {
-//        [self showalertview_text:@"账号不能为空" imgname:@"error" autoHiden:YES];
+        [self showalertview_text:@"邮箱不能为空" frame:frame autoHiden:YES];
         return nil;
     }
     
-    if (self.registerPSWTextField.text == 0)
+    if (self.registerAddressTextField.text.length == 0)
     {
-//        [self showalertview_text:@"密码不能为空" imgname:@"error" autoHiden:YES];
+        [self showalertview_text:@"所在地不能为空" frame:frame autoHiden:YES];
+        return nil;
+    }
+    
+    if (self.registerPSWTextField.text.length == 0)
+    {
+        [self showalertview_text:@"密码不能为空" frame:frame autoHiden:YES];
         return nil;
     }
     
     if (![self.registerPSWTextField.text isEqualToString:self.confirmPSWTextField.text])
     {
-//        [self showalertview_text:@"两次输入的密码不一致" imgname:@"error" autoHiden:YES];
+        [self showalertview_text:@"两次输入的密码不一致" frame:frame autoHiden:YES];
         return nil;
     }
     
-    return @{@"nickname":self.nickNameTextField.text,@"userName":self.registerNameTextField.text,@"password":self.registerPSWTextField.text};
+    return @{@"nickname":self.nickNameTextField.text,@"userName":self.registerMailTextField.text,@"password":self.registerPSWTextField.text};
 }
 
 @end

@@ -9,6 +9,12 @@
 #import "ForgetPswViewController.h"
 
 @implementation ForgetPswViewController
+{
+    UITextField* mailPhoneTextField;
+    UITextField* getIdentifyCodeTextField;
+    UITextField* newPSWTextField;
+    UITextField* confirmPSWTextField;
+}
 
 -(void)viewDidLoad
 {
@@ -30,7 +36,7 @@
     titleLabel.textColor = [UIColor whiteColor];
     [groundView addSubview:titleLabel];
     
-    UITextField* mailPhoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 50, 240, 40)];
+    mailPhoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 50, 240, 40)];
     mailPhoneTextField.layer.cornerRadius = 5;
     mailPhoneTextField.backgroundColor = [UIColor whiteColor];
     mailPhoneTextField.placeholder = @"请输入你注册时使用的邮箱/手机";
@@ -47,19 +53,19 @@
     [getIdentifyCodeBtn setBackgroundImage:[UIImage imageNamed:@"all_btn_hqyzm"] forState:UIControlStateNormal];
     [groundView addSubview:getIdentifyCodeBtn];
     
-    UITextField* getIdentifyCodeTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 210, 240, 40)];
+    getIdentifyCodeTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 210, 240, 40)];
     getIdentifyCodeTextField.layer.cornerRadius = 5;
     getIdentifyCodeTextField.backgroundColor = [UIColor whiteColor];
     getIdentifyCodeTextField.placeholder = @"请输入验证码";
     [groundView addSubview:getIdentifyCodeTextField];
     
-    UITextField* NewPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 280, 240, 40)];
-    NewPSWTextField.layer.cornerRadius = 5;
-    NewPSWTextField.backgroundColor = [UIColor whiteColor];
-    NewPSWTextField.placeholder = @"请输入新的密码";
-    [groundView addSubview:NewPSWTextField];
+    newPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 280, 240, 40)];
+    newPSWTextField.layer.cornerRadius = 5;
+    newPSWTextField.backgroundColor = [UIColor whiteColor];
+    newPSWTextField.placeholder = @"请输入新的密码";
+    [groundView addSubview:newPSWTextField];
     
-    UITextField* confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 330, 240, 40)];
+    confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 330, 240, 40)];
     confirmPSWTextField.layer.cornerRadius = 5;
     confirmPSWTextField.backgroundColor = [UIColor whiteColor];
     confirmPSWTextField.placeholder = @"请再次输入新的密码";
@@ -67,6 +73,30 @@
     
     UIButton* ReSetPSWBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 390, 70, 70)];
     [ReSetPSWBtn setBackgroundImage:[UIImage imageNamed:@"all_btn_czmm"] forState:UIControlStateNormal];
+    [ReSetPSWBtn addTarget:self action:@selector(resetPassword) forControlEvents:UIControlEventTouchUpInside];
     [groundView addSubview:ReSetPSWBtn];
+}
+
+-(void)resetPassword
+{
+    CGRect frame = CGRectMake(90,380,150,20);
+    
+    if(getIdentifyCodeTextField.text.length == 0)
+    {
+        [self showalertview_text:@"请输入验证码" frame:frame autoHiden:YES];
+        return;
+    }
+    
+    if(newPSWTextField.text.length == 0)
+    {
+        [self showalertview_text:@"请输入新的密码" frame:frame autoHiden:YES];
+        return;
+    }
+    
+    if(![confirmPSWTextField.text isEqualToString:newPSWTextField.text])
+    {
+        [self showalertview_text:@"两次输入的密码不一致" frame:frame autoHiden:YES];
+        return;
+    }
 }
 @end
