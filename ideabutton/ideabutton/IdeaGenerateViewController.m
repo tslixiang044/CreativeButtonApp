@@ -221,12 +221,12 @@
             [SVProgressHUD dismiss];
             if (occupyIdeaID)
             {
-                [self showalertview_text:@"创意霸占成功" imgname:nil autoHiden:YES];
+//                [self showalertview_text:@"创意霸占成功" imgname:nil autoHiden:YES];
                 [hoggedBtn setTitle:@"我已霸占" forState:UIControlStateNormal];
             }
             else
             {
-                [self showalertview_text:@"创意霸占失败" imgname:@"error" autoHiden:YES];
+//                [self showalertview_text:@"创意霸占失败" imgname:@"error" autoHiden:YES];
             }
         });
     });
@@ -245,12 +245,12 @@
             [SVProgressHUD dismiss];
             if (collectIdeaID)
             {
-                [self showalertview_text:@"创意收藏成功" imgname:nil autoHiden:YES];
+//                [self showalertview_text:@"创意收藏成功" imgname:nil autoHiden:YES];
                 [collectionBtn setTitle:@"我已收藏" forState:UIControlStateNormal];
             }
             else
             {
-                [self showalertview_text:@"创意收藏失败" imgname:@"error" autoHiden:YES];
+//                [self showalertview_text:@"创意收藏失败" imgname:@"error" autoHiden:YES];
             }
         });
     });

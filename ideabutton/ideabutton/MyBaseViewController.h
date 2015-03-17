@@ -19,7 +19,7 @@
 -(void)btnright;
 -(void)btnleft;
 
--(void)showalertview_text:(NSString *)mstr imgname:(NSString *)mimgname autoHiden:(BOOL)isautohiden;
+-(void)showalertview_text:(NSString *)mstr frame:(CGRect)frame autoHiden:(BOOL)isautohiden;
 -(void)hidenalertView;
 -(void)alert:(NSString *)str;
 

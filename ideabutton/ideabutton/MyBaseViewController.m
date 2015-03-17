@@ -82,26 +82,28 @@
     
 }
 
--(void)showalertview_text:(NSString *)mstr imgname:(NSString *)mimgname autoHiden:(BOOL)isautohiden
+-(void)showalertview_text:(NSString *)mstr frame:(CGRect)frame autoHiden:(BOOL)isautohiden
 {
     if(alertView==nil)
     {
-        alertView=[[UIView alloc]initWithFrame:CGRectMake(25, 135, 270, 120)];
-        alertView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
-        [[alertView layer]setCornerRadius:8.0];
+        alertView=[[UIView alloc]initWithFrame:frame];
+        alertView.backgroundColor=[UIColor blackColor];
+//        [[alertView layer]setCornerRadius:8.0];
         [alertView.layer setMasksToBounds:YES];
         
         [self.view addSubview:alertView];
         [self.view bringSubviewToFront:alertView];
         //--
         
-        UIImageView *imgview=[[UIImageView alloc]initWithFrame:CGRectMake(110, 15, 40, 40)];
-        imgview.hidden=YES;
-        imgview.tag=99;
-        [alertView addSubview:imgview];
+//        UIImageView *imgview=[[UIImageView alloc]initWithFrame:CGRectMake(110, 15, 35, 35)];
+//        imgview.hidden=YES;
+//        imgview.tag=99;
+//        [alertView addSubview:imgview];
         //-------------
-        UILabel *lblalert=[[UILabel alloc]initWithFrame:CGRectMake(0, 30, 260, 60)];
+        UILabel *lblalert=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
         lblalert.tag=100;
+        lblalert.text = mstr;
+        lblalert.font = [UIFont systemFontOfSize:12];
         lblalert.textColor=[UIColor whiteColor];
         lblalert.textAlignment=NSTextAlignmentCenter;
         lblalert.lineBreakMode = NSLineBreakByWordWrapping;
@@ -110,23 +112,23 @@
         [alertView addSubview:lblalert];
     }
 
-    UILabel *lblaert=(UILabel *)[alertView viewWithTag:100];
-    if(![mimgname isEqualToString:@""] || mimgname != nil)
-    {
-        UIImageView *imgview=(UIImageView *)[alertView viewWithTag:99];
-        imgview.hidden=NO;
-        imgview.image=[UIImage imageNamed:mimgname];
-        
-        lblaert.frame=CGRectMake(0, 55, 260, 60);
-    }
-    else
-    {
-        lblaert.frame=CGRectMake(0, 30, 260, 60);
-        UIImageView *imgview=(UIImageView *)[alertView viewWithTag:99];
-        imgview.hidden=YES;
-    }
+//    UILabel *lblaert=(UILabel *)[alertView viewWithTag:100];
+//    if(![mimgname isEqualToString:@""] || mimgname != nil)
+//    {
+//        UIImageView *imgview=(UIImageView *)[alertView viewWithTag:99];
+//        imgview.hidden=NO;
+//        imgview.image=[UIImage imageNamed:mimgname];
+//        
+//        lblaert.frame=CGRectMake(0, 55, 260, 60);
+//    }
+//    else
+//    {
+//        lblaert.frame=CGRectMake(0, 30, 260, 60);
+//        UIImageView *imgview=(UIImageView *)[alertView viewWithTag:99];
+//        imgview.hidden=YES;
+//    }
     
-    lblaert.text=mstr;
+//    lblaert.text=mstr;
     alertView.hidden=NO;
     
     if(isautohiden==true)
