@@ -87,7 +87,7 @@
     contentView.backgroundColor = COLOR(21, 21, 22);
     [self.view addSubview:contentView];
     
-    UIImageView *inputView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *inputView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     inputView.userInteractionEnabled = YES;
     inputView.frame = CGRectMake(20, 40, 240, 40);
     [contentView addSubview:inputView];
@@ -97,7 +97,7 @@
     self.brandTextField.placeholder = @"品牌/子品牌";
     [contentView addSubview:self.brandTextField];
     
-    UIImageView *inputView1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *inputView1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     inputView1.userInteractionEnabled = YES;
     inputView1.frame = CGRectMake(20, 100, 240, 40);
     [contentView addSubview:inputView1];
@@ -107,7 +107,7 @@
     self.productTextField.placeholder = @"品类/产品";
     [contentView addSubview:self.productTextField];
     
-    UIImageView *inputView2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *inputView2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     inputView2.userInteractionEnabled = YES;
     inputView2.frame = CGRectMake(20, 160, 240, 40);
     [contentView addSubview:inputView2];
@@ -117,7 +117,7 @@
     self.appealTextField.placeholder = @"诉求点";
     [contentView addSubview:self.appealTextField];
     
-    UIImageView* line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
+    UIImageView* line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"public/line"]];
     line.frame = CGRectMake(0, 230, 280, 5);
     [contentView addSubview:line];
     

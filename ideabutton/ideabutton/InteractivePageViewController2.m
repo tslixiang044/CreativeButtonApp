@@ -52,63 +52,54 @@
     titleLabel.text = @"汉字决定运算规则，来吧来吧";
     [self.view addSubview:titleLabel];
     
-    UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_interaction_split"]];
-    view.frame = CGRectMake(35, 55, 245, 2);
+    UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ideaRuleChoose/line_bg"]];
+    view.frame = CGRectMake(38, 55, 245, 1);
     [self.view addSubview:view];
     
-    MyUIButton* button = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 120, 60, 60) bgimg:nil title:@"玖"];
-    button.backgroundColor = COLOR(205, 38, 33);
-    button.tag = 9;
-    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    UIButton* NumNineBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 120, 60, 60)];
+    [NumNineBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_jiu"] forState:UIControlStateNormal];
+    [NumNineBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumNineBtn];
     
-    MyUIButton* button1 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 120, 60, 60) bgimg:nil title:@"柒"];
-    button1.backgroundColor = COLOR(205, 38, 33);
-    button1.tag = 7;
-    [button1 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button1];
+    UIButton* NumSevenBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 120, 60, 60)];
+    [NumSevenBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_qi"] forState:UIControlStateNormal];
+    [NumSevenBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumSevenBtn];
     
-    MyUIButton* button2 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 120, 60, 60) bgimg:nil title:@"陆"];
-    button2.backgroundColor = COLOR(205, 38, 33);
-    button2.tag = 6;
-    [button2 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button2];
+    UIButton* NumSixBtn = [[UIButton alloc] initWithFrame:CGRectMake(220, 120, 60, 60)];
+    [NumSixBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_liu"] forState:UIControlStateNormal];
+    [NumSixBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumSixBtn];
     
-    MyUIButton* button3 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 210, 60, 60) bgimg:nil title:@"捌"];
-    button3.backgroundColor = COLOR(205, 38, 33);
-    button3.tag = 8;
-    [button3 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button3];
+    UIButton* NumEightBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 210, 60, 60)];
+    [NumEightBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_ba"] forState:UIControlStateNormal];
+    [NumEightBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumEightBtn];
     
-    MyUIButton* button4 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 210, 60, 60) bgimg:nil title:@"贰"];
-    button4.backgroundColor = COLOR(205, 38, 33);
-    button4.tag = 2;
-    [button4 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button4];
+    UIButton* NumTwoBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 60, 60)];
+    [NumTwoBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_er"] forState:UIControlStateNormal];
+    [NumTwoBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumTwoBtn];
     
-    MyUIButton* button5 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 210, 60, 60) bgimg:nil title:@"伍"];
-    button5.backgroundColor = COLOR(205, 38, 33);
-    button5.tag = 5;
-    [button5 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button5];
-    
-    MyUIButton* button6 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 300, 60, 60) bgimg:nil title:@"壹"];
-    button6.backgroundColor = COLOR(205, 38, 33);
-    button6.tag = 1;
-    [button6 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button6];
-    
-    MyUIButton* button7 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 300, 60, 60) bgimg:nil title:@"叁"];
-    button7.backgroundColor = COLOR(205, 38, 33);
-    button7.tag = 3;
-    [button7 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button7];
-    
-    MyUIButton* button8 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 300, 60, 60) bgimg:nil title:@"肆"];
-    button8.backgroundColor = COLOR(205, 38, 33);
-    button8.tag = 4;
-    [button8 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button8];
+    UIButton* NumFiveBtn = [[UIButton alloc] initWithFrame:CGRectMake(220, 210, 60, 60)];
+    [NumFiveBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_wu"] forState:UIControlStateNormal];
+    [NumFiveBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumFiveBtn];
+
+    UIButton* NumOneBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 60, 60)];
+    [NumOneBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_yi"] forState:UIControlStateNormal];
+    [NumOneBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumOneBtn];
+
+    UIButton* NumThreeBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 60, 60)];
+    [NumThreeBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_san"] forState:UIControlStateNormal];
+    [NumThreeBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumThreeBtn];
+
+    UIButton* NumFourBtn = [[UIButton alloc] initWithFrame:CGRectMake(220, 300, 60, 60)];
+    [NumFourBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_si"] forState:UIControlStateNormal];
+    [NumFourBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:NumFourBtn];
 }
 
 -(void)buttonClicked:(UIButton*)sender

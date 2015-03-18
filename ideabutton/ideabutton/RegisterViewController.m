@@ -105,19 +105,19 @@
     UIView* registerView = [[UIView alloc] init];
     registerView.backgroundColor = [UIColor colorWithRed:21/255.0 green:21/255.0 blue:22/255.0 alpha:1.0];
     
-    UIImageView* imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg_admin_zc_add"]];
+    UIImageView* imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"register/bg_admin_zc_add"]];
     imageView.userInteractionEnabled = YES;
     imageView.frame =  CGRectMake(30, 20, 220, 80);
     [registerView addSubview:imageView];
     
     UIButton* headBtn = [[UIButton alloc] initWithFrame:CGRectMake(25, 10, 65, 60)];
-    [headBtn setBackgroundImage:[UIImage imageNamed:@"icon_use_add"] forState:UIControlStateNormal];
+    [headBtn setBackgroundImage:[UIImage imageNamed:@"register/icon_use_add"] forState:UIControlStateNormal];
     [headBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     headBtn.tag = AddHead;
     [imageView addSubview:headBtn];
     
     self.manBtn = [[UIButton alloc] initWithFrame:CGRectMake(140, 20, 25, 25)];
-    [self.manBtn setImage:[UIImage imageNamed:@"icon_use_man_secle"] forState:UIControlStateNormal];
+    [self.manBtn setImage:[UIImage imageNamed:@"register/icon_use_man_secle"] forState:UIControlStateNormal];
     [self.manBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     self.manBtn.tag = SelectMan;
     [imageView addSubview:self.manBtn];
@@ -127,7 +127,7 @@
     [imageView addSubview:self.manLabel];
     
     self.womenBtn = [[UIButton alloc] initWithFrame:CGRectMake(175, 20, 25, 25)];
-    [self.womenBtn setImage:[UIImage imageNamed:@"icon_use_women_secle"] forState:UIControlStateNormal];
+    [self.womenBtn setImage:[UIImage imageNamed:@"register/icon_use_women_secle"] forState:UIControlStateNormal];
     [self.womenBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     self.womenBtn.tag = SelectWonman;
     [imageView addSubview:self.womenBtn];
@@ -136,7 +136,7 @@
     self.womenLabel.text = @"女";
     [imageView addSubview:self.womenLabel];
     
-    UIImageView *nickNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *nickNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     nickNameView.userInteractionEnabled = YES;
     nickNameView.frame = CGRectMake(30, 115, 220, 40);
     [registerView addSubview:nickNameView];
@@ -149,7 +149,7 @@
     _nickNameTextField.delegate = self;
     [nickNameView addSubview:_nickNameTextField];
     
-    UIImageView *registerMailView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *registerMailView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     registerMailView.userInteractionEnabled = YES;
     registerMailView.frame = CGRectMake(30, 170, 220, 40);
     [registerView addSubview:registerMailView];
@@ -163,7 +163,7 @@
     _registerMailTextField.secureTextEntry = YES;
     [registerMailView addSubview:_registerMailTextField];
     
-    UIImageView *registerAddressView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *registerAddressView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     registerAddressView.userInteractionEnabled = YES;
     registerAddressView.frame = CGRectMake(30, 225, 220, 40);
     [registerView addSubview:registerAddressView];
@@ -176,7 +176,7 @@
     _registerAddressTextField.delegate = self;
     [registerAddressView addSubview:_registerAddressTextField];
     
-    UIImageView *registerPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *registerPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     registerPSWView.userInteractionEnabled = YES;
     registerPSWView.frame = CGRectMake(30, 280, 220, 40);
     [registerView addSubview:registerPSWView];
@@ -190,7 +190,7 @@
     _registerPSWTextField.secureTextEntry = YES;
     [registerPSWView addSubview:_registerPSWTextField];
     
-    UIImageView *confirmPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *confirmPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     confirmPSWView.userInteractionEnabled = YES;
     confirmPSWView.frame = CGRectMake(30, 335, 220, 40);
     [registerView addSubview:confirmPSWView];
@@ -205,7 +205,7 @@
     [confirmPSWView addSubview:_confirmPSWTextField];
     
     UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 390, 70, 70)];
-    [registerBtn setBackgroundImage:[UIImage imageNamed:@"all_btn_zc"] forState:UIControlStateNormal];
+    [registerBtn setBackgroundImage:[UIImage imageNamed:@"public/all_btn_zc"] forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerAccount) forControlEvents:UIControlEventTouchUpInside];
     [registerView addSubview:registerBtn];
     
@@ -223,20 +223,20 @@
             if (self.womenSelected)
             {
                 self.womenSelected = NO;
-                [self.womenBtn setImage:[UIImage imageNamed:@"icon_use_women_secle"] forState:UIControlStateNormal];
+                [self.womenBtn setImage:[UIImage imageNamed:@"register/icon_use_women_secle"] forState:UIControlStateNormal];
                 [self.womenLabel setTextColor:[UIColor blackColor]];
             }
             
             if (self.manSelected)
             {
                 self.manSelected = NO;
-                [self.manBtn setImage:[UIImage imageNamed:@"icon_use_man_secle"] forState:UIControlStateNormal];
+                [self.manBtn setImage:[UIImage imageNamed:@"register/icon_use_man_secle"] forState:UIControlStateNormal];
                 [self.manLabel setTextColor:[UIColor blackColor]];
             }
             else
             {
                 self.manSelected = YES;
-                [self.manBtn setImage:[UIImage imageNamed:@"icon_use_man_secle_on"] forState:UIControlStateNormal];
+                [self.manBtn setImage:[UIImage imageNamed:@"register/icon_use_man_secle_on"] forState:UIControlStateNormal];
                 [self.manLabel setTextColor:[UIColor redColor]];
             }
             break;
@@ -244,20 +244,20 @@
             if (self.manSelected)
             {
                 self.manSelected = NO;
-                [self.manBtn setImage:[UIImage imageNamed:@"icon_use_man_secle"] forState:UIControlStateNormal];
+                [self.manBtn setImage:[UIImage imageNamed:@"register/icon_use_man_secle"] forState:UIControlStateNormal];
                 [self.manLabel setTextColor:[UIColor blackColor]];
             }
             
             if (self.womenSelected)
             {
                 self.womenSelected = NO;
-                [self.womenBtn setImage:[UIImage imageNamed:@"icon_use_women_secle"] forState:UIControlStateNormal];
+                [self.womenBtn setImage:[UIImage imageNamed:@"register/icon_use_women_secle"] forState:UIControlStateNormal];
                 [self.womenLabel setTextColor:[UIColor blackColor]];
             }
             else
             {
                 self.womenSelected = YES;
-                [self.womenBtn setImage:[UIImage imageNamed:@"icon_use_women_secle_on"] forState:UIControlStateNormal];
+                [self.womenBtn setImage:[UIImage imageNamed:@"register/icon_use_women_secle_on"] forState:UIControlStateNormal];
                 [self.womenLabel setTextColor:[UIColor redColor]];
             }
             break;

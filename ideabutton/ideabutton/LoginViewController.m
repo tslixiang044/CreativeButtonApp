@@ -82,7 +82,7 @@
     loginView.backgroundColor = COLOR(21, 21, 22);
     [self.view addSubview:loginView];
     
-    UIImageView *loginNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *loginNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     loginNameView.userInteractionEnabled = YES;
     loginNameView.frame = CGRectMake(15, 50, 252, 40);
     [loginView addSubview:loginNameView];
@@ -103,7 +103,7 @@
     
     [loginNameView addSubview:_loginNameTextField];
     
-    UIImageView *loginPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input_bai"]];
+    UIImageView *loginPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     loginPSWView.userInteractionEnabled = YES;
     loginPSWView.frame = CGRectMake(15, 110, 252, 40);
     [loginView addSubview:loginPSWView];
@@ -154,17 +154,17 @@
     [forgetPSWBtn addTarget:self action:@selector(retrievePSW) forControlEvents:UIControlEventTouchUpInside];
     [loginView addSubview:forgetPSWBtn];
     
-    UIImageView* line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
+    UIImageView* line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"public/line"]];
     line.frame = CGRectMake(0, 210, 280, 3);
     [loginView addSubview:line];
     
     UIButton* loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 251, 70, 70)];
-    [loginBtn setBackgroundImage:[UIImage imageNamed:@"all_btn_dl"] forState:UIControlStateNormal];
+    [loginBtn setBackgroundImage:[UIImage imageNamed:@"login/all_btn_dl"] forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [loginView addSubview:loginBtn];
     
     UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(160, 251, 70, 70)];
-    [registerBtn setBackgroundImage:[UIImage imageNamed:@"all_btn_zc"] forState:UIControlStateNormal];
+    [registerBtn setBackgroundImage:[UIImage imageNamed:@"public/all_btn_zc"] forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(showRegisterViewController) forControlEvents:UIControlEventTouchUpInside];
     [loginView addSubview:registerBtn];
 }

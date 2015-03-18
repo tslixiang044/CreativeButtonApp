@@ -52,54 +52,54 @@
     titleLabel.text = @"字母决定组合手法，请慎重点";
     [self.view addSubview:titleLabel];
     
-    UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_interaction_split"]];
-    view.frame = CGRectMake(35, 55, 245, 2);
+    UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ideaRuleChoose/line_bg"]];
+    view.frame = CGRectMake(38, 55, 245, 1);
     [self.view addSubview:view];
     
-    MyUIButton* button = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 120, 60, 60) bgimg:nil title:@"F"];
-    button.backgroundColor = COLOR(205, 38, 33);
-    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    UIButton* F_Btn = [[UIButton alloc] initWithFrame:CGRectMake(40, 120, 60, 60)];
+    [F_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_f"] forState:UIControlStateNormal];
+    [F_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:F_Btn];
     
-    MyUIButton* button1 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 120, 60, 60) bgimg:nil title:@"E"];
-    button1.backgroundColor = COLOR(205, 38, 33);
-    [button1 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button1];
+    UIButton* E_Btn = [[UIButton alloc] initWithFrame:CGRectMake(130, 120, 60, 60)];
+    [E_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_e"] forState:UIControlStateNormal];
+    [E_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:E_Btn];
     
-    MyUIButton* button2 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 120, 60, 60) bgimg:nil title:@"D"];
-    button2.backgroundColor = COLOR(205, 38, 33);
-    [button2 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button2];
+    UIButton* D_Btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 120, 60, 60)];
+    [D_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_d"] forState:UIControlStateNormal];
+    [D_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:D_Btn];
     
-    MyUIButton* button3 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 210, 60, 60) bgimg:nil title:@"G"];
-    button3.backgroundColor = COLOR(205, 38, 33);
-    [button3 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button3];
+    UIButton* G_Btn = [[UIButton alloc] initWithFrame:CGRectMake(40, 210, 60, 60)];
+    [G_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_g"] forState:UIControlStateNormal];
+    [G_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:G_Btn];
     
-    MyUIButton* button4 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 210, 60, 60) bgimg:nil title:@"B"];
-    button4.backgroundColor = COLOR(205, 38, 33);
-    [button4 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button4];
+    UIButton* B_Btn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 60, 60)];
+    [B_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_b"] forState:UIControlStateNormal];
+    [B_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:B_Btn];
+
+    UIButton* C_Btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 210, 60, 60)];
+    [C_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_c"] forState:UIControlStateNormal];
+    [C_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:C_Btn];
     
-    MyUIButton* button5 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 210, 60, 60) bgimg:nil title:@"C"];
-    button5.backgroundColor = COLOR(205, 38, 33);
-    [button5 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button5];
+    UIButton* I_Btn = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 60, 60)];
+    [I_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_i"] forState:UIControlStateNormal];
+    [I_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:I_Btn];
     
-    MyUIButton* button6 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(40, 300, 60, 60) bgimg:nil title:@"I"];
-    button6.backgroundColor = COLOR(205, 38, 33);
-    [button6 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button6];
+    UIButton* H_Btn = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 60, 60)];
+    [H_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_h"] forState:UIControlStateNormal];
+    [H_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:H_Btn];
     
-    MyUIButton* button7 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(130, 300, 60, 60) bgimg:nil title:@"H"];
-    button7.backgroundColor = COLOR(205, 38, 33);
-    [button7 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button7];
-    
-    MyUIButton* button8 = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(220, 300, 60, 60) bgimg:nil title:@"A"];
-    button8.backgroundColor = COLOR(205, 38, 33);
-    [button8 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button8];
+    UIButton* A_Btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 300, 60, 60)];
+    [A_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_a"] forState:UIControlStateNormal];
+    [A_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:A_Btn];
 }
 
 -(void)buttonClicked:(UIButton*)sender

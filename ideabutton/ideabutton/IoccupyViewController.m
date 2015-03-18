@@ -13,9 +13,7 @@
 #define PrintAdBtnTag   100
 #define InteractionAdBtnTag 101
 #define VideoAdBtnTag   102
-#define PrCampaignBtnTag   103
-#define AudioAdBtnTag   104
-#define MediaCreateBtnTag   105
+#define MarketingBtnTag   103
 
 @interface IoccupyViewController ()
 
@@ -35,81 +33,44 @@
     describeLabel.text = @"按什么,有什么";
     [self.view addSubview:describeLabel];
     
-    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0, 70, 320, 2)];
-    line.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:line];
+    UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ideaRuleChoose/line_bg"]];
+    view.frame = CGRectMake(0, 70, 320, 1);
+    [self.view addSubview:view];
     
-    MyUIButton* printAdBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(50, 100, 70, 70) bgimg:nil title:nil];
-    printAdBtn.backgroundColor = COLOR(205, 38, 33);
-    [printAdBtn setImage:[UIImage imageNamed:@"btn_icon_plane"] forState:UIControlStateNormal];
-    printAdBtn.tag = PrintAdBtnTag;
+    UIButton* printAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 110, 50, 50)];
+    [printAdBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_pmgg"] forState:UIControlStateNormal];
     [printAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    printAdBtn.tag = PrintAdBtnTag;
     [self.view addSubview:printAdBtn];
     
-    UILabel* printAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 170, 80, 30)];
-    printAdLabel.textColor = [UIColor whiteColor];
+    UILabel* printAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 165, 70, 20)];
     printAdLabel.text = @"平面广告";
+    printAdLabel.font = [UIFont systemFontOfSize:14];
+    printAdLabel.textColor = [UIColor lightGrayColor];
     [self.view addSubview:printAdLabel];
     
-    MyUIButton* interactionAdBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(190, 100, 70, 70) bgimg:nil title:nil];
-    interactionAdBtn.backgroundColor = COLOR(205, 38, 33);
-    [interactionAdBtn setImage:[UIImage imageNamed:@"btn_icon_hdym"] forState:UIControlStateNormal];
-    interactionAdBtn.tag = InteractionAdBtnTag;
-    [interactionAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:interactionAdBtn];
-    
-    UILabel* interactionAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(195, 170, 80, 30)];
-    interactionAdLabel.textColor = [UIColor whiteColor];
-    interactionAdLabel.text = @"互动广告";
-    [self.view addSubview:interactionAdLabel];
-    
-    MyUIButton* videoAdBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(50, 220, 70, 70) bgimg:nil title:nil];
-    videoAdBtn.backgroundColor = COLOR(205, 38, 33);
-    [videoAdBtn setImage:[UIImage imageNamed:@"btn_icon_camera"] forState:UIControlStateNormal];
-    videoAdBtn.tag = VideoAdBtnTag;
+    UIButton* videoAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 50, 50)];
+    [videoAdBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_vide1"] forState:UIControlStateNormal];
     [videoAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    videoAdBtn.tag = VideoAdBtnTag;
     [self.view addSubview:videoAdBtn];
     
-    UILabel* videoAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 290, 80, 30)];
-    videoAdLabel.textColor = [UIColor whiteColor];
+    UILabel* videoAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 265, 70, 20)];
     videoAdLabel.text = @"视频广告";
+    videoAdLabel.font = [UIFont systemFontOfSize:14];
+    videoAdLabel.textColor = [UIColor lightGrayColor];
     [self.view addSubview:videoAdLabel];
     
-    MyUIButton* prCampaignBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(190, 220, 70, 70) bgimg:nil title:nil];
-    prCampaignBtn.backgroundColor = COLOR(205, 38, 33);
-    [prCampaignBtn setImage:[UIImage imageNamed:@"btn_icon_gghd"] forState:UIControlStateNormal];
-    prCampaignBtn.tag = PrCampaignBtnTag;
-    [prCampaignBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:prCampaignBtn];
+    UIButton* marketingBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 310, 50, 50)];
+    [marketingBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_sjyx1"] forState:UIControlStateNormal];
+    [marketingBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:marketingBtn];
     
-    UILabel* prCampaignLabel = [[UILabel alloc] initWithFrame:CGRectMake(195, 290, 80, 30)];
-    prCampaignLabel.textColor = [UIColor whiteColor];
-    prCampaignLabel.text = @"公关活动";
-    [self.view addSubview:prCampaignLabel];
-    
-    MyUIButton* audioAdBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(50, 340, 70, 70) bgimg:nil title:nil];
-    audioAdBtn.backgroundColor = COLOR(205, 38, 33);
-    [audioAdBtn setImage:[UIImage imageNamed:@"btn_icon_suona"] forState:UIControlStateNormal];
-    audioAdBtn.tag = AudioAdBtnTag;
-    [audioAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:audioAdBtn];
-    
-    UILabel* audioAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 410, 80, 30)];
-    audioAdLabel.textColor = [UIColor whiteColor];
-    audioAdLabel.text = @"音频广告";
-    [self.view addSubview:audioAdLabel];
-    
-    MyUIButton* mediaCreateBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(190, 340, 70, 70) bgimg:nil title:nil];
-    mediaCreateBtn.backgroundColor = COLOR(205, 38, 33);
-    [mediaCreateBtn setImage:[UIImage imageNamed:@"btn_icon_shouji"] forState:UIControlStateNormal];
-    mediaCreateBtn.tag = MediaCreateBtnTag;
-    [mediaCreateBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:mediaCreateBtn];
-    
-    UILabel* mediaCreateLabel = [[UILabel alloc] initWithFrame:CGRectMake(195, 410, 80, 30)];
-    mediaCreateLabel.textColor = [UIColor whiteColor];
-    mediaCreateLabel.text = @"媒体创新";
-    [self.view addSubview:mediaCreateLabel];
+    UILabel* marketingLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 365, 70, 20)];
+    marketingLabel.text = @"事件营销";
+    marketingLabel.font = [UIFont systemFontOfSize:14];
+    marketingLabel.textColor = [UIColor lightGrayColor];
+    [self.view addSubview:marketingLabel];
 }
 
 -(void)buttonSelected:(UIButton*)sender
@@ -125,19 +86,10 @@
                   
               }
             break;
-        case InteractionAdBtnTag:
-            
-            break;
         case VideoAdBtnTag:
             
             break;
-        case PrCampaignBtnTag:
-            
-            break;
-        case AudioAdBtnTag:
-            
-            break;
-        case MediaCreateBtnTag:
+        case MarketingBtnTag:
             
             break;
             

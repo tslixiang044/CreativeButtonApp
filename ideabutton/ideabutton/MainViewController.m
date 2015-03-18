@@ -15,7 +15,7 @@
 #import "JsonResult.h"
 #import "WaterFlowObj.h"
 #import "WaitPageViewController.h"
-#import "MyUIButton.h"
+#import "InteractivePageViewController.h"
 #import "IdeaDetailViewController.h"
 #import "DB.h"
 
@@ -156,6 +156,8 @@
     {
         mseg.hidden=YES;
         
+//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//        [self.navigationController pushViewController:press animated:YES];
         User* user = [[DB sharedInstance]queryUser];
         if (user)
         {

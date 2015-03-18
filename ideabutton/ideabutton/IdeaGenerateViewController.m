@@ -16,9 +16,10 @@
 
 #define HoggedBtnTag    0
 #define CollectionBtnTag    1
-#define AchieveBtnTag   2
-#define TransformBtnTag 3
-#define NextBtnTag  4
+#define TransformBtnTag 2
+#define NextBtnTag  3
+#define DoAgianBtnTag   4
+#define PreviousBtnTag  5
 
 @interface IdeaGenerateViewController()
 {
@@ -31,8 +32,10 @@
     
     UIButton* hoggedBtn;
     UIButton* collectionBtn;
-    UIButton* achieveBtn;
     UIButton* transformBtn;
+    UIButton* doAgianBtn;
+    UILabel* surplusNumLabel;
+    UIButton* previousBtn;
     UIButton* nextBtn;
 }
 @property(nonatomic, strong)NSArray* data;
@@ -90,12 +93,19 @@
 
 -(void)createInputView
 {
-    UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"input_bg"]];
+    UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ideaCreate/connet_bg"]];
     backgroundView.frame = CGRectMake(40, 50, 240, 160);
     [self.view addSubview:backgroundView];
     
+    previousBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 50, 25, 160)];
+    [previousBtn setImage:[UIImage imageNamed:@"ideaCreate/icon_left"] forState:UIControlStateNormal];
+    [previousBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    previousBtn.tag = PreviousBtnTag;
+    previousBtn.hidden = YES;
+    [self.view addSubview:previousBtn];
+    
     detailLabel = [[UILabel alloc] initWithFrame:backgroundView.frame];
-    detailLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+    detailLabel.layer.borderColor = COLOR(142, 142, 142).CGColor;
     detailLabel.layer.borderWidth = 1.0;
     detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
     detailLabel.numberOfLines = 0;
@@ -104,50 +114,46 @@
     detailLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:detailLabel];
     
-    hoggedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    hoggedBtn.frame = CGRectMake(40, 230, 110, 50);
+    surplusNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 209, 240, 30)];
+    surplusNumLabel.layer.borderColor = COLOR(142, 142, 142).CGColor;
+    surplusNumLabel.layer.borderWidth = 1.0;
+    surplusNumLabel.backgroundColor = COLOR(47, 44, 43);
+    surplusNumLabel.text = @"今日剩余N个";
+    surplusNumLabel.textColor = [UIColor whiteColor];
+    surplusNumLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:surplusNumLabel];
+    
+    doAgianBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 209, 120, 30)];
+    [doAgianBtn setBackgroundImage:[UIImage imageNamed:@"ideaCreate/btn_bg_hong"] forState:UIControlStateNormal];
+    [doAgianBtn setTitle:@"再来一轮" forState:UIControlStateNormal];
+    [doAgianBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    doAgianBtn.tag = DoAgianBtnTag;
+    doAgianBtn.hidden = YES;
+    [self.view addSubview:doAgianBtn];
+    
+    nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(285, 50, 25, 160)];
+    [nextBtn setImage:[UIImage imageNamed:@"ideaCreate/icon_right"] forState:UIControlStateNormal];
+    [nextBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    nextBtn.tag = NextBtnTag;
+    [self.view addSubview:nextBtn];
+    
+    hoggedBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 270, 70, 70)];
+    [hoggedBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wybz"] forState:UIControlStateNormal];
     hoggedBtn.tag = HoggedBtnTag;
-    hoggedBtn.backgroundColor = [UIColor redColor];
-    hoggedBtn.layer.cornerRadius = 5;
-    [hoggedBtn setTitle:@"我要霸占" forState:UIControlStateNormal];
     [hoggedBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:hoggedBtn];
     
-    collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    collectionBtn.frame = CGRectMake(170, 230, 110, 50);
+    collectionBtn = [[UIButton alloc] initWithFrame:CGRectMake(125, 270, 70, 70)];
+    [collectionBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wygz"] forState:UIControlStateNormal];
     collectionBtn.tag = CollectionBtnTag;
-    collectionBtn.backgroundColor = [UIColor redColor];
-    collectionBtn.layer.cornerRadius = 5;
-    [collectionBtn setTitle:@"我要收藏" forState:UIControlStateNormal];
     [collectionBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:collectionBtn];
     
-    achieveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    achieveBtn.frame = CGRectMake(40, 300, 110, 50);
-    achieveBtn.tag = AchieveBtnTag;
-    achieveBtn.backgroundColor = [UIColor redColor];
-    achieveBtn.layer.cornerRadius = 5;
-    [achieveBtn setTitle:@"我要实现" forState:UIControlStateNormal];
-    [achieveBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:achieveBtn];
-    
-    transformBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    transformBtn.frame = CGRectMake(170, 300, 110, 50);
+    transformBtn = [[UIButton alloc] initWithFrame:CGRectMake(210, 270, 70, 70)];
+    [transformBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wysc"] forState:UIControlStateNormal];
     transformBtn.tag = TransformBtnTag;
-    transformBtn.backgroundColor = [UIColor redColor];
-    transformBtn.layer.cornerRadius = 5;
-    [transformBtn setTitle:@"我要改造" forState:UIControlStateNormal];
     [transformBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:transformBtn];
-    
-    nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextBtn.frame = CGRectMake(40, 370, 240, 45);
-    nextBtn.tag = NextBtnTag;
-    nextBtn.backgroundColor = COLOR(124, 96, 33);
-    nextBtn.layer.cornerRadius = 5;
-    [nextBtn setTitle:[NSString stringWithFormat:@"下一个(今日剩余%d个)",IdeaNumCount] forState:UIControlStateNormal];
-    [nextBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:nextBtn];
 }
 
 -(void)changeButtonTitle:(NSNotification*)notify
@@ -171,9 +177,6 @@
             [self collectIdea];
         }
             break;
-        case AchieveBtnTag:
-            
-            break;
         case TransformBtnTag:
         {
             [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:self.dict] animated:YES];
@@ -186,7 +189,6 @@
                 {
                     index++;
                     
-                    [nextBtn setTitle:[NSString stringWithFormat:@"下一个(今日剩余%d个)",--IdeaNumCount] forState:UIControlStateNormal];
                     detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
                 }
                 else

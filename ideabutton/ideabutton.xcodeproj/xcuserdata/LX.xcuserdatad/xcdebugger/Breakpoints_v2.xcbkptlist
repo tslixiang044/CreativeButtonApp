@@ -121,7 +121,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
             endingLineNumber = "153"
-            landmarkName = "-hidentoolView"
+            landmarkName = "-btnCloseAction:"
             landmarkType = "5">
             <Locations>
                <Location
@@ -162,11 +162,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ideabutton/IdeaGenerateViewController.m"
-            timestampString = "447046039.464855"
+            timestampString = "448356295.963371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "-initWithData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -178,11 +178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ideabutton/IdeaGenerateViewController.m"
-            timestampString = "447046039.464855"
+            timestampString = "448358024.77209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "-buttonClick:"
             landmarkType = "5">
          </BreakpointContent>
