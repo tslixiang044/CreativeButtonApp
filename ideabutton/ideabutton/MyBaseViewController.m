@@ -278,4 +278,42 @@
 {
     alertView2.hidden=YES;
 }
+
+
+
+//--------------------------------------------------------------
+/**
+ 从下向上推入导航
+ */
+-(void) PushToTop:(UIViewController*)mviewcontroller
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionMoveIn;
+    
+    transition.subtype =kCATransitionFromTop;
+    
+    transition.delegate = self;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    
+    [self.navigationController pushViewController:mviewcontroller animated:NO];
+}
+
+
+/**
+ 从下向上返回主页
+ */
+-(void) PopToParent
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    transition.subtype = kCATransitionFromBottom;
+    transition.delegate = self;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+}
 @end

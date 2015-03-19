@@ -30,4 +30,6 @@
 -(void)hidenMenuView;
 
 -(void)showAlertView_number:(int)Num;
+-(void) PushToTop:(UIViewController*)mviewcontroller;
+-(void) PopToParent;
 @end

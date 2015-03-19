@@ -54,11 +54,11 @@
 {
     if (user)
     {
-        return 7;
+        return 5;
     }
     else
     {
-        return 6;
+        return 4;
     }
 }
 
@@ -82,34 +82,25 @@
     if(indexPath.row==0)
     {
         cell.imgview_left.image=[UIImage imageNamed:@"icon_wdzy"];
-        cell.lbltitle.text=@"我的主页";
+        cell.lbltitle.text=@"提建议";
     }
     else if(indexPath.row==1)
     {
         cell.imgview_left.image=[UIImage imageNamed:@"icon_wyfx"];
-        cell.lbltitle.text=@"我要分享";
+        cell.lbltitle.text=@"按朋圈";
     }
     else if(indexPath.row==2)
     {
         cell.imgview_left.image=[UIImage imageNamed:@"icon_sysm"];
-        cell.lbltitle.text=@"使用说明";
+        cell.lbltitle.text=@"我的主页";
     }
     else if(indexPath.row==3)
     {
         cell.imgview_left.image=[UIImage imageNamed:@"icon_gfwb"];
-        cell.lbltitle.text=@"官方微博";
+        cell.lbltitle.text=@"设置";
     }
-    else if(indexPath.row==4)
-    {
-        cell.imgview_left.image=[UIImage imageNamed:@"icon_gfwx"];
-        cell.lbltitle.text=@"官方微信";
-    }
-    else if(indexPath.row==5)
-    {
-        cell.imgview_left.image=[UIImage imageNamed:@"icon_gfwz"];
-        cell.lbltitle.text=@"官方网站";
-    }
-    else if(indexPath.row==6 && user)
+   
+    else if(indexPath.row==4 && user)
     {
         cell.imgview_left.image=[UIImage imageNamed:@"icon_tcdl"];
         cell.lbltitle.text=@"退出登录";
@@ -131,18 +122,14 @@
         case 3:
             break;
         case 4:
-            break;
-        case 5:
-            break;
-        case 6:
             [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name",@"LoginPSW"]];
             [API sharedInstance].user = nil;
             if(delegate)
             {
                 [delegate LoginOUt];
             }
-            
             break;
+      
             
         default:
             break;

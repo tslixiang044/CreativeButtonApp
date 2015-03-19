@@ -27,6 +27,8 @@
     //------------------
     UISegmentedControl *segmentedControl;
     UITextField *txtsearch;
+    
+    UIView *bottomView;
 }
 @end
 
@@ -46,48 +48,77 @@
    //-------------
     segmentedControl=[[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44) ];
     [segmentedControl insertSegmentWithTitle:@"按友圈" atIndex:0 animated:YES];
-    [segmentedControl insertSegmentWithTitle:@"我也要按" atIndex:1 animated:YES];
+    [segmentedControl insertSegmentWithTitle:@"建议烂" atIndex:1 animated:YES];
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex=0;
     [segmentedControl addTarget:self action:@selector(Selectbutton:) forControlEvents:UIControlEventValueChanged];
     [self.navigationController.navigationBar addSubview:segmentedControl];
-    //-------------
-    UIView *view_search_bg=[[UIView alloc]initWithFrame:CGRectMake(10, 5, kMainScreenBoundwidth-20, 44)];
-    view_search_bg.backgroundColor=COLOR(123, 95, 33);
-    [self.view addSubview:view_search_bg];
-    //-------------
-    txtsearch=[[UITextField alloc]initWithFrame:CGRectMake(2, 2, view_search_bg.bounds.size.width-100, view_search_bg.bounds.size.height-4)];
-    txtsearch.textColor=[UIColor whiteColor];
-    txtsearch.clearButtonMode=UITextFieldViewModeWhileEditing;
-    txtsearch.returnKeyType=UIReturnKeySearch;
-    txtsearch.backgroundColor=[UIColor clearColor];
-    txtsearch.delegate=self;
-    [txtsearch.layer setBackgroundColor:[COLOR(4, 4, 4) CGColor]];
-    txtsearch.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"按产品类别搜索" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    [txtsearch.layer setMasksToBounds:YES];
-    [view_search_bg addSubview:txtsearch];
-    //-------------
-    float x=txtsearch.frame.origin.x+txtsearch.frame.size.width;
-    UIButton *  btnsearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnsearch.frame = CGRectMake(x, 0, 100, 44);
+    
+    //-------
+    mscrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-50)];
+    mscrollview.backgroundColor=[UIColor grayColor];
+    [self.view addSubview:mscrollview];
+    //-------
   
-    [btnsearch setTitle:@"search" forState:UIControlStateNormal];
-    btnsearch.titleLabel.font = [UIFont systemFontOfSize:14];
-   
-    [btnsearch setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btnsearch setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    [btnsearch addTarget:self action:@selector(btnsearchAction) forControlEvents:UIControlEventTouchUpInside];
-    [view_search_bg addSubview:btnsearch];
-    //-------------
-    float y=view_search_bg.frame.origin.y+view_search_bg.frame.size.height+5;
-    waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, y, kMainScreenBoundwidth, kMainScreenBoundheight-64-y)];
+    waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-50)];
+    waterFlow.tag=1;
     waterFlow.waterFlowViewDelegate = self;
     waterFlow.waterFlowViewDatasource = self;
     waterFlow.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:waterFlow];
+    [mscrollview addSubview:waterFlow];
     [waterFlow release];
     //------------------
+    bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, kMainScreenBoundheight-64-50, kMainScreenBoundwidth, 50)];
+    bottomView.backgroundColor=[UIColor blackColor];
+    [self.view addSubview:bottomView];
+    
+    //------------------
+    UIButton *btnwyya = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnwyya.frame = CGRectMake((kMainScreenBoundwidth-70)/2, -20 , 70, 70);
+    [btnwyya setBackgroundImage:[UIImage imageNamed:@"btn_wyya.png"] forState:UIControlStateNormal];
+    [btnwyya addTarget:self action:@selector(btnwyyaAction) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:btnwyya];
+    //------------------
+    UIButton *btnadmin = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnadmin.frame = CGRectMake(kMainScreenBoundwidth-35-7, 7 , 35, 35);
+    [btnadmin setBackgroundImage:[UIImage imageNamed:@"icon_admin.png"] forState:UIControlStateNormal];
+    [btnadmin addTarget:self action:@selector(btnadminAction) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:btnadmin];
+    //------------------
+    
+    
     [self loadData];
+    
+    
+    
+    
+    
+    
+    
+}
+-(void)btnadminAction
+{
+    
+}
+-(void)btnwyyaAction
+{
+            segmentedControl.hidden=YES;
+    
+   
+            User* user = [[DB sharedInstance]queryUser];
+            if (user)
+            {
+                IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+                [self.navigationController pushViewController:press animated:YES];
+                [press release];
+            }
+            else
+            {
+                LoginViewController *login=[[LoginViewController alloc] init];
+                login.delegate=self;
+                [self.navigationController pushViewController:login animated:YES];
+                [login release];
+            }
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -130,7 +161,7 @@
         }
         else
         {
-            [self showalertview_text:result.msg imgname:nil autoHiden:YES];
+            //[self showalertview_text:result.msg frame:<#(CGRect)#> autoHiden:<#(BOOL)#>
         }
     }
 }
@@ -148,30 +179,41 @@
 
 -(void)Selectbutton:(UISegmentedControl*)mseg
 {
+    
+    
     if(mseg.selectedSegmentIndex==0)
     {
-        
+        [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
     }
     else  if(mseg.selectedSegmentIndex==1)
     {
-        mseg.hidden=YES;
-        
-//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-//        [self.navigationController pushViewController:press animated:YES];
-        User* user = [[DB sharedInstance]queryUser];
-        if (user)
-        {
-            IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-            [self.navigationController pushViewController:press animated:YES];
-        }
-        else
-        {
-            LoginViewController *login=[[LoginViewController alloc] init];
-            login.delegate=self;
-            [self.navigationController pushViewController:login animated:YES];
-            [login release];
-        }
+        [mscrollview setContentOffset:CGPointMake(kMainScreenBoundwidth, 0) animated:YES];
     }
+
+//    if(mseg.selectedSegmentIndex==0)
+//    {
+//        
+//    }
+//    else  if(mseg.selectedSegmentIndex==1)
+//    {
+//        mseg.hidden=YES;
+//        
+////        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+////        [self.navigationController pushViewController:press animated:YES];
+//        User* user = [[DB sharedInstance]queryUser];
+//        if (user)
+//        {
+//            IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//            [self.navigationController pushViewController:press animated:YES];
+//        }
+//        else
+//        {
+//            LoginViewController *login=[[LoginViewController alloc] init];
+//            login.delegate=self;
+//            [self.navigationController pushViewController:login animated:YES];
+//            [login release];
+//        }
+//    }
 }
 -(void)loginSuccessfull
 {

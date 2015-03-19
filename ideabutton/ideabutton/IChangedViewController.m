@@ -46,9 +46,9 @@
     imgview.image=[UIImage imageNamed:@"icon_wscd.png"];
     [self.view addSubview:imgview];
     //----
-    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0, 70, 320, 2)];
-    line.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:line];
+    UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ideaRuleChoose/line_bg"]];
+    view.frame = CGRectMake(0, 70, 320, 1);
+    [self.view addSubview:view];
     
     //----------
     mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 72, kMainScreenBoundwidth, kMainScreenBoundheight-64-50-72) style:UITableViewStylePlain];

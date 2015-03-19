@@ -12,7 +12,7 @@
 #import "IChangedViewController.h"
 #import "API.h"
 #import "IoccupyDetailViewController.h"
-
+#import "ISuggestViewController.h"
 
 
 @interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate>
@@ -64,10 +64,10 @@
     change.tabBarItem.image=[UIImage imageNamed:@"icon_chuizi"];
     change.tabBarItem.title=@"我改造的";
     //---------------------
-    UIViewController *back=[[UIViewController alloc]init];
+    ISuggestViewController *back=[[ISuggestViewController alloc]init];
     back.view.tag=4;
     back.tabBarItem.image=[UIImage imageNamed:@"icon_brbz"];
-    back.tabBarItem.title=@"大家霸的";
+    back.tabBarItem.title=@"我要建议";
     //---------------------
     NSMutableArray *  marr=[[NSMutableArray alloc]initWithObjects:occupy,save,change,back,nil];
     mTabbarController.viewControllers=marr;
@@ -106,7 +106,7 @@
     else if(viewController.view.tag==4)
     {
         
-        [self.navigationController popViewControllerAnimated:YES];
+        
     }
 }
 
