@@ -19,6 +19,7 @@
 
 - (User *)queryUser:(NSDictionary*)criteria;
 - (User*)newUser:(NSDictionary*)userDict;
+- (User*)newUserHaveIcon:(NSDictionary*)userDict;
 //- (User*)resetPSWWithParams:(NSDictionary *)params;
 -(User*)updateUser:(NSDictionary*)userDict;
 

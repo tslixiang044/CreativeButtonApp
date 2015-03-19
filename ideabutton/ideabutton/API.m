@@ -38,7 +38,7 @@
     self=[super init];
     if(self)
     {
-        self.baseURL = @"http://121.41.123.182:8090/web/mobile/api/";//             测试
+        self.baseURL = @"http://121.41.123.182:8091/web/mobile/api/";//             测试
         
 //        self.baseURL = @"http://223.6.252.147/web/mobile/api/";//         生产
         

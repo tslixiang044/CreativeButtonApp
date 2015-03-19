@@ -48,12 +48,21 @@
     
     [self createInputView];
 }
+
 -(void)btnright
 {
     [self showMenuView];
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    if (textField.tag == 1111)
+    {
+        if (self.agreementChecked)
+        {
+            [[DB sharedInstance] saveArbitraryObject:self.loginPSWTextField.text withKey:@"LoginPSW"];
+        }
+    }
     [textField resignFirstResponder];
     
     return YES;
@@ -64,20 +73,23 @@
     UIButton *btn = (UIButton *)sender;
     if(self.agreementChecked)
     {
-        [btn setImage:[UIImage imageNamed:@"checkbox-unchecked"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
         self.agreementChecked = NO;
+        [[DB sharedInstance] saveArbitraryObject:nil withKey:@"LoginPSW"];
     }
     else
     {
-        [btn setImage:[UIImage imageNamed:@"checkbox-checked"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
         self.agreementChecked = YES;
+        if (self.loginNameTextField.text.length > 0)
+        {
+            [[DB sharedInstance] saveArbitraryObject:self.loginPSWTextField.text withKey:@"LoginPSW"];
+        }
     }
 }
 
 -(void)createInputView
 {
-    User* user = [[DB sharedInstance]queryUser];
-    
     UIView* loginView = [[UIView alloc] initWithFrame:CGRectMake(20, 80, 280, 350)];
     loginView.backgroundColor = COLOR(21, 21, 22);
     [self.view addSubview:loginView];
@@ -115,14 +127,12 @@
     self.loginPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 180, 30)];
     _loginPSWTextField.delegate = self;
     _loginPSWTextField.secureTextEntry = YES;
-    if (user)
+    _loginPSWTextField.tag = 1111;
+    NSString* password = [[DB sharedInstance] queryArbitraryObjectWithKey:@"LoginPSW"];
+    if (password)
     {
-        self.agreementChecked = user.rememberPSW;
-        
-        if (self.agreementChecked)
-        {
-            self.loginPSWTextField.text = user.password;
-        }
+        self.loginPSWTextField.text = password;
+        self.agreementChecked = YES;
     }
     [loginPSWView addSubview:_loginPSWTextField];
     
@@ -130,12 +140,12 @@
     checkboxBtn.frame = CGRectMake(15, 160, 20, 20);
     if (!self.agreementChecked)
     {
-        [checkboxBtn setImage:[UIImage imageNamed:@"checkbox-unchecked"] forState:UIControlStateNormal];
+        [checkboxBtn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
         [checkboxBtn addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     else
     {
-        [checkboxBtn setImage:[UIImage imageNamed:@"checkbox-checked"] forState:UIControlStateNormal];
+        [checkboxBtn setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
         [checkboxBtn addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     [loginView addSubview:checkboxBtn];
@@ -206,8 +216,8 @@
             
             if (self.agreementChecked)
             {
-                user.rememberPSW = YES;
-                user.password = self.loginPSWTextField.text;
+//                user.rememberPSW = YES;
+//                user.password = self.loginPSWTextField.text;
             }
             [db saveUser:user];
             [db.indb setData:[loginName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
@@ -229,7 +239,10 @@
             }
             else
             {
-                [self showalertview_text:[API sharedInstance].msg frame:CGRectMake(80, 300, 150, 20) autoHiden:YES];
+                if ([API sharedInstance].msg)
+                {
+                    [self showalertview_text:[API sharedInstance].msg frame:CGRectMake(80, 300, 170, 20) autoHiden:YES];
+                }
             }
         });
     });

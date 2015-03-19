@@ -21,11 +21,12 @@
 
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *nickName;
-@property (nonatomic, strong) NSString *userID;
-@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, assign) NSInteger collegePrivate;
+@property (nonatomic, assign) NSInteger gender;
 @property (nonatomic, assign) NSInteger userStatus;
-@property (nonatomic, strong) NSString* password;
-@property (nonatomic, assign) BOOL isVip;
-@property (nonatomic, assign) BOOL rememberPSW;
+@property (nonatomic, assign) NSInteger userCode;
+@property (nonatomic, assign) NSInteger userFullnamePrivate;
+@property (nonatomic, assign) NSInteger userLevel;
+@property (nonatomic, assign) NSInteger majorPrivate;
 
 @end

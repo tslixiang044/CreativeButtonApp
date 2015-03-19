@@ -19,6 +19,9 @@
 #define SelectWonman    3
 
 @interface RegisterViewController()<UITextFieldDelegate>
+{
+    NSInteger gender;
+}
 
 @property(nonatomic, strong)UIScrollView *mainScroll;
 
@@ -48,6 +51,7 @@
     
     self.manSelected = NO;
     self.womenSelected = NO;
+    gender = -1;
     
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
@@ -235,6 +239,7 @@
             }
             else
             {
+                gender = 1;
                 self.manSelected = YES;
                 [self.manBtn setImage:[UIImage imageNamed:@"register/icon_use_man_secle_on"] forState:UIControlStateNormal];
                 [self.manLabel setTextColor:[UIColor redColor]];
@@ -256,6 +261,7 @@
             }
             else
             {
+                gender = 0;
                 self.womenSelected = YES;
                 [self.womenBtn setImage:[UIImage imageNamed:@"register/icon_use_women_secle_on"] forState:UIControlStateNormal];
                 [self.womenLabel setTextColor:[UIColor redColor]];
@@ -269,6 +275,8 @@
 
 -(void)registerAccount
 {
+    CGRect frame = CGRectMake(90,380,150,20);
+    
     NSDictionary *params = [self invalidateInput];
     if(!params)
     {
@@ -287,13 +295,16 @@
             {
                 DB *db = [DB sharedInstance];
                 [db saveUser:user];
-                [db.indb setData:[user.userName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
+                [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
                 
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
             else
             {
-//                [self showalertview_text:[API sharedInstance].msg imgname:@"error" autoHiden:YES];
+                if ([API sharedInstance].msg)
+                {
+                    [self showalertview_text:[API sharedInstance].msg frame:frame autoHiden:YES];
+                }
             }
         });
     });
@@ -302,6 +313,13 @@
 -(NSDictionary*)invalidateInput
 {
     CGRect frame = CGRectMake(90,380,150,20);
+    
+    if (gender == -1)
+    {
+        [self showalertview_text:@"请选择性别" frame:frame autoHiden:YES];
+        return nil;
+    }
+    
     if (self.nickNameTextField.text.length == 0)
     {
         [self showalertview_text:@"昵称不能为空" frame:frame autoHiden:YES];
@@ -332,7 +350,7 @@
         return nil;
     }
     
-    return @{@"nickname":self.nickNameTextField.text,@"userName":self.registerMailTextField.text,@"password":self.registerPSWTextField.text};
+    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":@"",@"icon":@""};
 }
 
 @end

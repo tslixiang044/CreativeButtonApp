@@ -76,8 +76,6 @@
 		E94107A31AA563CD002D78B2 /* ReformIdeaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107A21AA563CD002D78B2 /* ReformIdeaViewController.m */; };
 		E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97258231A888D3500F0ABB8 /* LoginViewController.m */; };
 		E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258261A888EB700F0ABB8 /* Default-568h@2x.png */; };
-		E972582C1A88A14F00F0ABB8 /* checkbox-checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E972582A1A88A14F00F0ABB8 /* checkbox-checked@2x.png */; };
-		E972582D1A88A14F00F0ABB8 /* checkbox-unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E972582B1A88A14F00F0ABB8 /* checkbox-unchecked@2x.png */; };
 		E97258361A88A49400F0ABB8 /* icon_more_all@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258311A88A49400F0ABB8 /* icon_more_all@2x.png */; };
 		E972583A1A88B8D400F0ABB8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97258391A88B8D400F0ABB8 /* RegisterViewController.m */; };
 		E97258511A89A41E00F0ABB8 /* icon_brbz@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E972584C1A89A41E00F0ABB8 /* icon_brbz@2x.png */; };
@@ -243,8 +241,6 @@
 		E97258231A888D3500F0ABB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E97258251A888D6600F0ABB8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E97258261A888EB700F0ABB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E972582A1A88A14F00F0ABB8 /* checkbox-checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked@2x.png"; sourceTree = "<group>"; };
-		E972582B1A88A14F00F0ABB8 /* checkbox-unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-unchecked@2x.png"; sourceTree = "<group>"; };
 		E97258311A88A49400F0ABB8 /* icon_more_all@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more_all@2x.png"; sourceTree = "<group>"; };
 		E97258381A88B8B200F0ABB8 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		E97258391A88B8D400F0ABB8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
@@ -339,8 +335,8 @@
 			children = (
 				E97258261A888EB700F0ABB8 /* Default-568h@2x.png */,
 				E91E774F1A849E87000174D4 /* ideabutton */,
-				E91E774E1A849E87000174D4 /* Products */,
 				E91E77A71A84A96C000174D4 /* Frameworks */,
+				E91E774E1A849E87000174D4 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -709,8 +705,6 @@
 				E972584C1A89A41E00F0ABB8 /* icon_brbz@2x.png */,
 				E972584D1A89A41E00F0ABB8 /* icon_chuizi@2x.png */,
 				E97258311A88A49400F0ABB8 /* icon_more_all@2x.png */,
-				E972582A1A88A14F00F0ABB8 /* checkbox-checked@2x.png */,
-				E972582B1A88A14F00F0ABB8 /* checkbox-unchecked@2x.png */,
 				E98190831A885DF30025F284 /* icon_wbzd@2x.png */,
 				E98190841A885DF30025F284 /* icon_wgzd@2x.png */,
 				E98190851A885DF30025F284 /* icon_wscd@2x.png */,
@@ -858,10 +852,8 @@
 				E94107721AA1A62A002D78B2 /* icon_sc@2x.png in Resources */,
 				89AF6B371AA3FD4C004F88F1 /* icon_jiantou_zuo@2x.png in Resources */,
 				E932E5731AB913F100839FA4 /* public in Resources */,
-				E972582C1A88A14F00F0ABB8 /* checkbox-checked@2x.png in Resources */,
 				89AF6B3B1AA45D9D004F88F1 /* icon_qipao.png in Resources */,
 				E932E5721AB913F100839FA4 /* login in Resources */,
-				E972582D1A88A14F00F0ABB8 /* checkbox-unchecked@2x.png in Resources */,
 				89AF6B3A1AA45D9D004F88F1 /* icon_aixin.png in Resources */,
 				89AC5C781AA1C1CF005DA279 /* btn_close@2x.png in Resources */,
 				E941077E1AA1B25D002D78B2 /* icon_tcdl@2x.png in Resources */,

@@ -135,7 +135,7 @@
         case 5:
             break;
         case 6:
-            [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name"]];
+            [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name",@"LoginPSW"]];
             [API sharedInstance].user = nil;
             if(delegate)
             {

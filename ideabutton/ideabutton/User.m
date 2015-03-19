@@ -18,19 +18,22 @@
     self = [super init];
     if(self)
     {
-        self.isVip = [[uDict objectForKey:@"isVip"] boolValue];
+        self.collegePrivate = [[uDict objectForKey:@"collegePrivate"] integerValue];
         self.nickName = [uDict objectForKey:@"nickname"];
         self.token = [uDict objectForKey:@"token"];
-        self.userID = [uDict objectForKey:@"userCode"];
-        self.userName = [uDict objectForKey:@"userName"];
         self.userStatus = [[uDict objectForKey:@"userStatus"] integerValue];
+        self.gender = [[uDict objectForKey:@"gender"] integerValue];
+        self.majorPrivate = [[uDict objectForKey:@"majorPrivate"] integerValue];
+        self.userCode = [[uDict objectForKey:@"userCode"] integerValue];
+        self.userFullnamePrivate = [[uDict objectForKey:@"userFullnamePrivate"] integerValue];
+        self.userLevel = [[uDict objectForKey:@"userLevel"] integerValue];
     }
     return self;
 }
 
 - (NSDictionary*)asDictionary
 {
-        NSDictionary *userDict = @{@"isVip":@(self.isVip),@"nickname":self.nickName,@"token":self.token,@"userCode":self.userID,@"userName":self.userName,@"userStatus":@(self.userStatus)};
+        NSDictionary *userDict = @{@"collegePrivate":@(self.collegePrivate),@"nickname":self.nickName,@"token":self.token,@"userCode":@(self.userCode),@"gender":@(self.gender),@"userStatus":@(self.userStatus),@"majorPrivate":@(self.majorPrivate),@"userFullnamePrivate":@(self.userFullnamePrivate),@"userLevel":@(self.userLevel)};
         
         return userDict;
 }
