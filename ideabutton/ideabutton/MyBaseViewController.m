@@ -8,6 +8,10 @@
 
 #import "MyBaseViewController.h"
 #import "MyToolView.h"
+#import "PersonaInfomationViewController.h"
+#import "SettingViewController.h"
+#import "FeedBackViewController.h"
+
 
 @interface MyBaseViewController ()<MyToolViewDelegate>
 {
@@ -205,7 +209,43 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
+-(void)gotoViewcontroller:(NSString *)mtag
+{
+    if([mtag isEqualToString:@"按友圈"])
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else if([mtag isEqualToString:@"我的主页"])
+    {
+        if(![self.title isEqualToString:@"个人资料"])
+        {
+            PersonaInfomationViewController *infomation=[PersonaInfomationViewController new];
+            [self.navigationController pushViewController:infomation animated:YES];
+        }
+        
+                                                     
+    }
+    else if([mtag isEqualToString:@"设置"])
+    {
+        if(![self.title isEqualToString:@"设置"])
+        {
+            SettingViewController *set=[SettingViewController new];
+            [self.navigationController pushViewController:set animated:YES];
+        }
+        
+        
+    }
+    else if([mtag isEqualToString:@"提建议"])
+    {
+        if(![self.title isEqualToString:@"意见反馈"])
+        {
+            FeedBackViewController *feed=[FeedBackViewController new];
+            [self.navigationController pushViewController:feed animated:YES];
+        }
+        
+        
+    }
+}
 
 
 

@@ -14,6 +14,8 @@
 @protocol MyToolViewDelegate <NSObject>
 @optional
 -(void)LoginOUt;
+-(void)gotoViewcontroller:(NSString *)mtag;
+
 @end
 //---------------------
 

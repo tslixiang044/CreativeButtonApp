@@ -18,7 +18,7 @@
 #import "InteractivePageViewController.h"
 #import "IdeaDetailViewController.h"
 #import "DB.h"
-
+#import "PersonaInfomationViewController.h"
 @interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate>
 {
     
@@ -98,7 +98,9 @@
 }
 -(void)btnadminAction
 {
-    
+    PersonaInfomationViewController *infomaton=[PersonaInfomationViewController new];
+    [self.navigationController pushViewController:infomaton animated:YES];
+    [infomaton release];
 }
 -(void)btnwyyaAction
 {

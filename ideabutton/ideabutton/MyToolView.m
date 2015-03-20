@@ -12,6 +12,10 @@
 #import "DB.h"
 #import "API.h"
 
+
+
+
+
 @implementation MyToolView
 @synthesize delegate;
 
@@ -28,6 +32,15 @@
         [self addSubview:btnClose];
         //---------
         mtableview=[[UITableView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth-200, 0, 200, kMainScreenBoundheight-64-80) style:UITableViewStylePlain];
+        
+        if(user)
+        {
+            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200, 0, 200, 300);
+        }
+        else
+        {
+            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200, 0, 200, 240);
+        }
         
         mtableview.backgroundColor=COLOR(21, 21, 23);;
         mtableview.backgroundView.backgroundColor=COLOR(21, 21, 23);
@@ -87,7 +100,7 @@
     else if(indexPath.row==1)
     {
         cell.imgview_left.image=[UIImage imageNamed:@"icon_wyfx"];
-        cell.lbltitle.text=@"按朋圈";
+        cell.lbltitle.text=@"按友圈";
     }
     else if(indexPath.row==2)
     {
@@ -111,29 +124,48 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row)
+    
+    if(indexPath.row==0)
     {
-        case 0:
-            break;
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name",@"LoginPSW"]];
-            [API sharedInstance].user = nil;
-            if(delegate)
-            {
-                [delegate LoginOUt];
-            }
-            break;
-      
-            
-        default:
-            break;
+        if(delegate)
+        {
+            [delegate gotoViewcontroller:@"提建议"];
+        }
     }
+    else if(indexPath.row==1)
+    {
+        if(delegate)
+        {
+            [delegate gotoViewcontroller:@"按友圈"];
+        }
+    }
+    else if(indexPath.row==2)
+    {
+        if(delegate)
+        {
+            [delegate gotoViewcontroller:@"我的主页"];
+        }
+    }
+    else if(indexPath.row==3)
+    {
+        if(delegate)
+        {
+            [delegate gotoViewcontroller:@"设置"];
+        }
+    }
+    else if(indexPath.row==4)
+    {
+        [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name",@"LoginPSW"]];
+        [API sharedInstance].user = nil;
+        if(delegate)
+        {
+            [delegate LoginOUt];
+        }
+    }
+    
+    
+    
+    
     
     [self hidentoolView];
 }

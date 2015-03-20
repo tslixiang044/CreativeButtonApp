@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89A85CA71ABC1DC800490339 /* MyWebviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CA61ABC1DC800490339 /* MyWebviewViewController.m */; };
+		89A85CAA1ABC1E2E00490339 /* PersonaInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CA91ABC1E2E00490339 /* PersonaInfomationViewController.m */; };
+		89A85CB01ABC1E7500490339 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CAD1ABC1E7500490339 /* FeedBackViewController.m */; };
+		89A85CB11ABC1E7500490339 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CAF1ABC1E7500490339 /* SettingViewController.m */; };
+		89A85CB41ABC1E9100490339 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CB31ABC1E9100490339 /* SettingCell.m */; };
+		89A85CB61ABC1EE200490339 /* xieyi.html in Resources */ = {isa = PBXBuildFile; fileRef = 89A85CB51ABC1EE200490339 /* xieyi.html */; };
+		89A85CB81ABC1EFE00490339 /* all_btn_qd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A85CB71ABC1EFE00490339 /* all_btn_qd@2x.png */; };
 		89AC5C621AA15434005DA279 /* IdeaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C611AA15434005DA279 /* IdeaDetailViewController.m */; };
 		89AC5C671AA1544B005DA279 /* MychangedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C641AA1544B005DA279 /* MychangedCell.m */; };
 		89AC5C681AA1544B005DA279 /* MysaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C661AA1544B005DA279 /* MysaveCell.m */; };
@@ -125,6 +132,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89A85CA51ABC1DC800490339 /* MyWebviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWebviewViewController.h; sourceTree = "<group>"; };
+		89A85CA61ABC1DC800490339 /* MyWebviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWebviewViewController.m; sourceTree = "<group>"; };
+		89A85CA81ABC1E2E00490339 /* PersonaInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonaInfomationViewController.h; sourceTree = "<group>"; };
+		89A85CA91ABC1E2E00490339 /* PersonaInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonaInfomationViewController.m; sourceTree = "<group>"; };
+		89A85CAC1ABC1E7500490339 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		89A85CAD1ABC1E7500490339 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		89A85CAE1ABC1E7500490339 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		89A85CAF1ABC1E7500490339 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		89A85CB21ABC1E9100490339 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
+		89A85CB31ABC1E9100490339 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
+		89A85CB51ABC1EE200490339 /* xieyi.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = xieyi.html; sourceTree = "<group>"; };
+		89A85CB71ABC1EFE00490339 /* all_btn_qd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all_btn_qd@2x.png"; sourceTree = "<group>"; };
 		89AC5C601AA15434005DA279 /* IdeaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdeaDetailViewController.h; sourceTree = "<group>"; };
 		89AC5C611AA15434005DA279 /* IdeaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaDetailViewController.m; sourceTree = "<group>"; };
 		89AC5C631AA1544B005DA279 /* MychangedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MychangedCell.h; sourceTree = "<group>"; };
@@ -353,6 +372,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89A85CAB1ABC1E4300490339 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				89A85CAC1ABC1E7500490339 /* FeedBackViewController.h */,
+				89A85CAD1ABC1E7500490339 /* FeedBackViewController.m */,
+				89A85CAE1ABC1E7500490339 /* SettingViewController.h */,
+				89A85CAF1ABC1E7500490339 /* SettingViewController.m */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
 		E91E77441A849E87000174D4 = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +420,7 @@
 		E91E77501A849E87000174D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				89A85CB51ABC1EE200490339 /* xieyi.html */,
 				E94107511A91BA19002D78B2 /* libleveldb.a */,
 				E981907F1A8853EC0025F284 /* Images */,
 				E91E77511A849E87000174D4 /* Info.plist */,
@@ -419,6 +450,7 @@
 		E91E777A1A84A760000174D4 /* GroupClass */ = {
 			isa = PBXGroup;
 			children = (
+				89A85CAB1ABC1E4300490339 /* Setting */,
 				E932E5471AB7BE0E00839FA4 /* ForgetPassword */,
 				E94107971AA55D38002D78B2 /* ReformIdea */,
 				E98C48F31A8C443000287EF8 /* IdeaGenerate */,
@@ -447,6 +479,8 @@
 				E9F0E0E11A8CD5FB00CAC9E1 /* MyUIImageView.m */,
 				89AC5C6C1AA154A4005DA279 /* MyToolView.h */,
 				89AC5C6D1AA154A4005DA279 /* MyToolView.m */,
+				89A85CA51ABC1DC800490339 /* MyWebviewViewController.h */,
+				89A85CA61ABC1DC800490339 /* MyWebviewViewController.m */,
 			);
 			name = BasseClass;
 			sourceTree = "<group>";
@@ -475,6 +509,8 @@
 				89AC5C641AA1544B005DA279 /* MychangedCell.m */,
 				89AC5C651AA1544B005DA279 /* MysaveCell.h */,
 				89AC5C661AA1544B005DA279 /* MysaveCell.m */,
+				89A85CB21ABC1E9100490339 /* SettingCell.h */,
+				89A85CB31ABC1E9100490339 /* SettingCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -509,6 +545,8 @@
 				E91E77771A84A6FA000174D4 /* MainViewController.m */,
 				89AC5C601AA15434005DA279 /* IdeaDetailViewController.h */,
 				89AC5C611AA15434005DA279 /* IdeaDetailViewController.m */,
+				89A85CA81ABC1E2E00490339 /* PersonaInfomationViewController.h */,
+				89A85CA91ABC1E2E00490339 /* PersonaInfomationViewController.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -723,6 +761,7 @@
 				E941078B1AA2E4CC002D78B2 /* error@2x.png */,
 				89AC5C761AA1C1CF005DA279 /* btn_close@2x.png */,
 				E94107731AA1B25D002D78B2 /* icon_gfwb@2x.png */,
+				89A85CB71ABC1EFE00490339 /* all_btn_qd@2x.png */,
 				E94107741AA1B25D002D78B2 /* icon_gfwx@2x.png */,
 				E94107751AA1B25D002D78B2 /* icon_gfwz@2x.png */,
 				E94107761AA1B25D002D78B2 /* icon_sysm@2x.png */,
@@ -877,6 +916,8 @@
 				E932E5711AB913F100839FA4 /* forgetPSW in Resources */,
 				E941076B1A91CC4A002D78B2 /* SVProgressHUD.bundle in Resources */,
 				89B4FA711ABAEEED007C1805 /* strartpage_2@2x.png in Resources */,
+				89A85CB81ABC1EFE00490339 /* all_btn_qd@2x.png in Resources */,
+				89A85CB61ABC1EE200490339 /* xieyi.html in Resources */,
 				E941078C1AA2E4CC002D78B2 /* error@2x.png in Resources */,
 				E932E5761AB9146600839FA4 /* ideaRuleChoose in Resources */,
 				89B4FA6F1ABAEEED007C1805 /* btn_start@2x.png in Resources */,
@@ -929,6 +970,7 @@
 				E98190A81A886E5E0025F284 /* UIButton+WebCache.m in Sources */,
 				E98190A71A886E5E0025F284 /* SDWebImagePrefetcher.m in Sources */,
 				E91E77831A84A7EB000174D4 /* Global.m in Sources */,
+				89A85CB41ABC1E9100490339 /* SettingCell.m in Sources */,
 				E91E77D01A84B1C2000174D4 /* MyUIButton.m in Sources */,
 				E98190771A8851D60025F284 /* IoccupyViewController.m in Sources */,
 				E98190A41A886E5E0025F284 /* SDWebImageDecoder.m in Sources */,
@@ -936,6 +978,7 @@
 				E94107A31AA563CD002D78B2 /* ReformIdeaViewController.m in Sources */,
 				E91E77561A849E87000174D4 /* AppDelegate.m in Sources */,
 				E98190A91A886E5E0025F284 /* UIImageView+WebCache.m in Sources */,
+				89A85CB11ABC1E7500490339 /* SettingViewController.m in Sources */,
 				89AC5C621AA15434005DA279 /* IdeaDetailViewController.m in Sources */,
 				E98190A61A886E5E0025F284 /* SDWebImageManager.m in Sources */,
 				E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */,
@@ -951,6 +994,7 @@
 				E9F0E0D71A8C862100CAC9E1 /* ImageViewCell.m in Sources */,
 				E9F0E0D81A8C862100CAC9E1 /* WaterFlowView.m in Sources */,
 				89AC5C681AA1544B005DA279 /* MysaveCell.m in Sources */,
+				89A85CB01ABC1E7500490339 /* FeedBackViewController.m in Sources */,
 				E91E77A01A84A8CD000174D4 /* ASIDataDecompressor.m in Sources */,
 				E98190A31A886E5E0025F284 /* SDImageCache.m in Sources */,
 				E94107471A91B72E002D78B2 /* Base64.m in Sources */,
@@ -964,12 +1008,14 @@
 				E91E77A41A84A8CD000174D4 /* ASIInputStream.m in Sources */,
 				E94107521A91BA19002D78B2 /* APLevelDB.mm in Sources */,
 				89BF1FF11AA556780085CD58 /* IoccupyDetailViewController.m in Sources */,
+				89A85CAA1ABC1E2E00490339 /* PersonaInfomationViewController.m in Sources */,
 				E98190A51A886E5E0025F284 /* SDWebImageDownloader.m in Sources */,
 				E981908F1A885FBB0025F284 /* EGORefreshTableHeaderView.m in Sources */,
 				89AC5C6E1AA154A4005DA279 /* MyToolView.m in Sources */,
 				E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */,
 				E91E77C81A84B143000174D4 /* RMMapper.m in Sources */,
 				E94107441A91B666002D78B2 /* API.m in Sources */,
+				89A85CA71ABC1DC800490339 /* MyWebviewViewController.m in Sources */,
 				E91E77A51A84A8CD000174D4 /* ASINetworkQueue.m in Sources */,
 				E981907A1A8852110025F284 /* ISavedViewController.m in Sources */,
 				E9F0E0DF1A8C93BE00CAC9E1 /* WaterFlowObj.m in Sources */,
@@ -1073,8 +1119,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ke liu (3N9H2F5HUV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ke liu (3N9H2F5HUV)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1087,7 +1133,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "02f34dd2-73f0-4199-b81c-07883bf4bb7c";
 			};
 			name = Debug;
 		};
@@ -1096,8 +1142,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ke liu (3N9H2F5HUV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ke liu (3N9H2F5HUV)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1110,7 +1156,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "02f34dd2-73f0-4199-b81c-07883bf4bb7c";
 			};
 			name = Release;
 		};
