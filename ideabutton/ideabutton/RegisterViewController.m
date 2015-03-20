@@ -12,7 +12,7 @@
 #import "API.h"
 #import "DB.h"
 #import "APLevelDB.h"
-#import "CityPicker/ViewController.h"
+#import "ChooseCityViewController.h"
 
 #define Height  45
 #define AddHead     1
@@ -270,7 +270,10 @@
             }
             break;
         case AddressBtnTag:
-            NSLog(@"sdfads");
+        {
+            ChooseCityViewController* chooseCityViewController = [[ChooseCityViewController alloc] init];
+        }
+            break;
         default:
             break;
     }

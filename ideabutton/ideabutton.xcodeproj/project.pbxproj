@@ -62,7 +62,6 @@
 		E932E5741AB913F100839FA4 /* register in Resources */ = {isa = PBXBuildFile; fileRef = E932E5701AB913F100839FA4 /* register */; };
 		E932E5761AB9146600839FA4 /* ideaRuleChoose in Resources */ = {isa = PBXBuildFile; fileRef = E932E5751AB9146600839FA4 /* ideaRuleChoose */; };
 		E932E5781AB9245300839FA4 /* ideaCreate in Resources */ = {isa = PBXBuildFile; fileRef = E932E5771AB9245300839FA4 /* ideaCreate */; };
-		E932E5831ABAF63500839FA4 /* CityPicker in Resources */ = {isa = PBXBuildFile; fileRef = E932E5821ABAF63500839FA4 /* CityPicker */; };
 		E94107441A91B666002D78B2 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107431A91B666002D78B2 /* API.m */; };
 		E94107471A91B72E002D78B2 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107461A91B72E002D78B2 /* Base64.m */; };
 		E941074A1A91B850002D78B2 /* DB.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107491A91B850002D78B2 /* DB.m */; };
@@ -82,6 +81,9 @@
 		E94107801AA1B25D002D78B2 /* icon_wyfx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94107791AA1B25D002D78B2 /* icon_wyfx@2x.png */; };
 		E941078C1AA2E4CC002D78B2 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E941078B1AA2E4CC002D78B2 /* error@2x.png */; };
 		E94107A31AA563CD002D78B2 /* ReformIdeaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107A21AA563CD002D78B2 /* ReformIdeaViewController.m */; };
+		E971B5331ABBBFB1001B3950 /* ChooseCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E971B52F1ABBBFB1001B3950 /* ChooseCityViewController.m */; };
+		E971B5341ABBBFB1001B3950 /* YMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E971B5311ABBBFB1001B3950 /* YMUtils.m */; };
+		E971B5351ABBBFB1001B3950 /* zh_CN.json in Resources */ = {isa = PBXBuildFile; fileRef = E971B5321ABBBFB1001B3950 /* zh_CN.json */; };
 		E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97258231A888D3500F0ABB8 /* LoginViewController.m */; };
 		E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258261A888EB700F0ABB8 /* Default-568h@2x.png */; };
 		E97258361A88A49400F0ABB8 /* icon_more_all@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97258311A88A49400F0ABB8 /* icon_more_all@2x.png */; };
@@ -214,7 +216,6 @@
 		E932E5701AB913F100839FA4 /* register */ = {isa = PBXFileReference; lastKnownFileType = folder; path = register; sourceTree = "<group>"; };
 		E932E5751AB9146600839FA4 /* ideaRuleChoose */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ideaRuleChoose; sourceTree = "<group>"; };
 		E932E5771AB9245300839FA4 /* ideaCreate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ideaCreate; sourceTree = "<group>"; };
-		E932E5821ABAF63500839FA4 /* CityPicker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CityPicker; sourceTree = "<group>"; };
 		E94107421A91B666002D78B2 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		E94107431A91B666002D78B2 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		E94107451A91B72E002D78B2 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
@@ -255,6 +256,11 @@
 		E941078B1AA2E4CC002D78B2 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		E94107A11AA563CD002D78B2 /* ReformIdeaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReformIdeaViewController.h; sourceTree = "<group>"; };
 		E94107A21AA563CD002D78B2 /* ReformIdeaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReformIdeaViewController.m; sourceTree = "<group>"; };
+		E971B52E1ABBBFB1001B3950 /* ChooseCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChooseCityViewController.h; path = CityPicker/ChooseCityViewController.h; sourceTree = "<group>"; };
+		E971B52F1ABBBFB1001B3950 /* ChooseCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChooseCityViewController.m; path = CityPicker/ChooseCityViewController.m; sourceTree = "<group>"; };
+		E971B5301ABBBFB1001B3950 /* YMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMUtils.h; path = CityPicker/YMUtils.h; sourceTree = "<group>"; };
+		E971B5311ABBBFB1001B3950 /* YMUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMUtils.m; path = CityPicker/YMUtils.m; sourceTree = "<group>"; };
+		E971B5321ABBBFB1001B3950 /* zh_CN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = zh_CN.json; path = CityPicker/zh_CN.json; sourceTree = "<group>"; };
 		E97258231A888D3500F0ABB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E97258251A888D6600F0ABB8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E97258261A888EB700F0ABB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -485,7 +491,11 @@
 		E91E77851A84A81F000174D4 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				E932E5821ABAF63500839FA4 /* CityPicker */,
+				E971B52E1ABBBFB1001B3950 /* ChooseCityViewController.h */,
+				E971B52F1ABBBFB1001B3950 /* ChooseCityViewController.m */,
+				E971B5301ABBBFB1001B3950 /* YMUtils.h */,
+				E971B5311ABBBFB1001B3950 /* YMUtils.m */,
+				E971B5321ABBBFB1001B3950 /* zh_CN.json */,
 				E97258381A88B8B200F0ABB8 /* RegisterViewController.h */,
 				E97258391A88B8D400F0ABB8 /* RegisterViewController.m */,
 			);
@@ -858,10 +868,10 @@
 				E941077D1AA1B25D002D78B2 /* icon_sysm@2x.png in Resources */,
 				E98190871A885DF30025F284 /* icon_wgzd@2x.png in Resources */,
 				E932E5741AB913F100839FA4 /* register in Resources */,
+				E971B5351ABBBFB1001B3950 /* zh_CN.json in Resources */,
 				E97258511A89A41E00F0ABB8 /* icon_brbz@2x.png in Resources */,
 				E97258521A89A41E00F0ABB8 /* icon_chuizi@2x.png in Resources */,
 				E98190881A885DF30025F284 /* icon_wscd@2x.png in Resources */,
-				E932E5831ABAF63500839FA4 /* CityPicker in Resources */,
 				E941077F1AA1B25D002D78B2 /* icon_wdzy@2x.png in Resources */,
 				E941077A1AA1B25D002D78B2 /* icon_gfwb@2x.png in Resources */,
 				E932E5711AB913F100839FA4 /* forgetPSW in Resources */,
@@ -906,6 +916,7 @@
 				E91E77C61A84B143000174D4 /* NSObject+RMCopyable.m in Sources */,
 				E9F0E0E21A8CD5FB00CAC9E1 /* MyUIImageView.m in Sources */,
 				E981907D1A88526E0025F284 /* IChangedViewController.m in Sources */,
+				E971B5341ABBBFB1001B3950 /* YMUtils.m in Sources */,
 				E91E77A61A84A8CD000174D4 /* Reachability.m in Sources */,
 				E91E77BB1A84B12C000174D4 /* BaseEntity.m in Sources */,
 				E9F0E0D91A8C862100CAC9E1 /* WaterFlowViewCell.m in Sources */,
@@ -963,6 +974,7 @@
 				E981907A1A8852110025F284 /* ISavedViewController.m in Sources */,
 				E9F0E0DF1A8C93BE00CAC9E1 /* WaterFlowObj.m in Sources */,
 				E98C48E71A8B68DB00287EF8 /* InteractivePageViewController1.m in Sources */,
+				E971B5331ABBBFB1001B3950 /* ChooseCityViewController.m in Sources */,
 				E94107651A91C75D002D78B2 /* User.m in Sources */,
 				E932E54A1AB7BE6A00839FA4 /* ForgetPswViewController.m in Sources */,
 				E91E77A31A84A8CD000174D4 /* ASIHTTPRequest.m in Sources */,

@@ -5,13 +5,13 @@
 //
 #define WIDTH  self.view.bounds.size.width
 #define HEIGHT self.view.bounds.size.height
-#import "ViewController.h"
+#import "ChooseCityViewController.h"
 #import "YMUtils.h"
-@interface ViewController ()
+@interface ChooseCityViewController ()
 
 @end
 
-@implementation ViewController
+@implementation ChooseCityViewController
 {
     NSInteger row1;
     NSInteger row2;
@@ -27,9 +27,9 @@
     row3 = 0;
     self.cityLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, WIDTH, 40)];
     self.cityLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:self.cityLabel];
+//    [self.view addSubview:self.cityLabel];
     
-    self.cityPicker = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 200, WIDTH, 180)];
+    self.cityPicker = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 300, WIDTH, 80)];
     self.cityPicker.tag = 0;
     self.cityPicker.delegate = self;
     self.cityPicker.dataSource = self;
@@ -125,7 +125,7 @@
     NSArray *array = [YMUtils getCityData][cityRow1][@"children"];
     if ((NSNull*)array != [NSNull null])
     {
-        [str appendString:[NSString stringWithFormat:@"-%@",[YMUtils getCityData][cityRow1][@"children"][cityRow2][@"name"]]];
+        [str appendString:[YMUtils getCityData][cityRow1][@"children"][cityRow2][@"name"]];
     }
     self.cityLabel.text = str;
 }

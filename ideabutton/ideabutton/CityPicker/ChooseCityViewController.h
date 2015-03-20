@@ -6,7 +6,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UIPickerViewDelegate ,UIPickerViewDataSource>
+@interface ChooseCityViewController : UIViewController <UIPickerViewDelegate ,UIPickerViewDataSource>
 @property (nonatomic ,strong) UIPickerView *cityPicker;
 @property (nonatomic ,strong) UILabel *cityLabel;
 @end
