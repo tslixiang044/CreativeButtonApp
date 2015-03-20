@@ -12,11 +12,13 @@
 #import "API.h"
 #import "DB.h"
 #import "APLevelDB.h"
+#import "CityPicker/ViewController.h"
 
 #define Height  45
 #define AddHead     1
 #define SelectMan   2
 #define SelectWonman    3
+#define AddressBtnTag   4
 
 @interface RegisterViewController()<UITextFieldDelegate>
 {
@@ -28,7 +30,6 @@
 @property(nonatomic, assign)CGFloat lastScrollOffset;
 @property(nonatomic, strong)UITextField *inFocusTextField;
 
-@property(nonatomic, strong)UITextField* registerAddressTextField;
 @property(nonatomic, strong)UITextField* nickNameTextField;
 @property(nonatomic, strong)UITextField* registerMailTextField;
 @property(nonatomic, strong)UITextField* registerPSWTextField;
@@ -166,37 +167,24 @@
     _registerMailTextField.delegate = self;
     _registerMailTextField.secureTextEntry = YES;
     [registerMailView addSubview:_registerMailTextField];
-    
-    UIImageView *registerAddressView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
-    registerAddressView.userInteractionEnabled = YES;
-    registerAddressView.frame = CGRectMake(30, 225, 220, 40);
-    [registerView addSubview:registerAddressView];
-    
-    UILabel* registerAddressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 30)];
-    registerAddressLabel.text = @"所在地";
-    [registerAddressView addSubview:registerAddressLabel];
-    
-    self.registerAddressTextField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 125, 30)];
-    _registerAddressTextField.delegate = self;
-    [registerAddressView addSubview:_registerAddressTextField];
-    
+
     UIImageView *registerPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     registerPSWView.userInteractionEnabled = YES;
-    registerPSWView.frame = CGRectMake(30, 280, 220, 40);
+    registerPSWView.frame = CGRectMake(30, 225, 220, 40);
     [registerView addSubview:registerPSWView];
     
     UILabel* registerPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 35, 30)];
     registerPSWLabel.text = @"密码";
     [registerPSWView addSubview:registerPSWLabel];
     
-    self.registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 145, 30)];
+    self.registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 125, 30)];
     _registerPSWTextField.delegate = self;
     _registerPSWTextField.secureTextEntry = YES;
     [registerPSWView addSubview:_registerPSWTextField];
     
     UIImageView *confirmPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
     confirmPSWView.userInteractionEnabled = YES;
-    confirmPSWView.frame = CGRectMake(30, 335, 220, 40);
+    confirmPSWView.frame = CGRectMake(30, 280, 220, 40);
     [registerView addSubview:confirmPSWView];
     
     UILabel* confirmPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 70, 30)];
@@ -207,6 +195,20 @@
     _confirmPSWTextField.delegate = self;
     _confirmPSWTextField.secureTextEntry = YES;
     [confirmPSWView addSubview:_confirmPSWTextField];
+    
+    UIImageView *registerAddressView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
+    registerAddressView.userInteractionEnabled = YES;
+    registerAddressView.frame = CGRectMake(30, 335, 220, 40);
+    [registerView addSubview:registerAddressView];
+
+    UILabel* registerAddressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 30)];
+    registerAddressLabel.text = @"所在地";
+    [registerAddressView addSubview:registerAddressLabel];
+    
+    UIButton* addressBtn = [[UIButton alloc] initWithFrame:CGRectMake(80, 5, 145, 30)];
+    addressBtn.tag = AddressBtnTag;
+    [addressBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [registerAddressView addSubview:addressBtn];
     
     UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 390, 70, 70)];
     [registerBtn setBackgroundImage:[UIImage imageNamed:@"public/all_btn_zc"] forState:UIControlStateNormal];
@@ -267,7 +269,8 @@
                 [self.womenLabel setTextColor:[UIColor redColor]];
             }
             break;
-            
+        case AddressBtnTag:
+            NSLog(@"sdfads");
         default:
             break;
     }
@@ -329,12 +332,6 @@
     if (self.registerMailTextField.text.length == 0)
     {
         [self showalertview_text:@"邮箱不能为空" frame:frame autoHiden:YES];
-        return nil;
-    }
-    
-    if (self.registerAddressTextField.text.length == 0)
-    {
-        [self showalertview_text:@"所在地不能为空" frame:frame autoHiden:YES];
         return nil;
     }
     

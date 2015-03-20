@@ -62,6 +62,7 @@
 		E932E5741AB913F100839FA4 /* register in Resources */ = {isa = PBXBuildFile; fileRef = E932E5701AB913F100839FA4 /* register */; };
 		E932E5761AB9146600839FA4 /* ideaRuleChoose in Resources */ = {isa = PBXBuildFile; fileRef = E932E5751AB9146600839FA4 /* ideaRuleChoose */; };
 		E932E5781AB9245300839FA4 /* ideaCreate in Resources */ = {isa = PBXBuildFile; fileRef = E932E5771AB9245300839FA4 /* ideaCreate */; };
+		E932E5831ABAF63500839FA4 /* CityPicker in Resources */ = {isa = PBXBuildFile; fileRef = E932E5821ABAF63500839FA4 /* CityPicker */; };
 		E94107441A91B666002D78B2 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107431A91B666002D78B2 /* API.m */; };
 		E94107471A91B72E002D78B2 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107461A91B72E002D78B2 /* Base64.m */; };
 		E941074A1A91B850002D78B2 /* DB.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107491A91B850002D78B2 /* DB.m */; };
@@ -213,6 +214,7 @@
 		E932E5701AB913F100839FA4 /* register */ = {isa = PBXFileReference; lastKnownFileType = folder; path = register; sourceTree = "<group>"; };
 		E932E5751AB9146600839FA4 /* ideaRuleChoose */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ideaRuleChoose; sourceTree = "<group>"; };
 		E932E5771AB9245300839FA4 /* ideaCreate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ideaCreate; sourceTree = "<group>"; };
+		E932E5821ABAF63500839FA4 /* CityPicker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CityPicker; sourceTree = "<group>"; };
 		E94107421A91B666002D78B2 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		E94107431A91B666002D78B2 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		E94107451A91B72E002D78B2 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 		E91E77851A84A81F000174D4 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				E932E5821ABAF63500839FA4 /* CityPicker */,
 				E97258381A88B8B200F0ABB8 /* RegisterViewController.h */,
 				E97258391A88B8D400F0ABB8 /* RegisterViewController.m */,
 			);
@@ -858,6 +861,7 @@
 				E97258511A89A41E00F0ABB8 /* icon_brbz@2x.png in Resources */,
 				E97258521A89A41E00F0ABB8 /* icon_chuizi@2x.png in Resources */,
 				E98190881A885DF30025F284 /* icon_wscd@2x.png in Resources */,
+				E932E5831ABAF63500839FA4 /* CityPicker in Resources */,
 				E941077F1AA1B25D002D78B2 /* icon_wdzy@2x.png in Resources */,
 				E941077A1AA1B25D002D78B2 /* icon_gfwb@2x.png in Resources */,
 				E932E5711AB913F100839FA4 /* forgetPSW in Resources */,
@@ -1071,7 +1075,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f34dd2-73f0-4199-b81c-07883bf4bb7c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1094,7 +1098,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f34dd2-73f0-4199-b81c-07883bf4bb7c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
