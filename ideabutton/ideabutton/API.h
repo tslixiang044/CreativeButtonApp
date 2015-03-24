@@ -20,8 +20,10 @@
 - (User *)queryUser:(NSDictionary*)criteria;
 - (User*)newUser:(NSDictionary*)userDict;
 - (User*)newUserHaveIcon:(NSDictionary*)userDict;
-//- (User*)resetPSWWithParams:(NSDictionary *)params;
 -(User*)updateUser:(NSDictionary*)userDict;
+
+- (void)isEnabledNickname:(NSDictionary*)dict;
+- (void)isEnabledEmail:(NSDictionary*)dict;
 
 - (NSArray*)createIdea:(NSDictionary*)dict;    //生成创意
 - (NSString*)occupyIdea:(NSDictionary*)dict;    //霸占创意

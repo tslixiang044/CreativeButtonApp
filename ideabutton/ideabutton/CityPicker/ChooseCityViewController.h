@@ -8,6 +8,6 @@
 
 @interface ChooseCityViewController : UIViewController <UIPickerViewDelegate ,UIPickerViewDataSource>
 @property (nonatomic ,strong) UIPickerView *cityPicker;
-@property (nonatomic ,strong) UILabel *cityLabel;
+
 @end
 

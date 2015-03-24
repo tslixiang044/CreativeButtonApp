@@ -123,6 +123,7 @@
 		E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */; };
 		E98C48F21A8B7BA300287EF8 /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = E98C48F11A8B7BA300287EF8 /* gif.gif */; };
 		E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */; };
+		E9DB90E41AC143D400F66467 /* RegisterSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90E31AC143D400F66467 /* RegisterSuccessViewController.m */; };
 		E9F0E0D71A8C862100CAC9E1 /* ImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0D21A8C862100CAC9E1 /* ImageViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E9F0E0D81A8C862100CAC9E1 /* WaterFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0D41A8C862100CAC9E1 /* WaterFlowView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E9F0E0D91A8C862100CAC9E1 /* WaterFlowViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0D61A8C862100CAC9E1 /* WaterFlowViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -339,6 +340,8 @@
 		E98C48F11A8B7BA300287EF8 /* gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif.gif; sourceTree = "<group>"; };
 		E98C48F41A8C447100287EF8 /* IdeaGenerateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdeaGenerateViewController.h; sourceTree = "<group>"; };
 		E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaGenerateViewController.m; sourceTree = "<group>"; };
+		E9DB90E21AC143D400F66467 /* RegisterSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSuccessViewController.h; sourceTree = "<group>"; };
+		E9DB90E31AC143D400F66467 /* RegisterSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSuccessViewController.m; sourceTree = "<group>"; };
 		E9F0E0D11A8C862100CAC9E1 /* ImageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewCell.h; sourceTree = "<group>"; };
 		E9F0E0D21A8C862100CAC9E1 /* ImageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewCell.m; sourceTree = "<group>"; };
 		E9F0E0D31A8C862100CAC9E1 /* WaterFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterFlowView.h; sourceTree = "<group>"; };
@@ -450,6 +453,7 @@
 		E91E777A1A84A760000174D4 /* GroupClass */ = {
 			isa = PBXGroup;
 			children = (
+				E9DB90E51AC1543B00F66467 /* New Group */,
 				89A85CAB1ABC1E4300490339 /* Setting */,
 				E932E5471AB7BE0E00839FA4 /* ForgetPassword */,
 				E94107971AA55D38002D78B2 /* ReformIdea */,
@@ -534,6 +538,8 @@
 				E971B5321ABBBFB1001B3950 /* zh_CN.json */,
 				E97258381A88B8B200F0ABB8 /* RegisterViewController.h */,
 				E97258391A88B8D400F0ABB8 /* RegisterViewController.m */,
+				E9DB90E21AC143D400F66467 /* RegisterSuccessViewController.h */,
+				E9DB90E31AC143D400F66467 /* RegisterSuccessViewController.m */,
 			);
 			name = Register;
 			sourceTree = "<group>";
@@ -832,6 +838,13 @@
 			name = IdeaGenerate;
 			sourceTree = "<group>";
 		};
+		E9DB90E51AC1543B00F66467 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		E9F0E0D01A8C862100CAC9E1 /* WaterFlowLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1023,6 +1036,7 @@
 				E971B5331ABBBFB1001B3950 /* ChooseCityViewController.m in Sources */,
 				E94107651A91C75D002D78B2 /* User.m in Sources */,
 				E932E54A1AB7BE6A00839FA4 /* ForgetPswViewController.m in Sources */,
+				E9DB90E41AC143D400F66467 /* RegisterSuccessViewController.m in Sources */,
 				E91E77A31A84A8CD000174D4 /* ASIHTTPRequest.m in Sources */,
 				E91E77A11A84A8CD000174D4 /* ASIDownloadCache.m in Sources */,
 				89AC5C671AA1544B005DA279 /* MychangedCell.m in Sources */,
@@ -1119,8 +1133,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ke liu (3N9H2F5HUV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ke liu (3N9H2F5HUV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: liang ren (C97KGTXX8Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: liang ren (C97KGTXX8Q)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1133,7 +1147,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f34dd2-73f0-4199-b81c-07883bf4bb7c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1142,8 +1156,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ke liu (3N9H2F5HUV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ke liu (3N9H2F5HUV)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1156,7 +1170,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f34dd2-73f0-4199-b81c-07883bf4bb7c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

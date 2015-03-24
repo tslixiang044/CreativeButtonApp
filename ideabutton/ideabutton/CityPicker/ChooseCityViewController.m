@@ -16,6 +16,8 @@
     NSInteger row1;
     NSInteger row2;
     NSInteger row3;
+    
+    NSString* locationStr;
 }
 
 - (void)viewDidLoad
@@ -25,18 +27,29 @@
     row1 = 0;
     row2 = 0;
     row3 = 0;
-    self.cityLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, WIDTH, 40)];
-    self.cityLabel.textAlignment = NSTextAlignmentCenter;
-//    [self.view addSubview:self.cityLabel];
     
-    self.cityPicker = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 300, WIDTH, 80)];
+    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(0, 300, WIDTH, 40)];
+    [button setBackgroundColor:[UIColor grayColor]];
+    [button setTitle:@"确定" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(selectedLocation) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
+    self.cityPicker = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 340, WIDTH, 80)];
     self.cityPicker.tag = 0;
     self.cityPicker.delegate = self;
     self.cityPicker.dataSource = self;
     self.cityPicker.showsSelectionIndicator = YES;
+    [self.cityPicker selectRow:1 inComponent:0 animated:YES];
+    row1 = 1;
+    [self.cityPicker reloadComponent:1];
     [self.view addSubview:self.cityPicker];
+    locationStr = @"北京市-北京市";
     self.cityPicker.backgroundColor = [UIColor lightGrayColor];
-    
+}
+
+-(void)selectedLocation
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"dissmissPicker" object:nil userInfo:@{@"location":locationStr}];
 }
 
 //返回显示的列数
@@ -125,9 +138,9 @@
     NSArray *array = [YMUtils getCityData][cityRow1][@"children"];
     if ((NSNull*)array != [NSNull null])
     {
-        [str appendString:[YMUtils getCityData][cityRow1][@"children"][cityRow2][@"name"]];
+        [str appendString:[NSString stringWithFormat:@"-%@",[YMUtils getCityData][cityRow1][@"children"][cityRow2][@"name"]]];
     }
-    self.cityLabel.text = str;
+    locationStr = str;
 }
 
 //每行显示的文字样式

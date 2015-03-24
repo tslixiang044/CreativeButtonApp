@@ -18,11 +18,13 @@
 #define AddHead     1
 #define SelectMan   2
 #define SelectWonman    3
-#define AddressBtnTag   4
+#define NickNameTag   4
+#define MailTag     5
 
 @interface RegisterViewController()<UITextFieldDelegate>
 {
     NSInteger gender;
+    ChooseCityViewController* chooseCityViewController;
 }
 
 @property(nonatomic, strong)UIScrollView *mainScroll;
@@ -34,12 +36,16 @@
 @property(nonatomic, strong)UITextField* registerMailTextField;
 @property(nonatomic, strong)UITextField* registerPSWTextField;
 @property(nonatomic, strong)UITextField* confirmPSWTextField;
+@property(nonatomic, strong)UITextField* registerAddressTextField;
 @property(nonatomic, strong)UIButton* manBtn;
 @property(nonatomic, strong)UIButton* womenBtn;
 @property(nonatomic, strong)UILabel* manLabel;
 @property(nonatomic, strong)UILabel* womenLabel;
 @property(nonatomic, assign)BOOL manSelected;
 @property(nonatomic, assign)BOOL womenSelected;
+
+@property(nonatomic, strong)UIButton* nickNameCheckBtn;
+@property(nonatomic, strong)UIButton* emailCheckBtn;
 
 @end
 
@@ -68,14 +74,89 @@
     
     //注册键盘通知获取键盘高度
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dissMissPickerController:) name:@"dissmissPicker" object:nil];
 }
 -(void)btnright
 {
     [self showMenuView];
 }
+
+-(void)dissMissPickerController:(NSNotification*) notify
+{
+    NSDictionary* userInfo = [notify userInfo];
+    
+    self.registerAddressTextField.text = [userInfo objectForKey:@"location"];
+    
+    if (chooseCityViewController)
+    {
+        [chooseCityViewController.view removeFromSuperview];
+        chooseCityViewController = nil;
+    }
+}
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     self.inFocusTextField = textField;
+
+    return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == self.registerAddressTextField)
+    {
+        [self showCityPicker];
+        [textField resignFirstResponder];
+    }
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    if (textField.text.length > 0)
+    {
+        if (textField.tag == NickNameTag)
+        {
+            dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_async(currentQueue, ^{
+                [[API sharedInstance] isEnabledNickname:@{@"nickname":textField.text}];
+                dispatch_queue_t mainQueue = dispatch_get_main_queue();
+                dispatch_async(mainQueue, ^{
+                    
+                    if ([[API sharedInstance].code integerValue] == 0)
+                    {
+                        [self.nickNameCheckBtn setImage:[UIImage imageNamed:@"register/icon_right"] forState:UIControlStateNormal];
+                    }
+                    else
+                    {
+                        [self.nickNameCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
+                    }
+                });
+            });
+        }
+        
+        if (textField.tag == MailTag)
+        {
+            
+            dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_async(currentQueue, ^{
+                [[API sharedInstance] isEnabledEmail:@{@"email":textField.text}];
+                dispatch_queue_t mainQueue = dispatch_get_main_queue();
+                dispatch_async(mainQueue, ^{
+                    
+                    if ([[API sharedInstance].code integerValue] == 0)
+                    {
+                        [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_right"] forState:UIControlStateNormal];
+                    }
+                    else
+                    {
+                        [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
+                    }
+                });
+            });
+        }
+    }
+    
     return YES;
 }
 
@@ -95,13 +176,16 @@
     CGFloat keyboardHeight = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height+50;
     self.lastScrollOffset = self.mainScroll.contentOffset.y;
     
-    CGRect inputRect = [self.inFocusTextField.superview convertRect:CGRectMake(0, 0, 320, Height) toView:self.view];
-    CGFloat inputRectBottomHeight = self.view.frame.size.height - (inputRect.origin.y + Height);
-    CGFloat heightDiff = inputRectBottomHeight - keyboardHeight;
-    if(heightDiff<0)
+    if (self.inFocusTextField == self.confirmPSWTextField)
     {
-        CGFloat newScrollOffset = self.mainScroll.contentOffset.y-heightDiff;
-        [self.mainScroll setContentOffset:CGPointMake(0, newScrollOffset) animated:YES];
+        CGRect inputRect = [self.inFocusTextField.superview convertRect:CGRectMake(0, self.confirmPSWTextField.frame.origin.y, 320, Height) toView:self.view];
+        CGFloat inputRectBottomHeight = self.view.frame.size.height - (inputRect.origin.y + Height);
+        CGFloat heightDiff = inputRectBottomHeight - keyboardHeight;
+        if(heightDiff<0)
+        {
+            CGFloat newScrollOffset = self.mainScroll.contentOffset.y-heightDiff;
+            [self.mainScroll setContentOffset:CGPointMake(0, newScrollOffset) animated:YES];
+        }
     }
 }
 
@@ -141,74 +225,51 @@
     self.womenLabel.text = @"女";
     [imageView addSubview:self.womenLabel];
     
-    UIImageView *nickNameView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
-    nickNameView.userInteractionEnabled = YES;
-    nickNameView.frame = CGRectMake(30, 115, 220, 40);
-    [registerView addSubview:nickNameView];
-    
-    UILabel* nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 35, 30)];
-    nickNameLabel.text = @"昵称";
-    [nickNameView addSubview:nickNameLabel];
-    
-    self.nickNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 145, 30)];
+    self.nickNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 115, 220, 40)];
+    self.nickNameTextField.placeholder = @"昵称(不可修改)";
+    self.nickNameTextField.backgroundColor = [UIColor whiteColor];
+    self.nickNameTextField.layer.cornerRadius = 5;
     _nickNameTextField.delegate = self;
-    [nickNameView addSubview:_nickNameTextField];
+    self.nickNameTextField.tag = NickNameTag;
+    [registerView addSubview:_nickNameTextField];
     
-    UIImageView *registerMailView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
-    registerMailView.userInteractionEnabled = YES;
-    registerMailView.frame = CGRectMake(30, 170, 220, 40);
-    [registerView addSubview:registerMailView];
+    self.nickNameCheckBtn = [[UIButton alloc] initWithFrame:CGRectMake(255, 125, 20, 20)];
+    [registerView addSubview:self.nickNameCheckBtn];
     
-    UILabel* registerMailLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 35, 30)];
-    registerMailLabel.text = @"邮箱";
-    [registerMailView addSubview:registerMailLabel];
-    
-    self.registerMailTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 145, 30)];
+    self.registerMailTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 170, 220, 40)];
     _registerMailTextField.delegate = self;
-    _registerMailTextField.secureTextEntry = YES;
-    [registerMailView addSubview:_registerMailTextField];
-
-    UIImageView *registerPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
-    registerPSWView.userInteractionEnabled = YES;
-    registerPSWView.frame = CGRectMake(30, 225, 220, 40);
-    [registerView addSubview:registerPSWView];
+    _registerMailTextField.placeholder = @"邮箱";
+    self.registerMailTextField.backgroundColor = [UIColor whiteColor];
+    self.registerMailTextField.layer.cornerRadius = 5;
+    self.registerMailTextField.tag = MailTag;
+    [registerView addSubview:_registerMailTextField];
     
-    UILabel* registerPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 35, 30)];
-    registerPSWLabel.text = @"密码";
-    [registerPSWView addSubview:registerPSWLabel];
+    self.emailCheckBtn = [[UIButton alloc] initWithFrame:CGRectMake(255, 185, 20, 20)];
+    [registerView addSubview:self.emailCheckBtn];
     
-    self.registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 125, 30)];
+    self.registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 225, 220, 40)];
     _registerPSWTextField.delegate = self;
     _registerPSWTextField.secureTextEntry = YES;
-    [registerPSWView addSubview:_registerPSWTextField];
+    self.registerPSWTextField.placeholder = @"密码";
+    self.registerPSWTextField.backgroundColor = [UIColor whiteColor];
+    self.registerPSWTextField.layer.cornerRadius = 5;
+    [registerView addSubview:_registerPSWTextField];
     
-    UIImageView *confirmPSWView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
-    confirmPSWView.userInteractionEnabled = YES;
-    confirmPSWView.frame = CGRectMake(30, 280, 220, 40);
-    [registerView addSubview:confirmPSWView];
-    
-    UILabel* confirmPSWLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 70, 30)];
-    confirmPSWLabel.text = @"确认密码";
-    [confirmPSWView addSubview:confirmPSWLabel];
-    
-    self.confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 5, 115, 30)];
+    self.confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 280, 220, 40)];
     _confirmPSWTextField.delegate = self;
     _confirmPSWTextField.secureTextEntry = YES;
-    [confirmPSWView addSubview:_confirmPSWTextField];
+    self.confirmPSWTextField.placeholder = @"确认密码";
+    self.confirmPSWTextField.backgroundColor = [UIColor whiteColor];
+    self.confirmPSWTextField.layer.cornerRadius = 5;
+    [registerView addSubview:_confirmPSWTextField];
     
-    UIImageView *registerAddressView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"public/input_bai"]];
-    registerAddressView.userInteractionEnabled = YES;
-    registerAddressView.frame = CGRectMake(30, 335, 220, 40);
-    [registerView addSubview:registerAddressView];
-
-    UILabel* registerAddressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 30)];
-    registerAddressLabel.text = @"所在地";
-    [registerAddressView addSubview:registerAddressLabel];
-    
-    UIButton* addressBtn = [[UIButton alloc] initWithFrame:CGRectMake(80, 5, 145, 30)];
-    addressBtn.tag = AddressBtnTag;
-    [addressBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [registerAddressView addSubview:addressBtn];
+    self.registerAddressTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 335, 220, 40)];
+    self.registerAddressTextField.delegate = self;
+    self.registerAddressTextField.placeholder = @"所在地";
+    self.registerAddressTextField.backgroundColor = [UIColor whiteColor];
+    self.registerAddressTextField.layer.cornerRadius = 5;
+    [self.registerAddressTextField addTarget:self action:@selector(showCityPicker) forControlEvents:UIControlEventTouchUpInside];
+    [registerView addSubview:self.registerAddressTextField];
     
     UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 390, 70, 70)];
     [registerBtn setBackgroundImage:[UIImage imageNamed:@"public/all_btn_zc"] forState:UIControlStateNormal];
@@ -216,6 +277,13 @@
     [registerView addSubview:registerBtn];
     
     return registerView;
+}
+
+-(void)showCityPicker
+{
+    chooseCityViewController = [[ChooseCityViewController alloc] init];
+    [self addChildViewController:chooseCityViewController];
+    [self.view addSubview:chooseCityViewController.view];
 }
 
 -(void)buttonClicked:(UIButton*)sender
@@ -268,11 +336,6 @@
                 [self.womenBtn setImage:[UIImage imageNamed:@"register/icon_use_women_secle_on"] forState:UIControlStateNormal];
                 [self.womenLabel setTextColor:[UIColor redColor]];
             }
-            break;
-        case AddressBtnTag:
-        {
-            ChooseCityViewController* chooseCityViewController = [[ChooseCityViewController alloc] init];
-        }
             break;
         default:
             break;
@@ -338,6 +401,15 @@
         return nil;
     }
     
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    if(![emailTest evaluateWithObject:self.registerMailTextField.text])
+    {
+        [self showalertview_text:@"请输入正确的邮箱地址" frame:CGRectMake(90,380,150,20) autoHiden:YES];
+        [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
+        return nil;
+    }
+    
     if (self.registerPSWTextField.text.length == 0)
     {
         [self showalertview_text:@"密码不能为空" frame:frame autoHiden:YES];
@@ -350,7 +422,7 @@
         return nil;
     }
     
-    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":@"",@"icon":@""};
+    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":self.registerAddressTextField.text};
 }
 
 @end

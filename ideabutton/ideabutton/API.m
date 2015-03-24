@@ -40,7 +40,7 @@
     {
         self.baseURL = @"http://121.41.123.182:8091/web/mobile/api/";//             测试
         
-//        self.baseURL = @"http://223.6.252.147/web/mobile/api/";//         生产
+        //        self.baseURL = @"http://223.6.252.147/web/mobile/api/";//         生产
         
         self.user = [[DB sharedInstance] queryUser];
     }
@@ -84,6 +84,25 @@
     return user;
 }
 
+- (User*)newUserHaveIcon:(NSDictionary*)userDict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"register"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if(!retDict)
+    {
+        return nil;
+    }
+    
+    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
+    if(user)
+    {
+        self.user = user;
+    }
+    return user;
+}
+
 -(User*)updateUser:(NSDictionary*)userDict
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"updateUser"];
@@ -101,6 +120,23 @@
         self.user = user;
     }
     return user;
+}
+
+- (void)isEnabledNickname:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"user/isEnabledNickname"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    
+    [self doPostAndParseWithURL:urlStr data:bodyData];
+}
+
+- (void)isEnabledEmail:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"user/isEnabledEmail"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    [self doRequestAndParseWithURL:urlStr];
 }
 
 - (NSArray*)createIdea:(NSDictionary*)dict
@@ -228,7 +264,7 @@
 {
     NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
     [urlStr appendString:@"check/idea/myCollectedIdeas"];
-   [urlStr appendString:[self constructQueryParamStr:dict]];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
     
     NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
     
