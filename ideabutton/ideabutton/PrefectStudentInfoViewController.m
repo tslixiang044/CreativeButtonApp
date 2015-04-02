@@ -8,6 +8,13 @@
 
 #import "PrefectStudentInfoViewController.h"
 
+#define CheckButtonTag1     0
+#define CheckButtonTag2     1
+#define CheckButtonTag3     2
+#define CheckButtonTag4     3
+#define CheckButtonTag5     4
+#define OkButtonTag         5
+
 @interface PrefectStudentInfoViewController ()<UITextFieldDelegate>
 
 @end
@@ -19,6 +26,18 @@
     UITextField* majorTextField;
     UITextField* graduationTextField;
     UITextField* repineCompanyTextField;
+    
+    UIButton* checkBtn;
+    UIButton* checkBtn1;
+    UIButton* checkBtn2;
+    UIButton* checkBtn3;
+    UIButton* checkBtn4;
+    
+    BOOL checkBtnFlag;
+    BOOL checkBtnFlag1;
+    BOOL checkBtnFlag2;
+    BOOL checkBtnFlag3;
+    BOOL checkBtnFlag4;
 }
 
 - (void)viewDidLoad
@@ -55,8 +74,10 @@
     flagLabel.font = [UIFont systemFontOfSize:11.5];
     [backgroundView addSubview:flagLabel];
     
-    UIButton* checkBtn = [[UIButton alloc] initWithFrame:CGRectMake(255, 70, 15, 15)];
+    checkBtn = [[UIButton alloc] initWithFrame:CGRectMake(255, 70, 15, 15)];
+    checkBtn.tag = CheckButtonTag1;
     [checkBtn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+    [checkBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:checkBtn];
     
     schoolNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 105, 200, 30)];
@@ -72,8 +93,10 @@
     flagLabel1.font = [UIFont systemFontOfSize:11.5];
     [backgroundView addSubview:flagLabel1];
     
-    UIButton* checkBtn1 = [[UIButton alloc] initWithFrame:CGRectMake(255, 115, 15, 15)];
+    checkBtn1 = [[UIButton alloc] initWithFrame:CGRectMake(255, 115, 15, 15)];
+    checkBtn1.tag = CheckButtonTag2;
     [checkBtn1 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+    [checkBtn1 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:checkBtn1];
     
     majorTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 150, 200, 30)];
@@ -89,8 +112,10 @@
     flagLabel2.font = [UIFont systemFontOfSize:11.5];
     [backgroundView addSubview:flagLabel2];
     
-    UIButton* checkBtn2 = [[UIButton alloc] initWithFrame:CGRectMake(255, 160, 15, 15)];
+    checkBtn2 = [[UIButton alloc] initWithFrame:CGRectMake(255, 160, 15, 15)];
+    checkBtn2.tag = CheckButtonTag3;
     [checkBtn2 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+    [checkBtn2 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:checkBtn2];
     
     graduationTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 195, 200, 30)];
@@ -106,8 +131,10 @@
     flagLabel3.font = [UIFont systemFontOfSize:11.5];
     [backgroundView addSubview:flagLabel3];
     
-    UIButton* checkBtn3 = [[UIButton alloc] initWithFrame:CGRectMake(255, 205, 15, 15)];
+    checkBtn3 = [[UIButton alloc] initWithFrame:CGRectMake(255, 205, 15, 15)];
+    checkBtn3.tag = CheckButtonTag4;
     [checkBtn3 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+    [checkBtn3 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:checkBtn3];
     
     repineCompanyTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 240, 200, 30)];
@@ -123,8 +150,10 @@
     flagLabel4.font = [UIFont systemFontOfSize:11.5];
     [backgroundView addSubview:flagLabel4];
     
-    UIButton* checkBtn4 = [[UIButton alloc] initWithFrame:CGRectMake(255, 250, 15, 15)];
+    checkBtn4 = [[UIButton alloc] initWithFrame:CGRectMake(255, 250, 15, 15)];
+    checkBtn4.tag = CheckButtonTag5;
     [checkBtn4 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+    [checkBtn4 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:checkBtn4];
     
     UIImageView* line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"public/line"]];
@@ -132,8 +161,18 @@
     [backgroundView addSubview:line];
     
     UIButton* okBtn = [[UIButton alloc] initWithFrame:CGRectMake(110, 315, 60, 60)];
+    okBtn.tag = OkButtonTag;
     [okBtn setImage:[UIImage imageNamed:@"register/btn_ok"] forState:UIControlStateNormal];
+    [okBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:okBtn];
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == graduationTextField)
+    {
+        [textField resignFirstResponder];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -143,6 +182,89 @@
 //    [self.mainScroll setContentOffset:CGPointMake(0, self.lastScrollOffset) animated:YES];
     
     return YES;
+}
+
+- (void)buttonClicked:(UIButton*)sender
+{
+    switch (sender.tag)
+    {
+        case CheckButtonTag1:
+        {
+            if (!checkBtnFlag)
+            {
+                checkBtnFlag = YES;
+                [checkBtn setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
+            }
+            else
+            {
+                checkBtnFlag = NO;
+                [checkBtn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+            }
+            
+        }
+            break;
+        case CheckButtonTag2:
+        {
+            if (!checkBtnFlag1)
+            {
+                checkBtnFlag1 = YES;
+                [checkBtn1 setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
+            }
+            else
+            {
+                checkBtnFlag1 = NO;
+                [checkBtn1 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+            }
+        }
+            break;
+        case CheckButtonTag3:
+        {
+            if (!checkBtnFlag2)
+            {
+                checkBtnFlag2 = YES;
+                [checkBtn2 setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
+            }
+            else
+            {
+                checkBtnFlag2 = NO;
+                [checkBtn2 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+            }
+        }
+            break;
+        case CheckButtonTag4:
+        {
+            if (!checkBtnFlag3)
+            {
+                checkBtnFlag3 = YES;
+                [checkBtn3 setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
+            }
+            else
+            {
+                checkBtnFlag3 = NO;
+                [checkBtn3 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+            }
+        }
+            break;
+        case CheckButtonTag5:
+        {
+            if (!checkBtnFlag4)
+            {
+                checkBtnFlag4 = YES;
+                [checkBtn4 setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
+            }
+            else
+            {
+                checkBtnFlag4 = NO;
+                [checkBtn4 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+            }
+        }
+            break;
+        case OkButtonTag:
+            
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning

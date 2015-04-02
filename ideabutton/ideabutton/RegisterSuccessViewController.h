@@ -13,4 +13,6 @@
 {
     
 }
+
+@property(nonatomic,assign)NSInteger flag;
 @end
