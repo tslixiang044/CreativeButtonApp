@@ -22,7 +22,7 @@
 {
     [super viewDidLoad];
     
-    self.title=@"BUTTON 4 CREATIVE";
+    self.title=kgettitle;
     //------------------------
     mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 20, kMainScreenBoundwidth, 200) style:UITableViewStylePlain];
     
@@ -101,7 +101,7 @@
     else if(indexPath.row==3)
     {
         MyWebviewViewController *web=[[MyWebviewViewController alloc]init];
-        self.title=@"关于";
+        web.title=kgettitle;
         web.filename=@"xieyi";
         [self.navigationController pushViewController:web animated:YES];
     }

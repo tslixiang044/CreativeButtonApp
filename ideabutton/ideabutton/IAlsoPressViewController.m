@@ -28,7 +28,7 @@
 //    [[API sharedInstance] createIdea:@{@"adtype":@"1",@"product":@"啤酒",@"brand":@"我是",@"appeal":@"你的",@"number":@"9",@"letter":@"A",@"romanNum":@"1",@"ideaNum":@"1"}];
     
     [super viewDidLoad];
-    self.title=@"BUTTON 4 CREATIVE";
+    self.title=kgettitle;
     
     //[self setleftbaritem_imgname:@"icon_jiantou_zuo.png" title:nil];
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];

@@ -14,6 +14,10 @@
 {
     
 }
+@property(nonatomic,strong)NSString *mtag;
+
+
+
 -(void)setrightbaritem_imgname:(NSString*)icon_img_name title:(NSString*)mtitle;
 -(void)setleftbaritem_imgname:(NSString*)icon_img_name title:(NSString*)mtitle;
 -(void)btnright;
@@ -29,7 +33,14 @@
 -(void)showMenuView;
 -(void)hidenMenuView;
 
--(void)showAlertView_number:(int)Num;
+-(void)showAlertView_desc:(NSString *)desc btntitle:(NSString *)mtitle;
 -(void) PushToTop:(UIViewController*)mviewcontroller;
 -(void) PopToParent;
+
+
+
+
+
+
+
 @end

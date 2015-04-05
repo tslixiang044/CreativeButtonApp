@@ -22,8 +22,12 @@
 @interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate>
 {
     
-    NSMutableArray *mArr;
-    WaterFlowView *waterFlow;
+    NSMutableArray *mArr_1;
+    NSMutableArray *mArr_2;
+    
+    
+    WaterFlowView *waterFlow_1;
+    WaterFlowView *waterFlow_2;
     //------------------
     UISegmentedControl *segmentedControl;
     UITextField *txtsearch;
@@ -44,7 +48,8 @@
 {
     [super viewDidLoad];
     //------
-    mArr=[[NSMutableArray alloc]init];
+    mArr_1=[[NSMutableArray alloc]init];
+    mArr_2=[[NSMutableArray alloc]init];
    //-------------
     segmentedControl=[[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44) ];
     [segmentedControl insertSegmentWithTitle:@"按友圈" atIndex:0 animated:YES];
@@ -60,14 +65,23 @@
     [self.view addSubview:mscrollview];
     //-------
   
-    waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-50)];
-    waterFlow.tag=1;
-    waterFlow.waterFlowViewDelegate = self;
-    waterFlow.waterFlowViewDatasource = self;
-    waterFlow.backgroundColor = [UIColor blackColor];
-    [mscrollview addSubview:waterFlow];
-    [waterFlow release];
+    waterFlow_1 = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-50)];
+    waterFlow_1.tag=1;
+    waterFlow_1.waterFlowViewDelegate = self;
+    waterFlow_1.waterFlowViewDatasource = self;
+    waterFlow_1.backgroundColor = [UIColor blackColor];
+    [mscrollview addSubview:waterFlow_1];
+    [waterFlow_1 release];
     //------------------
+    waterFlow_2 = [[WaterFlowView alloc] initWithFrame:CGRectMake(kMainScreenBoundwidth, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-50)];
+    waterFlow_2.tag=2;
+    waterFlow_2.waterFlowViewDelegate = self;
+    waterFlow_2.waterFlowViewDatasource = self;
+    waterFlow_2.backgroundColor = [UIColor blackColor];
+    [mscrollview addSubview:waterFlow_2];
+    [waterFlow_2 release];
+    //------------------
+
     bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, kMainScreenBoundheight-64-50, kMainScreenBoundwidth, 50)];
     bottomView.backgroundColor=[UIColor blackColor];
     [self.view addSubview:bottomView];
@@ -81,20 +95,13 @@
     //------------------
     UIButton *btnadmin = [UIButton buttonWithType:UIButtonTypeCustom];
     btnadmin.frame = CGRectMake(kMainScreenBoundwidth-35-7, 7 , 35, 35);
-    [btnadmin setBackgroundImage:[UIImage imageNamed:@"icon_admin.png"] forState:UIControlStateNormal];
+    [btnadmin setBackgroundImage:[UIImage imageNamed:@"icon_adduser.png"] forState:UIControlStateNormal];
     [btnadmin addTarget:self action:@selector(btnadminAction) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:btnadmin];
     //------------------
-    
-    
-    [self loadData];
-    
-    
-    
-    
-    
-    
-    
+
+    [self loadData:1];
+    [self loadData:2];
 }
 -(void)btnadminAction
 {
@@ -131,11 +138,20 @@
 {
     [txtsearch resignFirstResponder];
 }
--(void)loadData
+-(void)loadData:(int)mtag
 {
-    NSString *url=kgetWaterFlowUrl;
-    
-    [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl" delegate:self];
+    if(mtag==1)
+    {
+        NSString *url=kgetWaterFlowUrl;
+        
+        [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_1" delegate:self];
+    }
+    else if(mtag==2)
+    {
+        NSString *url=kgetWaterFlowUrl;
+        
+        [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_2" delegate:self];
+    }
 }
 -(void)loadMore
 {
@@ -147,7 +163,7 @@
     
     JsonResult *result=[[JsonResult alloc]initwithDic:mdic];
     
-    if([mkey isEqualToString:@"kgetWaterFlowUrl"])
+    if([mkey isEqualToString:@"kgetWaterFlowUrl_1"])
     {
         if([result.code intValue] ==0)
         {
@@ -156,10 +172,29 @@
             for(int i=0;i<typeArr.count;i++)
             {
                 WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[typeArr objectAtIndex:i]];
-                [mArr addObject:wobj];
+                [mArr_1 addObject:wobj];
             }
 
-               [waterFlow reloadData];
+               [waterFlow_1 reloadData];
+        }
+        else
+        {
+            //[self showalertview_text:result.msg frame:<#(CGRect)#> autoHiden:<#(BOOL)#>
+        }
+    }
+    if([mkey isEqualToString:@"kgetWaterFlowUrl_2"])
+    {
+        if([result.code intValue] ==0)
+        {
+            NSArray *typeArr=(NSArray *)result.data;
+            
+            for(int i=0;i<typeArr.count;i++)
+            {
+                WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[typeArr objectAtIndex:i]];
+                [mArr_2 addObject:wobj];
+            }
+            
+            [waterFlow_2 reloadData];
         }
         else
         {
@@ -234,12 +269,21 @@
     return 2;
 }
 
-- (NSInteger)numberOfAllWaterFlowView:(WaterFlowView *)waterFlowView{
+- (NSInteger)numberOfAllWaterFlowView:(WaterFlowView *)waterFlowView
+{
+    if(waterFlowView == waterFlow_1)
+    {
+        return [mArr_1 count];
+    }
+    else
+    {
+        return [mArr_2 count];
+    }
     
-    return [mArr count];
 }
 
-- (UIView *)waterFlowView:(WaterFlowView *)waterFlowView cellForRowAtIndexPath:(IndexPath *)indexPath{
+- (UIView *)waterFlowView:(WaterFlowView *)waterFlowView cellForRowAtIndexPath:(IndexPath *)indexPath
+{
     
     ImageViewCell *view = [[ImageViewCell alloc] initWithIdentifier:nil];
     
@@ -250,41 +294,88 @@
 -(void)waterFlowView:(WaterFlowView *)waterFlowView  relayoutCellSubview:(UIView *)view withIndexPath:(IndexPath *)indexPath
 {
     //arrIndex是某个数据在总数组中的索引
-    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-
-    WaterFlowObj *obj = [mArr objectAtIndex:arrIndex];
-
-    ImageViewCell *imageViewCell = (ImageViewCell *)view;
-    imageViewCell.indexPath = indexPath;
-    imageViewCell.columnCount = waterFlowView.columnCount;
-    [imageViewCell relayoutViews];
-    [imageViewCell setbtnObjct:obj];
+    if(waterFlowView == waterFlow_1)
+    {
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        
+        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
+        
+        ImageViewCell *imageViewCell = (ImageViewCell *)view;
+        imageViewCell.indexPath = indexPath;
+        imageViewCell.columnCount = waterFlowView.columnCount;
+        [imageViewCell relayoutViews];
+        [imageViewCell setbtnObjct:obj];
+    }
+    else
+    {
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        
+        WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
+        
+        ImageViewCell *imageViewCell = (ImageViewCell *)view;
+        imageViewCell.indexPath = indexPath;
+        imageViewCell.columnCount = waterFlowView.columnCount;
+        [imageViewCell relayoutViews];
+        [imageViewCell setbtnObjct:obj];
+    }
+   
 }
 
 
 #pragma mark WaterFlowViewDelegate
-- (CGFloat)waterFlowView:(WaterFlowView *)waterFlowView heightForRowAtIndexPath:(IndexPath *)indexPath{
-    
-    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-    WaterFlowObj *obj = [mArr objectAtIndex:arrIndex];
-    
-    float width = 0.0f;
-    float height = 0.0f;
-    if (obj)
+- (CGFloat)waterFlowView:(WaterFlowView *)waterFlowView heightForRowAtIndexPath:(IndexPath *)indexPath
+{
+    if(waterFlowView == waterFlow_1)
     {
-        width =100;// [[dict objectForKey:@"width"] floatValue];
-        height = 160;//[[dict objectForKey:@"height"] floatValue];
-        if(arrIndex%2==0)
-            height=170;
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
+        
+        float width = 0.0f;
+        float height = 0.0f;
+        if (obj)
+        {
+            width =100;// [[dict objectForKey:@"width"] floatValue];
+            height = 160;//[[dict objectForKey:@"height"] floatValue];
+            if(arrIndex%2==0)
+                height=170;
+        }
+        
+        return waterFlowView.cellWidth * (height/width);
     }
+     else
+     {
+         int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+         WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
+         
+         float width = 0.0f;
+         float height = 0.0f;
+         if (obj)
+         {
+             width =100;// [[dict objectForKey:@"width"] floatValue];
+             height = 160;//[[dict objectForKey:@"height"] floatValue];
+             if(arrIndex%2==0)
+                 height=170;
+         }
+         
+         return waterFlowView.cellWidth * (height/width);
+     }
     
-    return waterFlowView.cellWidth * (height/width);
 }
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
-    IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
-    [self.navigationController pushViewController:detail animated:YES];
-    [detail release];
+    if(waterFlowView==waterFlow_1)
+    {
+        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
+        [self.navigationController pushViewController:detail animated:YES];
+        [detail release];
+    }
+    else
+    {
+        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
+        [self.navigationController pushViewController:detail animated:YES];
+        [detail release];
+    }
+    
 }
 @end

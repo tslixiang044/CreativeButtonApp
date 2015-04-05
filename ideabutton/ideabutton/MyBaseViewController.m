@@ -19,10 +19,14 @@
     UIView *loadView;
     MyToolView *toolview;
     UIView *alertView2;
+    
 }
 @end
 
 @implementation MyBaseViewController
+@synthesize mtag;
+
+
 
 - (void)viewDidLoad
 {
@@ -209,15 +213,18 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
--(void)gotoViewcontroller:(NSString *)mtag
+-(void)gotoViewcontroller:(NSString *)mtag2
 {
-    if([mtag isEqualToString:@"按友圈"])
+    if([mtag2 isEqualToString:@"按友圈"])
     {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
-    else if([mtag isEqualToString:@"我的主页"])
+    else if([mtag2 isEqualToString:@"我的主页"])
     {
-        if(![self.title isEqualToString:@"个人资料"])
+        
+        
+        
+        if(![self.mtag isEqualToString:@"个人资料"])
         {
             PersonaInfomationViewController *infomation=[PersonaInfomationViewController new];
             [self.navigationController pushViewController:infomation animated:YES];
@@ -225,7 +232,7 @@
         
                                                      
     }
-    else if([mtag isEqualToString:@"设置"])
+    else if([mtag2 isEqualToString:@"设置"])
     {
         if(![self.title isEqualToString:@"设置"])
         {
@@ -235,7 +242,7 @@
         
         
     }
-    else if([mtag isEqualToString:@"提建议"])
+    else if([mtag2 isEqualToString:@"提建议"])
     {
         if(![self.title isEqualToString:@"意见反馈"])
         {
@@ -250,7 +257,7 @@
 
 
 
--(void)showAlertView_number:(int)Num
+-(void)showAlertView_desc:(NSString *)desc btntitle:(NSString *)mtitle
 {
     if(alertView2==nil)
     {
@@ -291,7 +298,7 @@
         btngo.frame = CGRectMake((width-90)/2, 140, 100, 50);
         btngo.layer.cornerRadius = 5;
         [btngo setBackgroundImage:[UIImage imageNamed:@"btn_bg_bai.png"] forState:UIControlStateNormal];
-        [btngo setTitle:@"明天再来" forState:UIControlStateNormal];
+        btngo.tag=889;
         btngo.titleLabel.font = [UIFont systemFontOfSize:15];
         btngo.backgroundColor=COLOR(131, 131, 131);
         [btngo setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -302,8 +309,13 @@
     
     UIView *view_center=[alertView2 viewWithTag:886];
     UILabel *lbldesc=(UILabel *)[view_center viewWithTag:888];
-    lbldesc.text=[NSString stringWithFormat:@"今天免费产生的idea数量已达上限%i个",Num];
+    lbldesc.text=desc;
     //---------
+    
+    UIButton *btngo=(UIButton *)[view_center viewWithTag:889];
+     [btngo setTitle:mtitle forState:UIControlStateNormal];
+    
+    
     alertView2.hidden=NO;
     [self.view bringSubviewToFront:alertView2];
     
@@ -356,4 +368,17 @@
     [self.navigationController popViewControllerAnimated:NO];
     
 }
+//--------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 @end

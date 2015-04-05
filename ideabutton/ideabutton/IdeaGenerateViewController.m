@@ -200,8 +200,8 @@
             }
             else
             {
-                [self showAlertView_number:81];
-            }
+                [self showAlertView_desc:@"今天免费产生的idea数量已达上限81" btntitle:@"明天再来"  ];
+                            }
             
             break;
             

@@ -43,5 +43,8 @@
 +(NSString*) encodedUrlString:(NSString *)str;
 +(NSString *)deEncodedUrlString:(NSString *)str;
 
++(BOOL)CheckisFirst:(NSString *)str_check_key;
++(void)setisfirstFalse:(NSString *)str_check_key;
+
 
 @end

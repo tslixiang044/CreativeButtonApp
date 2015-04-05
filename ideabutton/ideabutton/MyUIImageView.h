@@ -10,4 +10,6 @@
 
 @interface MyUIImageView : UIImageView
 
+
+- (id)initWithFrame_head:(CGRect)frame;
 @end

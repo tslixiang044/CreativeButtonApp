@@ -7,7 +7,7 @@
 //
 
 #import "MyNavigationViewController.h"
-
+#import "Config.h"
 @interface MyNavigationViewController ()
 
 @end
@@ -33,11 +33,11 @@
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
     {
-        self.navigationBar.tintColor = [UIColor redColor];
+        self.navigationBar.tintColor =kGetNavbarColor;
     }
     else
     {
-        self.navigationBar.barTintColor =[UIColor redColor];
+        self.navigationBar.barTintColor =kGetNavbarColor;
         self.navigationBar.tintColor=[UIColor whiteColor];
     }
     

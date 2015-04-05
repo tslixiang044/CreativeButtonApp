@@ -21,7 +21,7 @@
 #define NickNameTag   4
 #define MailTag     5
 
-@interface RegisterViewController()<UITextFieldDelegate>
+@interface RegisterViewController()<UITextFieldDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     NSInteger gender;
     ChooseCityViewController* chooseCityViewController;
@@ -291,7 +291,20 @@
     switch (sender.tag)
     {
         case AddHead:
+        {
+            UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:@"上传图像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil ];
             
+            [sheet addButtonWithTitle:@"相册"];
+            [sheet addButtonWithTitle:@"拍照"];
+            
+            [sheet addButtonWithTitle:@"取消"];
+            
+            sheet.cancelButtonIndex=sheet.numberOfButtons-1;
+            
+            [sheet showInView:[UIApplication sharedApplication].keyWindow];
+            
+            
+        }
             break;
         case SelectMan:
             if (self.womenSelected)
@@ -341,7 +354,29 @@
             break;
     }
 }
-
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"index=%i",buttonIndex);
+    if(buttonIndex==0)
+    {
+        UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+        picker.delegate=self;
+        picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+    else if(buttonIndex==1)
+    {
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+        {
+            UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+            picker.delegate=self;
+            picker.sourceType=UIImagePickerControllerSourceTypeCamera;
+            
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }
+}
 -(void)registerAccount
 {
     CGRect frame = CGRectMake(90,380,150,20);

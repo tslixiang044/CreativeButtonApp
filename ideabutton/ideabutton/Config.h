@@ -17,10 +17,11 @@
 
 //-------------------------
 
-
-
-
 #define COLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+#define kGetNavbarColor [UIColor colorWithRed:47/255.0 green:44/255.0 blue:43/255.0 alpha:1]
+
+#define kgettitle @"BUTTON 4 CREATIVE"
 
 #define IS_iOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? YES : NO)
 

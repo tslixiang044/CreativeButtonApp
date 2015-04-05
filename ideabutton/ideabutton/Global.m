@@ -250,7 +250,54 @@ static Global *mglobal;
 
 
 
-
++(BOOL)CheckisFirst:(NSString *)str_check_key
+{
+    BOOL isfirst=true;
+    
+    NSData *mdata0 = [[NSUserDefaults standardUserDefaults] objectForKey:@"isfirst"];
+    if(mdata0)
+    {
+        NSMutableDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData: mdata0];
+        if(dic.count>0)
+        {
+            
+            if([[dic objectForKey:str_check_key] isEqualToString:@"1"])
+            {
+                isfirst=false;
+            }
+        }
+    }
+    
+    
+    return isfirst;
+}
++(void)setisfirstFalse:(NSString *)str_check_key
+{
+    
+    NSMutableDictionary *dic;
+    NSData *mdata0 = [[NSUserDefaults standardUserDefaults] objectForKey:@"isfirst"];
+    if(mdata0)
+    {//有
+        dic = [NSKeyedUnarchiver unarchiveObjectWithData: mdata0];
+        if(dic.count>0)
+        {
+            [dic setObject:@"1" forKey:str_check_key];
+        }
+    }
+    else
+    {
+        //无
+        dic=[[NSMutableDictionary alloc]init] ;
+        [dic setObject:@"1" forKey:str_check_key];
+    }
+    
+    //----------
+    NSData *mdata = [NSKeyedArchiver archivedDataWithRootObject:dic];
+    [[NSUserDefaults standardUserDefaults] setObject:mdata forKey:@"isfirst"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //-----------
+}
 
 
 @end

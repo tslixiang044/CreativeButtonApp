@@ -35,16 +35,16 @@
         
         if(user)
         {
-            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200, 0, 200, 300);
+            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200, 0, 200, 300-2);
         }
         else
         {
-            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200, 0, 200, 240);
+            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200, 0, 200, 240-2);
         }
         
         mtableview.backgroundColor=COLOR(21, 21, 23);;
         mtableview.backgroundView.backgroundColor=COLOR(21, 21, 23);
-//        mtableview.scrollEnabled=NO;
+        mtableview.scrollEnabled=NO;
         mtableview.dataSource=self;
         mtableview.delegate=self;
         [self addSubview:mtableview];
@@ -90,6 +90,7 @@
        cell=[[MytoolviewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
        cell.backgroundColor=COLOR(21, 21, 23);
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+       
     }
 
     if(indexPath.row==0)
@@ -111,6 +112,8 @@
     {
         cell.imgview_left.image=[UIImage imageNamed:@"icon_gfwb"];
         cell.lbltitle.text=@"设置";
+        
+        
     }
    
     else if(indexPath.row==4 && user)

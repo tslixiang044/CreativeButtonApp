@@ -25,13 +25,15 @@
     [self.window makeKeyAndVisible];
     //-----------------------------------
     
-    BOOL isfirst=YES;
+    BOOL isfirst=[Global CheckisFirst:@"startpage"];
+    
     if(isfirst)
     {
         [self initStartPage];
     }
     else
     {
+        
         [self gomain];
     }
     
@@ -80,6 +82,7 @@
 }
 -(void)btnstartAction
 {
+    [Global setisfirstFalse:@"startpage"];
     [self gomain];
 }
 -(void)gomain
