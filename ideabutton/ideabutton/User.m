@@ -27,13 +27,14 @@
         self.userCode = [[uDict objectForKey:@"userCode"] integerValue];
         self.userFullnamePrivate = [[uDict objectForKey:@"userFullnamePrivate"] integerValue];
         self.userLevel = [[uDict objectForKey:@"userLevel"] integerValue];
+        self.auditStatus = [[uDict objectForKey:@"auditStatus"] integerValue];
     }
     return self;
 }
 
 - (NSDictionary*)asDictionary
 {
-        NSDictionary *userDict = @{@"collegePrivate":@(self.collegePrivate),@"nickname":self.nickName,@"token":self.token,@"userCode":@(self.userCode),@"gender":@(self.gender),@"userStatus":@(self.userStatus),@"majorPrivate":@(self.majorPrivate),@"userFullnamePrivate":@(self.userFullnamePrivate),@"userLevel":@(self.userLevel)};
+        NSDictionary *userDict = @{@"collegePrivate":@(self.collegePrivate),@"nickname":self.nickName,@"token":self.token,@"userCode":@(self.userCode),@"gender":@(self.gender),@"userStatus":@(self.userStatus),@"majorPrivate":@(self.majorPrivate),@"userFullnamePrivate":@(self.userFullnamePrivate),@"userLevel":@(self.userLevel),@"auditStatus":@(self.auditStatus)};
         
         return userDict;
 }

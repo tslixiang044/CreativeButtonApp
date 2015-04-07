@@ -16,6 +16,7 @@
 @interface WaitPageViewController()
 
 @property(nonatomic, strong)NSDictionary* myDict;
+@property(nonatomic, strong)NSArray* ideaArr;
 
 @end
 
@@ -38,8 +39,6 @@
     
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
-    [self createInputView];
-    
     [self createIdea];
     
 }
@@ -47,28 +46,29 @@
 {
     [self showMenuView];
 }
--(void)createInputView
-{
-   [self ShowLoadingView];
-
-}
 
 -(void)createIdea
 {
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        NSArray* ideaArr = [[API sharedInstance]createIdea:self.myDict];
+        self.ideaArr = [[API sharedInstance]createIdea:self.myDict];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
-            if ([ideaArr count] != 0)
+            if ([self.ideaArr count] != 0)
             {
-                [self.navigationController pushViewController:[[IdeaGenerateViewController alloc]initWithData:ideaArr] animated:YES];
+                [self ShowLoadingView];
+                
+                [self performSelector:@selector(showController) withObject:nil afterDelay:3];
             }
         });
     });
+}
 
+-(void) showController
+{
+    [self.navigationController pushViewController:[[IdeaGenerateViewController alloc]initWithData:self.ideaArr] animated:YES];
 }
 
 

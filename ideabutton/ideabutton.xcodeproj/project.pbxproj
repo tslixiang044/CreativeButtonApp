@@ -786,6 +786,8 @@
 		E981907F1A8853EC0025F284 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E98DA1A91AD3DBCF0056DA92 /* General */,
+				E98DA1A81AD3DB5E0056DA92 /* startPage */,
 				E932E5771AB9245300839FA4 /* ideaCreate */,
 				E932E5751AB9146600839FA4 /* ideaRuleChoose */,
 				E932E56D1AB913F100839FA4 /* forgetPSW */,
@@ -798,34 +800,16 @@
 				89AF6B391AA45D9D004F88F1 /* icon_qipao.png */,
 				89AF6B361AA3FD4C004F88F1 /* icon_jiantou_zuo@2x.png */,
 				E941078B1AA2E4CC002D78B2 /* error@2x.png */,
-				89AC5C761AA1C1CF005DA279 /* btn_close@2x.png */,
 				E94107731AA1B25D002D78B2 /* icon_gfwb@2x.png */,
-				89A85CB71ABC1EFE00490339 /* all_btn_qd@2x.png */,
 				E94107741AA1B25D002D78B2 /* icon_gfwx@2x.png */,
 				E94107751AA1B25D002D78B2 /* icon_gfwz@2x.png */,
 				E94107761AA1B25D002D78B2 /* icon_sysm@2x.png */,
-				E94107771AA1B25D002D78B2 /* icon_tcdl@2x.png */,
 				E94107781AA1B25D002D78B2 /* icon_wdzy@2x.png */,
-				E94107791AA1B25D002D78B2 /* icon_wyfx@2x.png */,
-				E941076F1AA1A62A002D78B2 /* icon_add@2x.png */,
-				E94107701AA1A62A002D78B2 /* icon_sc@2x.png */,
-				89AC5C6F1AA165D6005DA279 /* userheader@2x.png */,
-				E98C48F11A8B7BA300287EF8 /* gif.gif */,
-				E97258B51A89A9EF00F0ABB8 /* btn_logo@2x.png */,
 				E972584C1A89A41E00F0ABB8 /* icon_brbz@2x.png */,
 				E972584D1A89A41E00F0ABB8 /* icon_chuizi@2x.png */,
-				E97258311A88A49400F0ABB8 /* icon_more_all@2x.png */,
 				E98190831A885DF30025F284 /* icon_wbzd@2x.png */,
 				E98190841A885DF30025F284 /* icon_wgzd@2x.png */,
-				89B4FA6B1ABAEEED007C1805 /* btn_start@2x.png */,
-				89B4FA6C1ABAEEED007C1805 /* strartpage_1@2x.png */,
-				89B4FA6D1ABAEEED007C1805 /* strartpage_2@2x.png */,
-				89B4FA6E1ABAEEED007C1805 /* strartpage_3@2x.png */,
 				E98190851A885DF30025F284 /* icon_wscd@2x.png */,
-				894924D81AD3A7C6000F392C /* icon_admin1@2x.png */,
-				894924D91AD3A7C6000F392C /* icon_sz@2x.png */,
-				894924DA1AD3A7C6000F392C /* icon_tjy@2x.png */,
-				894924DB1AD3A7C6000F392C /* mume_icon_jiantou@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -882,6 +866,38 @@
 				E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */,
 			);
 			name = ProductandAppealList;
+			sourceTree = "<group>";
+		};
+		E98DA1A81AD3DB5E0056DA92 /* startPage */ = {
+			isa = PBXGroup;
+			children = (
+				89B4FA6B1ABAEEED007C1805 /* btn_start@2x.png */,
+				89B4FA6C1ABAEEED007C1805 /* strartpage_1@2x.png */,
+				89B4FA6D1ABAEEED007C1805 /* strartpage_2@2x.png */,
+				89B4FA6E1ABAEEED007C1805 /* strartpage_3@2x.png */,
+			);
+			name = startPage;
+			sourceTree = "<group>";
+		};
+		E98DA1A91AD3DBCF0056DA92 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				894924D81AD3A7C6000F392C /* icon_admin1@2x.png */,
+				E94107791AA1B25D002D78B2 /* icon_wyfx@2x.png */,
+				894924D91AD3A7C6000F392C /* icon_sz@2x.png */,
+				E94107771AA1B25D002D78B2 /* icon_tcdl@2x.png */,
+				E97258311A88A49400F0ABB8 /* icon_more_all@2x.png */,
+				89AC5C6F1AA165D6005DA279 /* userheader@2x.png */,
+				89A85CB71ABC1EFE00490339 /* all_btn_qd@2x.png */,
+				894924DA1AD3A7C6000F392C /* icon_tjy@2x.png */,
+				89AC5C761AA1C1CF005DA279 /* btn_close@2x.png */,
+				E94107701AA1A62A002D78B2 /* icon_sc@2x.png */,
+				E941076F1AA1A62A002D78B2 /* icon_add@2x.png */,
+				E97258B51A89A9EF00F0ABB8 /* btn_logo@2x.png */,
+				894924DB1AD3A7C6000F392C /* mume_icon_jiantou@2x.png */,
+				E98C48F11A8B7BA300287EF8 /* gif.gif */,
+			);
+			name = General;
 			sourceTree = "<group>";
 		};
 		E9DB90E51AC1543B00F66467 /* PerfectInfo */ = {

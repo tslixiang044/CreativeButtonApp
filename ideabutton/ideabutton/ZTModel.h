@@ -28,5 +28,6 @@
 @property (nonatomic, assign) NSInteger userFullnamePrivate;
 @property (nonatomic, assign) NSInteger userLevel;
 @property (nonatomic, assign) NSInteger majorPrivate;
+@property (nonatomic, assign) NSInteger auditStatus;
 
 @end

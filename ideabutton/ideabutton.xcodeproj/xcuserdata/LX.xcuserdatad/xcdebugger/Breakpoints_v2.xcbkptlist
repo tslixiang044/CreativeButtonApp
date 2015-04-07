@@ -146,11 +146,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ideabutton/WaitPageViewController.m"
-            timestampString = "446996610.86821"
+            timestampString = "450091623.098751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-createIdea"
             landmarkType = "5">
          </BreakpointContent>
