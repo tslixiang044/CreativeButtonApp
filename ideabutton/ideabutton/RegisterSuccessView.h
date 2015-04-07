@@ -10,18 +10,16 @@
 //---------------------
 @class RegisterSuccessViewController;
 @protocol RegisterSuccessViewDelegate <NSObject>
--(void)btnok;
+
+-(void)start;
+-(void)perfectInfo;
+//-(void)perfectStudentInfo;
 @end
 //---------------------
 
-
-
-
 @interface RegisterSuccessView : UIView
-
-
-
 
 @property(nonatomic,assign)NSInteger flag;
 @property(assign)id<RegisterSuccessViewDelegate>delegate;
+
 @end

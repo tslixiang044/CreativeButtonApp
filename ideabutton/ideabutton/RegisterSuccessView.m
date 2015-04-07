@@ -80,28 +80,27 @@
     return self;
 }
 
-
-
-
-
-
 -(void)buttonClick:(UIButton*)sender
 {
     switch (sender.tag)
     {
         case PerfectInfoBtnTag:
         {
+            [self removeFromSuperview];
+            
             if (self.flag == 1)
             {
-                //[self.navigationController pushViewController:[[PerfectInfoViewController alloc]init] animated:YES];
+                if (delegate)
+                {
+                    [delegate perfectInfo];
+                }
             }
             else if (self.flag == 2)
             {
-                //[self.navigationController pushViewController:[[PrefectStudentInfoViewController alloc]init] animated:YES];
-            }
-            else
-            {
-                
+                if (delegate)
+                {
+//                    [delegate perfectStudentInfo];
+                }
             }
         }
             break;
@@ -110,7 +109,7 @@
             [self removeFromSuperview];
             if(delegate)
             {
-                [delegate btnok];
+                [delegate start];
             }
         }
             break;

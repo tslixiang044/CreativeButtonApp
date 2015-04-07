@@ -470,10 +470,10 @@
     return [retDict objectForKey:@"data"];
 }
 
-- (NSInteger)userIdeasRemainNumber:(NSDictionary*)dict
+- (NSInteger)userIdeasRemainderNumber:(NSDictionary*)dict
 {
     NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
-    [urlStr appendString:@"check/param/appeal/list"];
+    [urlStr appendString:@"idea/userIdeasRemaining"];
     [urlStr appendString:[self constructQueryParamStr:dict]];
     
     NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];

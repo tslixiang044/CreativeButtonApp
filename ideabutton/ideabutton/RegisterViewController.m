@@ -16,6 +16,9 @@
 #import "RegisterSuccessView.h"
 #import "Config.h"
 #import "UIImage+UIImageScale.h"
+#import "IAlsoPressViewController.h"
+#import "PrefectStudentInfoViewController.h"
+#import "PerfectInfoViewController.h"
 
 #define Height  45
 #define AddHead     1
@@ -59,11 +62,6 @@
 
 -(void)viewDidLoad
 {
-    
-    
-    
-    
-    
     [super viewDidLoad];
     
     self.manSelected = NO;
@@ -414,31 +412,10 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-
-
-
-
 -(void)registerAccount
 {
-    
-//    RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight)];
-//    suc.delegate=self;
-//    suc.flag=1;
-//    
-//    
-//   
-//    [[UIApplication sharedApplication].keyWindow addSubview:suc];
-//    
-//    
-//    return;
     CGRect frame = CGRectMake(90,380,150,20);
-    
-    
-    
-    
-    
-    
+
     NSDictionary *params = [self invalidateInput];
     if(!params)
     {
@@ -459,7 +436,11 @@
                 [db saveUser:user];
                 [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
                 
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight)];
+                suc.delegate=self;
+                suc.flag=1;
+
+                [[UIApplication sharedApplication].keyWindow addSubview:suc];
             }
             else
             {
@@ -471,10 +452,25 @@
         });
     });
 }
--(void)btnok
+
+-(void)start
 {
-    NSLog(@"aaa");
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+    [self.navigationController pushViewController:press animated:YES];
 }
+
+-(void)perfectInfo
+{
+    [self.navigationController pushViewController:[[PerfectInfoViewController alloc] init] animated:YES];
+}
+
+//-(void)perfectStudentInfo
+//{
+//    [self.navigationController pushViewController:[[PrefectStudentInfoViewController alloc]init] animated:YES];
+//}
+
 -(NSDictionary*)invalidateInput
 {
     CGRect frame = CGRectMake(90,380,150,20);

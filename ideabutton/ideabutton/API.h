@@ -57,5 +57,5 @@
 - (NSArray*)productList:(NSDictionary*)dict;        //产品选项列表
 - (NSArray*)appealList:(NSDictionary*)dict;         //诉求点选项列表
 
-- (NSInteger)userIdeasRemainNumber:(NSDictionary*)dict;     //用户当日剩余点子数
+- (NSInteger)userIdeasRemainderNumber:(NSDictionary*)dict;     //用户当日剩余点子数
 @end

@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
 
-
-
-
-
-
 @interface RegisterViewController : MyBaseViewController
 {
     

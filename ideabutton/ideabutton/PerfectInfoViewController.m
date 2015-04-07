@@ -69,7 +69,9 @@
 
 - (void)show
 {
-    [self.navigationController pushViewController:[[PrefectStudentInfoViewController alloc] init] animated:YES];
+    PrefectStudentInfoViewController* infoViewController = [[PrefectStudentInfoViewController alloc] init];
+    infoViewController.carrerType = 0;
+    [self.navigationController pushViewController:infoViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
