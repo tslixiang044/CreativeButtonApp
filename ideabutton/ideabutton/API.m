@@ -86,7 +86,7 @@
 
 - (User*)newUserHaveIcon:(NSDictionary*)userDict
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"register"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"registerIcon"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
     NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
     
@@ -105,11 +105,51 @@
 
 -(User*)updateUser:(NSDictionary*)userDict
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"updateUser"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/updateUser"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
     NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
     
     if(!retDict)
+    {
+        return nil;
+    }
+    
+    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
+    if(user)
+    {
+        self.user = user;
+    }
+    return user;
+}
+
+-(User*)updateUserField:(NSDictionary*)userDict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/updateUserField"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
+    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if(!retDict)
+    {
+        return nil;
+    }
+    
+    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
+    if(user)
+    {
+        self.user = user;
+    }
+    return user;
+}
+
+-(User*)userInfo:(NSDictionary*)userDict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"check/userInfo"];
+    [urlStr appendString:[self constructQueryParamStr:userDict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
     {
         return nil;
     }
@@ -137,6 +177,19 @@
     [urlStr appendString:[self constructQueryParamStr:dict]];
     
     [self doRequestAndParseWithURL:urlStr];
+}
+
+- (NSDictionary*)userMessages:(NSDictionary*)criteria
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/userMessages"];
+    
+    NSDictionary *userDict = [self doRequestAndParseWithURL:urlStr header:criteria];
+    if(!userDict)
+    {
+        return nil;
+    }
+    
+    return [userDict objectForKey:@"data"];
 }
 
 - (NSArray*)createIdea:(NSDictionary*)dict
@@ -290,6 +343,147 @@
     }
     
     return [retDict objectForKey:@"data"];
+}
+
+
+- (NSArray*)friendsIdeas:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"idea/friendsIdeas"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+- (NSArray*)userIdeas:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"idea/userIdeas"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+- (void)saveSuggestion:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/suggestion/add"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    [self doPostAndParseWithURL:urlStr data:bodyData];
+}
+
+- (NSArray*)suggestionList:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"suggestion/list"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+- (NSDictionary*)suggestionDetail:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"suggestion/detail"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+- (void)saveComment:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/sns/addComment"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    [self doPostAndParseWithURL:urlStr data:bodyData];
+}
+
+- (void)clickPraise:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/sns/clickPraise"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    [self doPostAndParseWithURL:urlStr data:bodyData];
+}
+
+- (void)saveAndForward:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/sns/addForward"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    [self doPostAndParseWithURL:urlStr data:bodyData];
+}
+
+- (NSArray*)productList:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"check/param/product/list"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+- (NSArray*)appealList:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"check/param/appeal/list"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return nil;
+    }
+    
+    return [retDict objectForKey:@"data"];
+}
+
+- (NSInteger)userIdeasRemainNumber:(NSDictionary*)dict
+{
+    NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlStr appendString:@"check/param/appeal/list"];
+    [urlStr appendString:[self constructQueryParamStr:dict]];
+    
+    NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
+    
+    if (!retDict)
+    {
+        return 0;
+    }
+    
+    return [[retDict objectForKey:@"data"] integerValue];
 }
 
 //Common

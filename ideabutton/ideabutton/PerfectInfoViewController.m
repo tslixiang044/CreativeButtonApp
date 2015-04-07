@@ -7,6 +7,7 @@
 //
 
 #import "PerfectInfoViewController.h"
+#import "PrefectStudentInfoViewController.h"
 
 @interface PerfectInfoViewController ()
 
@@ -68,7 +69,7 @@
 
 - (void)show
 {
-    
+    [self.navigationController pushViewController:[[PrefectStudentInfoViewController alloc] init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

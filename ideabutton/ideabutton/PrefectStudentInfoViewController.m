@@ -15,7 +15,13 @@
 #define CheckButtonTag5     4
 #define OkButtonTag         5
 
-@interface PrefectStudentInfoViewController ()<UITextFieldDelegate>
+#define Height  45
+
+@interface PrefectStudentInfoViewController ()<UITextFieldDelegate,UIActionSheetDelegate>
+
+@property(nonatomic, strong)UIScrollView *mainScroll;
+@property(nonatomic, assign)CGFloat lastScrollOffset;
+@property(nonatomic, strong)UITextField *inFocusTextField;
 
 @end
 
@@ -46,11 +52,41 @@
     
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
-    [self createInputView];
-    // Do any additional setup after loading the view.
+    CGFloat contentHeight = 400;
+    UIScrollView *mainScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height)];
+    mainScroll.contentSize = CGSizeMake(320, contentHeight);
+    self.mainScroll = mainScroll;
+    [self.view addSubview:mainScroll];
+    
+    UIView *editingView = [self createInputView];
+    editingView.frame = CGRectMake(20, 50, 280, contentHeight);
+    [mainScroll addSubview:editingView];
+    
+    //注册键盘通知获取键盘高度
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
 }
 
-- (void) createInputView
+- (void)keyboardWillShow:(NSNotification *)noti
+{
+    NSDictionary* userInfo = [noti userInfo];
+    
+    CGFloat keyboardHeight = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height+50;
+    self.lastScrollOffset = self.mainScroll.contentOffset.y;
+    
+    if (self.inFocusTextField == repineCompanyTextField)
+    {
+        CGRect inputRect = [self.inFocusTextField.superview convertRect:CGRectMake(0, repineCompanyTextField.frame.origin.y, 320, Height) toView:self.view];
+        CGFloat inputRectBottomHeight = self.view.frame.size.height - (inputRect.origin.y + Height);
+        CGFloat heightDiff = inputRectBottomHeight - keyboardHeight;
+        if(heightDiff < 0)
+        {
+            CGFloat newScrollOffset = self.mainScroll.contentOffset.y-heightDiff;
+            [self.mainScroll setContentOffset:CGPointMake(0, newScrollOffset) animated:YES];
+        }
+    }
+}
+
+- (UIView*) createInputView
 {
     UIView* backgroundView = [[UIView alloc] initWithFrame:CGRectMake(20, 50, 280, 400)];
     backgroundView.backgroundColor = COLOR(21, 21, 22);
@@ -165,12 +201,21 @@
     [okBtn setImage:[UIImage imageNamed:@"register/btn_ok"] forState:UIControlStateNormal];
     [okBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:okBtn];
+    
+    return backgroundView;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    self.inFocusTextField = textField;
+    return YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == graduationTextField)
     {
+        [self chooseGraduation];
         [textField resignFirstResponder];
     }
 }
@@ -179,9 +224,19 @@
 {
     [textField resignFirstResponder];
     
-//    [self.mainScroll setContentOffset:CGPointMake(0, self.lastScrollOffset) animated:YES];
+    [self.mainScroll setContentOffset:CGPointMake(0, self.lastScrollOffset) animated:YES];
     
     return YES;
+}
+
+- (void)chooseGraduation
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"毕业时间"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:@"2015"
+                                                    otherButtonTitles:@"2016", @"2017",@"2018", nil];
+    [actionSheet showInView:self.view];
 }
 
 - (void)buttonClicked:(UIButton*)sender
@@ -264,6 +319,37 @@
             break;
         default:
             break;
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex)
+    {
+        return;
+    }
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+            graduationTextField.text = @"2015";
+            break;
+        }
+        case 1:
+        {
+            graduationTextField.text = @"2016";
+            break;
+        }
+        case 2:
+        {
+            graduationTextField.text = @"2017";
+            break;
+        }
+        case 3:
+        {
+            graduationTextField.text = @"2018";
+            break;
+        }
     }
 }
 

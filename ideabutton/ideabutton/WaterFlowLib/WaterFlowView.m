@@ -191,23 +191,23 @@
     float height=self.frame.size.height;
     if(new_y<20)
     {
-        NSLog(@"33333333333");
+//        NSLog(@"33333333333");
     }
     else if(new_y+height>scrollView.contentSize.height-20)
     {
         //不处理
-        NSLog(@"4444444444");
+//        NSLog(@"4444444444");
     }
     else if(new_y != Content_old_y )
     {
         
         if (new_y > Content_old_y)
         {
-            NSLog(@"1111111111");
+//            NSLog(@"1111111111");
         }
         else
         {
-            NSLog(@"222222222222");
+//            NSLog(@"222222222222");
         }
         
         Content_old_y = new_y;

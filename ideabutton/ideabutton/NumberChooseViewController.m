@@ -57,16 +57,19 @@
     [self.view addSubview:view];
     
     UIButton* NumNineBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 120, 60, 60)];
+    NumNineBtn.tag = 9;
     [NumNineBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber09"] forState:UIControlStateNormal];
     [NumNineBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumNineBtn];
     
     UIButton* NumeighteenBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 60, 60)];
+    NumeighteenBtn.tag = 18;
     [NumeighteenBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber18"] forState:UIControlStateNormal];
     [NumeighteenBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumeighteenBtn];
     
     UIButton* NumTwentySevenBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 60, 60)];
+    NumTwentySevenBtn.tag = 27;
     [NumTwentySevenBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber27"] forState:UIControlStateNormal];
     [NumTwentySevenBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumTwentySevenBtn];
@@ -74,7 +77,7 @@
 
 -(void)buttonClicked:(UIButton*)sender
 {
-    [self.myDict setValue:sender.titleLabel.text forKey:@"ideaNum"];
+    [self.myDict setValue:[NSString stringWithFormat:@"%d",sender.tag] forKey:@"ideaNum"];
     [self.navigationController pushViewController:[[WaitPageViewController alloc]initWithDict:self.myDict] animated:YES];
 }
 

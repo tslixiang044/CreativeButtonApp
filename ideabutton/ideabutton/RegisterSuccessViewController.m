@@ -7,6 +7,8 @@
 //
 
 #import "RegisterSuccessViewController.h"
+#import "PerfectInfoViewController.h"
+#import "PrefectStudentInfoViewController.h"
 
 #define PerfectInfoBtnTag       1
 #define StartBtnTag             2
@@ -81,11 +83,11 @@
         {
             if (self.flag == 1)
             {
-                
+                [self.navigationController pushViewController:[[PerfectInfoViewController alloc]init] animated:YES];
             }
             else if (self.flag == 2)
             {
-                
+                [self.navigationController pushViewController:[[PrefectStudentInfoViewController alloc]init] animated:YES];
             }
             else
             {
@@ -95,18 +97,7 @@
             break;
         case StartBtnTag:
         {
-            if (self.flag == 1)
-            {
-                
-            }
-            else if (self.flag == 2)
-            {
-                
-            }
-            else
-            {
-                
-            }
+            
         }
             break;
             
