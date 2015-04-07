@@ -24,7 +24,10 @@
     
     [self createInputView];
 }
-
+-(void)btnright
+{
+    [self showMenuView];
+}
 -(void)createInputView
 {
     UIView* groundView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 280, 470)];

@@ -9,7 +9,7 @@
 #import "FeedBackViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface FeedBackViewController ()
+@interface FeedBackViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -46,16 +46,21 @@
     txtcontact=[[UITextField alloc]initWithFrame:CGRectMake(5+5, 110+8, 310-10, 30)];
     txtcontact.textColor=[UIColor whiteColor];
     txtcontact.clearButtonMode=UITextFieldViewModeWhileEditing;
-    txtcontact.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"手机号/Email:方便我们及时给您回复" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+    txtcontact.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入你的手机/邮箱/qq(选填)" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     txtcontact.font=[UIFont fontWithName:@"Arial" size:16];
     txtcontact.backgroundColor=[UIColor clearColor];
     txtcontact.textAlignment=NSTextAlignmentLeft;
   
+    [txtcontact.layer setBorderColor: [[UIColor grayColor] CGColor]];
+    [txtcontact.layer setBorderWidth: 1.0];
+    [txtcontact.layer setCornerRadius:8.0f];
+    [txtcontact.layer setMasksToBounds:YES];
+    
     [txtcontact setBorderStyle:UITextBorderStyleRoundedRect];
     [self.view addSubview:txtcontact];
     //----
     lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(13, 10, 300, 30)];
-    lbldesc.text=@"请留下您的宝贵意见";
+    lbldesc.text=@"我的建议，请考虑一下:.....";
     lbldesc.backgroundColor=[UIColor clearColor];
     lbldesc.textColor=[UIColor lightGrayColor];
     [self.view addSubview:lbldesc];
@@ -84,5 +89,10 @@
     {
         lbldesc.hidden=YES;
     }
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end

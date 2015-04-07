@@ -79,10 +79,12 @@
     {
         cell.lbldesc.text=@"清除缓存";
         cell.mswitch.hidden=YES;
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }
     else if(indexPath.row==3)
     {
         cell.lbldesc.text=@"关于";
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         cell.mswitch.hidden=YES;
     }
 

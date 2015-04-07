@@ -11,7 +11,7 @@
 #import "MyUIImageView.h"
 
 
-@interface MymsgCell : UITableViewCell
+@interface MymsgCell : BaseCell
 {
     MyUIImageView *imgview_left;
     UILabel *lbltitle;

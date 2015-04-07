@@ -14,7 +14,8 @@
 @class WaterFlowView;
 
 
-@interface WaterFlowView : UIScrollView<UITableViewDelegate,UITableViewDataSource>{
+@interface WaterFlowView : UIScrollView<UITableViewDelegate,UITableViewDataSource>
+{
 
     int _columnCount;   //列数
     int _cellsTotal;    //总的数据项
@@ -26,6 +27,8 @@
     
     id<WaterFlowViewDelegate> _waterFlowViewDelegate;
     id<WaterFlowViewDataSource> _waterFlowViewDatasource;
+    
+    float Content_old_y;
 }
 
 @property (nonatomic,assign) int columnCount; 

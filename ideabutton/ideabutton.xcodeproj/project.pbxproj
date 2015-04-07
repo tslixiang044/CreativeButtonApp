@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		89A17B0B1ACF9700007CC8D6 /* MySegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17B0A1ACF9700007CC8D6 /* MySegmentedControl.m */; };
 		89A17B0E1AD15A5E007CC8D6 /* MymsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17B0D1AD15A5E007CC8D6 /* MymsgCell.m */; };
+		89A17B141AD22183007CC8D6 /* MyInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17B131AD22183007CC8D6 /* MyInformationCell.m */; };
 		89A85CA71ABC1DC800490339 /* MyWebviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CA61ABC1DC800490339 /* MyWebviewViewController.m */; };
 		89A85CAA1ABC1E2E00490339 /* PersonaInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CA91ABC1E2E00490339 /* PersonaInfomationViewController.m */; };
 		89A85CB01ABC1E7500490339 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CAD1ABC1E7500490339 /* FeedBackViewController.m */; };
@@ -141,6 +142,8 @@
 		89A17B0A1ACF9700007CC8D6 /* MySegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentedControl.m; sourceTree = "<group>"; };
 		89A17B0C1AD15A5E007CC8D6 /* MymsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymsgCell.h; sourceTree = "<group>"; };
 		89A17B0D1AD15A5E007CC8D6 /* MymsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymsgCell.m; sourceTree = "<group>"; };
+		89A17B121AD22183007CC8D6 /* MyInformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInformationCell.h; sourceTree = "<group>"; };
+		89A17B131AD22183007CC8D6 /* MyInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInformationCell.m; sourceTree = "<group>"; };
 		89A85CA51ABC1DC800490339 /* MyWebviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWebviewViewController.h; sourceTree = "<group>"; };
 		89A85CA61ABC1DC800490339 /* MyWebviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWebviewViewController.m; sourceTree = "<group>"; };
 		89A85CA81ABC1E2E00490339 /* PersonaInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonaInfomationViewController.h; sourceTree = "<group>"; };
@@ -390,10 +393,10 @@
 		89A85CAB1ABC1E4300490339 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				89A85CAC1ABC1E7500490339 /* FeedBackViewController.h */,
-				89A85CAD1ABC1E7500490339 /* FeedBackViewController.m */,
 				89A85CAE1ABC1E7500490339 /* SettingViewController.h */,
 				89A85CAF1ABC1E7500490339 /* SettingViewController.m */,
+				89A85CAC1ABC1E7500490339 /* FeedBackViewController.h */,
+				89A85CAD1ABC1E7500490339 /* FeedBackViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -531,6 +534,8 @@
 				89A85CB31ABC1E9100490339 /* SettingCell.m */,
 				89A17B0C1AD15A5E007CC8D6 /* MymsgCell.h */,
 				89A17B0D1AD15A5E007CC8D6 /* MymsgCell.m */,
+				89A17B121AD22183007CC8D6 /* MyInformationCell.h */,
+				89A17B131AD22183007CC8D6 /* MyInformationCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -997,6 +1002,7 @@
 				E981908E1A885FBB0025F284 /* CircleView.m in Sources */,
 				E91E779F1A84A8CD000174D4 /* ASIDataCompressor.m in Sources */,
 				E941076C1A91CC4A002D78B2 /* SVProgressHUD.m in Sources */,
+				89A17B141AD22183007CC8D6 /* MyInformationCell.m in Sources */,
 				E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */,
 				E98190701A884BC20025F284 /* MyNavigationViewController.m in Sources */,
 				89B4FA6A1ABAE019007C1805 /* ISuggestViewController.m in Sources */,

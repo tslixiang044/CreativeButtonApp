@@ -185,5 +185,37 @@
     IndexPath *_indextPath = [IndexPath initWithRow:indexPath.row  withColumn:tableView.tag - TABLEVIEWTAG];
     [self.waterFlowViewDelegate waterFlowView:self didSelectRowAtIndexPath:_indextPath];
 }
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    float new_y = scrollView.contentOffset.y ;
+    float height=self.frame.size.height;
+    if(new_y<20)
+    {
+        NSLog(@"33333333333");
+    }
+    else if(new_y+height>scrollView.contentSize.height-20)
+    {
+        //不处理
+        NSLog(@"4444444444");
+    }
+    else if(new_y != Content_old_y )
+    {
+        
+        if (new_y > Content_old_y)
+        {
+            NSLog(@"1111111111");
+        }
+        else
+        {
+            NSLog(@"222222222222");
+        }
+        
+        Content_old_y = new_y;
+    }
+}
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   
+}
 
 @end

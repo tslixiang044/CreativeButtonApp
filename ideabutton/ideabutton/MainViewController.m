@@ -19,7 +19,7 @@
 #import "IdeaDetailViewController.h"
 #import "DB.h"
 #import "PersonaInfomationViewController.h"
-@interface MainViewController ()<UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate>
+@interface MainViewController ()<UIScrollViewDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate>
 {
     
     NSMutableArray *mArr_1;
@@ -28,6 +28,8 @@
     
     WaterFlowView *waterFlow_1;
     WaterFlowView *waterFlow_2;
+    
+    
     //------------------
     UISegmentedControl *segmentedControl;
     UITextField *txtsearch;
@@ -53,7 +55,7 @@
    //-------------
     segmentedControl=[[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44) ];
     [segmentedControl insertSegmentWithTitle:@"按友圈" atIndex:0 animated:YES];
-    [segmentedControl insertSegmentWithTitle:@"建议烂" atIndex:1 animated:YES];
+    [segmentedControl insertSegmentWithTitle:@"建议栏" atIndex:1 animated:YES];
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex=0;
     [segmentedControl addTarget:self action:@selector(Selectbutton:) forControlEvents:UIControlEventValueChanged];
@@ -378,4 +380,7 @@
     }
     
 }
+
+
+
 @end

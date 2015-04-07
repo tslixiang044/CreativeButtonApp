@@ -9,6 +9,8 @@
 #import "PersonaInfomationViewController.h"
 #import "MySegmentedControl.h"
 #import "MymsgCell.h"
+#import "MyInformationCell.h"
+
 
 #define headerview_height 150
 
@@ -58,6 +60,10 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [mtableview setTableFooterView:v];
     //-----------------------------
+    UIEdgeInsets edgeInset = mtableview.separatorInset;
+    mtableview.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, 0);
+    //修改分隔线长度
+    mtableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
 -(void)btnright
@@ -86,7 +92,7 @@
         }
         else if(msegmentview.selectedSegmentIndex==1)
         {
-            return marr_infor.count;
+            return 11;//marr_infor.count;
         }
         else
         {
@@ -130,7 +136,76 @@
         }
         else if(msegmentview.selectedSegmentIndex==1)
         {
-            return nil;
+            static NSString *Identifier = @"cell_info";
+            
+            MyInformationCell *cell=(MyInformationCell *)[tableView dequeueReusableCellWithIdentifier:Identifier];
+            if(cell==nil)
+            {
+                cell=[[MyInformationCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
+                cell.backgroundColor=COLOR(21, 21, 23);
+                cell.selectionStyle=UITableViewCellSelectionStyleNone;
+                
+                
+            }
+         if(indexPath.row==0)
+         {
+             cell.lbltitle.text=@"邮箱";
+             cell.lbldesc.text=@"1";
+         }
+          else if(indexPath.row==1)
+          {
+              cell.lbltitle.text=@"昵称";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==2)
+          {
+              cell.lbltitle.text=@"性别";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==3)
+          {
+              cell.lbltitle.text=@"密码";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==4)
+          {
+              cell.lbltitle.text=@"真实姓名";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==5)
+          {
+              cell.lbltitle.text=@"所属地";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==6)
+          {
+              cell.lbltitle.text=@"院校";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==7)
+          {
+              cell.lbltitle.text=@"院校简称";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==8)
+          {
+              cell.lbltitle.text=@"专业";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==9)
+          {
+              cell.lbltitle.text=@"毕业时间";
+              cell.lbldesc.text=@"1分钟前";
+          }
+          else if(indexPath.row==10)
+          {
+              cell.lbltitle.text=@"向往的公司";
+              cell.lbldesc.text=@"1分钟前";
+          }
+            
+            
+            
+            return cell;
         }
         else
         {
