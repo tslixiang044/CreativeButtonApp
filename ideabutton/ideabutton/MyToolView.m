@@ -27,23 +27,27 @@
         user = [[DB sharedInstance]queryUser];
         btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
         btnClose.frame = CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64);
-        btnClose.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
+        btnClose.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0];
         [btnClose addTarget:self action:@selector(btnCloseAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnClose];
         //---------
-        mtableview=[[UITableView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth-200, 0, 200, kMainScreenBoundheight-64-80) style:UITableViewStylePlain];
+        UIImageView *imgview_jiantou=[[UIImageView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth-40-10, 12, 40, 40)];
+        imgview_jiantou.image=[UIImage imageNamed:@"mume_icon_jiantou.png"];
+        [self addSubview:imgview_jiantou];
+        //---------
+        mtableview=[[UITableView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth-200-10, 20, 200, kMainScreenBoundheight-64-80) style:UITableViewStylePlain];
         
         if(user)
         {
-            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200, 0, 200, 300-2);
+            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200-10, 20, 200, 300-2);
         }
         else
         {
-            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200, 0, 200, 240-2);
+            mtableview.frame=CGRectMake(kMainScreenBoundwidth-200-10, 20, 200, 240-2);
         }
         
-        mtableview.backgroundColor=COLOR(21, 21, 23);;
-        mtableview.backgroundView.backgroundColor=COLOR(21, 21, 23);
+        mtableview.backgroundColor=COLOR(39, 39, 39);;
+        mtableview.backgroundView.backgroundColor=COLOR(39, 39, 39);
         mtableview.scrollEnabled=NO;
         mtableview.dataSource=self;
         mtableview.delegate=self;
@@ -88,14 +92,14 @@
     if(cell==nil)
     {
        cell=[[MytoolviewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
-       cell.backgroundColor=COLOR(21, 21, 23);
+       cell.backgroundColor=COLOR(39, 39, 39);
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
        
     }
 
     if(indexPath.row==0)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"icon_wdzy"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_tjy.png"];
         cell.lbltitle.text=@"提建议";
     }
     else if(indexPath.row==1)
@@ -105,12 +109,12 @@
     }
     else if(indexPath.row==2)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"icon_sysm"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_admin1.png"];
         cell.lbltitle.text=@"我的主页";
     }
     else if(indexPath.row==3)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"icon_gfwb"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_sz.png"];
         cell.lbltitle.text=@"设置";
         
         
@@ -182,9 +186,9 @@
 
 -(void)hidentoolView
 {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.4f animations:^{
         
-        self.frame=CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height);
+        self.frame=CGRectMake(0, -self.frame.size.height, self.frame.size.width, self.frame.size.height);
         
     } completion:^(BOOL finished){
         
@@ -197,7 +201,7 @@
 {
     if([self isHidden])
     {
-        [UIView animateWithDuration:0.3f animations:^{
+        [UIView animateWithDuration:0.4f animations:^{
             self.frame=CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
             self.hidden=NO;
         }];

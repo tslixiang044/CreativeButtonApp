@@ -38,7 +38,7 @@
     mTabbarController.view.frame=CGRectMake(0,0, 320, kMainScreenBoundheight);
     mTabbarController.delegate=self;
     mTabbarController.tabBar.frame=CGRectMake(0, kMainScreenBoundheight-50+1, kMainScreenBoundwidth, 50);
-    UIColor *mcolor=[UIColor blackColor];
+    UIColor *mcolor=kGetNavbarColor;
     if (IS_iOS7)
     {
         mTabbarController.tabBar.barTintColor=mcolor;

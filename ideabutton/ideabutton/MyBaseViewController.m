@@ -195,7 +195,7 @@
 {
     if(toolview==nil)
     {
-        toolview=[[MyToolView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
+        toolview=[[MyToolView alloc]initWithFrame:CGRectMake(0, -(kMainScreenBoundheight-64), kMainScreenBoundwidth, kMainScreenBoundheight-64)];
         toolview.delegate=self;
         [self.view addSubview:toolview];
         toolview.hidden=YES;
