@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
 
+
+
+
+
+
 @interface RegisterViewController : MyBaseViewController
 {
     
 }
+@property(nonatomic,strong)UIImage *mimg;
 @end

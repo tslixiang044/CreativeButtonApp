@@ -13,6 +13,9 @@
 #import "DB.h"
 #import "APLevelDB.h"
 #import "ChooseCityViewController.h"
+#import "RegisterSuccessView.h"
+#import "Config.h"
+#import "UIImage+UIImageScale.h"
 
 #define Height  45
 #define AddHead     1
@@ -21,10 +24,11 @@
 #define NickNameTag   4
 #define MailTag     5
 
-@interface RegisterViewController()<UITextFieldDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface RegisterViewController()<UITextFieldDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,RegisterSuccessViewDelegate>
 {
     NSInteger gender;
     ChooseCityViewController* chooseCityViewController;
+    UIButton* headBtn;
 }
 
 @property(nonatomic, strong)UIScrollView *mainScroll;
@@ -51,9 +55,15 @@
 
 
 @implementation RegisterViewController
+@synthesize mimg;
 
 -(void)viewDidLoad
 {
+    
+    
+    
+    
+    
     [super viewDidLoad];
     
     self.manSelected = NO;
@@ -211,7 +221,7 @@
     imageView.frame =  CGRectMake(30, 20, 220, 80);
     [registerView addSubview:imageView];
     
-    UIButton* headBtn = [[UIButton alloc] initWithFrame:CGRectMake(25, 10, 65, 60)];
+    headBtn = [[UIButton alloc] initWithFrame:CGRectMake(25, 10, 65, 60)];
     [headBtn setBackgroundImage:[UIImage imageNamed:@"register/icon_use_add"] forState:UIControlStateNormal];
     [headBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     headBtn.tag = AddHead;
@@ -388,9 +398,46 @@
         }
     }
 }
+-(void)imagePickerController:(UIImagePickerController *)picker  didFinishPickingImage:(UIImage  *)image
+                 editingInfo:(NSDictionary *)editinginfo
+{
+    //------------------------------------
+    mimg=[image rotateImage:image];
+    [headBtn setBackgroundImage:self.mimg forState:UIControlStateNormal];
+    //------------------------------------
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
+
+
 -(void)registerAccount
 {
+    
+//    RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight)];
+//    suc.delegate=self;
+//    suc.flag=1;
+//    
+//    
+//   
+//    [[UIApplication sharedApplication].keyWindow addSubview:suc];
+//    
+//    
+//    return;
     CGRect frame = CGRectMake(90,380,150,20);
+    
+    
+    
+    
+    
     
     NSDictionary *params = [self invalidateInput];
     if(!params)
@@ -424,7 +471,10 @@
         });
     });
 }
-
+-(void)btnok
+{
+    NSLog(@"aaa");
+}
 -(NSDictionary*)invalidateInput
 {
     CGRect frame = CGRectMake(90,380,150,20);
@@ -459,7 +509,19 @@
         return nil;
     }
     
-    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":self.registerAddressTextField.text};
+    if (self.mimg==nil)
+    {
+        [self showalertview_text:@"请上传头像" frame:frame autoHiden:YES];
+        return nil;
+    }
+    
+    NSData *imagesmallData1 = nil;
+    if(mimg!=nil)
+    {
+        imagesmallData1 = UIImageJPEGRepresentation(mimg,0.1f);
+    }
+    
+    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":self.registerAddressTextField.text,@"icon":imagesmallData1};
 }
 
 @end

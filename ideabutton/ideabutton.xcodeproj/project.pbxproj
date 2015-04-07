@@ -11,6 +11,8 @@
 		894924DD1AD3A7C6000F392C /* icon_sz@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 894924D91AD3A7C6000F392C /* icon_sz@2x.png */; };
 		894924DE1AD3A7C6000F392C /* icon_tjy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 894924DA1AD3A7C6000F392C /* icon_tjy@2x.png */; };
 		894924DF1AD3A7C6000F392C /* mume_icon_jiantou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 894924DB1AD3A7C6000F392C /* mume_icon_jiantou@2x.png */; };
+		894924E21AD3F4B0000F392C /* RegisterSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 894924E11AD3F4B0000F392C /* RegisterSuccessView.m */; };
+		894924E51AD3F841000F392C /* UIImage+UIImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 894924E41AD3F841000F392C /* UIImage+UIImageScale.m */; };
 		89A17B0B1ACF9700007CC8D6 /* MySegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17B0A1ACF9700007CC8D6 /* MySegmentedControl.m */; };
 		89A17B0E1AD15A5E007CC8D6 /* MymsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17B0D1AD15A5E007CC8D6 /* MymsgCell.m */; };
 		89A17B141AD22183007CC8D6 /* MyInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17B131AD22183007CC8D6 /* MyInformationCell.m */; };
@@ -131,7 +133,6 @@
 		E98C48F21A8B7BA300287EF8 /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = E98C48F11A8B7BA300287EF8 /* gif.gif */; };
 		E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */; };
 		E98DA1A71AD3D3E10056DA92 /* ProductListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */; };
-		E9DB90E41AC143D400F66467 /* RegisterSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90E31AC143D400F66467 /* RegisterSuccessViewController.m */; };
 		E9DB90E81AC1569F00F66467 /* PerfectInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90E71AC1569F00F66467 /* PerfectInfoViewController.m */; };
 		E9DB90EB1AC1614100F66467 /* PrefectStudentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90EA1AC1614100F66467 /* PrefectStudentInfoViewController.m */; };
 		E9F0E0D71A8C862100CAC9E1 /* ImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0D21A8C862100CAC9E1 /* ImageViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -147,6 +148,10 @@
 		894924D91AD3A7C6000F392C /* icon_sz@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_sz@2x.png"; sourceTree = "<group>"; };
 		894924DA1AD3A7C6000F392C /* icon_tjy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tjy@2x.png"; sourceTree = "<group>"; };
 		894924DB1AD3A7C6000F392C /* mume_icon_jiantou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mume_icon_jiantou@2x.png"; sourceTree = "<group>"; };
+		894924E01AD3F4B0000F392C /* RegisterSuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSuccessView.h; sourceTree = "<group>"; };
+		894924E11AD3F4B0000F392C /* RegisterSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSuccessView.m; sourceTree = "<group>"; };
+		894924E31AD3F841000F392C /* UIImage+UIImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UIImageScale.h"; sourceTree = "<group>"; };
+		894924E41AD3F841000F392C /* UIImage+UIImageScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UIImageScale.m"; sourceTree = "<group>"; };
 		89A17B091ACF9700007CC8D6 /* MySegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySegmentedControl.h; sourceTree = "<group>"; };
 		89A17B0A1ACF9700007CC8D6 /* MySegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentedControl.m; sourceTree = "<group>"; };
 		89A17B0C1AD15A5E007CC8D6 /* MymsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymsgCell.h; sourceTree = "<group>"; };
@@ -362,8 +367,6 @@
 		E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaGenerateViewController.m; sourceTree = "<group>"; };
 		E98DA1A51AD3D3E10056DA92 /* ProductListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListTableViewController.h; sourceTree = "<group>"; };
 		E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListTableViewController.m; sourceTree = "<group>"; };
-		E9DB90E21AC143D400F66467 /* RegisterSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSuccessViewController.h; sourceTree = "<group>"; };
-		E9DB90E31AC143D400F66467 /* RegisterSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSuccessViewController.m; sourceTree = "<group>"; };
 		E9DB90E61AC1569F00F66467 /* PerfectInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectInfoViewController.h; sourceTree = "<group>"; };
 		E9DB90E71AC1569F00F66467 /* PerfectInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectInfoViewController.m; sourceTree = "<group>"; };
 		E9DB90E91AC1614100F66467 /* PrefectStudentInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefectStudentInfoViewController.h; sourceTree = "<group>"; };
@@ -514,6 +517,8 @@
 				89A85CA61ABC1DC800490339 /* MyWebviewViewController.m */,
 				89A17B091ACF9700007CC8D6 /* MySegmentedControl.h */,
 				89A17B0A1ACF9700007CC8D6 /* MySegmentedControl.m */,
+				894924E31AD3F841000F392C /* UIImage+UIImageScale.h */,
+				894924E41AD3F841000F392C /* UIImage+UIImageScale.m */,
 			);
 			name = BasseClass;
 			sourceTree = "<group>";
@@ -571,8 +576,8 @@
 				E971B5321ABBBFB1001B3950 /* zh_CN.json */,
 				E97258381A88B8B200F0ABB8 /* RegisterViewController.h */,
 				E97258391A88B8D400F0ABB8 /* RegisterViewController.m */,
-				E9DB90E21AC143D400F66467 /* RegisterSuccessViewController.h */,
-				E9DB90E31AC143D400F66467 /* RegisterSuccessViewController.m */,
+				894924E01AD3F4B0000F392C /* RegisterSuccessView.h */,
+				894924E11AD3F4B0000F392C /* RegisterSuccessView.m */,
 			);
 			name = Register;
 			sourceTree = "<group>";
@@ -1047,6 +1052,7 @@
 				E981908E1A885FBB0025F284 /* CircleView.m in Sources */,
 				E91E779F1A84A8CD000174D4 /* ASIDataCompressor.m in Sources */,
 				E941076C1A91CC4A002D78B2 /* SVProgressHUD.m in Sources */,
+				894924E51AD3F841000F392C /* UIImage+UIImageScale.m in Sources */,
 				89A17B141AD22183007CC8D6 /* MyInformationCell.m in Sources */,
 				E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */,
 				E98190701A884BC20025F284 /* MyNavigationViewController.m in Sources */,
@@ -1108,10 +1114,10 @@
 				E9F0E0DF1A8C93BE00CAC9E1 /* WaterFlowObj.m in Sources */,
 				E98C48E71A8B68DB00287EF8 /* InteractivePageViewController1.m in Sources */,
 				E971B5331ABBBFB1001B3950 /* ChooseCityViewController.m in Sources */,
+				894924E21AD3F4B0000F392C /* RegisterSuccessView.m in Sources */,
 				89A17B0E1AD15A5E007CC8D6 /* MymsgCell.m in Sources */,
 				E94107651A91C75D002D78B2 /* User.m in Sources */,
 				E932E54A1AB7BE6A00839FA4 /* ForgetPswViewController.m in Sources */,
-				E9DB90E41AC143D400F66467 /* RegisterSuccessViewController.m in Sources */,
 				E91E77A31A84A8CD000174D4 /* ASIHTTPRequest.m in Sources */,
 				89A17B0B1ACF9700007CC8D6 /* MySegmentedControl.m in Sources */,
 				E91E77A11A84A8CD000174D4 /* ASIDownloadCache.m in Sources */,
