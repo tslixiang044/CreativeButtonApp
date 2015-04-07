@@ -166,6 +166,18 @@
     
     [self.mainScroll setContentOffset:CGPointMake(0, self.lastScrollOffset) animated:YES];
     
+    if (textField ==  self.registerMailTextField)
+    {
+        NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+        NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+        if(![emailTest evaluateWithObject:self.registerMailTextField.text])
+        {
+            [self showalertview_text:@"请输入正确的邮箱地址" frame:CGRectMake(90,380,150,20) autoHiden:YES];
+            [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
+            return YES;
+        }
+    }
+    
     return YES;
 }
 
@@ -356,7 +368,6 @@
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"index=%i",buttonIndex);
     if(buttonIndex==0)
     {
         UIImagePickerController *picker=[[UIImagePickerController alloc] init];
@@ -433,15 +444,6 @@
     if (self.registerMailTextField.text.length == 0)
     {
         [self showalertview_text:@"邮箱不能为空" frame:frame autoHiden:YES];
-        return nil;
-    }
-    
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    if(![emailTest evaluateWithObject:self.registerMailTextField.text])
-    {
-        [self showalertview_text:@"请输入正确的邮箱地址" frame:CGRectMake(90,380,150,20) autoHiden:YES];
-        [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
         return nil;
     }
     

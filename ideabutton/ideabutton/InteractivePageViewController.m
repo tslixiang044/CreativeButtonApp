@@ -57,46 +57,55 @@
     [self.view addSubview:view];
     
     UIButton* NumOneBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 120, 60, 60)];
+    NumOneBtn.titleLabel.text = @"1";
     [NumOneBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber1"] forState:UIControlStateNormal];
     [NumOneBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumOneBtn];
     
     UIButton* NumEightBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 120, 60, 60)];
+    NumEightBtn.titleLabel.text = @"8";
     [NumEightBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber8"] forState:UIControlStateNormal];
     [NumEightBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumEightBtn];
     
     UIButton* NumNineBtn = [[UIButton alloc] initWithFrame:CGRectMake(220, 120, 60, 60)];
+    NumNineBtn.titleLabel.text = @"9";
     [NumNineBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber9"] forState:UIControlStateNormal];
     [NumNineBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumNineBtn];
     
     UIButton* NumThreeBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 210, 60, 60)];
+    NumThreeBtn.titleLabel.text = @"3";
     [NumThreeBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber3"] forState:UIControlStateNormal];
     [NumThreeBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumThreeBtn];
     
     UIButton* NumTwoBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 60, 60)];
+    NumTwoBtn.titleLabel.text = @"2";
     [NumTwoBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber2"] forState:UIControlStateNormal];
     [NumTwoBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumTwoBtn];
     
     UIButton* NumSevenBtn = [[UIButton alloc] initWithFrame:CGRectMake(220, 210, 60, 60)];
+    NumSevenBtn.titleLabel.text = @"7";
     [NumSevenBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber7"] forState:UIControlStateNormal];
     [NumSevenBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumSevenBtn];
     
     UIButton* NumFourBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 60, 60)];
+    NumFourBtn.titleLabel.text = @"4";
     [NumFourBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber4"] forState:UIControlStateNormal];
     [NumFourBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumFourBtn];
     
     UIButton* NumFiveBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 60, 60)];
+    NumFiveBtn.titleLabel.text = @"5";
     [NumFiveBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber5"] forState:UIControlStateNormal];
     [NumFiveBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumFiveBtn];
     
     UIButton* NumSixBtn = [[UIButton alloc] initWithFrame:CGRectMake(220, 300, 60, 60)];
+    NumSixBtn.titleLabel.text = @"6";
     [NumSixBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber6"] forState:UIControlStateNormal];
     [NumSixBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumSixBtn];

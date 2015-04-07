@@ -135,6 +135,7 @@
     [nextBtn setImage:[UIImage imageNamed:@"ideaCreate/icon_right"] forState:UIControlStateNormal];
     [nextBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     nextBtn.tag = NextBtnTag;
+    nextBtn.hidden = NO;
     [self.view addSubview:nextBtn];
     
     hoggedBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 270, 70, 70)];
@@ -189,10 +190,14 @@
                 {
                     index++;
                     
+                    previousBtn.hidden = NO;
+                    
                     detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
                 }
                 else
                 {
+                    nextBtn.hidden = YES;
+                    
                     [[DB sharedInstance] saveArbitraryObject:[NSString stringWithFormat:@"%d",IdeaNumCount] withKey:@"balanceIdea"];
                     InteractivePageViewController* pageViewController = [[InteractivePageViewController alloc]initWithDict:self.dict];
                     [self.navigationController pushViewController:pageViewController animated:YES];
@@ -201,8 +206,21 @@
             else
             {
                 [self showAlertView_desc:@"今天免费产生的idea数量已达上限81" btntitle:@"明天再来"  ];
-                            }
+            }
             
+            break;
+        case PreviousBtnTag:
+        {
+            if (index > 0)
+            {
+                index--;
+                detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+                if (index == 0)
+                {
+                    previousBtn.hidden = YES;
+                }
+            }
+        }
             break;
             
         default:
