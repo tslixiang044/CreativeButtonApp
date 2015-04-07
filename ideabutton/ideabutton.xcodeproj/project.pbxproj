@@ -130,6 +130,7 @@
 		E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */; };
 		E98C48F21A8B7BA300287EF8 /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = E98C48F11A8B7BA300287EF8 /* gif.gif */; };
 		E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */; };
+		E98DA1A71AD3D3E10056DA92 /* ProductListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */; };
 		E9DB90E41AC143D400F66467 /* RegisterSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90E31AC143D400F66467 /* RegisterSuccessViewController.m */; };
 		E9DB90E81AC1569F00F66467 /* PerfectInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90E71AC1569F00F66467 /* PerfectInfoViewController.m */; };
 		E9DB90EB1AC1614100F66467 /* PrefectStudentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90EA1AC1614100F66467 /* PrefectStudentInfoViewController.m */; };
@@ -359,6 +360,8 @@
 		E98C48F11A8B7BA300287EF8 /* gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif.gif; sourceTree = "<group>"; };
 		E98C48F41A8C447100287EF8 /* IdeaGenerateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdeaGenerateViewController.h; sourceTree = "<group>"; };
 		E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaGenerateViewController.m; sourceTree = "<group>"; };
+		E98DA1A51AD3D3E10056DA92 /* ProductListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListTableViewController.h; sourceTree = "<group>"; };
+		E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListTableViewController.m; sourceTree = "<group>"; };
 		E9DB90E21AC143D400F66467 /* RegisterSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSuccessViewController.h; sourceTree = "<group>"; };
 		E9DB90E31AC143D400F66467 /* RegisterSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSuccessViewController.m; sourceTree = "<group>"; };
 		E9DB90E61AC1569F00F66467 /* PerfectInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectInfoViewController.h; sourceTree = "<group>"; };
@@ -476,6 +479,7 @@
 		E91E777A1A84A760000174D4 /* GroupClass */ = {
 			isa = PBXGroup;
 			children = (
+				E98DA1A41AD3D3AC0056DA92 /* ProductandAppealList */,
 				E9DB90E51AC1543B00F66467 /* PerfectInfo */,
 				89A85CAB1ABC1E4300490339 /* Setting */,
 				E932E5471AB7BE0E00839FA4 /* ForgetPassword */,
@@ -871,6 +875,15 @@
 			name = IdeaGenerate;
 			sourceTree = "<group>";
 		};
+		E98DA1A41AD3D3AC0056DA92 /* ProductandAppealList */ = {
+			isa = PBXGroup;
+			children = (
+				E98DA1A51AD3D3E10056DA92 /* ProductListTableViewController.h */,
+				E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */,
+			);
+			name = ProductandAppealList;
+			sourceTree = "<group>";
+		};
 		E9DB90E51AC1543B00F66467 /* PerfectInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1070,6 +1083,7 @@
 				89AC5C6E1AA154A4005DA279 /* MyToolView.m in Sources */,
 				E9DB90E81AC1569F00F66467 /* PerfectInfoViewController.m in Sources */,
 				E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */,
+				E98DA1A71AD3D3E10056DA92 /* ProductListTableViewController.m in Sources */,
 				E91E77C81A84B143000174D4 /* RMMapper.m in Sources */,
 				E94107441A91B666002D78B2 /* API.m in Sources */,
 				89A85CA71ABC1DC800490339 /* MyWebviewViewController.m in Sources */,
