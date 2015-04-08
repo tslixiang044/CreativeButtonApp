@@ -426,29 +426,41 @@
     
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
-        User *user = [[API sharedInstance]newUser:params];
+        
+        //User *user = [[API sharedInstance]    newUser:params];
+        NSData *imagesmallData1 = nil;
+        if(mimg!=nil)
+        {
+            imagesmallData1 = UIImageJPEGRepresentation(mimg,0.1f);
+        }
+        
+        BOOL b=[[API sharedInstance] sendImage:imagesmallData1 paramArr:params];
+        
+        int i=0;
+        
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
             [SVProgressHUD dismiss];
-            if(user)
-            {
-                DB *db = [DB sharedInstance];
-                [db saveUser:user];
-                [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
-                
-                RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight)];
-                suc.delegate=self;
-                suc.flag=1;
-
-                [[UIApplication sharedApplication].keyWindow addSubview:suc];
-            }
-            else
-            {
-                if ([API sharedInstance].msg)
-                {
-                    [self showalertview_text:[API sharedInstance].msg frame:frame autoHiden:YES];
-                }
-            }
+            
+//            if(user)
+//            {
+//                DB *db = [DB sharedInstance];
+//                [db saveUser:user];
+//                [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
+//                
+//                RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight)];
+//                suc.delegate=self;
+//                suc.flag=1;
+//
+//                [[UIApplication sharedApplication].keyWindow addSubview:suc];
+//            }
+//            else
+//            {
+//                if ([API sharedInstance].msg)
+//                {
+//                    [self showalertview_text:[API sharedInstance].msg frame:frame autoHiden:YES];
+//                }
+//            }
         });
     });
 }
@@ -511,13 +523,9 @@
         return nil;
     }
     
-    NSData *imagesmallData1 = nil;
-    if(mimg!=nil)
-    {
-        imagesmallData1 = UIImageJPEGRepresentation(mimg,0.1f);
-    }
+   
     
-    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":self.registerAddressTextField.text,@"icon":imagesmallData1};
+    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":self.registerAddressTextField.text};
 }
 
 @end

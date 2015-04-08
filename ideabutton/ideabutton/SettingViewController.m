@@ -23,6 +23,8 @@
     [super viewDidLoad];
     
     self.title=kgettitle;
+    
+    [self setrightbaritem_imgname:@"icon_more_all.png" title:@""];
     //------------------------
     mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 20, kMainScreenBoundwidth, 200) style:UITableViewStylePlain];
     
@@ -37,6 +39,11 @@
     [mtableview setTableFooterView:v];
     
     //------------------------
+}
+-(void)btnright
+{
+    [self showMenuView];
+    
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

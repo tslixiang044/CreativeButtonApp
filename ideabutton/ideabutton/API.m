@@ -670,4 +670,97 @@
     return inputStr;
 }
 
+
+
+
+
+-(BOOL )sendImage:(NSData *)data1 paramArr:(NSMutableDictionary *)mparamArr
+{
+    NSString *boundry=@"------";
+    
+    
+    
+    NSMutableString *urlstring = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlstring appendString:@"registerIcon"];
+    
+    
+   
+    
+    
+    
+    
+    
+    NSString  *contentType=[NSString  stringWithFormat:@"multipart/form-data;boundary=%@" ,boundry];
+    NSMutableURLRequest  *request=[[NSMutableURLRequest alloc] init] ;
+    [request  setURL: [NSURL URLWithString:urlstring]];
+    [request  setHTTPMethod:@"POST" ];
+    [request  addValue:contentType forHTTPHeaderField:@"Content-Type" ];
+    NSMutableData  *body=[NSMutableData  data];
+    NSMutableString *str=[[NSMutableString alloc] init];
+    
+    //------------
+//    if(self.user && [request valueForHTTPHeaderField:@"Auth"] ==nil)
+//    {
+//        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.loginName,self.user.token];
+//        NSString *encodedAuthStr = [[authStr dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
+//        
+//        [request setValue:encodedAuthStr forHTTPHeaderField:@"Auth"];
+//    }
+    //------------
+    NSMutableString *bodyContent = [NSMutableString string];
+    
+    for(NSString *key in mparamArr.allKeys)
+    {
+        id value = [mparamArr objectForKey:key];
+        //NSLog(@"key=%@     value=%@",key,value);
+        [str appendFormat:@"--%@\r\n",boundry];
+        [str appendFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",key];
+        [str appendFormat:@"%@\r\n",value];
+    }
+    
+    [bodyContent appendFormat:@"--%@--\r\n",boundry];
+    [body appendData:[str  dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString  stringWithFormat:@"\r\n--%@\r\n" ,boundry] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString *str_imgname=[self getnowtime:@"yyyyMMddHHmmss"];
+    [body appendData:[[NSString	stringWithFormat: @"Content-Disposition:form-data; name=\"fileData\"; filename=\"%@.jpg\"\r\nContent-Type:application/octet-stream\r\nContent-Transfer-Encoding: binary\r\n\r\n",str_imgname] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData  dataWithData:data1]];
+    [body appendData:[[NSString	stringWithFormat:@"\r\n--%@--\r\n" ,boundry] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [request setHTTPBody:body];
+    
+    
+    //-----------------------
+    
+    NSURLResponse  *response;
+    NSError *err;
+    NSData *returnData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    NSString *returnString=[[NSString	alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"returnData=%@",returnData);
+    NSLog(@"returnString=%@",returnString);
+    
+    
+    NSDictionary *mdic = [NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableContainers error:&err];
+    
+    //NSLog(@"data=%@", [mdic objectForKey:@"data"]);
+    NSString *code=[mdic objectForKey:@"code"];
+    //-----------------------
+    
+    
+    
+    BOOL suc = false;
+    if([code isEqualToString:@"0"])
+    {
+        suc=true;
+    }
+    return suc;
+}
+-(NSString *)getnowtime:(NSString *)mstr
+{
+    NSDate* date = [NSDate date];
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:mstr];
+    NSString* str = [formatter stringFromDate:date];
+    return str ;
+}
 @end

@@ -58,4 +58,8 @@
 - (NSArray*)appealList:(NSDictionary*)dict;         //诉求点选项列表
 
 - (NSInteger)userIdeasRemainderNumber:(NSDictionary*)dict;     //用户当日剩余点子数
+-(BOOL )sendImage:(NSData *)data1 paramArr:(NSMutableDictionary *)mparamArr;//注册
+
+
+
 @end

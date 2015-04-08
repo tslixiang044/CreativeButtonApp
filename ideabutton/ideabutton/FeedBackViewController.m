@@ -24,7 +24,7 @@
 	self.title=@"意见反馈";
     //--
    
-
+   [self setrightbaritem_imgname:@"icon_more_all.png" title:@""];
     //--
     
     txtfeedback=[[UITextView alloc]init];
@@ -73,6 +73,11 @@
     [btncommit setBackgroundImage:[UIImage imageNamed:@"all_btn_qd.png"] forState:UIControlStateNormal];
     [btncommit addTarget:self action:@selector(btncommitAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btncommit];
+    
+}
+-(void)btnright
+{
+    [self showMenuView];
     
 }
 -(void)btncommitAction

@@ -19,7 +19,12 @@
 #import "IdeaDetailViewController.h"
 #import "DB.h"
 #import "PersonaInfomationViewController.h"
-@interface MainViewController ()<UIScrollViewDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate>
+#import "MySegmentedControl.h"
+
+
+
+
+@interface MainViewController ()<UIScrollViewDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate,MySegmentedControlDelegate>
 {
     
     NSMutableArray *mArr_1;
@@ -31,7 +36,9 @@
     
     
     //------------------
-    UISegmentedControl *segmentedControl;
+   // UISegmentedControl *segmentedControl;
+    MySegmentedControl *segmentedControl;
+    
     UITextField *txtsearch;
     
     UIView *bottomView;
@@ -53,12 +60,23 @@
     mArr_1=[[NSMutableArray alloc]init];
     mArr_2=[[NSMutableArray alloc]init];
    //-------------
-    segmentedControl=[[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44) ];
-    [segmentedControl insertSegmentWithTitle:@"按友圈" atIndex:0 animated:YES];
-    [segmentedControl insertSegmentWithTitle:@"建议栏" atIndex:1 animated:YES];
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    segmentedControl.selectedSegmentIndex=0;
-    [segmentedControl addTarget:self action:@selector(Selectbutton:) forControlEvents:UIControlEventValueChanged];
+//    segmentedControl=[[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44) ];
+//    [segmentedControl insertSegmentWithTitle:@"按友圈" atIndex:0 animated:YES];
+//    [segmentedControl insertSegmentWithTitle:@"建议栏" atIndex:1 animated:YES];
+//    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+//    segmentedControl.selectedSegmentIndex=0;
+//    [segmentedControl addTarget:self action:@selector(Selectbutton:) forControlEvents:UIControlEventValueChanged];
+    NSArray *segmentarr=[[NSArray alloc]initWithObjects:@"我的分享",@"我的资料", nil];
+    segmentedControl=[[MySegmentedControl alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44)];
+    segmentedControl.items=segmentarr;
+    segmentedControl.delegate=self;
+    
+    segmentedControl.backgroundColor=kGetNavbarColor;
+    
+    
+    
+    
+    
     [self.navigationController.navigationBar addSubview:segmentedControl];
     
     //-------
@@ -142,6 +160,8 @@
 }
 -(void)loadData:(int)mtag
 {
+    
+    
     if(mtag==1)
     {
         NSString *url=kgetWaterFlowUrl;
@@ -215,7 +235,20 @@
     [[Global getInstanse] cancerRequest_key:@"kgetWaterFlowUrl"];
     segmentedControl.hidden=YES;
 }
-
+-(void)msegment_selected:(MySegmentedControl *)mseg index:(int)mindex
+{
+    [mseg showlineAnimaton];
+    
+    
+    if(mseg.selectedSegmentIndex==0)
+    {
+        [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
+    else  if(mseg.selectedSegmentIndex==1)
+    {
+        [mscrollview setContentOffset:CGPointMake(kMainScreenBoundwidth, 0) animated:YES];
+    }
+}
 -(void)Selectbutton:(UISegmentedControl*)mseg
 {
     
