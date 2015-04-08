@@ -40,7 +40,7 @@
 
 
 
--(void)setItems:(NSArray *)mitems imgs:(NSArray *)mimgs;
+//-(void)setItems:(NSArray *)mitems imgs:(NSArray *)mimgs;
 -(void)scrollviewX:(float)x pagecount:(int)mpage;
 -(void)showlineAnimaton;
 @end

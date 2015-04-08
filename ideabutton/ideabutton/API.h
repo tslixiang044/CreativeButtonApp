@@ -19,7 +19,7 @@
 
 - (User *)queryUser:(NSDictionary*)criteria;    //用户登录
 - (User*)newUser:(NSDictionary*)userDict;       //用户注册
-- (User*)newUserHaveIcon:(NSDictionary*)userDict;   //用户注册(带头像)
+- (User*)newUserHaveIcon:(NSData *)data1 paramArr:(NSDictionary *)mparamArr;   //用户注册(带头像)
 - (User*)updateUser:(NSDictionary*)userDict;     //完善用户信息
 - (User*)updateUserField:(NSDictionary*)dict;    //用户信息按字段更新
 - (User*)userInfo:(NSDictionary*)dict;       //用户信息查看
@@ -58,8 +58,6 @@
 - (NSArray*)appealList:(NSDictionary*)dict;         //诉求点选项列表
 
 - (NSInteger)userIdeasRemainderNumber:(NSDictionary*)dict;     //用户当日剩余点子数
--(BOOL )sendImage:(NSData *)data1 paramArr:(NSMutableDictionary *)mparamArr;//注册
-
-
-
+- (void)logIdeaViewed:(NSDictionary*)dict;      //记录浏览日志
+- (NSDictionary*)hasIdeaBeenUsed:(NSDictionary*)dict;       //判断点子是否已经被(霸占/收藏/改造)
 @end

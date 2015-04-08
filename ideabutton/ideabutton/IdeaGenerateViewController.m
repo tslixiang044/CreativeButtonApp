@@ -27,6 +27,7 @@
     NSInteger belongMeIdeaNum;
     NSInteger index;
     NSInteger titleNumber;
+    NSInteger remainderNum;
     
     UILabel* detailLabel;
     
@@ -38,7 +39,7 @@
     UIButton* previousBtn;
     UIButton* nextBtn;
 }
-@property(nonatomic, strong)NSArray* data;
+@property(nonatomic, strong)NSMutableArray* data;
 @property(nonatomic, strong)NSMutableDictionary* dict;
 
 @end
@@ -51,19 +52,12 @@
     self = [super init];
     if (self)
     {
-        self.data = dataArr;
+        self.data = [[NSMutableArray alloc] initWithArray:dataArr];
         belongMeIdeaNum = [dataArr count];
         index = 0;
         titleNumber = 1;
-        NSInteger ideaCount = [[[DB sharedInstance] queryArbitraryObjectWithKey:@"balanceIdea"] integerValue];
-        if ( ideaCount > 0)
-        {
-            IdeaNumCount = ideaCount;
-        }
-        else
-        {
-            IdeaNumCount = 80;
-        }
+        
+        [self getRemainderNum];
         
         self.dict = [[NSMutableDictionary alloc] init];
         [self.dict setValue:[[self.data objectAtIndex:0] objectForKey:@"adtype"] forKey:@"adtype"];
@@ -118,7 +112,7 @@
     surplusNumLabel.layer.borderColor = COLOR(142, 142, 142).CGColor;
     surplusNumLabel.layer.borderWidth = 1.0;
     surplusNumLabel.backgroundColor = COLOR(47, 44, 43);
-    surplusNumLabel.text = @"今日剩余N个";
+    surplusNumLabel.text =[NSString stringWithFormat:@"今日剩余%d个",remainderNum];
     surplusNumLabel.textColor = [UIColor whiteColor];
     surplusNumLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:surplusNumLabel];
@@ -138,20 +132,20 @@
     nextBtn.hidden = NO;
     [self.view addSubview:nextBtn];
     
-    hoggedBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 270, 70, 70)];
+    hoggedBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 70, 70)];
     [hoggedBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wybz"] forState:UIControlStateNormal];
     hoggedBtn.tag = HoggedBtnTag;
     [hoggedBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:hoggedBtn];
     
-    collectionBtn = [[UIButton alloc] initWithFrame:CGRectMake(125, 270, 70, 70)];
-    [collectionBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wygz"] forState:UIControlStateNormal];
+    collectionBtn = [[UIButton alloc] initWithFrame:CGRectMake(125, 300, 70, 70)];
+    [collectionBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wysc"] forState:UIControlStateNormal];
     collectionBtn.tag = CollectionBtnTag;
     [collectionBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:collectionBtn];
     
-    transformBtn = [[UIButton alloc] initWithFrame:CGRectMake(210, 270, 70, 70)];
-    [transformBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wysc"] forState:UIControlStateNormal];
+    transformBtn = [[UIButton alloc] initWithFrame:CGRectMake(210, 300, 70, 70)];
+    [transformBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wygz"] forState:UIControlStateNormal];
     transformBtn.tag = TransformBtnTag;
     [transformBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:transformBtn];
@@ -159,8 +153,8 @@
 
 -(void)changeButtonTitle:(NSNotification*)notify
 {
-    [hoggedBtn setTitle:@"我已霸占" forState:UIControlStateNormal];
-    [transformBtn setTitle:@"我已改造" forState:UIControlStateNormal];
+//    [hoggedBtn setTitle:@"我已霸占" forState:UIControlStateNormal];
+//    [transformBtn setTitle:@"我已改造" forState:UIControlStateNormal];
 }
 
 -(void)buttonClick:(UIButton*)sender
@@ -170,7 +164,7 @@
     {
         case HoggedBtnTag:
         {
-            [self occupyIdea];
+//            [self occupyIdea];
         }
             break;
         case CollectionBtnTag:
@@ -184,11 +178,15 @@
         }
             break;
         case NextBtnTag:
-            if (IdeaNumCount > 0)
+            if (remainderNum > 0)
             {
                 if (index < belongMeIdeaNum - 1)
                 {
                     index++;
+                    
+                    [self updateLog];
+                    
+                    [self getRemainderNum];
                     
                     previousBtn.hidden = NO;
                     
@@ -198,16 +196,12 @@
                 {
                     nextBtn.hidden = YES;
                     
-                    [[DB sharedInstance] saveArbitraryObject:[NSString stringWithFormat:@"%d",IdeaNumCount] withKey:@"balanceIdea"];
+                    [[DB sharedInstance] saveArbitraryObject:[NSString stringWithFormat:@"%d",remainderNum] withKey:@"balanceIdea"];
                     InteractivePageViewController* pageViewController = [[InteractivePageViewController alloc]initWithDict:self.dict];
                     [self.navigationController pushViewController:pageViewController animated:YES];
                 }
             }
-            else
-            {
-                [self showAlertView_desc:@"今天免费产生的idea数量已达上限81" btntitle:@"明天再来"];
-            }
-            
+    
             break;
         case PreviousBtnTag:
         {
@@ -215,6 +209,7 @@
             {
                 index--;
                 detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+                
                 if (index == 0)
                 {
                     previousBtn.hidden = YES;
@@ -262,15 +257,48 @@
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
-            [SVProgressHUD dismiss];
             if (collectIdeaID)
             {
-                [collectionBtn setBackgroundImage:[UIImage imageNamed:@"ideaCreate/btn_wysc_on"] forState:UIControlStateNormal];
+                [SVProgressHUD showSuccessWithStatus:@"您每天可以收藏9条idea"];
+                [collectionBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wysc_on"] forState:UIControlStateNormal];
             }
             else
             {
                 [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
             }
+        });
+    });
+}
+
+-(void)getRemainderNum
+{
+    User* user = [[DB sharedInstance]queryUser];
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode]}];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            if (surplusNumLabel)
+            {
+                surplusNumLabel.text =[NSString stringWithFormat:@"今日剩余%d个",remainderNum];
+            }
+        });
+    });
+}
+
+- (void)updateLog
+{
+    User* user = [[DB sharedInstance]queryUser];
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        [[API sharedInstance]logIdeaViewed:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode],@"sentence":detailLabel.text}];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            
         });
     });
 }

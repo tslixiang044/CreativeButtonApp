@@ -84,25 +84,6 @@
     return user;
 }
 
-- (User*)newUserHaveIcon:(NSDictionary*)userDict
-{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"registerIcon"];
-    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
-    NSDictionary *retDict = [self doPostAndParseWithURL:urlStr data:bodyData];
-    
-    if(!retDict)
-    {
-        return nil;
-    }
-    
-    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
-    if(user)
-    {
-        self.user = user;
-    }
-    return user;
-}
-
 -(User*)updateUser:(NSDictionary*)userDict
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/updateUser"];
@@ -670,26 +651,13 @@
     return inputStr;
 }
 
-
-
-
-
--(BOOL )sendImage:(NSData *)data1 paramArr:(NSMutableDictionary *)mparamArr
+-(User*)newUserHaveIcon:(NSData *)data1 paramArr:(NSDictionary *)mparamArr
 {
     NSString *boundry=@"------";
     
-    
-    
     NSMutableString *urlstring = [[NSMutableString alloc] initWithString:self.baseURL];
     [urlstring appendString:@"registerIcon"];
-    
-    
-   
-    
-    
-    
-    
-    
+
     NSString  *contentType=[NSString  stringWithFormat:@"multipart/form-data;boundary=%@" ,boundry];
     NSMutableURLRequest  *request=[[NSMutableURLRequest alloc] init] ;
     [request  setURL: [NSURL URLWithString:urlstring]];
@@ -698,21 +666,11 @@
     NSMutableData  *body=[NSMutableData  data];
     NSMutableString *str=[[NSMutableString alloc] init];
     
-    //------------
-//    if(self.user && [request valueForHTTPHeaderField:@"Auth"] ==nil)
-//    {
-//        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.loginName,self.user.token];
-//        NSString *encodedAuthStr = [[authStr dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
-//        
-//        [request setValue:encodedAuthStr forHTTPHeaderField:@"Auth"];
-//    }
-    //------------
     NSMutableString *bodyContent = [NSMutableString string];
     
     for(NSString *key in mparamArr.allKeys)
     {
         id value = [mparamArr objectForKey:key];
-        //NSLog(@"key=%@     value=%@",key,value);
         [str appendFormat:@"--%@\r\n",boundry];
         [str appendFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",key];
         [str appendFormat:@"%@\r\n",value];
@@ -723,38 +681,29 @@
     [body appendData:[[NSString  stringWithFormat:@"\r\n--%@\r\n" ,boundry] dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSString *str_imgname=[self getnowtime:@"yyyyMMddHHmmss"];
-    [body appendData:[[NSString	stringWithFormat: @"Content-Disposition:form-data; name=\"fileData\"; filename=\"%@.jpg\"\r\nContent-Type:application/octet-stream\r\nContent-Transfer-Encoding: binary\r\n\r\n",str_imgname] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString	stringWithFormat: @"Content-Disposition:form-data; name=\"icon\"; filename=\"%@.jpg\"\r\nContent-Type:application/octet-stream\r\nContent-Transfer-Encoding: binary\r\n\r\n",str_imgname] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData  dataWithData:data1]];
     [body appendData:[[NSString	stringWithFormat:@"\r\n--%@--\r\n" ,boundry] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [request setHTTPBody:body];
-    
-    
-    //-----------------------
-    
+
     NSURLResponse  *response;
     NSError *err;
     NSData *returnData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    NSString *returnString=[[NSString	alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    NSLog(@"returnData=%@",returnData);
-    NSLog(@"returnString=%@",returnString);
-    
+//    NSString *returnString=[[NSString	alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+//    NSLog(@"returnData=%@",returnData);
+//    NSLog(@"returnString=%@",returnString);
     
     NSDictionary *mdic = [NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableContainers error:&err];
     
-    //NSLog(@"data=%@", [mdic objectForKey:@"data"]);
-    NSString *code=[mdic objectForKey:@"code"];
-    //-----------------------
-    
-    
-    
-    BOOL suc = false;
-    if([code isEqualToString:@"0"])
+    User* user = [mdic objectForKey:@"data"];
+    if(user)
     {
-        suc=true;
+        self.user = user;
     }
-    return suc;
+    return user;
 }
+
 -(NSString *)getnowtime:(NSString *)mstr
 {
     NSDate* date = [NSDate date];
@@ -763,4 +712,26 @@
     NSString* str = [formatter stringFromDate:date];
     return str ;
 }
+
+- (void)logIdeaViewed:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/logIdeaViewed"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    [self doPostAndParseWithURL:urlStr data:bodyData];
+}
+
+- (NSDictionary*)hasIdeaBeenUsed:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/idea/hasIdeaBeenUsed"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary* IdeaDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!IdeaDict)
+    {
+        return nil;
+    }
+    
+    return IdeaDict;
+}
+
 @end
