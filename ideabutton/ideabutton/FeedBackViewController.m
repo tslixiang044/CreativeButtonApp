@@ -8,7 +8,7 @@
 
 #import "FeedBackViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "API.h"
 @interface FeedBackViewController ()<UITextFieldDelegate>
 
 @end
@@ -82,6 +82,59 @@
 }
 -(void)btncommitAction
 {
+    
+    NSString *str_content=[txtfeedback.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *str_phone=[txtcontact.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+     
+    CGRect frame = CGRectMake(90,380,150,20);
+    
+    if([str_content isEqualToString:@""])
+    {
+        [self showalertview_text:@"建议不能为空" frame:frame autoHiden:YES];
+        return;
+    }
+    if([str_phone isEqualToString:@""])
+    {
+        [self showalertview_text:@"联系方式不能为空" frame:frame autoHiden:YES];
+        return;
+    }
+
+    
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        
+        
+        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+        [mdic setValue:str_content forKey:@"content"];
+        [mdic setValue:str_phone forKey:@"contactWay"];
+        
+        NSDictionary *back_dic=[[API sharedInstance]postFeedBackurl:mdic];
+
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            
+            
+            
+            if([back_dic objectForKey:@"code"]==0)
+            {
+                [self showalertview_text:@"提交成功" frame:frame autoHiden:YES];
+            }
+            else
+            {
+                [self showalertview_text:@"提交失败" frame:frame autoHiden:YES];
+            }
+        });
+    });
+    
+    
+    
+    
+    
+    
+    
+    
     NSLog(@"aaa");
 }
 -(void)textViewDidChange:(UITextView *)textView

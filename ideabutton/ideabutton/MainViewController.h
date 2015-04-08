@@ -12,6 +12,7 @@
 @interface MainViewController : MyBaseViewController
 {
     UIScrollView *mscrollview;
-    
+    int k;
 }
+@property(nonatomic,strong)NSString *btntype;
 @end

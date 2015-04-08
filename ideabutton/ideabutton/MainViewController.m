@@ -46,6 +46,10 @@
 @end
 
 @implementation MainViewController
+@synthesize btntype;
+
+
+
 
 -(void)dealloc
 {
@@ -60,13 +64,7 @@
     mArr_1=[[NSMutableArray alloc]init];
     mArr_2=[[NSMutableArray alloc]init];
    //-------------
-//    segmentedControl=[[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44) ];
-//    [segmentedControl insertSegmentWithTitle:@"按友圈" atIndex:0 animated:YES];
-//    [segmentedControl insertSegmentWithTitle:@"建议栏" atIndex:1 animated:YES];
-//    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-//    segmentedControl.selectedSegmentIndex=0;
-//    [segmentedControl addTarget:self action:@selector(Selectbutton:) forControlEvents:UIControlEventValueChanged];
-    NSArray *segmentarr=[[NSArray alloc]initWithObjects:@"我的分享",@"我的资料", nil];
+    NSArray *segmentarr=[[NSArray alloc]initWithObjects:@"按友圈",@"建议栏", nil];
     segmentedControl=[[MySegmentedControl alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44)];
     segmentedControl.items=segmentarr;
     segmentedControl.delegate=self;
@@ -84,7 +82,7 @@
     mscrollview.backgroundColor=[UIColor grayColor];
     [self.view addSubview:mscrollview];
     //-------
-  
+    k=1;
     waterFlow_1 = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-50)];
     waterFlow_1.tag=1;
     waterFlow_1.waterFlowViewDelegate = self;
@@ -123,14 +121,53 @@
     [self loadData:1];
     [self loadData:2];
 }
+-(void)loginSuccessfull
+{
+    if([btntype isEqualToString:@"admin"])
+    {
+        PersonaInfomationViewController *infomaton=[PersonaInfomationViewController new];
+        [self.navigationController pushViewController:infomaton animated:YES];
+        [infomaton release];
+    }
+    else if([btntype isEqualToString:@"wyya"])
+    {
+        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+        [self.navigationController pushViewController:press animated:YES];
+        [press release];
+    }
+    
+}
 -(void)btnadminAction
 {
-    PersonaInfomationViewController *infomaton=[PersonaInfomationViewController new];
-    [self.navigationController pushViewController:infomaton animated:YES];
-    [infomaton release];
+    self.btntype=@"admin";
+    
+    
+    User* user = [[DB sharedInstance]queryUser];
+    if (user)
+    {
+        PersonaInfomationViewController *infomaton=[PersonaInfomationViewController new];
+        [self.navigationController pushViewController:infomaton animated:YES];
+        [infomaton release];
+    }
+    else
+    {
+        LoginViewController *login=[[LoginViewController alloc] init];
+        login.delegate=self;
+        [self.navigationController pushViewController:login animated:YES];
+        [login release];
+    }
+    
+    
+    
+    
+    
 }
 -(void)btnwyyaAction
 {
+    
+    self.btntype=@"wyya";
+    
+    
             segmentedControl.hidden=YES;
     
    
@@ -160,8 +197,6 @@
 }
 -(void)loadData:(int)mtag
 {
-    
-    
     if(mtag==1)
     {
         NSString *url=kgetWaterFlowUrl;
@@ -170,7 +205,7 @@
     }
     else if(mtag==2)
     {
-        NSString *url=kgetWaterFlowUrl;
+        NSString *url=kgetWaterFlowUrl_suggesion;
         
         [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_2" delegate:self];
     }
@@ -262,37 +297,8 @@
         [mscrollview setContentOffset:CGPointMake(kMainScreenBoundwidth, 0) animated:YES];
     }
 
-//    if(mseg.selectedSegmentIndex==0)
-//    {
-//        
-//    }
-//    else  if(mseg.selectedSegmentIndex==1)
-//    {
-//        mseg.hidden=YES;
-//        
-////        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-////        [self.navigationController pushViewController:press animated:YES];
-//        User* user = [[DB sharedInstance]queryUser];
-//        if (user)
-//        {
-//            IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-//            [self.navigationController pushViewController:press animated:YES];
-//        }
-//        else
-//        {
-//            LoginViewController *login=[[LoginViewController alloc] init];
-//            login.delegate=self;
-//            [self.navigationController pushViewController:login animated:YES];
-//            [login release];
-//        }
-//    }
 }
--(void)loginSuccessfull
-{
-    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-    [self.navigationController pushViewController:press animated:YES];
-    [press release];
-}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     segmentedControl.hidden=NO;
@@ -340,6 +346,16 @@
         imageViewCell.columnCount = waterFlowView.columnCount;
         [imageViewCell relayoutViews];
         [imageViewCell setbtnObjct:obj];
+        
+        
+        NSLog(@"indexpath row == %d,column == %d",indexPath.row,indexPath.column);
+        
+        
+        
+        [imageViewCell setcenterviewColor:(indexPath.row)%4];
+       
+           
+        
     }
     else
     {
@@ -352,6 +368,8 @@
         imageViewCell.columnCount = waterFlowView.columnCount;
         [imageViewCell relayoutViews];
         [imageViewCell setbtnObjct:obj];
+        
+        [imageViewCell setcenterviewColor:(indexPath.row)%4];
     }
    
 }
@@ -399,6 +417,7 @@
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
+    
     if(waterFlowView==waterFlow_1)
     {
         IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];

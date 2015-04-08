@@ -60,4 +60,5 @@
 - (NSInteger)userIdeasRemainderNumber:(NSDictionary*)dict;     //用户当日剩余点子数
 - (void)logIdeaViewed:(NSDictionary*)dict;      //记录浏览日志
 - (NSDictionary*)hasIdeaBeenUsed:(NSDictionary*)dict;       //判断点子是否已经被(霸占/收藏/改造)
+- (NSDictionary*)postFeedBackurl:(NSDictionary*)dict;//提交建议
 @end

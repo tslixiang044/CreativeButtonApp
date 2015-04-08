@@ -734,4 +734,19 @@
     return IdeaDict;
 }
 
+
+
+- (NSDictionary*)postFeedBackurl:(NSDictionary*)dict
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/suggestion/add"];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary* IdeaDict = [self doPostAndParseWithURL:urlStr data:bodyData];
+    
+    if (!IdeaDict)
+    {
+        return nil;
+    }
+    
+    return IdeaDict;
+}
 @end

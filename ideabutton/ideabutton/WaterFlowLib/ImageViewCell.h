@@ -32,7 +32,7 @@
     UILabel *lblPraise;
     UILabel *lblForward;
     UILabel *lblcomment;
-    
+   
     
 }
 
@@ -40,4 +40,6 @@
 -(void)setImage:(UIImage *)image;
 -(void)relayoutViews;
 -(void)setbtnObjct:(WaterFlowObj*)mobj;
+-(void)setcenterviewColor:(int)row;
+
 @end

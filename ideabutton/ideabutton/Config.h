@@ -9,6 +9,7 @@
 
 #define kgetLoginUrl [BASEURL stringByAppendingString:@"/web/mobile/api/login"]//登录
 #define kgetWaterFlowUrl [BASEURL stringByAppendingString:@"/mobile/api/idea/friendsIdeas?range=1-20"]//瀑布流 测试url
+#define kgetWaterFlowUrl_suggesion [BASEURL stringByAppendingString:@"/mobile/api/suggestion/list?range=1-20"]//瀑布流 测试url
 
 
 

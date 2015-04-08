@@ -90,7 +90,7 @@
         y=imgview_header.frame.origin.y+imgview_header.frame.size.height+5;
         
         view_center=[[UIView alloc]initWithFrame:CGRectMake(0, y, 150, 100)];
-        view_center.backgroundColor=COLOR(124, 96, 33);
+        //view_center.backgroundColor=COLOR(124, 96, 33);
         [view_bg addSubview:view_center];
         //---------------
         x=10;
@@ -154,7 +154,7 @@
         [view_bg addSubview:lblcomment];
         
         
-        
+      
         
 	}
 	
@@ -225,5 +225,38 @@
     [super relayoutViews];
 
 }
-
+-(void)setcenterviewColor:(int)row
+{
+    NSLog(@"count=%i",row);
+    
+    
+   
+    if(row==0)
+    {
+        view_center.backgroundColor=COLOR(240, 41, 32);
+        
+    }
+    else if(row==1)
+    {
+        view_center.backgroundColor=COLOR(143, 143, 143);
+        
+    }
+    else if(row==2)
+    {
+        view_center.backgroundColor=COLOR(47, 44, 43);
+        
+    }
+    else if(row==3)
+    {
+        view_center.backgroundColor=COLOR(124, 96, 33);
+        
+    }
+    
+   
+    
+    
+    
+    
+    
+}
 @end
