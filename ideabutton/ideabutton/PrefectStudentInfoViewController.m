@@ -11,6 +11,7 @@
 #import "DB.h"
 #import "RegisterSuccessView.h"
 #import "APLevelDB.h"
+#import "IAlsoPressViewController.h"
 
 #define CheckButtonTag1     0
 #define CheckButtonTag2     1
@@ -423,14 +424,22 @@
     }
 }
 
-- (void)start
+- (void)btnright
 {
-    
+    [self showMenuView];
 }
 
-- (void)perfectInfo
+-(void)start
 {
+    [self.navigationController popViewControllerAnimated:NO];
     
+    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+    [self.navigationController pushViewController:press animated:YES];
+}
+
+-(void)perfectInfo
+{
+//    [self.navigationController pushViewController:[[PerfectInfoViewController alloc] init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

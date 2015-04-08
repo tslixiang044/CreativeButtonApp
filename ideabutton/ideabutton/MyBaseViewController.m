@@ -11,6 +11,7 @@
 #import "PersonaInfomationViewController.h"
 #import "SettingViewController.h"
 #import "FeedBackViewController.h"
+#import "PerfectInfoViewController.h"
 
 
 @interface MyBaseViewController ()<MyToolViewDelegate>
@@ -318,6 +319,8 @@
 -(void)btngoAction:(UIButton*)mbtn
 {
     alertView2.hidden=YES;
+    
+    [self.navigationController pushViewController:[[PerfectInfoViewController alloc] init] animated:YES];
 }
 
 -(void)btncloseAction:(UIButton*)mbtn

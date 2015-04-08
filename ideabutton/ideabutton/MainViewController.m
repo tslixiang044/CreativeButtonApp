@@ -14,7 +14,7 @@
 #import "ImageViewCell.h"
 #import "JsonResult.h"
 #import "WaterFlowObj.h"
-#import "WaitPageViewController.h"
+#import "ReformIdeaViewController.h"
 #import "InteractivePageViewController.h"
 #import "IdeaDetailViewController.h"
 #import "DB.h"
@@ -164,27 +164,27 @@
 }
 -(void)btnwyyaAction
 {
-    
-    self.btntype=@"wyya";
-    
-    
-            segmentedControl.hidden=YES;
-    
-   
-            User* user = [[DB sharedInstance]queryUser];
-            if (user)
-            {
-                IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-                [self.navigationController pushViewController:press animated:YES];
-                [press release];
-            }
-            else
-            {
-                LoginViewController *login=[[LoginViewController alloc] init];
-                login.delegate=self;
-                [self.navigationController pushViewController:login animated:YES];
-                [login release];
-            }
+    [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:@{}] animated:YES];
+//    self.btntype=@"wyya";
+//    
+//    
+//            segmentedControl.hidden=YES;
+//    
+//   
+//            User* user = [[DB sharedInstance]queryUser];
+//            if (user)
+//            {
+//                IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//                [self.navigationController pushViewController:press animated:YES];
+//                [press release];
+//            }
+//            else
+//            {
+//                LoginViewController *login=[[LoginViewController alloc] init];
+//                login.delegate=self;
+//                [self.navigationController pushViewController:login animated:YES];
+//                [login release];
+//            }
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {

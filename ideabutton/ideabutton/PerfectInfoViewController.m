@@ -67,6 +67,11 @@
     [backgroundView addSubview:freePeopleBtn];
 }
 
+-(void)btnright
+{
+    [self showMenuView];
+}
+
 - (void)show
 {
     PrefectStudentInfoViewController* infoViewController = [[PrefectStudentInfoViewController alloc] init];

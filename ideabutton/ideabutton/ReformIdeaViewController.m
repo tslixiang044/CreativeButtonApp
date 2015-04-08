@@ -32,7 +32,7 @@
     if (self)
     {
         self.dict = dict;
-//        preSentence = [NSString stringWithFormat:@"%@",[self.dict objectForKey:@"sentence"]];
+        //        preSentence = [NSString stringWithFormat:@"%@",[self.dict objectForKey:@"sentence"]];
     }
     
     return self;
@@ -46,15 +46,31 @@
     
     [self createInputView];
 }
+
 -(void)btnright
 {
     [self showMenuView];
 }
+
 -(void)createInputView
 {
-    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 50, 240, 160)];
-    titleLabel.text = [NSString stringWithFormat:@"#改造声明#我宣布,我刚刚改造了一条%@广告,谁也别想再碰!",[self.dict objectForKey:@"product"]];
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 50, 280, 120)];
+    titleLabel.layer.borderColor = [[UIColor grayColor] CGColor];
+    titleLabel.layer.borderWidth = 1;
+    titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    titleLabel.numberOfLines = 0;
     
+    NSString* titleStr = [NSString stringWithFormat:@"#改造声明#我宣布,我刚刚改造了一条%@广告,谁也别想再碰!",[self.dict objectForKey:@"product"]];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:titleStr];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,6)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(6,str.length - 7)];
+    titleLabel.attributedText = str;
+    
+    [self.view addSubview:titleLabel];
+    
+    UIImageView* backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 185, 280, 260)];
+    [backgroundView setBackgroundColor:COLOR(21, 21, 22)];
+    [self.view addSubview:backgroundView];
 }
 
 -(void)buttonClick:(UIButton*)sender
@@ -79,7 +95,7 @@
                     }
                     else
                     {
-//                        [self showalertview_text:@"创意霸占失败" imgname:@"error" autoHiden:YES];
+                        //                        [self showalertview_text:@"创意霸占失败" imgname:@"error" autoHiden:YES];
                     }
                 });
             });

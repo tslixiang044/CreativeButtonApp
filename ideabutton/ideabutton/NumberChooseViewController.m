@@ -116,12 +116,12 @@
                 }
                 else
                 {
-                    [self showAlertView_desc:@"实名认证资料正在审核中,\n审核通过后可看到更多idea" btnImage:@"bg_btn_wszl_on"];
+                    [self showAlertView_desc:@"实名认证资料正在审核中,\n审核通过后可看到更多idea" btnImage:@"register/btn_ljyz"];
                 }
             }
             else
             {
-                [self showAlertView_desc:@"今日81个免费已用完,请明日再来!" btnImage:@"bg_btn_wszl_on"];
+                [self showAlertView_desc:@"今日81个免费已用完,请明日再来!" btnImage:@"all_btn_qd"];
             }
         }
     }
