@@ -16,23 +16,26 @@
 
 @interface ReformIdeaViewController()
 {
-    UITextField* reformIdeaTextField;
+    UITextView* sentenceTextView;
 }
 
 @property(nonatomic, strong)NSDictionary* dict;
+@property(nonatomic, assign)BOOL agreementChecked;
+@property(nonatomic, assign)NSInteger   type;
 
 @end
 
 
 @implementation ReformIdeaViewController
 
--(id)initWithDict:(NSDictionary*)dict
+-(id)initWithDict:(NSDictionary*)dict Type:(NSInteger)type
 {
     self = [super init];
     if (self)
     {
         self.dict = dict;
-        //        preSentence = [NSString stringWithFormat:@"%@",[self.dict objectForKey:@"sentence"]];
+        self.agreementChecked = NO;
+        self.type = type;
     }
     
     return self;
@@ -54,13 +57,23 @@
 
 -(void)createInputView
 {
+    NSString* titleStr = @"";
+    
     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 50, 280, 120)];
     titleLabel.layer.borderColor = [[UIColor grayColor] CGColor];
     titleLabel.layer.borderWidth = 1;
     titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     titleLabel.numberOfLines = 0;
     
-    NSString* titleStr = [NSString stringWithFormat:@"#改造声明#我宣布,我刚刚改造了一条%@广告,谁也别想再碰!",[self.dict objectForKey:@"product"]];
+    if (self.type == 1)
+    {
+        titleStr = [NSString stringWithFormat:@"#霸占宣言#我宣布,我刚刚霸占了一条%@广告,谁也别想再碰!",[self.dict objectForKey:@"product"]];
+    }
+    else
+    {
+        titleStr = [NSString stringWithFormat:@"#改造声明#我宣布,我刚刚改造了一条%@广告,谁也别想再碰!",[self.dict objectForKey:@"product"]];
+    }
+    
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:titleStr];
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,6)];
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(6,str.length - 7)];
@@ -70,43 +83,115 @@
     
     UIImageView* backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 185, 280, 260)];
     [backgroundView setBackgroundColor:COLOR(21, 21, 22)];
+    backgroundView.userInteractionEnabled = YES;
     [self.view addSubview:backgroundView];
+    
+    UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
+    [imageView setImage:[UIImage imageNamed:@"logo_anniu"]];
+    [backgroundView addSubview:imageView];
+    
+    sentenceTextView = [[UITextView alloc] initWithFrame:CGRectMake(110, 10, 160, 90)];
+    [sentenceTextView setBackgroundColor:[UIColor blackColor]];
+    sentenceTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    sentenceTextView.layer.borderWidth = 1;
+    sentenceTextView.text = [self.dict objectForKey:@"sentence"];
+    sentenceTextView.textColor = [UIColor whiteColor];
+    sentenceTextView.font = [UIFont systemFontOfSize:15];
+    [backgroundView addSubview:sentenceTextView];
+    
+    UIButton *checkboxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    checkboxBtn.frame = CGRectMake(50, 115, 20, 20);
+    if (!self.agreementChecked)
+    {
+        [checkboxBtn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+        [checkboxBtn addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else
+    {
+        [checkboxBtn setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
+        [checkboxBtn addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [backgroundView addSubview:checkboxBtn];
+    
+    UILabel* hiddenLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 115, 150, 20)];
+    hiddenLabel.text = @"隐藏并30天后显示";
+    hiddenLabel.textColor = [UIColor whiteColor];
+    [backgroundView addSubview:hiddenLabel];
+    
+    UIImageView* line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 150, 280, 5)];
+    [line setImage:[UIImage imageNamed:@"public/line"]];
+    [backgroundView addSubview:line];
+    
+    UIButton* shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(90, 160, 100, 100)];
+    [shareBtn setImage:[UIImage imageNamed:@"btn_bzfx"] forState:UIControlStateNormal];
+    [shareBtn addTarget:self action:@selector(shareIdea) forControlEvents:UIControlEventTouchUpInside];
+    [backgroundView addSubview:shareBtn];
 }
 
--(void)buttonClick:(UIButton*)sender
+- (void)checkboxClicked:(id)sender
 {
-    switch (sender.tag)
+    UIButton *btn = (UIButton *)sender;
+    if(self.agreementChecked)
     {
-        case SaveBtnTag:
-        {
-            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
-            dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-            dispatch_async(currentQueue, ^{
-                //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-                NSString* ID = [[API sharedInstance] reformIdea:@{@"userOccupyId":@"",@"userCollectId":@"",@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"reformedSentence":reformIdeaTextField.text,@"sentence":@"",@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
-                //处理完上面的后回到主线程去更新UI
-                dispatch_queue_t mainQueue = dispatch_get_main_queue();
-                dispatch_async(mainQueue, ^{
+        [btn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
+        self.agreementChecked = NO;
+    }
+    else
+    {
+        [btn setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
+        self.agreementChecked = YES;
+    }
+}
+
+- (void)shareIdea
+{
+    if (self.type == 1)
+    {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(currentQueue, ^{
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance] occupyIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"sentence":[self.dict objectForKey:@"sentence"],@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"],@"share":@(self.agreementChecked)}];
+            //处理完上面的后回到主线程去更新UI
+            dispatch_queue_t mainQueue = dispatch_get_main_queue();
+            dispatch_async(mainQueue, ^{
+                
+                if ([API sharedInstance].code.integerValue == 0)
+                {
                     [SVProgressHUD dismiss];
-                    if (ID)
-                    {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil];
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }
-                    else
-                    {
-                        //                        [self showalertview_text:@"创意霸占失败" imgname:@"error" autoHiden:YES];
-                    }
-                });
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+                }
             });
-        }
-            break;
-        case CancelBtnTag:
-            [self.navigationController popViewControllerAnimated:YES];
-            break;
-            
-        default:
-            break;
+        });
+    }
+    else
+    {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(currentQueue, ^{
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance] reformIdea:@{@"userOccupyId":@"",@"userCollectId":@"",@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"reformedSentence":sentenceTextView.text,@"sentence":[self.dict objectForKey:@"sentence"],@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"],@"share":@(self.agreementChecked)}];
+            //处理完上面的后回到主线程去更新UI
+            dispatch_queue_t mainQueue = dispatch_get_main_queue();
+            dispatch_async(mainQueue, ^{
+                
+                if ([API sharedInstance].code.integerValue == 0)
+                {
+                    [SVProgressHUD dismiss];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+                }
+            });
+        });
     }
 }
 @end

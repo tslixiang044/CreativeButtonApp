@@ -14,6 +14,6 @@
     
 }
 
--(id)initWithDict:(NSDictionary*)dict;
+-(id)initWithDict:(NSDictionary*)dict Type:(NSInteger)type;
 
 @end

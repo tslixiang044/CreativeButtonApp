@@ -22,21 +22,17 @@
 #import "MySegmentedControl.h"
 
 
-
-
 @interface MainViewController ()<UIScrollViewDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate,MySegmentedControlDelegate>
 {
     
     NSMutableArray *mArr_1;
     NSMutableArray *mArr_2;
     
-    
     WaterFlowView *waterFlow_1;
     WaterFlowView *waterFlow_2;
     
-    
     //------------------
-   // UISegmentedControl *segmentedControl;
+    // UISegmentedControl *segmentedControl;
     MySegmentedControl *segmentedControl;
     
     UITextField *txtsearch;
@@ -48,32 +44,19 @@
 @implementation MainViewController
 @synthesize btntype;
 
-
-
-
--(void)dealloc
-{
-    [segmentedControl release];
-    [txtsearch release];
-    [super dealloc];
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     //------
     mArr_1=[[NSMutableArray alloc]init];
     mArr_2=[[NSMutableArray alloc]init];
-   //-------------
+    //-------------
     NSArray *segmentarr=[[NSArray alloc]initWithObjects:@"按友圈",@"建议栏", nil];
     segmentedControl=[[MySegmentedControl alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44)];
     segmentedControl.items=segmentarr;
     segmentedControl.delegate=self;
     
     segmentedControl.backgroundColor=kGetNavbarColor;
-    
-    
-    
-    
     
     [self.navigationController.navigationBar addSubview:segmentedControl];
     
@@ -99,7 +82,7 @@
     [mscrollview addSubview:waterFlow_2];
     [waterFlow_2 release];
     //------------------
-
+    
     bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, kMainScreenBoundheight-64-50, kMainScreenBoundwidth, 50)];
     bottomView.backgroundColor=[UIColor blackColor];
     [self.view addSubview:bottomView];
@@ -117,10 +100,18 @@
     [btnadmin addTarget:self action:@selector(btnadminAction) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:btnadmin];
     //------------------
-
+    
     [self loadData:1];
     [self loadData:2];
 }
+
+-(void)dealloc
+{
+    [segmentedControl release];
+    [txtsearch release];
+    [super dealloc];
+}
+
 -(void)loginSuccessfull
 {
     if([btntype isEqualToString:@"admin"])
@@ -137,10 +128,10 @@
     }
     
 }
+
 -(void)btnadminAction
 {
     self.btntype=@"admin";
-    
     
     User* user = [[DB sharedInstance]queryUser];
     if (user)
@@ -156,45 +147,39 @@
         [self.navigationController pushViewController:login animated:YES];
         [login release];
     }
-    
-    
-    
-    
-    
 }
 -(void)btnwyyaAction
 {
-    [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:@{}] animated:YES];
-//    self.btntype=@"wyya";
-//    
-//    
-//            segmentedControl.hidden=YES;
-//    
-//   
-//            User* user = [[DB sharedInstance]queryUser];
-//            if (user)
-//            {
-//                IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-//                [self.navigationController pushViewController:press animated:YES];
-//                [press release];
-//            }
-//            else
-//            {
-//                LoginViewController *login=[[LoginViewController alloc] init];
-//                login.delegate=self;
-//                [self.navigationController pushViewController:login animated:YES];
-//                [login release];
-//            }
+    self.btntype=@"wyya";
+    
+    segmentedControl.hidden=YES;
+    
+    User* user = [[DB sharedInstance]queryUser];
+    if (user)
+    {
+        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+        [self.navigationController pushViewController:press animated:YES];
+        [press release];
+    }
+    else
+    {
+        LoginViewController *login=[[LoginViewController alloc] init];
+        login.delegate=self;
+        [self.navigationController pushViewController:login animated:YES];
+        [login release];
+    }
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [txtsearch resignFirstResponder];
     return YES;
 }
+
 -(void)btnsearchAction
 {
     [txtsearch resignFirstResponder];
 }
+
 -(void)loadData:(int)mtag
 {
     if(mtag==1)
@@ -210,10 +195,12 @@
         [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_2" delegate:self];
     }
 }
+
 -(void)loadMore
 {
     
 }
+
 -(void)uploadfinished_global:(NSData *)responseData key:(NSString *)mkey
 {
     NSDictionary *mdic=[Global  GetdicwithData:responseData];
@@ -231,8 +218,8 @@
                 WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[typeArr objectAtIndex:i]];
                 [mArr_1 addObject:wobj];
             }
-
-               [waterFlow_1 reloadData];
+            
+            [waterFlow_1 reloadData];
         }
         else
         {
@@ -264,12 +251,14 @@
 {
     
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [[Global getInstanse] cancerRequest_key:@"kgetWaterFlowUrl"];
     segmentedControl.hidden=YES;
 }
+
 -(void)msegment_selected:(MySegmentedControl *)mseg index:(int)mindex
 {
     [mseg showlineAnimaton];
@@ -286,8 +275,6 @@
 }
 -(void)Selectbutton:(UISegmentedControl*)mseg
 {
-    
-    
     if(mseg.selectedSegmentIndex==0)
     {
         [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
@@ -296,7 +283,6 @@
     {
         [mscrollview setContentOffset:CGPointMake(kMainScreenBoundwidth, 0) animated:YES];
     }
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -320,17 +306,14 @@
     {
         return [mArr_2 count];
     }
-    
 }
 
 - (UIView *)waterFlowView:(WaterFlowView *)waterFlowView cellForRowAtIndexPath:(IndexPath *)indexPath
 {
-    
     ImageViewCell *view = [[ImageViewCell alloc] initWithIdentifier:nil];
     
     return view;
 }
-
 
 -(void)waterFlowView:(WaterFlowView *)waterFlowView  relayoutCellSubview:(UIView *)view withIndexPath:(IndexPath *)indexPath
 {
@@ -347,15 +330,7 @@
         [imageViewCell relayoutViews];
         [imageViewCell setbtnObjct:obj];
         
-        
-        NSLog(@"indexpath row == %d,column == %d",indexPath.row,indexPath.column);
-        
-        
-        
         [imageViewCell setcenterviewColor:(indexPath.row)%4];
-       
-           
-        
     }
     else
     {
@@ -371,7 +346,6 @@
         
         [imageViewCell setcenterviewColor:(indexPath.row)%4];
     }
-   
 }
 
 
@@ -395,29 +369,27 @@
         
         return waterFlowView.cellWidth * (height/width);
     }
-     else
-     {
-         int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-         WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
-         
-         float width = 0.0f;
-         float height = 0.0f;
-         if (obj)
-         {
-             width =100;// [[dict objectForKey:@"width"] floatValue];
-             height = 160;//[[dict objectForKey:@"height"] floatValue];
-             if(arrIndex%2==0)
-                 height=170;
-         }
-         
-         return waterFlowView.cellWidth * (height/width);
-     }
-    
+    else
+    {
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
+        
+        float width = 0.0f;
+        float height = 0.0f;
+        if (obj)
+        {
+            width =100;// [[dict objectForKey:@"width"] floatValue];
+            height = 160;//[[dict objectForKey:@"height"] floatValue];
+            if(arrIndex%2==0)
+                height=170;
+        }
+        
+        return waterFlowView.cellWidth * (height/width);
+    }
 }
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
-    
     if(waterFlowView==waterFlow_1)
     {
         IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
