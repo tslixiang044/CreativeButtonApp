@@ -38,6 +38,10 @@
     UILabel* surplusNumLabel;
     UIButton* previousBtn;
     UIButton* nextBtn;
+    
+    NSString* reformID;
+    NSString* occupyID;
+    NSString* collectID;
 }
 @property(nonatomic, strong)NSMutableArray* data;
 @property(nonatomic, strong)NSMutableDictionary* dict;
@@ -56,6 +60,10 @@
         belongMeIdeaNum = [dataArr count];
         index = 0;
         titleNumber = 1;
+        
+        reformID = @"0";
+        occupyID = @"0";
+        collectID = @"0";
         
         [self getRemainderNum];
         
@@ -169,7 +177,10 @@
             break;
         case CollectionBtnTag:
         {
-            [self collectIdea];
+            if (collectID.integerValue == 0)
+            {
+                [self collectIdea];
+            }
         }
             break;
         case TransformBtnTag:
@@ -184,9 +195,9 @@
                 {
                     index++;
                     
-                    [self updateLog];
+                    [self hasIdeaBeenUsed];
                     
-                    [self getRemainderNum];
+                    [self updateLog];
                     
                     previousBtn.hidden = NO;
                     
@@ -208,6 +219,9 @@
             if (index > 0)
             {
                 index--;
+
+                [self hasIdeaBeenUsed];
+                
                 detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
                 
                 if (index == 0)
@@ -253,14 +267,15 @@
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        NSString* collectIdeaID = [[API sharedInstance] collectIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"sentence":detailLabel.text,@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
+        [[API sharedInstance] collectIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"sentence":[[self.data objectAtIndex:index] objectForKey:@"sentence"],@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"]}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
-            if (collectIdeaID)
+            if ([API sharedInstance].code.integerValue == 0)
             {
+                collectionBtn.enabled = NO;
                 [SVProgressHUD showSuccessWithStatus:@"您每天可以收藏9条idea"];
-                [collectionBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wysc_on"] forState:UIControlStateNormal];
+                [collectionBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wysc_on"] forState:UIControlStateDisabled];
             }
             else
             {
@@ -290,15 +305,70 @@
 
 - (void)updateLog
 {
-    User* user = [[DB sharedInstance]queryUser];
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        [[API sharedInstance]logIdeaViewed:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode],@"sentence":detailLabel.text}];
+        [[API sharedInstance]logIdeaViewed:@{@"sentence":detailLabel.text}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
             
+            if ([API sharedInstance].code.integerValue == 0)
+            {
+                [self getRemainderNum];
+            }
+        });
+    });
+}
+
+- (void)hasIdeaBeenUsed
+{
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        NSDictionary* dict = [[API sharedInstance]hasIdeaBeenUsed:@{@"sentence":[[self.data objectAtIndex:index] objectForKey:@"sentence"]}];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            if (dict)
+            {
+                reformID = [dict objectForKey:@"reform"];
+                occupyID = [dict objectForKey:@"occupy"];
+                collectID = [dict objectForKey:@"collect"];
+            }
+            
+            if (reformID.integerValue > 0)
+            {
+                transformBtn.enabled = NO;
+                [transformBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wygz_on"] forState:UIControlStateDisabled];
+            }
+            else
+            {
+                transformBtn.enabled = YES;
+                [transformBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wygz"] forState:UIControlStateNormal];
+            }
+            
+            if (occupyID.integerValue > 0)
+            {
+                hoggedBtn.enabled = NO;
+                [hoggedBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wybz_on"] forState:UIControlStateDisabled];
+            }
+            else
+            {
+                hoggedBtn.enabled = YES;
+                [hoggedBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wybz"] forState:UIControlStateNormal];
+            }
+            
+            if (collectID.integerValue > 0)
+            {
+                collectionBtn.enabled = NO;
+                [collectionBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wysc_on"] forState:UIControlStateDisabled];
+            }
+            else
+            {
+                collectionBtn.enabled = YES;
+                [collectionBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wysc"] forState:UIControlStateNormal];
+            }
         });
     });
 }

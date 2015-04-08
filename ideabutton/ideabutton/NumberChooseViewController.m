@@ -101,7 +101,29 @@
     }
     else
     {
-        
+        User* user = [[DB sharedInstance]queryUser];
+        if (user)
+        {
+            if (user.userLevel == 1)
+            {
+                [self showAlertView_desc:@"就知道18个满足不了你,\n去完善个人资料可看到更多idea" btnImage:@"bg_btn_wszl_on"];
+            }
+            else if (user.userLevel == 2)
+            {
+                if (user.auditStatus == 0)
+                {
+                    [self showAlertView_desc:@"就知道36个满足不了你,\n去上传实名认证资料可看到更多idea" btnImage:@"bg_btn_wszl_on"];
+                }
+                else
+                {
+                    [self showAlertView_desc:@"实名认证资料正在审核中,\n审核通过后可看到更多idea" btnImage:@"bg_btn_wszl_on"];
+                }
+            }
+            else
+            {
+                [self showAlertView_desc:@"今日81个免费已用完,请明日再来!" btnImage:@"bg_btn_wszl_on"];
+            }
+        }
     }
 }
 

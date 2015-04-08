@@ -133,6 +133,7 @@
 		E98C48F21A8B7BA300287EF8 /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = E98C48F11A8B7BA300287EF8 /* gif.gif */; };
 		E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */; };
 		E98DA1A71AD3D3E10056DA92 /* ProductListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */; };
+		E98DA1AB1AD519B90056DA92 /* bg_btn_wszl_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98DA1AA1AD519B90056DA92 /* bg_btn_wszl_on@2x.png */; };
 		E9DB90E81AC1569F00F66467 /* PerfectInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90E71AC1569F00F66467 /* PerfectInfoViewController.m */; };
 		E9DB90EB1AC1614100F66467 /* PrefectStudentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90EA1AC1614100F66467 /* PrefectStudentInfoViewController.m */; };
 		E9F0E0D71A8C862100CAC9E1 /* ImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0D21A8C862100CAC9E1 /* ImageViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -367,6 +368,7 @@
 		E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaGenerateViewController.m; sourceTree = "<group>"; };
 		E98DA1A51AD3D3E10056DA92 /* ProductListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListTableViewController.h; sourceTree = "<group>"; };
 		E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListTableViewController.m; sourceTree = "<group>"; };
+		E98DA1AA1AD519B90056DA92 /* bg_btn_wszl_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_btn_wszl_on@2x.png"; sourceTree = "<group>"; };
 		E9DB90E61AC1569F00F66467 /* PerfectInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectInfoViewController.h; sourceTree = "<group>"; };
 		E9DB90E71AC1569F00F66467 /* PerfectInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectInfoViewController.m; sourceTree = "<group>"; };
 		E9DB90E91AC1614100F66467 /* PrefectStudentInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefectStudentInfoViewController.h; sourceTree = "<group>"; };
@@ -887,6 +889,7 @@
 		E98DA1A91AD3DBCF0056DA92 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				E98DA1AA1AD519B90056DA92 /* bg_btn_wszl_on@2x.png */,
 				894924D81AD3A7C6000F392C /* icon_admin1@2x.png */,
 				E94107791AA1B25D002D78B2 /* icon_wyfx@2x.png */,
 				894924D91AD3A7C6000F392C /* icon_sz@2x.png */,
@@ -1009,6 +1012,7 @@
 				89B4FA6F1ABAEEED007C1805 /* btn_start@2x.png in Resources */,
 				89AC5C701AA165D6005DA279 /* userheader@2x.png in Resources */,
 				894924DC1AD3A7C6000F392C /* icon_admin1@2x.png in Resources */,
+				E98DA1AB1AD519B90056DA92 /* bg_btn_wszl_on@2x.png in Resources */,
 				E97258271A888EB700F0ABB8 /* Default-568h@2x.png in Resources */,
 				E91E775E1A849E87000174D4 /* Images.xcassets in Resources */,
 				89B4FA671ABADE6A007C1805 /* icon_adduser@2x.png in Resources */,

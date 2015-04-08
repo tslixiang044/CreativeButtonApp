@@ -33,7 +33,7 @@
 -(void)showMenuView;
 -(void)hidenMenuView;
 
--(void)showAlertView_desc:(NSString *)desc btntitle:(NSString *)mtitle;
+-(void)showAlertView_desc:(NSString *)desc btnImage:(NSString *)imageName;
 -(void) PushToTop:(UIViewController*)mviewcontroller;
 -(void) PopToParent;
 

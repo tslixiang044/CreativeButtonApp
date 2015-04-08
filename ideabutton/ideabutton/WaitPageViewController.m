@@ -11,6 +11,7 @@
 #import "API.h"
 #import "IdeaGenerateViewController.h"
 #import "DB.h"
+#import "SVProgressHUD.h"
 
 #define Height  45
 
@@ -65,6 +66,10 @@
                 
                 [self performSelector:@selector(showController) withObject:nil afterDelay:3];
             }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+            }
         });
     });
 }
@@ -90,13 +95,6 @@
             }
             else
             {
-                if (user)
-                {
-                    if (user.auditStatus == 1 && user.userLevel == 1)
-                    {
-                        
-                    }
-                }
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         });

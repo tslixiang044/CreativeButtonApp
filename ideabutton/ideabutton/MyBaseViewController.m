@@ -257,7 +257,7 @@
 
 
 
--(void)showAlertView_desc:(NSString *)desc btntitle:(NSString *)mtitle
+-(void)showAlertView_desc:(NSString *)desc btnImage:(NSString *)imageName
 {
     if(alertView2==nil)
     {
@@ -270,14 +270,14 @@
         //------
         
         //-------
-        UIView *view_center=[[UIView alloc]initWithFrame:CGRectMake(20, (kMainScreenBoundheight-64-250)/2, kMainScreenBoundwidth-40, kMainScreenBoundheight-64-200)];
+        UIView *view_center=[[UIView alloc]initWithFrame:CGRectMake(30, (kMainScreenBoundheight-64-250)/2, kMainScreenBoundwidth-60, kMainScreenBoundheight-80-200)];
         view_center.tag=886;
-        view_center.backgroundColor=COLOR(204, 41, 32);
+        view_center.backgroundColor = COLOR(21, 21, 22);
         [alertView2 addSubview:view_center];
         //-------
         UIButton *  btnclose = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnclose.frame = CGRectMake(view_center.frame.size.width-40, -20, 60, 60);
-        [btnclose setImage:[UIImage imageNamed:@"btn_close.png"] forState:UIControlStateNormal];
+        btnclose.frame = CGRectMake(view_center.frame.size.width-50, -10, 60, 60);
+        [btnclose setImage:[UIImage imageNamed:@"btn_close"] forState:UIControlStateNormal];
         btnclose.backgroundColor=[UIColor clearColor];
         [btnclose addTarget:self action:@selector(btncloseAction:) forControlEvents:UIControlEventTouchUpInside];
         [view_center addSubview:btnclose];
@@ -288,21 +288,15 @@
         
         lbldesc.textAlignment = NSTextAlignmentCenter;
         //自动折行设置
-        
         lbldesc.lineBreakMode = NSLineBreakByWordWrapping;
         lbldesc.numberOfLines=0;
+        
         lbldesc.textColor=[UIColor whiteColor];
         [view_center addSubview:lbldesc];
         //--------
         UIButton *  btngo = [UIButton buttonWithType:UIButtonTypeCustom];
-        btngo.frame = CGRectMake((width-90)/2, 140, 100, 50);
-        btngo.layer.cornerRadius = 5;
-        [btngo setBackgroundImage:[UIImage imageNamed:@"btn_bg_bai.png"] forState:UIControlStateNormal];
-        btngo.tag=889;
-        btngo.titleLabel.font = [UIFont systemFontOfSize:15];
-        btngo.backgroundColor=COLOR(131, 131, 131);
-        [btngo setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [btngo setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+        btngo.frame = CGRectMake((width-80)/2, 140, 80, 80);
+        btngo.tag = 889;
         [btngo addTarget:self action:@selector(btngoAction:) forControlEvents:UIControlEventTouchUpInside];
         [view_center addSubview:btngo];
     }
@@ -313,7 +307,7 @@
     //---------
     
     UIButton *btngo=(UIButton *)[view_center viewWithTag:889];
-     [btngo setTitle:mtitle forState:UIControlStateNormal];
+     [btngo setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     
     
     alertView2.hidden=NO;

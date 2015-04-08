@@ -29,5 +29,6 @@
 @property (nonatomic, assign) NSInteger userLevel;
 @property (nonatomic, assign) NSInteger majorPrivate;
 @property (nonatomic, assign) NSInteger auditStatus;
+@property (nonatomic, strong) NSString *avatar;
 
 @end
