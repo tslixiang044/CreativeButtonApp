@@ -161,16 +161,28 @@
 
 -(void)changeButtonTitle:(NSNotification*)notify
 {
-    hoggedBtn.enabled = NO;
-    [hoggedBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wybz_on"] forState:UIControlStateDisabled];
+    NSDictionary* userInfo = [notify userInfo];
     
-    transformBtn.enabled = NO;
-    [transformBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wygz_on"] forState:UIControlStateDisabled];
+    if (userInfo)
+    {
+        occupyID = [userInfo objectForKey:@"occupyID"];
+        hoggedBtn.enabled = NO;
+        [hoggedBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wybz_on"] forState:UIControlStateDisabled];
+    }
+    else
+    {
+        hoggedBtn.enabled = NO;
+        [hoggedBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wybz_on"] forState:UIControlStateDisabled];
+        
+        transformBtn.enabled = NO;
+        [transformBtn setImage:[UIImage imageNamed:@"ideaCreate/btn_wygz_on"] forState:UIControlStateDisabled];
+    }
 }
 
 -(void)buttonClick:(UIButton*)sender
 {
     [self.dict setValue:[[self.data objectAtIndex:index] objectForKey:@"algorithmRule"] forKey:@"algorithmRule"];
+    [self.dict setValue:[[self.data objectAtIndex:index] objectForKey:@"sentence"] forKey:@"sentence"];
     switch (sender.tag)
     {
         case HoggedBtnTag:
@@ -188,6 +200,24 @@
             break;
         case TransformBtnTag:
         {
+            if (!hoggedBtn.enabled || !collectionBtn.enabled)
+            {
+                [self.dict setValue:@(2) forKey:@"type"];
+                
+                if (occupyID.integerValue > 0)
+                {
+                    [self.dict setObject:occupyID forKey:@"occupyID"];
+                }
+                
+                if (collectID.integerValue > 0)
+                {
+                    [self.dict setObject:collectID forKey:@"collectID"];
+                }
+            }
+            else
+            {
+                [self.dict setValue:@(1) forKey:@"type"];
+            }
             [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:self.dict Type:2] animated:YES];
         }
             break;

@@ -35,9 +35,18 @@
 
 - (NSDictionary*)asDictionary
 {
+    if (self.avatar.length > 0)
+    {
         NSDictionary *userDict = @{@"collegePrivate":@(self.collegePrivate),@"nickname":self.nickName,@"token":self.token,@"userCode":@(self.userCode),@"gender":@(self.gender),@"userStatus":@(self.userStatus),@"majorPrivate":@(self.majorPrivate),@"userFullnamePrivate":@(self.userFullnamePrivate),@"userLevel":@(self.userLevel),@"auditStatus":@(self.auditStatus),@"avatar":self.avatar};
         
         return userDict;
+    }
+    else
+    {
+        NSDictionary *userDict = @{@"collegePrivate":@(self.collegePrivate),@"nickname":self.nickName,@"token":self.token,@"userCode":@(self.userCode),@"gender":@(self.gender),@"userStatus":@(self.userStatus),@"majorPrivate":@(self.majorPrivate),@"userFullnamePrivate":@(self.userFullnamePrivate),@"userLevel":@(self.userLevel),@"auditStatus":@(self.auditStatus)};
+        
+        return userDict;
+    }
 }
 
 @end

@@ -14,9 +14,11 @@
 #define SaveBtnTag    0
 #define CancelBtnTag    1
 
-@interface ReformIdeaViewController()
+@interface ReformIdeaViewController() <UITextViewDelegate>
 {
     UITextView* sentenceTextView;
+    NSString* userOccupyId;
+    NSString* userCollectId;
 }
 
 @property(nonatomic, strong)NSDictionary* dict;
@@ -36,6 +38,17 @@
         self.dict = dict;
         self.agreementChecked = NO;
         self.type = type;
+        userOccupyId = @"";
+        userCollectId = @"";
+        if ([[self.dict objectForKey:@"occupyId"] integerValue] > 0)
+        {
+            userOccupyId = [self.dict objectForKey:@"occupyId"];
+        }
+        
+        if ([[self.dict objectForKey:@"collectID"] integerValue] > 0)
+        {
+            userCollectId = [self.dict objectForKey:@"collectID"];
+        }
     }
     
     return self;
@@ -92,11 +105,14 @@
     
     sentenceTextView = [[UITextView alloc] initWithFrame:CGRectMake(110, 10, 160, 90)];
     [sentenceTextView setBackgroundColor:[UIColor blackColor]];
+    sentenceTextView.delegate = self;
     sentenceTextView.layer.borderColor = [[UIColor grayColor] CGColor];
     sentenceTextView.layer.borderWidth = 1;
+    sentenceTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     sentenceTextView.text = [self.dict objectForKey:@"sentence"];
     sentenceTextView.textColor = [UIColor whiteColor];
     sentenceTextView.font = [UIFont systemFontOfSize:15];
+    sentenceTextView.returnKeyType = UIReturnKeyDone;
     [backgroundView addSubview:sentenceTextView];
     
     UIButton *checkboxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -128,6 +144,19 @@
     [backgroundView addSubview:shareBtn];
 }
 
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"])
+    {
+        [textView resignFirstResponder];
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
+
 - (void)checkboxClicked:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
@@ -151,7 +180,11 @@
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            [[API sharedInstance] occupyIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"sentence":[self.dict objectForKey:@"sentence"],@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"],@"share":@(self.agreementChecked)}];
+            NSString* occupyID = [[API sharedInstance] occupyIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],
+                                                                    @"sentence":[self.dict objectForKey:@"sentence"],
+                                                                    @"adtype":[self.dict objectForKey:@"adtype"],
+                                                                    @"product":[self.dict objectForKey:@"product"],
+                                                                    @"share":@(self.agreementChecked)}];
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
@@ -159,7 +192,7 @@
                 if ([API sharedInstance].code.integerValue == 0)
                 {
                     [SVProgressHUD dismiss];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil userInfo:@{@"occupyID":occupyID}];
                     [self.navigationController popViewControllerAnimated:YES];
                 }
                 else
@@ -175,7 +208,15 @@
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            [[API sharedInstance] reformIdea:@{@"userOccupyId":@"",@"userCollectId":@"",@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],@"reformedSentence":sentenceTextView.text,@"sentence":[self.dict objectForKey:@"sentence"],@"adtype":[self.dict objectForKey:@"adtype"],@"product":[self.dict objectForKey:@"product"],@"share":@(self.agreementChecked)}];
+            [[API sharedInstance] reformIdea:@{@"type":[self.dict objectForKey:@"type"],
+                                                                    @"userOccupyId":userOccupyId,
+                                                                    @"userCollectId":userCollectId,
+                                                                    @"algorithmRule":[self.dict objectForKey:@"algorithmRule"],
+                                                                    @"reformedSentence":sentenceTextView.text,
+                                                                    @"sentence":[self.dict objectForKey:@"sentence"],
+                                                                    @"adtype":[self.dict objectForKey:@"adtype"],
+                                                                    @"product":[self.dict objectForKey:@"product"],
+                                                                    @"share":@(self.agreementChecked)}];
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{

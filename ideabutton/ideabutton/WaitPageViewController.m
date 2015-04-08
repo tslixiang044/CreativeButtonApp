@@ -53,6 +53,7 @@
 
 -(void)createIdea
 {
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
@@ -62,6 +63,8 @@
         dispatch_async(mainQueue, ^{
             if ([self.ideaArr count] != 0)
             {
+                [SVProgressHUD dismiss];
+                
                 [self ShowLoadingView];
                 
                 [self performSelector:@selector(showController) withObject:nil afterDelay:3];
