@@ -116,8 +116,8 @@
         dispatch_async(mainQueue, ^{
             
             
-            
-            if([back_dic objectForKey:@"code"]==0)
+            NSInteger codeValue = [[back_dic objectForKey:@"code"] integerValue];
+            if(codeValue==0)
             {
                 [self showalertview_text:@"提交成功" frame:frame autoHiden:YES];
             }

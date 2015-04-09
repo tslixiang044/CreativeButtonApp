@@ -162,12 +162,10 @@
     }
     else if(indexPath.row==4)
     {
-        [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name",@"LoginPSW"]];
-        [API sharedInstance].user = nil;
-        if(delegate)
-        {
-            [delegate LoginOUt];
-        }
+        
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定退出登录吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+
     }
     
     
@@ -176,7 +174,19 @@
     
     [self hidentoolView];
 }
-
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==1)
+    {
+        [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name",@"LoginPSW"]];
+        [API sharedInstance].user = nil;
+        if(delegate)
+        {
+            [delegate LoginOUt];
+        }
+    }
+    
+}
 -(void)btnCloseAction:(UIButton *)mbtn
 {
     //NSLog(@"close");

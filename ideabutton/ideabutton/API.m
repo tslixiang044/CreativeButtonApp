@@ -84,7 +84,7 @@
     return user;
 }
 
--(User*)updateUser:(NSDictionary*)userDict
+-(NSDictionary*)updateUser:(NSDictionary*)userDict
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/updateUser"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
@@ -95,12 +95,7 @@
         return nil;
     }
     
-    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
-    if(user)
-    {
-        self.user = user;
-    }
-    return user;
+    return retDict;
 }
 
 -(User*)updateUserField:(NSDictionary*)userDict
@@ -122,7 +117,7 @@
     return user;
 }
 
--(User*)userInfo:(NSDictionary*)userDict
+-(NSDictionary*)userInfo:(NSDictionary*)userDict
 {
     NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
     [urlStr appendString:@"check/userInfo"];
@@ -134,13 +129,13 @@
     {
         return nil;
     }
-    
-    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
-    if(user)
-    {
-        self.user = user;
-    }
-    return user;
+    return retDict;
+//    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
+//    if(user)
+//    {
+//        self.user = user;
+//    }
+//    return user;
 }
 
 - (void)isEnabledNickname:(NSDictionary*)dict

@@ -21,7 +21,7 @@
 
 
 
-@interface MyToolView : UIView<UITableViewDataSource,UITableViewDelegate>
+@interface MyToolView : UIView<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     UIButton *btnClose;
     UITableView *mtableview;

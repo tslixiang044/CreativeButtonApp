@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
+#import "DB.h"
+
 @interface PersonaInfomationViewController : MyBaseViewController
 {
-    
+    User *user;
 }
+@property(nonatomic,strong)User *user;
+@property(nonatomic,strong)NSDictionary *dic_data;
+
+
+
 @end
