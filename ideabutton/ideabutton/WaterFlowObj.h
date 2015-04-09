@@ -29,6 +29,8 @@
 @property(nonatomic,retain)NSString *numberOfForward;
 @property(nonatomic,retain)NSString *shared;
 @property(nonatomic,retain)NSString *college;
-@property(nonatomic,retain)NSString *comments;
+@property(nonatomic,retain)NSArray *comments;
+@property(nonatomic,retain)NSString *userReformId;
+@property(nonatomic,retain)NSString *company;
 
 @end

@@ -69,6 +69,8 @@
 		E91E77CF1A84B1C2000174D4 /* MyBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CA1A84B1C2000174D4 /* MyBaseViewController.m */; };
 		E91E77D01A84B1C2000174D4 /* MyUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CC1A84B1C2000174D4 /* MyUIButton.m */; };
 		E91E77D11A84B1C2000174D4 /* MyUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E77CE1A84B1C2000174D4 /* MyUILabel.m */; };
+		E930AE4F1AD672B100A013D9 /* icon_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E930AE4D1AD672B100A013D9 /* icon_man@2x.png */; };
+		E930AE501AD672B100A013D9 /* icon_woman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E930AE4E1AD672B100A013D9 /* icon_woman@2x.png */; };
 		E932E54A1AB7BE6A00839FA4 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E932E5491AB7BE6A00839FA4 /* ForgetPswViewController.m */; };
 		E932E5711AB913F100839FA4 /* forgetPSW in Resources */ = {isa = PBXBuildFile; fileRef = E932E56D1AB913F100839FA4 /* forgetPSW */; };
 		E932E5721AB913F100839FA4 /* login in Resources */ = {isa = PBXBuildFile; fileRef = E932E56E1AB913F100839FA4 /* login */; };
@@ -250,6 +252,8 @@
 		E91E77CC1A84B1C2000174D4 /* MyUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUIButton.m; sourceTree = "<group>"; };
 		E91E77CD1A84B1C2000174D4 /* MyUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUILabel.h; sourceTree = "<group>"; };
 		E91E77CE1A84B1C2000174D4 /* MyUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUILabel.m; sourceTree = "<group>"; };
+		E930AE4D1AD672B100A013D9 /* icon_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_man@2x.png"; sourceTree = "<group>"; };
+		E930AE4E1AD672B100A013D9 /* icon_woman@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_woman@2x.png"; sourceTree = "<group>"; };
 		E932E5481AB7BE6A00839FA4 /* ForgetPswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPswViewController.h; sourceTree = "<group>"; };
 		E932E5491AB7BE6A00839FA4 /* ForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPswViewController.m; sourceTree = "<group>"; };
 		E932E56D1AB913F100839FA4 /* forgetPSW */ = {isa = PBXFileReference; lastKnownFileType = folder; path = forgetPSW; sourceTree = "<group>"; };
@@ -744,6 +748,8 @@
 		E94E5E841AD61FC400AB0B9F /* Maindetail */ = {
 			isa = PBXGroup;
 			children = (
+				E930AE4D1AD672B100A013D9 /* icon_man@2x.png */,
+				E930AE4E1AD672B100A013D9 /* icon_woman@2x.png */,
 				E94E5E9A1AD622A900AB0B9F /* btn_good@2x.png */,
 				E94E5E9B1AD622A900AB0B9F /* btn_tlak@2x.png */,
 				E94E5E851AD6216F00AB0B9F /* icon_good@2x.png */,
@@ -1001,6 +1007,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E98190861A885DF30025F284 /* icon_wbzd@2x.png in Resources */,
+				E930AE4F1AD672B100A013D9 /* icon_man@2x.png in Resources */,
 				E98190871A885DF30025F284 /* icon_wgzd@2x.png in Resources */,
 				894924DE1AD3A7C6000F392C /* icon_tjy@2x.png in Resources */,
 				E932E5741AB913F100839FA4 /* register in Resources */,
@@ -1034,6 +1041,7 @@
 				E94E5E881AD6216F00AB0B9F /* icon_talk@2x.png in Resources */,
 				E932E5721AB913F100839FA4 /* login in Resources */,
 				89AF6B3A1AA45D9D004F88F1 /* icon_aixin@2x.png in Resources */,
+				E930AE501AD672B100A013D9 /* icon_woman@2x.png in Resources */,
 				89B4FA701ABAEEED007C1805 /* strartpage_1@2x.png in Resources */,
 				89AC5C781AA1C1CF005DA279 /* btn_close@2x.png in Resources */,
 				E941077E1AA1B25D002D78B2 /* icon_tcdl@2x.png in Resources */,
@@ -1235,6 +1243,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs/include",
 				);
 				INFOPLIST_FILE = ideabutton/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1258,6 +1267,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs/include",
 				);
 				INFOPLIST_FILE = ideabutton/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
