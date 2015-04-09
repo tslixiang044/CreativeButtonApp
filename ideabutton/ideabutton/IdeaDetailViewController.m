@@ -10,44 +10,47 @@
 #import "MyUIButton.h"
 #import "MyToolView.h"
 
-
-
-
 @interface IdeaDetailViewController ()
 {
     UIImageView *imgview_header;
     UILabel *lblnickname;
     UILabel *lblsource;
     
-    
     UIView *view_center;
     UILabel *lbldesc;
     UILabel *lblproduct;
     UILabel *lbltime;
     
-    
-    
     MyToolView *toolview;
 }
+
+@property(nonatomic, strong)WaterFlowObj* data;
+
 @end
 
 @implementation IdeaDetailViewController
+
+- (id)initWithData:(WaterFlowObj *)object
+{
+    self = [super init];
+    if (self)
+    {
+        self.data = object;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setrightbaritem_imgname:@"icon_more_all.png" title:@""];
     
-    
-    self.title=@"用户详情页";
-    
-    
     float x=10;
     float y=10;
     
     imgview_header=[[UIImageView alloc]initWithFrame:CGRectMake(x, y, 50, 50)];
     imgview_header.userInteractionEnabled=YES;
-    imgview_header.image=[UIImage imageNamed:@"userheader.png"];
+    imgview_header.image=[UIImage imageNamed:@"userheader"];
     [self.view addSubview:imgview_header];
     
     CALayer *layer = [imgview_header layer];
@@ -60,55 +63,48 @@
     
     [layer setBorderColor:[mcolor CGColor]];
     //--------------
-    x=imgview_header.frame.origin.x+imgview_header.frame.size.width+5;
+    x=imgview_header.frame.origin.x+imgview_header.frame.size.width+20;
     lblnickname=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 100, 25)];
     lblnickname.backgroundColor=[UIColor clearColor];
-    lblnickname.font=[UIFont systemFontOfSize:13];
-    lblnickname.text=@"peter zhong";
+    lblnickname.text=self.data.nickname;
     lblnickname.textColor=[UIColor whiteColor];
     [self.view addSubview:lblnickname];
-    //--------------
-//    y=lblnickname.frame.origin.y+lblnickname.frame.size.height;
-//    
-//    lblsource=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 100, 25)];
-//    lblsource.backgroundColor=[UIColor clearColor];
-//    lblsource.text=@"长沙 胜美广告";
-//    lblsource.font=[UIFont systemFontOfSize:12];
-//    lblsource.textColor=[UIColor whiteColor];
-//    [self.view addSubview:lblsource];
-    //---------------
+    
     y=imgview_header.frame.origin.y+imgview_header.frame.size.height+30;
     
     view_center=[[UIView alloc]initWithFrame:CGRectMake(10, y, kMainScreenBoundwidth-20, 200)];
-    view_center.backgroundColor=COLOR(204, 41, 32);
+    view_center.backgroundColor=COLOR(205, 40, 30);
     [self.view addSubview:view_center];
     //---------------
     x=10;
     y=10;
     
-    lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-20-20, 35)];
-    lbldesc.numberOfLines=2;
+    lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-40, 50)];
     lbldesc.textColor=[UIColor whiteColor];
-    lbldesc.text=@"我刚刚霸占了一条啤酒广告IDEA：";
-    lbldesc.font=[UIFont systemFontOfSize:14];
+    lbldesc.text= [NSString stringWithFormat:@"我宣布，我刚刚霸占了一条%@广告，谁也别想再碰：",self.data.product];
+    lbldesc.font=[UIFont systemFontOfSize:16];
     lbldesc.backgroundColor=[UIColor clearColor];
+    lbldesc.lineBreakMode = NSLineBreakByWordWrapping;
+    lbldesc.numberOfLines=0;
     [view_center addSubview:lbldesc];
     //---------------
     y=lbldesc.frame.origin.y+lbldesc.frame.size.height;
-    lblproduct=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-20-20, 25)];
+    lblproduct=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-40, 100)];
     
     lblproduct.textColor=[UIColor whiteColor];
     lblproduct.font=[UIFont systemFontOfSize:20];
-    lblproduct.text=@"啤酒瓶里插莲花";
+    lblproduct.text=self.data.sentence;
     lblproduct.backgroundColor=[UIColor clearColor];
+    lblproduct.lineBreakMode = NSLineBreakByWordWrapping;
+    lblproduct.numberOfLines=0;
     [view_center addSubview:lblproduct];
     //---------------
-    y=lblproduct.frame.origin.y+lblproduct.frame.size.height;
-    lbltime=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-20-20, 25)];
+    y=lblproduct.frame.origin.y+lblproduct.frame.size.height + 10;
+    lbltime=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-40, 25)];
     lbltime.textAlignment=NSTextAlignmentRight;
     lbltime.textColor=[UIColor whiteColor];
-    lbltime.text=@"12分钟前";
-    lbltime.font=[UIFont systemFontOfSize:12];
+    lbltime.text= self.data.timeStamp;
+    lbltime.font=[UIFont systemFontOfSize:14];
     lbltime.backgroundColor=[UIColor clearColor];
     [view_center addSubview:lbltime];
     //---------------
@@ -116,68 +112,35 @@
     x=20;
     y=kMainScreenBoundheight-64-100;
     
-   UIButton *  btnzan = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *  btnzan = [UIButton buttonWithType:UIButtonTypeCustom];
     btnzan.frame = CGRectMake(x, y, 60, 30);
-    [btnzan setImage:[UIImage imageNamed:@"jiantou_xia.png"] forState:UIControlStateNormal];
+    [btnzan setImage:[UIImage imageNamed:@"btn_good"] forState:UIControlStateNormal];
     [btnzan setTitle:@"赞" forState:UIControlStateNormal];
+    [btnzan setTitleColor:COLOR(47, 44, 43) forState:UIControlStateNormal];
     btnzan.titleLabel.font = [UIFont systemFontOfSize:14];
-    btnzan.backgroundColor=COLOR(131, 131, 131);
-    [btnzan setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btnzan setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    btnzan.backgroundColor=COLOR(142, 142, 143);
+    btnzan.layer.cornerRadius = 5;
     [btnzan addTarget:self action:@selector(btnzanAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    [btnzan setTitleEdgeInsets:UIEdgeInsetsMake(5, 40, 5, 0)];
-    [btnzan setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
+    [btnzan setTitleEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 0)];
+    [btnzan setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
     [self.view addSubview:btnzan];
     //---------------------
     x=20+60+13.3;
-
-    UIButton *  btnzhuan = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnzhuan.frame = CGRectMake(x, y, 60, 30);
-    [btnzhuan setImage:[UIImage imageNamed:@"jiantou_xia.png"] forState:UIControlStateNormal];
-    [btnzhuan setTitle:@"转" forState:UIControlStateNormal];
-    btnzhuan.titleLabel.font = [UIFont systemFontOfSize:14];
-    btnzhuan.backgroundColor=COLOR(131, 131, 131);
-    [btnzhuan setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btnzhuan setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    [btnzhuan addTarget:self action:@selector(btnzhuanAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [btnzhuan setTitleEdgeInsets:UIEdgeInsetsMake(5, 40, 5, 0)];
-    [btnzhuan setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
-    [self.view addSubview:btnzhuan];
-    //---------------------
-    x=20+60+13.3+60+13.3;
     
     UIButton *  btnping = [UIButton buttonWithType:UIButtonTypeCustom];
     btnping.frame = CGRectMake(x, y, 60, 30);
-    [btnping setImage:[UIImage imageNamed:@"jiantou_xia.png"] forState:UIControlStateNormal];
+    [btnping setImage:[UIImage imageNamed:@"btn_tlak"] forState:UIControlStateNormal];
     [btnping setTitle:@"评" forState:UIControlStateNormal];
+    [btnping setTitleColor:COLOR(47, 44, 43) forState:UIControlStateNormal];
     btnping.titleLabel.font = [UIFont systemFontOfSize:14];
-    btnping.backgroundColor=COLOR(131, 131, 131);
-    [btnping setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btnping setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    btnping.backgroundColor=COLOR(142, 142, 143);
+    btnping.layer.cornerRadius = 5;
     [btnping addTarget:self action:@selector(btnpingAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    [btnping setTitleEdgeInsets:UIEdgeInsetsMake(5, 40, 5, 0)];
-    [btnping setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
+    [btnping setTitleEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 0)];
+    [btnping setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
     [self.view addSubview:btnping];
-    //---------------------
-    x=20+60+13.3+60+13.3+60+13.3;
-    
-    UIButton *  btnshan = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnshan.frame = CGRectMake(x, y, 60, 30);
-    [btnshan setImage:[UIImage imageNamed:@"jiantou_xia.png"] forState:UIControlStateNormal];
-    [btnshan setTitle:@"删" forState:UIControlStateNormal];
-    btnshan.titleLabel.font = [UIFont systemFontOfSize:14];
-    btnshan.backgroundColor=COLOR(131, 131, 131);
-    [btnshan setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btnshan setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    [btnshan addTarget:self action:@selector(btnshanAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [btnshan setTitleEdgeInsets:UIEdgeInsetsMake(5, 40, 5, 0)];
-    [btnshan setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
-    [self.view addSubview:btnshan];
-    //---------------------
 }
 
 - (void)didReceiveMemoryWarning

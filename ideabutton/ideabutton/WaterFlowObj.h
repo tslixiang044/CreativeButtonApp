@@ -21,8 +21,14 @@
 @property(nonatomic,retain)NSString *userCode;
 @property(nonatomic,retain)NSString *userOccupyId;
 @property(nonatomic,retain)NSString *product;
-
-
-
+@property(nonatomic,retain)NSString *carrerType;
+@property(nonatomic,retain)NSString *city;
+@property(nonatomic,retain)NSString *collegePrivate;
+@property(nonatomic,retain)NSString *gender;
+@property(nonatomic,retain)NSString *numberOfComment;
+@property(nonatomic,retain)NSString *numberOfForward;
+@property(nonatomic,retain)NSString *shared;
+@property(nonatomic,retain)NSString *college;
+@property(nonatomic,retain)NSString *comments;
 
 @end

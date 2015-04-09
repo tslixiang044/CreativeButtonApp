@@ -392,7 +392,7 @@
 {
     if(waterFlowView==waterFlow_1)
     {
-        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
+        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:[mArr_1 objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:detail animated:YES];
         [detail release];
     }

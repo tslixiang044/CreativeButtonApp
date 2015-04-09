@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
+#import "WaterFlowObj.h"
+
 @interface IdeaDetailViewController : MyBaseViewController
+
+- (id)initWithData:(WaterFlowObj*)object;
 
 @end
