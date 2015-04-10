@@ -72,17 +72,17 @@
         [layer setBorderColor:[mcolor CGColor]];
         //--------------
          x=imgview_header.frame.origin.x+imgview_header.frame.size.width+5;
-        lblnickname=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 100, 25)];
+        lblnickname=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 65, 25)];
         lblnickname.backgroundColor=[UIColor clearColor];
         lblnickname.font=[UIFont systemFontOfSize:13];
         lblnickname.textColor=COLOR(98, 98, 98);
         [view_bg addSubview:lblnickname];
         
-        y=lblnickname.frame.origin.y+lblnickname.frame.size.height;
-        
-        sexImageView = [[UIImageView alloc] initWithFrame:CGRectMake(lblnickname.frame.origin.x + lblnickname.frame.size.width, y + 5, 25, 25)];
+        sexImageView = [[UIImageView alloc] initWithFrame:CGRectMake(lblnickname.frame.origin.x + lblnickname.frame.size.width, y + 3, 20, 20)];
         [view_bg addSubview:sexImageView];
         //--------------
+        
+        y=lblnickname.frame.origin.y+lblnickname.frame.size.height;
         
         lblsource=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 100, 25)];
         lblsource.backgroundColor=[UIColor clearColor];
