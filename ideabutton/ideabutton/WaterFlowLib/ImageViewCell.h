@@ -16,7 +16,6 @@
 
 @interface ImageViewCell : WaterFlowViewCell
 {
-   // UIImageView *imageView;
     UIView *view_bg;
     
     UIImageView *imgview_header;
@@ -31,9 +30,6 @@
     
     UILabel *lblPraise;
     UILabel *lblForward;
-    UILabel *lblcomment;
-   
-    
 }
 
 -(void)setImageWithURL:(NSURL *)imageUrl;

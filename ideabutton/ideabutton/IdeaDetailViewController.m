@@ -87,9 +87,11 @@
     lblnickname.backgroundColor=[UIColor clearColor];
     lblnickname.text=self.data.nickname;
     lblnickname.textColor=COLOR(98, 98, 98);
+    CGSize labelsize =[lblnickname.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Arial" size:15],NSFontAttributeName, nil]];
+    [lblnickname setFrame:CGRectMake(x, y + 8, labelsize.width + 20, labelsize.height + 2)];
     [self.scrollView addSubview:lblnickname];
     
-    sexImageView = [[UIImageView alloc] initWithFrame:CGRectMake(x+60, y, 25, 25)];
+    sexImageView = [[UIImageView alloc] initWithFrame:CGRectMake(lblnickname.frame.origin.x + lblnickname.frame.size.width, y + 5, 25, 25)];
     if (self.data.gender.integerValue == 0)
     {
         [sexImageView setImage:[UIImage imageNamed:@"icon_woman"]];
@@ -101,7 +103,19 @@
     [self.scrollView addSubview:sexImageView];
     
     UILabel* cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y+40, 150, 20)];
-    cityLabel.text = [NSString stringWithFormat:@"%@    %@",self.data.city,self.data.college];
+    if (self.data.city.length > 0 && self.data.college.length > 0)
+    {
+        cityLabel.text = [NSString stringWithFormat:@"%@    %@",self.data.city,self.data.college];
+    }
+    else if (self.data.city.length > 0)
+    {
+        cityLabel.text = [NSString stringWithFormat:@"%@",self.data.city];
+    }
+    else if(self.data.college.length > 0)
+    {
+        cityLabel.text = [NSString stringWithFormat:@"%@",self.data.college];
+    }
+    
     cityLabel.textColor = COLOR(98, 98, 98);
     cityLabel.font = [UIFont systemFontOfSize:14];
     [self.scrollView addSubview:cityLabel];
@@ -165,6 +179,7 @@
     if (self.data.comments.count > 0)
     {
         x = x + 30;
+        y = y - 3;
         for (int i = 0; i < self.data.comments.count; i++)
         {
             if (i > 0)
@@ -244,7 +259,7 @@
             }
         });
     });
-
+    
 }
 
 -(void)btnpingAction:(UIButton*)mbtn
@@ -274,7 +289,7 @@
         //------
         UIView *myView=[[UIView alloc]initWithFrame:CGRectMake(20, (kMainScreenBoundheight-64-150)/2-20, kMainScreenBoundwidth-40, 180)];
         myView.backgroundColor = COLOR(21, 21, 22);
-
+        
         [myView.layer setCornerRadius:8.0f];
         [myView.layer setMasksToBounds:YES];
         
@@ -304,7 +319,7 @@
         UIImageView* line = [[UIImageView alloc]initWithFrame:CGRectMake(0, y, myView.frame.size.width, 5)];
         [line setImage:[UIImage imageNamed:@"public/line"]];
         [myView addSubview:line];
-
+        
         y = line.frame.origin.y + line.frame.size.height + 20;
         btncommit = [MyUIButton buttonWithType:UIButtonTypeCustom];
         btncommit.frame = CGRectMake((myView.frame.size.width-70)/2, y  , 70, 70);
@@ -342,7 +357,7 @@
                 {
                     origin_y = goodLabel.frame.origin.y + goodLabel.frame.size.height + 10;
                 }
-                UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, origin_y, 260, 25)];
+                UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, origin_y, 260, 25)];
                 commentLabel.textColor = COLOR(98, 98, 98);
                 commentLabel.text = [NSString stringWithFormat:@"%@ : %@",self.data.nickname,txtcontent.text];
                 [self.scrollView addSubview:commentLabel];

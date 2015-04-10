@@ -33,6 +33,7 @@
     
     [super dealloc];
 }
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -47,8 +48,7 @@
 {
 	if(self = [super initWithIdentifier:indentifier])
 	{
-
-        float x=10;
+        float x=5;
         float y=10;
         
         view_bg=[[UIView alloc]init];
@@ -82,7 +82,6 @@
         
         lblsource=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 100, 25)];
         lblsource.backgroundColor=[UIColor clearColor];
-        lblsource.text=@"长沙 胜美广告";
         lblsource.font=[UIFont systemFontOfSize:12];
         lblsource.textColor=COLOR(98, 98, 98);
         [view_bg addSubview:lblsource];
@@ -123,7 +122,7 @@
         y=view_center.frame.origin.y+view_center.frame.size.height+5;
         //--
         UIImageView *imgview_praise=[[UIImageView alloc]initWithFrame:CGRectMake(x, y+5, 15, 15)];
-        imgview_praise.image=[UIImage imageNamed:@"icon_aixin.png"];
+        imgview_praise.image=[UIImage imageNamed:@"icon_good"];
         [view_bg addSubview:imgview_praise];
         //--
         
@@ -134,28 +133,11 @@
         [view_bg addSubview:lblPraise];
         //--
         y=lblPraise.frame.origin.y+lblPraise.frame.size.height;
-//        lblForward=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
-//        lblForward.textColor=[UIColor grayColor];
-//        lblForward.font=[UIFont systemFontOfSize:12];
-//        lblForward.backgroundColor=[UIColor clearColor];
-//        [view_bg addSubview:lblForward];
-//        //--
-//        
-//        y=lblForward.frame.origin.y+lblForward.frame.size.height;
-        
+
         UIImageView *imgview_comment=[[UIImageView alloc]initWithFrame:CGRectMake(x, y+5, 15, 15)];
-        imgview_comment.image=[UIImage imageNamed:@"icon_qipao.png"];
+        imgview_comment.image=[UIImage imageNamed:@"icon_talk"];
         [view_bg addSubview:imgview_comment];
         //--
-        lblcomment=[[UILabel alloc]initWithFrame:CGRectMake(x+20, y, 128, 25)];
-        lblcomment.textColor=[UIColor grayColor];
-        lblcomment.font=[UIFont systemFontOfSize:12];
-        lblcomment.backgroundColor=[UIColor clearColor];
-        [view_bg addSubview:lblcomment];
-        
-        
-      
-        
 	}
 	
 	return self;
@@ -163,17 +145,13 @@
 
 -(void)setImageWithURL:(NSURL *)imageUrl
 {
-
     //[imageView setImageWithURL:imageUrl];
-    
 }
 
--(void)setImage:(UIImage *)image{
-
+-(void)setImage:(UIImage *)image
+{
     //imageView.image = image;
 }
-
-
 
 -(void)setbtnObjct:(WaterFlowObj*)mobj
 {
@@ -187,14 +165,51 @@
     lblproduct.text=mobj.product;
     lbltime.text=mobj.timeStamp;
     
-    lblPraise.text=@"1次赞";
-    lblForward.text=@"10次转发";
-    lblcomment.text=@"perter zhong也太酷了吧！";
+    if (mobj.city.length > 0 && mobj.college.length > 0)
+    {
+        lblsource.text = [NSString stringWithFormat:@"%@    %@",mobj.city,mobj.college];
+    }
+    else if (mobj.city.length > 0)
+    {
+        lblsource.text = [NSString stringWithFormat:@"%@",mobj.city];
+    }
+    else if(mobj.college.length > 0)
+    {
+        lblsource.text = [NSString stringWithFormat:@"%@",mobj.college];
+    }
+    
+    lblPraise.text = [NSString stringWithFormat:@"%@次赞",mobj.numberOfPraise];
+    lblForward.text = [NSString stringWithFormat:@"%@次转发",mobj.numberOfForward];
+    
+    if (mobj.comments.count > 0)
+    {
+        float y = lblPraise.frame.origin.y+lblPraise.frame.size.height;
+        
+        for (int i = 0; i < mobj.comments.count; i++)
+        {
+            if (i == 3)
+            {
+                break;
+            }
+            
+            if (i > 0)
+            {
+                y = y + 20;
+            }
+            UILabel *lblcomment =[[UILabel alloc]initWithFrame:CGRectMake(30, y, 128, 25)];
+            lblcomment.textColor=[UIColor grayColor];
+            lblcomment.font=[UIFont systemFontOfSize:12];
+            lblcomment.backgroundColor=[UIColor clearColor];
+            lblcomment.text = [NSString stringWithFormat:@"%@ : %@",[mobj.comments[i] objectForKey:@"nickname"],[mobj.comments[i] objectForKey:@"content"]];
+            [view_bg addSubview:lblcomment];
+        }
+    }
+    
 }
+
 //保持图片上下左右有固定间距
 -(void)relayoutViews
 {
-
     float originX = 0.0f;
     float originY = 0.0f;
     float width = 0.0f;
@@ -204,59 +219,41 @@
     height = CGRectGetHeight(self.frame) - TOPMARGIN;
     if (self.indexPath.column == 0)
     {
-        
         originX = LEFTMARGIN;
         width = CGRectGetWidth(self.frame) - LEFTMARGIN - 1/2.0*LEFTMARGIN;
     }
     else if (self.indexPath.column < self.columnCount - 1)
     {
-    
         originX = LEFTMARGIN/2.0;
         width = CGRectGetWidth(self.frame) - LEFTMARGIN;
     }
     else
     {
-    
         originX = LEFTMARGIN/2.0;
         width = CGRectGetWidth(self.frame) - LEFTMARGIN - 1/2.0*LEFTMARGIN;
     }
-    //imageView.frame = CGRectMake( originX, originY,width, height);
     view_bg.frame = CGRectMake( originX, originY,width, height);
     [super relayoutViews];
 
 }
+
 -(void)setcenterviewColor:(int)row
 {
-    NSLog(@"count=%i",row);
-    
-    
-   
     if(row==0)
     {
         view_center.backgroundColor=COLOR(240, 41, 32);
-        
     }
     else if(row==1)
     {
         view_center.backgroundColor=COLOR(143, 143, 143);
-        
     }
     else if(row==2)
     {
         view_center.backgroundColor=COLOR(47, 44, 43);
-        
     }
     else if(row==3)
     {
         view_center.backgroundColor=COLOR(124, 96, 33);
-        
     }
-    
-   
-    
-    
-    
-    
-    
 }
 @end

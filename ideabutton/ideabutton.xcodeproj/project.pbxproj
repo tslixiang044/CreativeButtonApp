@@ -30,9 +30,7 @@
 		89AC5C6E1AA154A4005DA279 /* MyToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC5C6D1AA154A4005DA279 /* MyToolView.m */; };
 		89AC5C701AA165D6005DA279 /* userheader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89AC5C6F1AA165D6005DA279 /* userheader@2x.png */; };
 		89AC5C781AA1C1CF005DA279 /* btn_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89AC5C761AA1C1CF005DA279 /* btn_close@2x.png */; };
-		89AF6B3A1AA45D9D004F88F1 /* icon_aixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89AF6B381AA45D9D004F88F1 /* icon_aixin@2x.png */; };
 		89AF6B3B1AA45D9D004F88F1 /* icon_qipao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89AF6B391AA45D9D004F88F1 /* icon_qipao@2x.png */; };
-		89B4FA661ABADE6A007C1805 /* btn_wyya@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89B4FA641ABADE6A007C1805 /* btn_wyya@2x.png */; };
 		89B4FA6A1ABAE019007C1805 /* ISuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4FA691ABAE019007C1805 /* ISuggestViewController.m */; };
 		89B4FA6F1ABAEEED007C1805 /* btn_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89B4FA6B1ABAEEED007C1805 /* btn_start@2x.png */; };
 		89B4FA701ABAEEED007C1805 /* strartpage_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89B4FA6C1ABAEEED007C1805 /* strartpage_1@2x.png */; };
@@ -183,9 +181,7 @@
 		89AC5C6D1AA154A4005DA279 /* MyToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyToolView.m; sourceTree = "<group>"; };
 		89AC5C6F1AA165D6005DA279 /* userheader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userheader@2x.png"; sourceTree = "<group>"; };
 		89AC5C761AA1C1CF005DA279 /* btn_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close@2x.png"; sourceTree = "<group>"; };
-		89AF6B381AA45D9D004F88F1 /* icon_aixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_aixin@2x.png"; sourceTree = "<group>"; };
 		89AF6B391AA45D9D004F88F1 /* icon_qipao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_qipao@2x.png"; sourceTree = "<group>"; };
-		89B4FA641ABADE6A007C1805 /* btn_wyya@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_wyya@2x.png"; sourceTree = "<group>"; };
 		89B4FA681ABAE019007C1805 /* ISuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISuggestViewController.h; sourceTree = "<group>"; };
 		89B4FA691ABAE019007C1805 /* ISuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISuggestViewController.m; sourceTree = "<group>"; };
 		89B4FA6B1ABAEEED007C1805 /* btn_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_start@2x.png"; sourceTree = "<group>"; };
@@ -755,8 +751,6 @@
 				E94E5E851AD6216F00AB0B9F /* icon_good@2x.png */,
 				E94E5E861AD6216F00AB0B9F /* icon_talk@2x.png */,
 				89AF6B391AA45D9D004F88F1 /* icon_qipao@2x.png */,
-				89B4FA641ABADE6A007C1805 /* btn_wyya@2x.png */,
-				89AF6B381AA45D9D004F88F1 /* icon_aixin@2x.png */,
 			);
 			name = Maindetail;
 			sourceTree = "<group>";
@@ -1040,7 +1034,6 @@
 				89AF6B3B1AA45D9D004F88F1 /* icon_qipao@2x.png in Resources */,
 				E94E5E881AD6216F00AB0B9F /* icon_talk@2x.png in Resources */,
 				E932E5721AB913F100839FA4 /* login in Resources */,
-				89AF6B3A1AA45D9D004F88F1 /* icon_aixin@2x.png in Resources */,
 				E930AE501AD672B100A013D9 /* icon_woman@2x.png in Resources */,
 				89B4FA701ABAEEED007C1805 /* strartpage_1@2x.png in Resources */,
 				89AC5C781AA1C1CF005DA279 /* btn_close@2x.png in Resources */,
@@ -1048,7 +1041,6 @@
 				E97258B61A89A9EF00F0ABB8 /* btn_logo@2x.png in Resources */,
 				E932E5781AB9245300839FA4 /* ideaCreate in Resources */,
 				E98DA1B01AD535160056DA92 /* logo_anniu@2x.png in Resources */,
-				89B4FA661ABADE6A007C1805 /* btn_wyya@2x.png in Resources */,
 				E94107711AA1A62A002D78B2 /* icon_add@2x.png in Resources */,
 				E94E5E9D1AD622A900AB0B9F /* btn_tlak@2x.png in Resources */,
 				89B4FA721ABAEEED007C1805 /* strartpage_3@2x.png in Resources */,
@@ -1184,7 +1176,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -1221,7 +1213,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -1243,7 +1235,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs/include",
 				);
 				INFOPLIST_FILE = ideabutton/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1251,6 +1243,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
 		};
@@ -1267,7 +1260,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs/include",
 				);
 				INFOPLIST_FILE = ideabutton/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1275,6 +1268,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Release;
 		};
