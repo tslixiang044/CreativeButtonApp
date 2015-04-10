@@ -184,21 +184,32 @@
 {
     if(mtag==1)
     {
-        NSString *url=kgetWaterFlowUrl;
+        NSString *url=[kgetWaterFlowUrl stringByAppendingString:@"1-20"];
         
         [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_1" delegate:self];
     }
     else if(mtag==2)
     {
-        NSString *url=kgetWaterFlowUrl_suggesion;
+        NSString *url=[kgetWaterFlowUrl_suggesion stringByAppendingString:@"1"];
         
         [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_2" delegate:self];
     }
 }
 
--(void)loadMore
+-(void)loadMore:(int)mtag range:(NSString*)range
 {
-    
+    if(mtag==1)
+    {
+        NSString *url=[kgetWaterFlowUrl stringByAppendingString:range];
+        
+        [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_1" delegate:self];
+    }
+    else if(mtag==2)
+    {
+        NSString *url=[kgetWaterFlowUrl_suggesion stringByAppendingString:range];
+        
+        [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_2" delegate:self];
+    }
 }
 
 -(void)uploadfinished_global:(NSData *)responseData key:(NSString *)mkey
@@ -330,7 +341,7 @@
         [imageViewCell relayoutViews];
         [imageViewCell setbtnObjct:obj];
         
-        [imageViewCell setcenterviewColor:(indexPath.row)%4];
+        [imageViewCell setcenterviewColor:arrIndex%4];
     }
     else
     {
@@ -344,7 +355,7 @@
         [imageViewCell relayoutViews];
         [imageViewCell setbtnObjct:obj];
         
-        [imageViewCell setcenterviewColor:(indexPath.row)%4];
+        [imageViewCell setcenterviewColor:arrIndex%4];
     }
 }
 

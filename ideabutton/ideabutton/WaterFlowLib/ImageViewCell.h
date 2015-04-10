@@ -30,6 +30,7 @@
     
     UILabel *lblPraise;
     UILabel *lblForward;
+    UIImageView* sexImageView;
 }
 
 -(void)setImageWithURL:(NSURL *)imageUrl;

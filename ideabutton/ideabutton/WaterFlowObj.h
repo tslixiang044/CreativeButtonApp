@@ -32,5 +32,6 @@
 @property(nonatomic,retain)NSArray *comments;
 @property(nonatomic,retain)NSString *userReformId;
 @property(nonatomic,retain)NSString *company;
+@property(nonatomic,retain)NSString *content;
 
 @end

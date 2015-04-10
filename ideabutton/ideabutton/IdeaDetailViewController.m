@@ -167,7 +167,7 @@
     [self.scrollView addSubview:goodImageView];
     
     goodLabel = [[UILabel alloc] initWithFrame:CGRectMake(x + 30, y, 60, 25)];
-    goodLabel.textColor = COLOR(98, 98, 98);
+    goodLabel.textColor = [UIColor grayColor];
     goodLabel.text = [NSString stringWithFormat:@"%@次赞",self.data.numberOfPraise];
     [self.scrollView addSubview:goodLabel];
     
@@ -188,7 +188,7 @@
             }
             
             UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 260, 25)];
-            commentLabel.textColor = COLOR(98, 98, 98);
+            commentLabel.textColor = [UIColor grayColor];;
             commentLabel.text = [NSString stringWithFormat:@"%@ : %@",[self.data.comments[i] objectForKey:@"nickname"],[self.data.comments[i] objectForKey:@"content"]];
             [self.scrollView addSubview:commentLabel];
         }

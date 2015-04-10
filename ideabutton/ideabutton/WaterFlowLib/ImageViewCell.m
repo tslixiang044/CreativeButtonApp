@@ -77,8 +77,12 @@
         lblnickname.font=[UIFont systemFontOfSize:13];
         lblnickname.textColor=COLOR(98, 98, 98);
         [view_bg addSubview:lblnickname];
-        //--------------
+        
         y=lblnickname.frame.origin.y+lblnickname.frame.size.height;
+        
+        sexImageView = [[UIImageView alloc] initWithFrame:CGRectMake(lblnickname.frame.origin.x + lblnickname.frame.size.width, y + 5, 25, 25)];
+        [view_bg addSubview:sexImageView];
+        //--------------
         
         lblsource=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 100, 25)];
         lblsource.backgroundColor=[UIColor clearColor];
@@ -93,20 +97,20 @@
         [view_bg addSubview:view_center];
         //---------------
         x=10;
-        y=10;
+        y=5;
         
-        lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 35)];
-        lbldesc.numberOfLines=2;
+        lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 40)];
+        lbldesc.numberOfLines=0;
         lbldesc.textColor=[UIColor whiteColor];
-        lbldesc.font=[UIFont systemFontOfSize:12];
+        lbldesc.font=[UIFont systemFontOfSize:11];
         lbldesc.backgroundColor=[UIColor clearColor];
         [view_center addSubview:lbldesc];
         //---------------
         y=lbldesc.frame.origin.y+lbldesc.frame.size.height;
-        lblproduct=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 25)];
-        
+        lblproduct=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 128, 35)];
+        lblproduct.numberOfLines=0;
         lblproduct.textColor=[UIColor whiteColor];
-        lblproduct.font=[UIFont systemFontOfSize:14];
+        lblproduct.font=[UIFont systemFontOfSize:12.5];
         lblproduct.backgroundColor=[UIColor clearColor];
         [view_center addSubview:lblproduct];
         //---------------
@@ -157,12 +161,37 @@
 {
     lblnickname.text=mobj.nickname;
     
+    if (mobj.gender.integerValue == 0)
+    {
+        [sexImageView setImage:[UIImage imageNamed:@"icon_woman"]];
+    }
+    else
+    {
+        [sexImageView setImage:[UIImage imageNamed:@"icon_man"]];
+    }
+    
     NSURL *murl=[NSURL URLWithString:mobj.avatar];
     
     [imgview_header setImageWithURL:murl placeholderImage:[UIImage imageNamed:@"userheader.png"]];
     
-    lbldesc.text=mobj.sentence;
-    lblproduct.text=mobj.product;
+    if (mobj.ideaType.integerValue == 1)
+    {
+        lbldesc.text= [NSString stringWithFormat:@"我宣布,我刚刚霸占了一条%@广告,谁也别想再碰:",mobj.product];
+    }
+    else if (mobj.ideaType.integerValue == 2)
+    {
+        lbldesc.text= [NSString stringWithFormat:@"我宣布,我刚刚改造了一条%@广告,谁也别想再碰:",mobj.product];
+    }
+    
+    if (mobj.sentence.length > 0)
+    {
+        lblproduct.text = mobj.sentence;
+    }
+    else if (mobj.content.length > 0)
+    {
+        lblproduct.text = mobj.content;
+    }
+    
     lbltime.text=mobj.timeStamp;
     
     if (mobj.city.length > 0 && mobj.college.length > 0)
