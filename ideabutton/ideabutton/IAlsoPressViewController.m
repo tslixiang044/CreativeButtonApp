@@ -13,7 +13,7 @@
 #import "API.h"
 #import "IoccupyDetailViewController.h"
 #import "ISuggestViewController.h"
-
+#import "FeedBackViewController.h"
 
 @interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate>
 {
@@ -64,7 +64,7 @@
     change.tabBarItem.image=[UIImage imageNamed:@"icon_chuizi"];
     change.tabBarItem.title=@"我改造的";
     //---------------------
-    ISuggestViewController *back=[[ISuggestViewController alloc]init];
+    FeedBackViewController *back=[[FeedBackViewController alloc]init];
     back.view.tag=4;
     back.tabBarItem.image=[UIImage imageNamed:@"icon_brbz"];
     back.tabBarItem.title=@"我要建议";
