@@ -44,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = kgettitle;
     [self.view setBackgroundColor:COLOR(21, 21, 22)];
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     

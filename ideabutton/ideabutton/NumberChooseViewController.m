@@ -53,6 +53,8 @@
 {
     [super viewDidLoad];
     
+    self.title = kgettitle;
+    
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
     [self createInputView];

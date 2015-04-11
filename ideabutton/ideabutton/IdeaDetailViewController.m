@@ -59,6 +59,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = kgettitle;
+    
     [self setrightbaritem_imgname:@"icon_more_all.png" title:@""];
     
     float x=10;

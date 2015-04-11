@@ -58,6 +58,8 @@
 {
     [super viewDidLoad];
     
+    self.title = kgettitle;
+    
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
     [self createInputView];
@@ -191,7 +193,7 @@
                 
                 if ([API sharedInstance].code.integerValue == 0)
                 {
-                    [SVProgressHUD dismiss];
+                    [SVProgressHUD showSuccessWithStatus:@"你今天可霸占3条idea!"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil userInfo:@{@"occupyID":occupyID}];
                     [self.navigationController popViewControllerAnimated:YES];
                 }
@@ -223,7 +225,7 @@
                 
                 if ([API sharedInstance].code.integerValue == 0)
                 {
-                    [SVProgressHUD dismiss];
+                    [SVProgressHUD showSuccessWithStatus:@"改造即为霸占,今天仅剩三条!"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil];
                     [self.navigationController popViewControllerAnimated:YES];
                 }

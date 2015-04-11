@@ -83,6 +83,8 @@
 {
     [super viewDidLoad];
     
+    self.title = kgettitle;
+    
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
     [self createInputView];
@@ -109,6 +111,7 @@
     detailLabel = [[UILabel alloc] initWithFrame:backgroundView.frame];
     detailLabel.layer.borderColor = COLOR(142, 142, 142).CGColor;
     detailLabel.layer.borderWidth = 1.0;
+    detailLabel.textAlignment = NSTextAlignmentLeft;
     detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
     detailLabel.numberOfLines = 0;
     detailLabel.font = [UIFont systemFontOfSize:16];
@@ -222,6 +225,7 @@
         }
             break;
         case NextBtnTag:
+        {
             if (remainderNum > 0)
             {
                 if (index < belongMeIdeaNum - 1)
@@ -236,16 +240,13 @@
                     
                     detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
                 }
-                else
+                
+                if (index == self.data.count - 1)
                 {
-                    nextBtn.hidden = YES;
-                    
-                    [[DB sharedInstance] saveArbitraryObject:[NSString stringWithFormat:@"%d",remainderNum] withKey:@"balanceIdea"];
-                    InteractivePageViewController* pageViewController = [[InteractivePageViewController alloc]initWithDict:self.dict];
-                    [self.navigationController pushViewController:pageViewController animated:YES];
+                    doAgianBtn.hidden = NO;
                 }
             }
-    
+        }
             break;
         case PreviousBtnTag:
         {
@@ -264,7 +265,12 @@
             }
         }
             break;
-            
+        case DoAgianBtnTag:
+        {
+            InteractivePageViewController* pageViewController = [[InteractivePageViewController alloc]initWithDict:self.dict];
+            [self.navigationController pushViewController:pageViewController animated:YES];
+        }
+            break;
         default:
             break;
     }

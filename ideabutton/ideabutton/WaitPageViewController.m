@@ -41,9 +41,9 @@
 {
     [super viewDidLoad];
     
-    [self setrightbaritem_imgname:@"icon_more_all" title:nil];
+    self.title = kgettitle;
     
-//    [self createIdea];
+    [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
 }
 -(void)btnright

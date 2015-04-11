@@ -95,7 +95,7 @@
     [bottomView addSubview:btnwyya];
     //------------------
     UIButton *btnadmin = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnadmin.frame = CGRectMake(kMainScreenBoundwidth-35-7, 7 , 35, 35);
+    btnadmin.frame = CGRectMake(kMainScreenBoundwidth-35-7, 10 , 25, 25);
     [btnadmin setBackgroundImage:[UIImage imageNamed:@"icon_admin1.png"] forState:UIControlStateNormal];
     [btnadmin addTarget:self action:@selector(btnadminAction) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:btnadmin];

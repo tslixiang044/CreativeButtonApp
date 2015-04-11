@@ -166,7 +166,7 @@
         [self.view addSubview:loadView];
         //-----------------------------
         NSData *gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gif" ofType:@"gif"]];
-        CGRect frame = CGRectMake(0,(kMainScreenBoundheight-64-165)/2-50,240,165);
+        CGRect frame = CGRectMake(0,(kMainScreenBoundheight-64-165)/2-50,140,65);
         UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
         webView.userInteractionEnabled = NO;
         [webView setBackgroundColor:[UIColor clearColor]];

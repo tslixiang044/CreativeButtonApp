@@ -56,6 +56,8 @@
 {
     [super viewDidLoad];
     
+    self.title = kgettitle;
+    
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
     CGFloat contentHeight = 380;
@@ -172,7 +174,7 @@
         return;
     }
     
-    if (self.brandTextField.text.length == 0 )
+    if (self.brandTextField.text.length == 0 || [self.brandTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0)
     {
         [SVProgressHUD showErrorWithStatus:@"品牌不能为空"];
         return;
