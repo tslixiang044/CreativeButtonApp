@@ -42,6 +42,8 @@
     NSString* reformID;
     NSString* occupyID;
     NSString* collectID;
+    
+    BOOL    flag;
 }
 @property(nonatomic, strong)NSMutableArray* data;
 @property(nonatomic, strong)NSMutableDictionary* dict;
@@ -60,6 +62,7 @@
         belongMeIdeaNum = [dataArr count];
         index = 0;
         titleNumber = 1;
+        flag = NO;
         
         reformID = @"0";
         occupyID = @"0";
@@ -88,6 +91,19 @@
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
     [self createInputView];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    flag = NO;
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    if (!flag)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"returnBack" object:nil];
+    }
 }
 
 -(void)btnright
@@ -190,6 +206,7 @@
     {
         case HoggedBtnTag:
         {
+            flag = YES;
            [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:self.dict Type:1] animated:YES];
         }
             break;
@@ -221,6 +238,8 @@
             {
                 [self.dict setValue:@(1) forKey:@"type"];
             }
+            
+            flag = YES;
             [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:self.dict Type:2] animated:YES];
         }
             break;
@@ -243,6 +262,7 @@
                 
                 if (index == self.data.count - 1)
                 {
+                    nextBtn.hidden = YES;
                     doAgianBtn.hidden = NO;
                 }
             }
@@ -261,6 +281,11 @@
                 if (index == 0)
                 {
                     previousBtn.hidden = YES;
+                }
+                
+                if (index < belongMeIdeaNum - 1)
+                {
+                    nextBtn.hidden = NO;
                 }
             }
         }

@@ -11,6 +11,7 @@
 #import "MyToolView.h"
 #import "SVProgressHUD.h"
 #import "API.h"
+#import "PersonaInfomationViewController.h"
 
 @interface IdeaDetailViewController ()<UITextFieldDelegate>
 {
@@ -34,6 +35,7 @@
     
     UIButton *  btnzan;
     UIButton *  btnping;
+    UIButton *  btndel;
     
     float   origin_y;
 }
@@ -73,6 +75,10 @@
     imgview_header=[[UIImageView alloc]initWithFrame:CGRectMake(x, y, 60, 60)];
     imgview_header.userInteractionEnabled=YES;
     imgview_header.image=[UIImage imageNamed:@"userheader"];
+    
+    UIGestureRecognizer *singleTap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(UesrClicked:)];
+    [imgview_header addGestureRecognizer:singleTap];
+    
     [self.scrollView addSubview:imgview_header];
     
     CALayer *layer = [imgview_header layer];
@@ -134,7 +140,15 @@
     
     lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-40, 40)];
     lbldesc.textColor=[UIColor whiteColor];
-    lbldesc.text= [NSString stringWithFormat:@"我宣布，我刚刚霸占了一条%@广告，谁也别想再碰：",self.data.product];
+    if (self.data.ideaType.integerValue == 1)
+    {
+        lbldesc.text= [NSString stringWithFormat:@"我宣布，我刚刚霸占了一条%@广告，谁也别想再碰：",self.data.product];
+    }
+    else if(self.data.ideaType.integerValue == 2)
+    {
+        lbldesc.text= [NSString stringWithFormat:@"我宣布，我刚刚改造了一条%@广告，谁也别想再碰：",self.data.product];
+    }
+    
     lbldesc.font=[UIFont systemFontOfSize:15];
     lbldesc.backgroundColor=[UIColor clearColor];
     lbldesc.lineBreakMode = NSLineBreakByWordWrapping;
@@ -171,6 +185,7 @@
     
     goodLabel = [[UILabel alloc] initWithFrame:CGRectMake(x + 30, y, 60, 25)];
     goodLabel.textColor = [UIColor grayColor];
+    goodLabel.font = [UIFont systemFontOfSize:15];
     goodLabel.text = [NSString stringWithFormat:@"%@次赞",self.data.numberOfPraise];
     [self.scrollView addSubview:goodLabel];
     
@@ -191,7 +206,8 @@
             }
             
             UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 260, 25)];
-            commentLabel.textColor = [UIColor grayColor];;
+            commentLabel.textColor = [UIColor grayColor];
+            commentLabel.font = [UIFont systemFontOfSize:15];
             commentLabel.text = [NSString stringWithFormat:@"%@ : %@",[self.data.comments[i] objectForKey:@"nickname"],[self.data.comments[i] objectForKey:@"content"]];
             [self.scrollView addSubview:commentLabel];
         }
@@ -231,8 +247,34 @@
     [btnping setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
     [self.scrollView addSubview:btnping];
     
+    User* user = [[DB sharedInstance]queryUser];
+    if (user.userCode == self.data.userCode.integerValue)
+    {
+        x= btnping.frame.origin.x + btnping.frame.size.width + 10;
+        
+        btndel = [UIButton buttonWithType:UIButtonTypeCustom];
+        btndel.frame = CGRectMake(x, y, 80, 30);
+        [btndel setImage:[UIImage imageNamed:@"btn_delet"] forState:UIControlStateNormal];
+        [btndel setTitle:@"删" forState:UIControlStateNormal];
+        [btndel setTitleColor:COLOR(47, 44, 43) forState:UIControlStateNormal];
+        btndel.titleLabel.font = [UIFont systemFontOfSize:14];
+        btndel.backgroundColor=COLOR(142, 142, 143);
+        btndel.layer.cornerRadius = 5;
+        [btndel addTarget:self action:@selector(btnDelAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        [btndel setTitleEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 0)];
+        [btndel setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
+        [self.scrollView addSubview:btndel];
+    }
+    
     [self.scrollView setContentSize:CGSizeMake(kMainScreenBoundwidth, y + btnping.frame.size.height + 80)];
     
+}
+
+- (void)UesrClicked:(UITapGestureRecognizer *)gestureRecognizer
+{
+    PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc] init];
+    [self.navigationController pushViewController:infomaton animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -268,6 +310,54 @@
 -(void)btnpingAction:(UIButton*)mbtn
 {
     [self showUpdateView];
+}
+
+-(void)btnDelAction
+{
+    if (self.data.ideaType.integerValue == 1)
+    {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(currentQueue, ^{
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance]deleteOccupiedIdea:@{@"userOccupyId":self.data.userOccupyId}];
+            //处理完上面的后回到主线程去更新UI
+            dispatch_queue_t mainQueue = dispatch_get_main_queue();
+            dispatch_async(mainQueue, ^{
+                if ([API sharedInstance].code.integerValue == 0)
+                {
+                    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+                }
+            });
+        });
+    }
+    else if(self.data.ideaType.integerValue == 2)
+    {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(currentQueue, ^{
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance] deleteReformedIdea:@{@"userReformId":self.data.userOccupyId}];
+            //处理完上面的后回到主线程去更新UI
+            dispatch_queue_t mainQueue = dispatch_get_main_queue();
+            dispatch_async(mainQueue, ^{
+                if ([API sharedInstance].code.integerValue == 0)
+                {
+                    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+                }
+            });
+        });
+    }
 }
 
 -(void)btnright

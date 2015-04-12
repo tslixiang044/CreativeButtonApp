@@ -23,15 +23,13 @@
         lbldesc.textColor=COLOR(206, 206, 206);
         [self addSubview:lbldesc];
         //-------------
-        mswitch=[[UISwitch alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth-70, 5, 60, 30)];
+        mswitch=[[UISwitch alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth-70, 10, 60, 30)];
         mswitch.onTintColor =[UIColor redColor];
         mswitch.tintColor=[UIColor whiteColor];
         mswitch.thumbTintColor=[UIColor whiteColor];
+        mswitch.on = YES;
         [self addSubview:mswitch];
         //-------------
-        
-        
-        
     }
     return self;
 }

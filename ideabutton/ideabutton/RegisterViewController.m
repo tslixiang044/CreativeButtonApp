@@ -106,6 +106,11 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     self.inFocusTextField = textField;
+    if ([self.confirmPSWTextField isFirstResponder])
+    {
+        [self.confirmPSWTextField resignFirstResponder];
+        [self showCityPicker];
+    }
 
     return YES;
 }
@@ -114,7 +119,6 @@
 {
     if (textField == self.registerAddressTextField)
     {
-        [self showCityPicker];
         [textField resignFirstResponder];
     }
 }

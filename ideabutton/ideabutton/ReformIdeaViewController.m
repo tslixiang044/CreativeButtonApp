@@ -164,11 +164,15 @@
     UIButton *btn = (UIButton *)sender;
     if(self.agreementChecked)
     {
+        sentenceTextView.text = [self.dict objectForKey:@"sentence"];
         [btn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
         self.agreementChecked = NO;
     }
     else
     {
+        NSString* textStr = [sentenceTextView.text substringFromIndex:sentenceTextView.text.length - 6];
+        NSString* subStr = [sentenceTextView.text stringByReplacingCharactersInRange:NSMakeRange(3,sentenceTextView.text.length - 3) withString:@"*********"];
+        sentenceTextView.text = [subStr stringByAppendingString:textStr];
         [btn setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
         self.agreementChecked = YES;
     }

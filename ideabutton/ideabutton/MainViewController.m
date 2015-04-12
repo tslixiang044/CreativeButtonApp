@@ -100,9 +100,6 @@
     [btnadmin addTarget:self action:@selector(btnadminAction) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:btnadmin];
     //------------------
-    
-    [self loadData:1];
-    [self loadData:2];
 }
 
 -(void)dealloc
@@ -298,6 +295,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [mArr_1 removeAllObjects];
+    [mArr_2 removeAllObjects];
+    [self loadData:1];
+    [self loadData:2];
+    
     segmentedControl.hidden=NO;
     segmentedControl.selectedSegmentIndex=0;
 }

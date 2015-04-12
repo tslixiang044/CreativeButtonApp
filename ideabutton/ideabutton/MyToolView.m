@@ -104,7 +104,7 @@
     }
     else if(indexPath.row==1)
     {
-        cell.imgview_left.image=[UIImage imageNamed:@"icon_wyfx"];
+        cell.imgview_left.image=[UIImage imageNamed:@"icon_ayq"];
         cell.lbltitle.text=@"按友圈";
     }
     else if(indexPath.row==2)

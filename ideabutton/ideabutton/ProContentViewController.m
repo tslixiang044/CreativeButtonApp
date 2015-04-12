@@ -110,6 +110,7 @@
     
     self.productTextField = [[UITextField alloc] initWithFrame:inputView.frame];
     self.productTextField.delegate = self;
+    self.productTextField.font = [UIFont systemFontOfSize:15];
     self.productTextField.placeholder = @"产品";
     [contentView addSubview:self.productTextField];
     
@@ -120,6 +121,7 @@
     
     self.appealTextField = [[UITextField alloc] initWithFrame:inputView1.frame];
     self.appealTextField.delegate = self;
+    self.appealTextField.font = [UIFont systemFontOfSize:15];
     self.appealTextField.placeholder = @"诉求点";
     [contentView addSubview:self.appealTextField];
     
@@ -131,6 +133,7 @@
     self.brandTextField = [[UITextField alloc] initWithFrame:inputView2.frame];
     self.brandTextField.delegate = self;
     self.brandTextField.placeholder = @"品牌";
+    self.brandTextField.font = [UIFont systemFontOfSize:15];
     [contentView addSubview:self.brandTextField];
     
     UIImageView* line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"public/line"]];

@@ -33,5 +33,6 @@
 @property(nonatomic,retain)NSString *userReformId;
 @property(nonatomic,retain)NSString *company;
 @property(nonatomic,retain)NSString *content;
+@property(nonatomic,retain)NSString *suggestionId;
 
 @end

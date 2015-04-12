@@ -45,7 +45,19 @@
     
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToPreView:) name:@"returnBack" object:nil];
 }
+
+-(void)backToPreView:(NSNotification*)notify
+{
+    [self performSelector:@selector(back) withObject:nil afterDelay:3];
+}
+
+-(void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)btnright
 {
     [self showMenuView];

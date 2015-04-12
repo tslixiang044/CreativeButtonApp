@@ -182,6 +182,10 @@
     {
         lbldesc.text= [NSString stringWithFormat:@"我宣布,我刚刚改造了一条%@广告,谁也别想再碰:",mobj.product];
     }
+    else if (mobj.suggestionId)
+    {
+        lbldesc.text= @"我认真建议,请认真考虑一下:";
+    }
     
     if (mobj.sentence.length > 0)
     {
@@ -225,10 +229,13 @@
             {
                 y = y + 20;
             }
+            
             UILabel *lblcomment =[[UILabel alloc]initWithFrame:CGRectMake(30, y, 128, 25)];
             lblcomment.textColor=[UIColor grayColor];
-            lblcomment.font=[UIFont systemFontOfSize:12];
+            lblcomment.font=[UIFont systemFontOfSize:11];
             lblcomment.backgroundColor=[UIColor clearColor];
+            lblcomment.lineBreakMode = NSLineBreakByWordWrapping;
+            lblcomment.numberOfLines = 0;
             lblcomment.text = [NSString stringWithFormat:@"%@ : %@",[mobj.comments[i] objectForKey:@"nickname"],[mobj.comments[i] objectForKey:@"content"]];
             [view_bg addSubview:lblcomment];
         }
