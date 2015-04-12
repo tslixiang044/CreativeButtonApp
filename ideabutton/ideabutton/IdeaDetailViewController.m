@@ -13,9 +13,9 @@
 #import "API.h"
 #import "PersonaInfomationViewController.h"
 
-@interface IdeaDetailViewController ()<UITextFieldDelegate>
+@interface IdeaDetailViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
-    UIImageView *imgview_header;
+    UIButton *imgview_header;
     UILabel *lblnickname;
     UILabel *lblsource;
     
@@ -72,12 +72,9 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight + 1)];
     [self.view addSubview:self.scrollView];
     
-    imgview_header=[[UIImageView alloc]initWithFrame:CGRectMake(x, y, 60, 60)];
-    imgview_header.userInteractionEnabled=YES;
-    imgview_header.image=[UIImage imageNamed:@"userheader"];
-    
-    UIGestureRecognizer *singleTap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(UesrClicked:)];
-    [imgview_header addGestureRecognizer:singleTap];
+    imgview_header=[[UIButton alloc]initWithFrame:CGRectMake(x, y, 60, 60)];
+    [imgview_header setImage:[UIImage imageNamed:@"userheader"] forState:UIControlStateNormal];
+    [imgview_header addTarget:self action:@selector(showUserInfo) forControlEvents:UIControlEventTouchUpInside];
     
     [self.scrollView addSubview:imgview_header];
     
@@ -271,7 +268,7 @@
     
 }
 
-- (void)UesrClicked:(UITapGestureRecognizer *)gestureRecognizer
+- (void)showUserInfo
 {
     PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc] init];
     [self.navigationController pushViewController:infomaton animated:YES];

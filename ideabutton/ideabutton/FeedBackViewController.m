@@ -27,58 +27,61 @@
     txtfeedback=[[UITextView alloc]init];
     txtfeedback.frame=CGRectMake(10, 10, 300, 150);
     
-    txtfeedback.font=[UIFont fontWithName:@"Arial" size:16];
+    txtfeedback.font=[UIFont fontWithName:@"Arial" size:15];
     [txtfeedback.layer setBackgroundColor:[[UIColor whiteColor] CGColor]];
     [txtfeedback.layer setBorderColor: [[UIColor grayColor] CGColor]];
     [txtfeedback.layer setBorderWidth: 1.0];
-//    [txtfeedback.layer setCornerRadius:8.0f];
     [txtfeedback.layer setMasksToBounds:YES];
     txtfeedback.textColor=[UIColor whiteColor];
-    // [txtfeedback becomeFirstResponder];
     txtfeedback.backgroundColor=[UIColor clearColor];
     txtfeedback.delegate=self;
     [self.view addSubview:txtfeedback];
     //-------
-    
-    UIImageView* backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 300, 100)];
-    backgroundView.backgroundColor = COLOR(21, 21, 22);
-    [self.view addSubview:backgroundView];
-    
-    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 50, 20)];
-    titleLabel.text = @"联系方式";
-    titleLabel.font = [UIFont systemFontOfSize:15];
-    titleLabel.textColor = [UIColor grayColor];
-    [backgroundView addSubview:titleLabel];
-    
-    txtcontact=[[UITextField alloc]initWithFrame:CGRectMake(10, 110+8, 310-10, 30)];
-    txtcontact.textColor=[UIColor whiteColor];
-    txtcontact.clearButtonMode=UITextFieldViewModeWhileEditing;
-    txtcontact.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入你的手机/邮箱/qq(选填)" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
-    txtcontact.font=[UIFont fontWithName:@"Arial" size:16];
-    txtcontact.backgroundColor=[UIColor clearColor];
-    txtcontact.textAlignment=NSTextAlignmentLeft;
-    txtcontact.delegate = self;
-    [txtcontact.layer setBorderColor: [[UIColor grayColor] CGColor]];
-    [txtcontact.layer setBorderWidth: 1.0];
-    [txtcontact.layer setCornerRadius:8.0f];
-    [txtcontact.layer setMasksToBounds:YES];
-    
-    [txtcontact setBorderStyle:UITextBorderStyleRoundedRect];
-    [self.view addSubview:txtcontact];
-    //----
     lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(13, 10, 300, 30)];
-    lbldesc.text=@"我的建议，请考虑一下.....";
+    lbldesc.text=@"我的建议，请考虑一下: .....";
     lbldesc.backgroundColor=[UIColor clearColor];
     lbldesc.textColor=[UIColor lightGrayColor];
     [self.view addSubview:lbldesc];
+    
+    UIImageView* backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 300, 200)];
+    backgroundView.backgroundColor = COLOR(21, 21, 22);
+    [self.view addSubview:backgroundView];
+    
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 80, 20)];
+    titleLabel.text = @"联系方式";
+    titleLabel.font = [UIFont systemFontOfSize:13];
+    titleLabel.textColor = [UIColor grayColor];
+    [backgroundView addSubview:titleLabel];
+    
+    float y = titleLabel.frame.origin.y + titleLabel.frame.size.height + 10;
+    
+    txtcontact=[[UITextField alloc]initWithFrame:CGRectMake(5, y, 290, 40)];
+    txtcontact.textColor=[UIColor whiteColor];
+    txtcontact.clearButtonMode=UITextFieldViewModeWhileEditing;
+    txtcontact.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入你的手机/邮箱/qq(选填)" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+    txtcontact.font=[UIFont fontWithName:@"Arial" size:15];
+    txtcontact.backgroundColor=[UIColor whiteColor];
+    txtcontact.textAlignment=NSTextAlignmentLeft;
+    txtcontact.delegate = self;
+    [txtcontact.layer setCornerRadius:5.0f];
+    [txtcontact.layer setMasksToBounds:YES];
+    
+    [txtcontact setBorderStyle:UITextBorderStyleRoundedRect];
+    [backgroundView addSubview:txtcontact];
+
     //----
-    float y=txtcontact.frame.origin.y+txtcontact.frame.size.height+30;
+    
+    y = txtcontact.frame.origin.y+txtcontact.frame.size.height+10;
+    
+    UIImageView* line = [[UIImageView alloc]initWithFrame:CGRectMake(0, y, 300, 5)];
+    [line setImage:[UIImage imageNamed:@"public/line"]];
+    [backgroundView addSubview:line];
     
     UIButton *btncommit = [UIButton buttonWithType:UIButtonTypeCustom];
-    btncommit.frame = CGRectMake((kMainScreenBoundwidth-70)/2, y  , 70, 70);
+    btncommit.frame = CGRectMake((backgroundView.frame.size.width-60)/2, y + 30, 70, 70);
     [btncommit setBackgroundImage:[UIImage imageNamed:@"all_btn_qd.png"] forState:UIControlStateNormal];
     [btncommit addTarget:self action:@selector(btncommitAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btncommit];
+    [backgroundView addSubview:btncommit];
 }
 
 -(void)btnright

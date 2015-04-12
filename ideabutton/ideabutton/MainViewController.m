@@ -15,7 +15,7 @@
 #import "JsonResult.h"
 #import "WaterFlowObj.h"
 #import "ReformIdeaViewController.h"
-#import "InteractivePageViewController.h"
+#import "API.h"
 #import "IdeaDetailViewController.h"
 #import "DB.h"
 #import "PersonaInfomationViewController.h"
@@ -31,8 +31,8 @@
     WaterFlowView *waterFlow_1;
     WaterFlowView *waterFlow_2;
     
-    //------------------
-    // UISegmentedControl *segmentedControl;
+    NSInteger remainderNum;
+    
     MySegmentedControl *segmentedControl;
     
     UITextField *txtsearch;
@@ -47,6 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self getRemainderNum];
     //------
     mArr_1=[[NSMutableArray alloc]init];
     mArr_2=[[NSMutableArray alloc]init];
@@ -102,6 +104,21 @@
     //------------------
 }
 
+-(void)getRemainderNum
+{
+    User* user = [[DB sharedInstance]queryUser];
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode]}];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+
+        });
+    });
+}
+
 -(void)dealloc
 {
     [segmentedControl release];
@@ -154,9 +171,26 @@
     User* user = [[DB sharedInstance]queryUser];
     if (user)
     {
-        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-        [self.navigationController pushViewController:press animated:YES];
-        [press release];
+        if (remainderNum == 0)
+        {
+            if (user.userLevel == 2)
+            {
+                if (user.auditStatus == 0)
+                {
+                    
+                }
+                else
+                {
+                    [self showAlertView_desc:@"你上传的资料正在审核中\n审核通过后\n每日可免费浏览81个idea" btnImage:@""];
+                }
+            }
+        }
+        else
+        {
+            IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+            [self.navigationController pushViewController:press animated:YES];
+            [press release];
+        }
     }
     else
     {
