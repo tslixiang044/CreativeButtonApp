@@ -45,6 +45,7 @@
     
     UIImageView* backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 300, 200)];
     backgroundView.backgroundColor = COLOR(21, 21, 22);
+    backgroundView.userInteractionEnabled = YES;
     [self.view addSubview:backgroundView];
     
     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 80, 20)];
@@ -94,7 +95,7 @@
     NSString *str_content=[txtfeedback.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *str_phone=[txtcontact.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    CGRect frame = CGRectMake(90,380,150,20);
+    CGRect frame = CGRectMake(90,260,150,20);
     
     if([str_content isEqualToString:@""])
     {
