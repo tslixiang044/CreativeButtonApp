@@ -17,7 +17,7 @@
 #define IMAGEVIEWBG [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0]
 
 @implementation ImageViewCell
-
+@synthesize delegate;
 
 
 -(void)dealloc
@@ -43,7 +43,15 @@
     }
     return self;
 }
-
+-(void)handleSingleTapFrom:(UIPinchGestureRecognizer*)pinchGestureRecognizer
+{
+    
+    if(delegate)
+    {
+        [delegate gotoviewcontroller_imageviewcell_usercode:imgview_header.tag];
+    }
+      
+}
 -(id)initWithIdentifier:(NSString *)indentifier
 {
 	if(self = [super initWithIdentifier:indentifier])
@@ -70,6 +78,13 @@
         UIColor *mcolor=COLOR(60, 60, 60);
         
         [layer setBorderColor:[mcolor CGColor]];
+        
+        
+        
+        UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom:)];
+
+        singleRecognizer.numberOfTapsRequired = 1; // 单击
+        [imgview_header addGestureRecognizer:singleRecognizer];
         //--------------
          x=imgview_header.frame.origin.x+imgview_header.frame.size.width+5;
         lblnickname=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 65, 25)];
@@ -173,6 +188,9 @@
     NSURL *murl=[NSURL URLWithString:mobj.avatar];
     
     [imgview_header setImageWithURL:murl placeholderImage:[UIImage imageNamed:@"register_head"]];
+    imgview_header.tag=[mobj.userCode intValue];
+    
+    
     
     if (mobj.ideaType.integerValue == 1)
     {

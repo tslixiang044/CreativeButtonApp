@@ -13,8 +13,15 @@
 #import "WaterFlowObj.h"
 
 
+//---------------------
+@class ImageViewCell;
+@protocol ImageViewCellDelegate <NSObject>
+-(void)gotoviewcontroller_imageviewcell_usercode:(int )muserCode;
+@end
+//---------------------
 
-@interface ImageViewCell : WaterFlowViewCell
+
+@interface ImageViewCell : WaterFlowViewCell<UIGestureRecognizerDelegate>
 {
     UIView *view_bg;
     
@@ -38,5 +45,8 @@
 -(void)relayoutViews;
 -(void)setbtnObjct:(WaterFlowObj*)mobj;
 -(void)setcenterviewColor:(int)row;
+
+
+@property(nonatomic,assign)id<ImageViewCellDelegate>delegate;
 
 @end

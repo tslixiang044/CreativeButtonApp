@@ -13,6 +13,12 @@
 {
     UIScrollView *mscrollview;
     int k;
+    BOOL isLoadingMore_1;
+    BOOL isLoadingMore_2;
+    
 }
 @property(nonatomic,strong)NSString *btntype;
+
+
+
 @end

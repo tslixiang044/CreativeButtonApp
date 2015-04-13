@@ -14,6 +14,9 @@
 @class WaterFlowView;
 
 
+
+
+
 @interface WaterFlowView : UIScrollView<UITableViewDelegate,UITableViewDataSource>
 {
 
@@ -61,7 +64,7 @@
  */
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath;
 
-
+-(void)loadmore:(WaterFlowView *)waterFlowView;
 @end
 
 

@@ -22,7 +22,7 @@
 #import "MySegmentedControl.h"
 
 
-@interface MainViewController ()<UIScrollViewDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate,MySegmentedControlDelegate>
+@interface MainViewController ()<UIScrollViewDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate,MySegmentedControlDelegate,ImageViewCellDelegate>
 {
     
     NSMutableArray *mArr_1;
@@ -46,6 +46,11 @@
 
 - (void)viewDidLoad
 {
+    isLoadingMore_1=NO;
+    isLoadingMore_2=NO;
+    
+    
+    
     [super viewDidLoad];
     
     [self getRemainderNum];
@@ -267,8 +272,11 @@
     {
         if([result.code intValue] ==0)
         {
+            if(!isLoadingMore_1)
+            {
+                [mArr_1 removeAllObjects];
+            }
             
-            [mArr_1 removeAllObjects];
             
             
             NSArray *typeArr=(NSArray *)result.data;
@@ -280,18 +288,23 @@
             }
             
             [waterFlow_1 reloadData];
+            
         }
         else
         {
             //[self showalertview_text:result.msg frame:<#(CGRect)#> autoHiden:<#(BOOL)#>
         }
+        isLoadingMore_1=NO;
     }
     if([mkey isEqualToString:@"kgetWaterFlowUrl_2"])
     {
         if([result.code intValue] ==0)
         {
+            if(!isLoadingMore_2)
+            {
+                [mArr_2 removeAllObjects];
+            }
             
-            [mArr_2 removeAllObjects];
             
             
             NSArray *typeArr=(NSArray *)result.data;
@@ -308,11 +321,20 @@
         {
             //[self showalertview_text:result.msg frame:<#(CGRect)#> autoHiden:<#(BOOL)#>
         }
+        isLoadingMore_2=NO;
     }
 }
 
 -(void)uploadfaild_global:(NSString *)mkey
 {
+    if([mkey isEqualToString:@"kgetWaterFlowUrl_1"])
+    {
+        isLoadingMore_1=NO;
+    }
+    if([mkey isEqualToString:@"kgetWaterFlowUrl_2"])
+    {
+        isLoadingMore_1=NO;
+    }
     
 }
 
@@ -379,6 +401,7 @@
 - (UIView *)waterFlowView:(WaterFlowView *)waterFlowView cellForRowAtIndexPath:(IndexPath *)indexPath
 {
     ImageViewCell *view = [[ImageViewCell alloc] initWithIdentifier:nil];
+    view.delegate=self;
     
     return view;
 }
@@ -399,6 +422,7 @@
         [imageViewCell setbtnObjct:obj];
         
         [imageViewCell setcenterviewColor:arrIndex%4];
+        
     }
     else
     {
@@ -479,6 +503,41 @@
     
 }
 
-
-
+-(void)gotoviewcontroller_imageviewcell_usercode:(int)muserCode
+{
+    NSString *ucode=[NSString stringWithFormat:@"%i",muserCode];
+    PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:ucode ];
+    [self.navigationController pushViewController:infomaton animated:YES];
+    [infomaton release];
+    
+}
+-(void)loadmore:(WaterFlowView *)waterFlowView
+{
+    
+    
+    if(waterFlowView==waterFlow_1)
+    {
+        if(isLoadingMore_1==YES)
+        {
+            return;
+        }
+        isLoadingMore_1=YES;
+        [self loadMore:1 range:@"20-40"];
+        
+    }
+    else
+    {
+        if(isLoadingMore_2==YES)
+        {
+            return;
+        }
+        isLoadingMore_2=YES;
+        [self loadMore:2 range:@"2"];
+        
+    }
+    
+    
+    
+    
+}
 @end

@@ -187,31 +187,23 @@
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    float new_y = scrollView.contentOffset.y ;
-    float height=self.frame.size.height;
-    if(new_y<20)
+    
+    //-------------------------------------------------------------
+    CGPoint contentOffsetPoint = scrollView.contentOffset;
+    CGRect frame = scrollView.frame;
+
+    
+    if (contentOffsetPoint.y == scrollView.contentSize.height - frame.size.height || scrollView.contentSize.height < frame.size.height)
     {
-//        NSLog(@"33333333333");
-    }
-    else if(new_y+height>scrollView.contentSize.height-20)
-    {
-        //不处理
-//        NSLog(@"4444444444");
-    }
-    else if(new_y != Content_old_y )
-    {
-        
-        if (new_y > Content_old_y)
+        NSLog(@"  cc     ");
+        if(self.waterFlowViewDelegate)
         {
-//            NSLog(@"1111111111");
+            [self.waterFlowViewDelegate loadmore:self];
         }
-        else
-        {
-//            NSLog(@"222222222222");
-        }
-        
-        Content_old_y = new_y;
     }
+    
+    
+
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
