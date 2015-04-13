@@ -80,6 +80,7 @@
     else if(indexPath.row==1)
     {
         cell.lbldesc.text=@"检测自动更新(仅WIFI环境使用)";
+        cell.mswitch.on = NO;
         
     }
     else if(indexPath.row==2)

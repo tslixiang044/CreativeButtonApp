@@ -50,7 +50,7 @@
     [self.view addSubview:printAdLabel];
     
     UIButton* videoAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 50, 50)];
-    [videoAdBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_vide1"] forState:UIControlStateNormal];
+    [videoAdBtn setImage:[UIImage imageNamed:@"btn_video"] forState:UIControlStateNormal];
     [videoAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     videoAdBtn.tag = VideoAdBtnTag;
     [self.view addSubview:videoAdBtn];

@@ -389,11 +389,11 @@
         return;
     }
     
-    if (repineCompanyTextField.text.length == 0)
-    {
-        [self showalertview_text:@"向往公司不能为空" frame:rect autoHiden:YES];
-        return;
-    }
+//    if (repineCompanyTextField.text.length == 0)
+//    {
+//        [self showalertview_text:@"向往公司不能为空" frame:rect autoHiden:YES];
+//        return;
+//    }
     
     User* user = [[DB sharedInstance]queryUser];
     if (user)

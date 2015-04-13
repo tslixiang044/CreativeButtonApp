@@ -19,6 +19,7 @@
 #import "IAlsoPressViewController.h"
 #import "PrefectStudentInfoViewController.h"
 #import "PerfectInfoViewController.h"
+#import "MyUIButton.h"
 
 #define Height  45
 #define AddHead     1
@@ -31,7 +32,7 @@
 {
     NSInteger gender;
     ChooseCityViewController* chooseCityViewController;
-    UIButton* headBtn;
+    MyUIButton* headBtn;
 }
 
 @property(nonatomic, strong)UIScrollView *mainScroll;
@@ -95,6 +96,7 @@
     NSDictionary* userInfo = [notify userInfo];
     
     self.registerAddressTextField.text = [userInfo objectForKey:@"location"];
+    [self.mainScroll setContentOffset:CGPointMake(0, self.lastScrollOffset) animated:YES];
     
     if (chooseCityViewController)
     {
@@ -109,6 +111,10 @@
     if ([self.confirmPSWTextField isFirstResponder])
     {
         [self.confirmPSWTextField resignFirstResponder];
+        [self showCityPicker];
+    }
+    else if (textField == self.registerAddressTextField)
+    {
         [self showCityPicker];
     }
 
@@ -223,8 +229,7 @@
     imageView.frame =  CGRectMake(30, 20, 220, 80);
     [registerView addSubview:imageView];
     
-    headBtn = [[UIButton alloc] initWithFrame:CGRectMake(25, 10, 65, 60)];
-    [headBtn setBackgroundImage:[UIImage imageNamed:@"register/icon_use_add"] forState:UIControlStateNormal];
+    headBtn = [[MyUIButton alloc] initWithRoundButton_Frame:CGRectMake(25, 10, 60, 60) bgimg:@"register/icon_use_add" title:nil];
     [headBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     headBtn.tag = AddHead;
     [imageView addSubview:headBtn];

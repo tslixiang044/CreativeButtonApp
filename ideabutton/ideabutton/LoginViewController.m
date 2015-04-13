@@ -213,12 +213,7 @@
         if(user)
         {
             DB *db = [DB sharedInstance];
-            
-            if (self.agreementChecked)
-            {
-//                user.rememberPSW = YES;
-//                user.password = self.loginPSWTextField.text;
-            }
+
             [db saveUser:user];
             [db.indb setData:[loginName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
         }
