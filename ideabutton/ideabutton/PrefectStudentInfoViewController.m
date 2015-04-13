@@ -215,6 +215,15 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     self.inFocusTextField = textField;
+    if ([majorTextField isFirstResponder])
+    {
+        [majorTextField resignFirstResponder];
+        [self chooseGraduation];
+    }
+    else if (textField == graduationTextField)
+    {
+        [self chooseGraduation];
+    }
     return YES;
 }
 
@@ -222,7 +231,6 @@
 {
     if (textField == graduationTextField)
     {
-        [self chooseGraduation];
         [textField resignFirstResponder];
     }
 }
@@ -389,12 +397,6 @@
         return;
     }
     
-//    if (repineCompanyTextField.text.length == 0)
-//    {
-//        [self showalertview_text:@"向往公司不能为空" frame:rect autoHiden:YES];
-//        return;
-//    }
-    
     User* user = [[DB sharedInstance]queryUser];
     if (user)
     {
@@ -411,9 +413,8 @@
                     [db saveUser:user];
                     [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
                     
-                    RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight)];
+                    RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight) Flag:2];
                     suc.delegate = self;
-                    suc.flag = 2;
                     
                     [[UIApplication sharedApplication].keyWindow addSubview:suc];
                 }

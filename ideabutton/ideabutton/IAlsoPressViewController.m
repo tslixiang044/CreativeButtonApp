@@ -66,7 +66,7 @@
     //---------------------
     FeedBackViewController *back=[[FeedBackViewController alloc]init];
     back.view.tag=4;
-    back.tabBarItem.image=[UIImage imageNamed:@"icon_brbz"];
+    back.tabBarItem.image=[UIImage imageNamed:@"icon_tjy"];
     back.tabBarItem.title=@"我要建议";
     //---------------------
     NSMutableArray *  marr=[[NSMutableArray alloc]initWithObjects:occupy,save,change,back,nil];

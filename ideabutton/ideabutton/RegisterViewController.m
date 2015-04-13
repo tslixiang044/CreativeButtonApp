@@ -458,9 +458,8 @@
                 [db saveUser:user];
                 [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
                 
-                RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight)];
+                RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight) Flag:1];
                 suc.delegate=self;
-                suc.flag=1;
 
                 [[UIApplication sharedApplication].keyWindow addSubview:suc];
             }

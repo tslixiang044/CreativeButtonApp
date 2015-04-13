@@ -49,7 +49,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title=@"我霸占的";
+     self.title = kgettitle;
+    
+    [self setrightbaritem_imgname:@"icon_more_all.png" title:@""];
     //----------
     
     UILabel* describeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, kMainScreenBoundwidth, 30)];
@@ -59,7 +61,7 @@
     [self.view addSubview:describeLabel];
     //----
     UIImageView *imgview=[[UIImageView alloc]initWithFrame:CGRectMake(90, 30, 30, 30)];
-    imgview.image=[UIImage imageNamed:@"icon_wscd.png"];
+    imgview.image=[UIImage imageNamed:@"icon_wbzd"];
     [self.view addSubview:imgview];
     //----
     UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ideaRuleChoose/line_bg"]];

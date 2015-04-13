@@ -13,20 +13,18 @@
 #define PerfectInfoBtnTag       1
 #define StartBtnTag             2
 
-
-
 @implementation RegisterSuccessView
-@synthesize delegate,flag;
+@synthesize delegate;
 
 
--(id)initWithFrame:(CGRect)frame
+-(id)initWithFrame:(CGRect)frame Flag:(NSInteger)flag
 {
     self=[super initWithFrame:frame];
     if(self)
     {
         self.backgroundColor=[UIColor blackColor];
         
-        
+        self.flag = flag;
         UILabel* describeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 120, 300, 100)];
         describeLabel.textAlignment = NSTextAlignmentCenter;
         if (self.flag == 1)

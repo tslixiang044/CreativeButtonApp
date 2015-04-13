@@ -22,4 +22,6 @@
 @property(nonatomic,assign)NSInteger flag;
 @property(assign)id<RegisterSuccessViewDelegate>delegate;
 
+-(id)initWithFrame:(CGRect)frame Flag:(NSInteger)flag;
+
 @end

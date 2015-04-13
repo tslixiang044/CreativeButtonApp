@@ -43,7 +43,7 @@
     [self.view addSubview:describeLabel];
     //----
     UIImageView *imgview=[[UIImageView alloc]initWithFrame:CGRectMake(90, 30, 30, 30)];
-    imgview.image=[UIImage imageNamed:@"icon_wscd.png"];
+    imgview.image=[UIImage imageNamed:@"icon_wdzg"];
     [self.view addSubview:imgview];
     //----
     UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ideaRuleChoose/line_bg"]];
