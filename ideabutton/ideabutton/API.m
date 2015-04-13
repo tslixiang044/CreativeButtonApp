@@ -685,13 +685,10 @@
     NSURLResponse  *response;
     NSError *err;
     NSData *returnData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-//    NSString *returnString=[[NSString	alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-//    NSLog(@"returnData=%@",returnData);
-//    NSLog(@"returnString=%@",returnString);
     
     NSDictionary *mdic = [NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableContainers error:&err];
     
-    User* user = [mdic objectForKey:@"data"];
+    User* user = [[User alloc] initWithDict:[mdic objectForKey:@"data"]];
     if(user)
     {
         self.user = user;
