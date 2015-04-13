@@ -476,8 +476,6 @@
 
 -(void)start
 {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    
     IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
     [self.navigationController pushViewController:press animated:YES];
 }
@@ -487,10 +485,10 @@
     [self.navigationController pushViewController:[[PerfectInfoViewController alloc] init] animated:YES];
 }
 
-//-(void)perfectStudentInfo
-//{
-//    [self.navigationController pushViewController:[[PrefectStudentInfoViewController alloc]init] animated:YES];
-//}
+-(void)uploadData
+{
+    
+}
 
 -(NSDictionary*)invalidateInput
 {
@@ -531,9 +529,7 @@
         [self showalertview_text:@"请上传头像" frame:frame autoHiden:YES];
         return nil;
     }
-    
-   
-    
+
     return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":self.registerAddressTextField.text};
 }
 

@@ -13,7 +13,7 @@
 
 -(void)start;
 -(void)perfectInfo;
-//-(void)perfectStudentInfo;
+-(void)uploadData;
 @end
 //---------------------
 

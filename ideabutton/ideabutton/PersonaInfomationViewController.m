@@ -461,7 +461,7 @@
     
     NSString *str_img_url=[NSString stringWithFormat:@"%@%@",BASEURL,[dic_data objectForKey:@"avatar"]];
     
-    [imgview_header setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"userheader.png"]];
+    [imgview_header setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"register_head"]];
 
     return headerview;
 }
@@ -698,7 +698,7 @@
             [mdic setValue:self.userCode forKey:@"userCode"];
             [mdic setValue:txtcontent.text forKey:@"email"];
             
-            NSDictionary * back_dic=  [[API sharedInstance] updateUser:mdic];
+           User* back_dic=  [[API sharedInstance] updateUser:mdic];
             
             
             //处理完上面的后回到主线程去更新UI
@@ -706,7 +706,7 @@
             dispatch_async(mainQueue, ^{
                 
                 
-                NSInteger codeValue = [[back_dic objectForKey:@"code"] integerValue];
+                NSInteger codeValue = [[API sharedInstance].code integerValue];
                 
                 if(codeValue==0)
                 {

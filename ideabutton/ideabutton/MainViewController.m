@@ -20,6 +20,7 @@
 #import "DB.h"
 #import "PersonaInfomationViewController.h"
 #import "MySegmentedControl.h"
+#import "UploadViewController.h"
 
 
 @interface MainViewController ()<UIScrollViewDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate,MySegmentedControlDelegate,ImageViewCellDelegate>
@@ -48,8 +49,6 @@
 {
     isLoadingMore_1=NO;
     isLoadingMore_2=NO;
-    
-    
     
     [super viewDidLoad];
     
@@ -196,7 +195,7 @@
             {
                 if (user.auditStatus == 0)
                 {
-                    
+                    [self.navigationController pushViewController:[[UploadViewController alloc]init] animated:YES];
                 }
                 else
                 {

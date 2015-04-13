@@ -241,7 +241,7 @@ static const NSUInteger kDomainSection = 1;
 {
 	UINavigationBar *navigationBar = [[[self view] subviews] objectAtIndex:0];
 	UINavigationItem *navItem = [[navigationBar items] objectAtIndex:0];
-	if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+	if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
 		// Setup the title
 		if ([self type] == ASIProxyAuthenticationType) {
 			[navItem setPrompt:@"Login to this secure proxy server."];

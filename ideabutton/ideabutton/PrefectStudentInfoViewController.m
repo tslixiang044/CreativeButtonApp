@@ -12,6 +12,8 @@
 #import "RegisterSuccessView.h"
 #import "APLevelDB.h"
 #import "IAlsoPressViewController.h"
+#import "SVProgressHUD.h"
+#import "UploadViewController.h"
 
 #define CheckButtonTag1     0
 #define CheckButtonTag2     1
@@ -400,6 +402,7 @@
     User* user = [[DB sharedInstance]queryUser];
     if (user)
     {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
@@ -420,6 +423,7 @@
             dispatch_async(mainQueue, ^{
                 if ([API sharedInstance].code.integerValue == 0)
                 {
+                    [SVProgressHUD dismiss];
                     DB *db = [DB sharedInstance];
                     [db saveUser:newUserInfo];
                     [db.indb setData:[newUserInfo.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
@@ -445,15 +449,18 @@
 
 -(void)start
 {
-    [self.navigationController popViewControllerAnimated:NO];
-    
     IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
     [self.navigationController pushViewController:press animated:YES];
 }
 
 -(void)perfectInfo
 {
-//    [self.navigationController pushViewController:[[PerfectInfoViewController alloc] init] animated:YES];
+
+}
+
+-(void)uploadData
+{
+    [self.navigationController pushViewController:[[UploadViewController alloc]init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

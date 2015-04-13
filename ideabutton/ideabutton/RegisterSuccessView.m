@@ -97,7 +97,7 @@
             {
                 if (delegate)
                 {
-//                    [delegate perfectStudentInfo];
+                    [delegate uploadData];
                 }
             }
         }

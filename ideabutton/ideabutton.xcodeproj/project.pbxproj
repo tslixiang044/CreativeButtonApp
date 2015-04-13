@@ -110,6 +110,8 @@
 		E974E2AB1ADB5D3D003D1EC4 /* btn_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E974E2AA1ADB5D3D003D1EC4 /* btn_video@2x.png */; };
 		E974E2AD1ADBA89D003D1EC4 /* register_head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E974E2AC1ADBA89D003D1EC4 /* register_head@2x.png */; };
 		E974E2AF1ADBB8FE003D1EC4 /* icon_wdzg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E974E2AE1ADBB8FE003D1EC4 /* icon_wdzg@2x.png */; };
+		E974E2B71ADBEFC1003D1EC4 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E974E2B61ADBEFC1003D1EC4 /* UploadViewController.m */; };
+		E974E2B91ADBF63D003D1EC4 /* btn_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E974E2B81ADBF63D003D1EC4 /* btn_add@2x.png */; };
 		E98190701A884BC20025F284 /* MyNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E981906F1A884BC20025F284 /* MyNavigationViewController.m */; };
 		E98190741A8850030025F284 /* IAlsoPressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190731A8850030025F284 /* IAlsoPressViewController.m */; };
 		E98190771A8851D60025F284 /* IoccupyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190761A8851D60025F284 /* IoccupyViewController.m */; };
@@ -324,6 +326,9 @@
 		E974E2AA1ADB5D3D003D1EC4 /* btn_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_video@2x.png"; sourceTree = "<group>"; };
 		E974E2AC1ADBA89D003D1EC4 /* register_head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register_head@2x.png"; sourceTree = "<group>"; };
 		E974E2AE1ADBB8FE003D1EC4 /* icon_wdzg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_wdzg@2x.png"; sourceTree = "<group>"; };
+		E974E2B51ADBEFC1003D1EC4 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		E974E2B61ADBEFC1003D1EC4 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		E974E2B81ADBF63D003D1EC4 /* btn_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_add@2x.png"; sourceTree = "<group>"; };
 		E981906E1A884BC20025F284 /* MyNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationViewController.h; sourceTree = "<group>"; };
 		E981906F1A884BC20025F284 /* MyNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationViewController.m; sourceTree = "<group>"; };
 		E98190721A8850030025F284 /* IAlsoPressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAlsoPressViewController.h; sourceTree = "<group>"; };
@@ -492,6 +497,7 @@
 		E91E777A1A84A760000174D4 /* GroupClass */ = {
 			isa = PBXGroup;
 			children = (
+				E974E2B41ADBEFAB003D1EC4 /* UploadData */,
 				E98DA1A41AD3D3AC0056DA92 /* ProductandAppealList */,
 				E9DB90E51AC1543B00F66467 /* PerfectInfo */,
 				89A85CAB1ABC1E4300490339 /* Setting */,
@@ -796,6 +802,15 @@
 			name = InteractivePage;
 			sourceTree = "<group>";
 		};
+		E974E2B41ADBEFAB003D1EC4 /* UploadData */ = {
+			isa = PBXGroup;
+			children = (
+				E974E2B51ADBEFC1003D1EC4 /* UploadViewController.h */,
+				E974E2B61ADBEFC1003D1EC4 /* UploadViewController.m */,
+			);
+			name = UploadData;
+			sourceTree = "<group>";
+		};
 		E98190711A884FDA0025F284 /* IAlsoPress */ = {
 			isa = PBXGroup;
 			children = (
@@ -930,6 +945,7 @@
 		E98DA1AC1AD533E60056DA92 /* ideaSelect */ = {
 			isa = PBXGroup;
 			children = (
+				E974E2B81ADBF63D003D1EC4 /* btn_add@2x.png */,
 				E98DA1AD1AD535160056DA92 /* btn_bzfx@2x.png */,
 				E98DA1AE1AD535160056DA92 /* logo_anniu@2x.png */,
 			);
@@ -1037,6 +1053,7 @@
 				E932E5761AB9146600839FA4 /* ideaRuleChoose in Resources */,
 				E94E5E9C1AD622A900AB0B9F /* btn_good@2x.png in Resources */,
 				894924DD1AD3A7C6000F392C /* icon_sz@2x.png in Resources */,
+				E974E2B91ADBF63D003D1EC4 /* btn_add@2x.png in Resources */,
 				89B4FA6F1ABAEEED007C1805 /* btn_start@2x.png in Resources */,
 				89AC5C701AA165D6005DA279 /* userheader@2x.png in Resources */,
 				894924DC1AD3A7C6000F392C /* icon_admin1@2x.png in Resources */,
@@ -1093,6 +1110,7 @@
 				E97258241A888D3500F0ABB8 /* LoginViewController.m in Sources */,
 				E98190701A884BC20025F284 /* MyNavigationViewController.m in Sources */,
 				89B4FA6A1ABAE019007C1805 /* ISuggestViewController.m in Sources */,
+				E974E2B71ADBEFC1003D1EC4 /* UploadViewController.m in Sources */,
 				E98190A81A886E5E0025F284 /* UIButton+WebCache.m in Sources */,
 				E98190A71A886E5E0025F284 /* SDWebImagePrefetcher.m in Sources */,
 				E91E77831A84A7EB000174D4 /* Global.m in Sources */,

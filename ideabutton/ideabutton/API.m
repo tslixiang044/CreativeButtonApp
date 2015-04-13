@@ -135,12 +135,6 @@
         return nil;
     }
     return retDict;
-//    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
-//    if(user)
-//    {
-//        self.user = user;
-//    }
-//    return user;
 }
 
 - (void)isEnabledNickname:(NSDictionary*)dict
@@ -651,6 +645,60 @@
     return inputStr;
 }
 
+- (User*)realNameAuth:(NSData*)data
+{
+    NSString *boundry=@"------";
+    
+    NSMutableString *urlstring = [[NSMutableString alloc] initWithString:self.baseURL];
+    [urlstring appendString:@"check/realNameAuth"];
+    
+    NSString  *contentType=[NSString  stringWithFormat:@"multipart/form-data;boundary=%@" ,boundry];
+    NSMutableURLRequest  *request=[[NSMutableURLRequest alloc] init] ;
+    [request  setURL: [NSURL URLWithString:urlstring]];
+    [request  setHTTPMethod:@"POST" ];
+    [request  addValue:contentType forHTTPHeaderField:@"Content-Type" ];
+    
+    NSMutableData  *body=[NSMutableData  data];
+    NSMutableString *str=[[NSMutableString alloc] init];
+    
+    NSMutableString *bodyContent = [NSMutableString string];
+    
+    if(self.user && [request valueForHTTPHeaderField:@"Auth"] ==nil)
+    {
+        NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.user.nickName,self.user.token];
+        NSString *encodedAuthStr = [[authStr dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
+        [request setValue:encodedAuthStr forHTTPHeaderField:@"Auth"];
+    }
+    
+    [bodyContent appendFormat:@"--%@--\r\n",boundry];
+    [body appendData:[str  dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString  stringWithFormat:@"\r\n--%@\r\n" ,boundry] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString *str_imgname=[self getnowtime:@"yyyyMMddHHmmss"];
+    [body appendData:[[NSString	stringWithFormat: @"Content-Disposition:form-data; name=\"cert\"; filename=\"%@.jpg\"\r\nContent-Type:application/octet-stream\r\nContent-Transfer-Encoding: binary\r\n\r\n",str_imgname] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData  dataWithData:data]];
+    [body appendData:[[NSString	stringWithFormat:@"\r\n--%@--\r\n" ,boundry] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [request setHTTPBody:body];
+    
+    NSURLResponse  *response;
+    NSError *err;
+    NSData *returnData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    
+    NSDictionary *mdic = [NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableContainers error:&err];
+    
+    self.code = [mdic objectForKey:@"code"];
+    self.msg = [mdic objectForKey:@"msg"];
+    
+    User* user = [[User alloc] initWithDict:[mdic objectForKey:@"data"]];
+    if (user)
+    {
+        self.user = user;
+    }
+    
+    return user;
+}
+
 -(User*)newUserHaveIcon:(NSData *)data1 paramArr:(NSDictionary *)mparamArr
 {
     NSString *boundry=@"------";
@@ -692,6 +740,9 @@
     NSData *returnData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
     
     NSDictionary *mdic = [NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableContainers error:&err];
+    
+    self.code = [mdic objectForKey:@"code"];
+    self.msg = [mdic objectForKey:@"msg"];
     
     User* user = [[User alloc] initWithDict:[mdic objectForKey:@"data"]];
     if(user)
