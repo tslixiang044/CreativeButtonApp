@@ -172,7 +172,7 @@
     
     NSURL *murl=[NSURL URLWithString:mobj.avatar];
     
-    [imgview_header setImageWithURL:murl placeholderImage:[UIImage imageNamed:@"userheader.png"]];
+    [imgview_header setImageWithURL:murl placeholderImage:[UIImage imageNamed:@"register_head"]];
     
     if (mobj.ideaType.integerValue == 1)
     {

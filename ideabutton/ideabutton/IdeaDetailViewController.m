@@ -73,7 +73,7 @@
     [self.view addSubview:self.scrollView];
     
     imgview_header=[[UIButton alloc]initWithFrame:CGRectMake(x, y, 60, 60)];
-    [imgview_header setImage:[UIImage imageNamed:@"userheader"] forState:UIControlStateNormal];
+    [imgview_header setImage:[UIImage imageNamed:@"register_head"] forState:UIControlStateNormal];
     [imgview_header addTarget:self action:@selector(showUserInfo) forControlEvents:UIControlEventTouchUpInside];
     
     [self.scrollView addSubview:imgview_header];
