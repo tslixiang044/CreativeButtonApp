@@ -30,5 +30,6 @@
 @property (nonatomic, assign) NSInteger majorPrivate;
 @property (nonatomic, assign) NSInteger auditStatus;
 @property (nonatomic, strong) NSString *avatar;
+@property (nonatomic, strong) NSString *email;
 
 @end

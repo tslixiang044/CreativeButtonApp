@@ -476,7 +476,7 @@
 
 -(void)start
 {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popToRootViewControllerAnimated:NO];
     
     IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
     [self.navigationController pushViewController:press animated:YES];

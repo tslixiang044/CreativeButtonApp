@@ -403,15 +403,26 @@
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-             [[API sharedInstance] updateUser:@{@"userCode":@(user.userCode),@"userFullName":realNameTextField.text,@"carrerType":@(self.carrerType),@"college":schoolNameTextField.text,@"collegePrivate":@(checkBtnFlag1),@"major":majorTextField.text,@"majorPrivate":@(checkBtnFlag2),@"graduationTime":graduationTextField.text,@"graduationTimePrivate":@(checkBtnFlag3),@"favCompany":repineCompanyTextField.text,@"favCompanyPrivate":@(checkBtnFlag4)}];
+            User* newUserInfo = [[API sharedInstance] updateUser:@{@"userCode":@(user.userCode),
+                                                @"userFullName":realNameTextField.text,
+                                                @"userFullNamePrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag)],
+                                                @"carrerType":@(self.carrerType),
+                                                @"college":schoolNameTextField.text,
+                                                @"collegePrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag1)],
+                                                @"major":majorTextField.text,
+                                                @"majorPrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag2)],
+                                                @"graduationTime":graduationTextField.text,
+                                                @"graduationTimePrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag3)],
+                                                @"favCompany":repineCompanyTextField.text,
+                                                @"favCompanyPrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag4)]}];
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
                 if ([API sharedInstance].code.integerValue == 0)
                 {
                     DB *db = [DB sharedInstance];
-                    [db saveUser:user];
-                    [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
+                    [db saveUser:newUserInfo];
+                    [db.indb setData:[newUserInfo.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
                     
                     RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight) Flag:2];
                     suc.delegate = self;

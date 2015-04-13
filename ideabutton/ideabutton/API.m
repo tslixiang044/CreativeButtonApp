@@ -84,7 +84,7 @@
     return user;
 }
 
--(NSDictionary*)updateUser:(NSDictionary*)userDict
+-(User*)updateUser:(NSDictionary*)userDict
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.baseURL, @"check/updateUser"];
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:nil];
@@ -95,7 +95,12 @@
         return nil;
     }
     
-    return retDict;
+    User *user = [[User alloc]initWithDict:[retDict objectForKey:@"data"]];
+    if(user)
+    {
+        self.user = user;
+    }
+    return user;
 }
 
 -(User*)updateUserField:(NSDictionary*)userDict
