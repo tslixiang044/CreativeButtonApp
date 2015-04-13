@@ -270,7 +270,9 @@
 
 - (void)showUserInfo
 {
-    PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc] init];
+    NSString *ucode=[NSString stringWithFormat:@"%@",self.data.userCode];    ;
+    PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc] initwithuserCode:ucode ];
+   
     [self.navigationController pushViewController:infomaton animated:YES];
 }
 

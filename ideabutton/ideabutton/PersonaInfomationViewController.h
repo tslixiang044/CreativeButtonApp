@@ -13,10 +13,15 @@
 @interface PersonaInfomationViewController : MyBaseViewController
 {
     User *user;
+    BOOL isSelf;
 }
 @property(nonatomic,strong)User *user;
 @property(nonatomic,strong)NSDictionary *dic_data;
+@property(nonatomic,strong)NSString *userCode;
 
 
+
+
+-(id)initwithuserCode:(NSString *)muserCode;
 
 @end

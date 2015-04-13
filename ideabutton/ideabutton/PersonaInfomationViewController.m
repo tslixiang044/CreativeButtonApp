@@ -44,58 +44,129 @@
 @implementation  PersonaInfomationViewController
 @synthesize user;
 @synthesize dic_data;
+@synthesize userCode;
+
+-(id)init
+{
+    self=[super init];
+    if(self)
+    {
+        
+    }
+    return self;
+}
+-(id)initwithuserCode:(NSString *)muserCode
+{
+   
+    
+    self.userCode=muserCode;
+    
+    return [self init];
+}
+
+
+
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title=kgettitle;
     self.mtag=@"个人资料";
     [self setrightbaritem_imgname:@"icon_more_all.png" title:@""];
-    
-    
-    
+    self.user = [[DB sharedInstance] queryUser];
+    NSString *ucode=[NSString stringWithFormat:@"%d",user.userCode];
+    if([ucode isEqualToString:self.userCode] )
+    {
+        isSelf=YES;
+    }
+    else
+    {
+        isSelf=NO;
+    }
+    [self LoadData];
  
 
-    self.user = [[DB sharedInstance] queryUser];
-    if(user)
-    {
-        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(currentQueue, ^{
-            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            
-            
-            NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-            
-            NSString *usercode=[NSString stringWithFormat:@"%i",user.userCode];
-            
-            
-            [mdic setValue:usercode forKey:@"userCode"];
-          
-            NSDictionary * back_dic=  [[API sharedInstance] userInfo:mdic];
-         
-            
-            //处理完上面的后回到主线程去更新UI
-            dispatch_queue_t mainQueue = dispatch_get_main_queue();
-            dispatch_async(mainQueue, ^{
-                
-                
-                 NSInteger codeValue = [[back_dic objectForKey:@"code"] integerValue];
-                
-                if(codeValue==0)
-                {
-                    dic_data=[back_dic objectForKey:@"data"];
-                    [self LoadMsgList];
-                    [self initview];
-                    
-                }
-                else
-                {
-                   
-                }
-            });
-        });
-    }
+        //-------------------
     
-    //-------------------
+}
+-(void)LoadData
+{
+    NSString *code=@"";
+    if(self.userCode!=nil &&  ![self.userCode isEqualToString:@""])
+    {
+        code=self.userCode;
+        [self loadUserInfo:code];
+    }
+//    else
+//    {
+//        self.user = [[DB sharedInstance] queryUser];
+//        if(user)
+//        {
+//            code=[NSString stringWithFormat:@"%d",user.userCode];
+//            [self loadUserInfo:code];
+//        }
+//    }
+}
+-(void)loadUserInfo:(NSString *)mcode
+{
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        
+        
+        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+        
+        
+        
+        
+        [mdic setValue:mcode forKey:@"userCode"];
+        
+        NSDictionary * back_dic=  [[API sharedInstance] userInfo:mdic];
+        
+        
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            
+            
+            NSInteger codeValue = [[back_dic objectForKey:@"code"] integerValue];
+            
+            if(codeValue==0)
+            {
+                dic_data=[back_dic objectForKey:@"data"];
+                [self LoadMsgList];
+                [self initview];
+                
+            }
+            else
+            {
+                
+            }
+        });
+    });
+
+}
+-(void)setUserCode:(NSString *)muserCode
+{
+    if(muserCode==nil)
+    {
+        return;
+    }
+    if(userCode)
+    {
+        userCode=nil;
+        
+    }
+    userCode=muserCode;
+    //------------------
+    
+    
+    
+    
+    
+    
     
 }
 -(void)LoadMsgList
@@ -147,13 +218,7 @@
     mtableview.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, 0);
     //修改分隔线长度
     mtableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
-    
-    
-    
-    
-    
-    
+
 }
 -(void)btnright
 {
@@ -234,10 +299,9 @@
                 cell.backgroundColor=COLOR(21, 21, 23);
                 cell.selectionStyle=UITableViewCellSelectionStyleNone;
                 
-                
             }
          
-           if(indexPath.row==0)
+          if(indexPath.row==0)
           {
               cell.lbltitle.text=@"昵称";
               NSString *nickname=[dic_data objectForKey:@"nickname"];
@@ -257,21 +321,44 @@
               }
               cell.lbldesc.text=str_sex;
               
-              cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              
+              
+              if(isSelf)
+              {
+                 cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              }
+              else
+              {
+                  cell.accessoryType=UITableViewCellAccessoryNone;
+              }
           }
           else  if(indexPath.row==2)
           {
                 cell.lbltitle.text=@"邮箱";
                 cell.lbldesc.text=[dic_data objectForKey:@"email"];
               
-              cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              if(isSelf)
+              {
+                  cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              }
+              else
+              {
+                  cell.accessoryType=UITableViewCellAccessoryNone;
+              }
           }
           else if(indexPath.row==3)
           {
               cell.lbltitle.text=@"密码";
               cell.lbldesc.text=@"******";
               
-              cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              if(isSelf)
+              {
+                  cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              }
+              else
+              {
+                  cell.accessoryType=UITableViewCellAccessoryNone;
+              }
           }
           else if(indexPath.row==4)
           {
@@ -290,14 +377,28 @@
               cell.lbltitle.text=@"所属地";
               cell.lbldesc.text=[dic_data objectForKey:@"city"];
               
-              cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              if(isSelf)
+              {
+                  cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              }
+              else
+              {
+                  cell.accessoryType=UITableViewCellAccessoryNone;
+              }
           }
           else if(indexPath.row==6)
           {
               cell.lbltitle.text=@"院校";
               cell.lbldesc.text=[dic_data objectForKey:@"college"];
               
-              cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              if(isSelf)
+              {
+                  cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              }
+              else
+              {
+                  cell.accessoryType=UITableViewCellAccessoryNone;
+              }
           }
         
           else if(indexPath.row==7)
@@ -305,7 +406,14 @@
               cell.lbltitle.text=@"专业";
               cell.lbldesc.text=[dic_data objectForKey:@"major"];
               
-              cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              if(isSelf)
+              {
+                  cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+              }
+              else
+              {
+                  cell.accessoryType=UITableViewCellAccessoryNone;
+              }
           }
 
             return cell;
@@ -348,9 +456,12 @@
         [headerview addSubview:lblnickname];
         //---------------
     }
-    lblnickname.text=user.nickName;
+    lblnickname.text=[dic_data objectForKey:@"nickname"];
 
-    [imgview_header setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"userheader.png"]];
+    
+    NSString *str_img_url=[NSString stringWithFormat:@"%@%@",BASEURL,[dic_data objectForKey:@"avatar"]];
+    
+    [imgview_header setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"userheader.png"]];
 
     return headerview;
 }
@@ -369,10 +480,21 @@
 {
     if(section==1)
     {
+        NSArray *segmentarr;
         if(msegmentview==nil)
         {
+            NSString *ucode=[NSString stringWithFormat:@"%d",user.userCode];
+            if([ucode isEqualToString:self.userCode] )
+            {
+                segmentarr=[[NSArray alloc]initWithObjects:@"我的分享",@"我的资料",@"我的消息", nil];
+                
+            }
+            else
+            {
+                segmentarr=[[NSArray alloc]initWithObjects:@"我的分享",@"我的资料", nil];
+            }
             
-            NSArray *segmentarr=[[NSArray alloc]initWithObjects:@"我的分享",@"我的资料",@"我的消息", nil];
+            
             msegmentview=[[MySegmentedControl alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44)];
             msegmentview.items=segmentarr;
             msegmentview.delegate=self;
@@ -391,36 +513,40 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(msegmentview.selectedSegmentIndex==1)
+    if(isSelf)
     {
-        if(indexPath.row==1)
+        if(msegmentview.selectedSegmentIndex==1)
         {
-            [self showUpdateView:@"gender"];
+            if(indexPath.row==1)
+            {
+                [self showUpdateView:@"gender"];
+            }
+            if(indexPath.row==2)
+            {
+                [self showUpdateView:@"email"];
+            }
+            if(indexPath.row==3)
+            {
+                [self showUpdateView:@"password"];
+            }
+            if(indexPath.row==5)
+            {
+                [self showUpdateView:@"city"];
+            }
+            if(indexPath.row==6)
+            {
+                [self showUpdateView:@"college"];
+            }
+            if(indexPath.row==7)
+            {
+                [self showUpdateView:@"major"];
+            }
+            
+            
+            
+            
         }
-        if(indexPath.row==2)
-        {
-            [self showUpdateView:@"email"];
-        }
-        if(indexPath.row==3)
-        {
-            [self showUpdateView:@"password"];
-        }
-        if(indexPath.row==5)
-        {
-            [self showUpdateView:@"city"];
-        }
-        if(indexPath.row==6)
-        {
-            [self showUpdateView:@"college"];
-        }
-        if(indexPath.row==7)
-        {
-            [self showUpdateView:@"major"];
-        }
-        
-        
-        
-        
+
     }
 }
 
@@ -466,7 +592,8 @@
         txtcontent.font=[UIFont fontWithName:@"Arial" size:14];
         txtcontent.backgroundColor=[UIColor whiteColor];
         txtcontent.textAlignment=NSTextAlignmentLeft;
-        
+        txtcontent.returnKeyType=UIReturnKeyDone;
+        txtcontent.delegate=self;
         [txtcontent.layer setBorderColor: [[UIColor whiteColor] CGColor]];
         [txtcontent.layer setBorderWidth: 1.0];
         [txtcontent.layer setCornerRadius:8.0f];
@@ -483,6 +610,10 @@
         txtcontent_2.font=[UIFont fontWithName:@"Arial" size:14];
         txtcontent_2.backgroundColor=[UIColor whiteColor];
         txtcontent_2.textAlignment=NSTextAlignmentLeft;
+        txtcontent_2.returnKeyType=UIReturnKeyDone;
+        txtcontent_2.delegate=self;
+        
+        
         
         [txtcontent_2.layer setBorderColor: [[UIColor whiteColor] CGColor]];
         [txtcontent_2.layer setBorderWidth: 1.0];
@@ -563,11 +694,9 @@
             
             
             NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-            
-            NSString *usercode=[NSString stringWithFormat:@"%i",user.userCode];
-            
-            [mdic setValue:usercode forKey:@"userCode"];
-            [mdic setValue:@"123456@qq.com" forKey:@"email"];
+
+            [mdic setValue:self.userCode forKey:@"userCode"];
+            [mdic setValue:txtcontent.text forKey:@"email"];
             
             NSDictionary * back_dic=  [[API sharedInstance] updateUser:mdic];
             
@@ -599,4 +728,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
+
 @end

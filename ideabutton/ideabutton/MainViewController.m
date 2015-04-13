@@ -130,9 +130,16 @@
 {
     if([btntype isEqualToString:@"admin"])
     {
-        PersonaInfomationViewController *infomaton=[PersonaInfomationViewController new];
-        [self.navigationController pushViewController:infomaton animated:YES];
-        [infomaton release];
+        User *user = [[DB sharedInstance] queryUser];
+        if(user)
+        {
+            NSString *usercode=[NSString stringWithFormat:@"%d",user.userCode];
+            PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
+            [self.navigationController pushViewController:infomaton animated:YES];
+            [infomaton release];
+        }
+        
+        
     }
     else if([btntype isEqualToString:@"wyya"])
     {
@@ -150,9 +157,13 @@
     User* user = [[DB sharedInstance]queryUser];
     if (user)
     {
-        PersonaInfomationViewController *infomaton=[PersonaInfomationViewController new];
-        [self.navigationController pushViewController:infomaton animated:YES];
-        [infomaton release];
+        
+            NSString *usercode=[NSString stringWithFormat:@"%d",user.userCode];
+            PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
+        
+            [self.navigationController pushViewController:infomaton animated:YES];
+            [infomaton release];
+        
     }
     else
     {
@@ -253,6 +264,10 @@
     {
         if([result.code intValue] ==0)
         {
+            
+            [mArr_1 removeAllObjects];
+            
+            
             NSArray *typeArr=(NSArray *)result.data;
             
             for(int i=0;i<typeArr.count;i++)
@@ -272,6 +287,10 @@
     {
         if([result.code intValue] ==0)
         {
+            
+            [mArr_2 removeAllObjects];
+            
+            
             NSArray *typeArr=(NSArray *)result.data;
             
             for(int i=0;i<typeArr.count;i++)
@@ -329,8 +348,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [mArr_1 removeAllObjects];
-    [mArr_2 removeAllObjects];
+   
     [self loadData:1];
     [self loadData:2];
     
@@ -401,37 +419,42 @@
 {
     if(waterFlowView == waterFlow_1)
     {
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
+       
+            int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+            WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
+            
+            float width = 0.0f;
+            float height = 0.0f;
+            if (obj)
+            {
+                width =100;// [[dict objectForKey:@"width"] floatValue];
+                height = 160;//[[dict objectForKey:@"height"] floatValue];
+                if(arrIndex%2==0)
+                    height=170;
+            }
+            
+            return waterFlowView.cellWidth * (height/width);
+      
         
-        float width = 0.0f;
-        float height = 0.0f;
-        if (obj)
-        {
-            width =100;// [[dict objectForKey:@"width"] floatValue];
-            height = 160;//[[dict objectForKey:@"height"] floatValue];
-            if(arrIndex%2==0)
-                height=170;
-        }
-        
-        return waterFlowView.cellWidth * (height/width);
     }
     else
     {
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-        WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
         
-        float width = 0.0f;
-        float height = 0.0f;
-        if (obj)
-        {
-            width =100;// [[dict objectForKey:@"width"] floatValue];
-            height = 160;//[[dict objectForKey:@"height"] floatValue];
-            if(arrIndex%2==0)
-                height=170;
-        }
-        
-        return waterFlowView.cellWidth * (height/width);
+            int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+            WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
+            
+            float width = 0.0f;
+            float height = 0.0f;
+            if (obj)
+            {
+                width =100;// [[dict objectForKey:@"width"] floatValue];
+                height = 160;//[[dict objectForKey:@"height"] floatValue];
+                if(arrIndex%2==0)
+                    height=170;
+            }
+            
+            return waterFlowView.cellWidth * (height/width);
+       
     }
 }
 
