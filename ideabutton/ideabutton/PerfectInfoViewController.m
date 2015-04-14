@@ -51,21 +51,27 @@
     [backgroundView addSubview:studentBtn];
     
     UIButton* AdBtn = [[UIButton alloc] initWithFrame:CGRectMake(180, 100, 60, 60)];
-    [AdBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateNormal];
+//    [AdBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateNormal];
+    [AdBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateDisabled];
     [AdBtn setTitle:@"广告人" forState:UIControlStateNormal];
     [AdBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    AdBtn.enabled = NO;
     [backgroundView addSubview:AdBtn];
     
     UIButton* AdLeaderBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 200, 60, 60)];
-    [AdLeaderBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateNormal];
+//    [AdLeaderBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateNormal];
+    [AdLeaderBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateDisabled];
     [AdLeaderBtn setTitle:@"广告主" forState:UIControlStateNormal];
     [AdLeaderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    AdLeaderBtn.enabled = NO;
     [backgroundView addSubview:AdLeaderBtn];
     
     UIButton* freePeopleBtn = [[UIButton alloc] initWithFrame:CGRectMake(180, 200, 60, 60)];
-    [freePeopleBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateNormal];
+//    [freePeopleBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateNormal];
+    [freePeopleBtn setBackgroundImage:[UIImage imageNamed:@"public/bg_btn_lx"] forState:UIControlStateDisabled];
     [freePeopleBtn setTitle:@"自由人" forState:UIControlStateNormal];
     [freePeopleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    freePeopleBtn.enabled = NO;
     [backgroundView addSubview:freePeopleBtn];
 }
 
