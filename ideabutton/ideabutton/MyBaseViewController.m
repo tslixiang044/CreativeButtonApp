@@ -12,6 +12,8 @@
 #import "SettingViewController.h"
 #import "FeedBackViewController.h"
 #import "PerfectInfoViewController.h"
+#import "DB.h"
+#import "UploadViewController.h"
 
 
 @interface MyBaseViewController ()<MyToolViewDelegate>
@@ -20,7 +22,8 @@
     UIView *loadView;
     MyToolView *toolview;
     UIView *alertView2;
-    
+    float width;
+    NSInteger actionType;
 }
 @end
 
@@ -83,7 +86,6 @@
     UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
     self.navigationItem.leftBarButtonItem = rightBarButtonItem;
- 
 }
 
 -(void)btnleft
@@ -97,18 +99,11 @@
     {
         alertView=[[UIView alloc]initWithFrame:frame];
         alertView.backgroundColor=[UIColor blackColor];
-//        [[alertView layer]setCornerRadius:8.0];
         [alertView.layer setMasksToBounds:YES];
         
         [self.view addSubview:alertView];
         [self.view bringSubviewToFront:alertView];
-        //--
-        
-//        UIImageView *imgview=[[UIImageView alloc]initWithFrame:CGRectMake(110, 15, 35, 35)];
-//        imgview.hidden=YES;
-//        imgview.tag=99;
-//        [alertView addSubview:imgview];
-        //-------------
+
         UILabel *lblalert=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
         lblalert.tag=100;
         lblalert.text = mstr;
@@ -121,23 +116,6 @@
         [alertView addSubview:lblalert];
     }
 
-//    UILabel *lblaert=(UILabel *)[alertView viewWithTag:100];
-//    if(![mimgname isEqualToString:@""] || mimgname != nil)
-//    {
-//        UIImageView *imgview=(UIImageView *)[alertView viewWithTag:99];
-//        imgview.hidden=NO;
-//        imgview.image=[UIImage imageNamed:mimgname];
-//        
-//        lblaert.frame=CGRectMake(0, 55, 260, 60);
-//    }
-//    else
-//    {
-//        lblaert.frame=CGRectMake(0, 30, 260, 60);
-//        UIImageView *imgview=(UIImageView *)[alertView viewWithTag:99];
-//        imgview.hidden=YES;
-//    }
-    
-//    lblaert.text=mstr;
     alertView.hidden=NO;
     
     if(isautohiden==true)
@@ -145,20 +123,20 @@
         [self performSelector:@selector(hidenalertView) withObject:nil afterDelay:2];
     }
 }
+
 -(void)hidenalertView
 {
     alertView.hidden=YES;
 }
+
 -(void)alert:(NSString *)str
 {
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:str delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert show];
-    
 }
 
 -(void)ShowLoadingView
 {
-    
     if(loadView==nil)
     {
         loadView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
@@ -210,10 +188,12 @@
 {
     [toolview hidentoolView];
 }
+
 -(void)LoginOUt
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 -(void)gotoViewcontroller:(NSString *)mtag2
 {
     if([mtag2 isEqualToString:@"按友圈"])
@@ -222,16 +202,11 @@
     }
     else if([mtag2 isEqualToString:@"我的主页"])
     {
-        
-        
-        
         if(![self.mtag isEqualToString:@"个人资料"])
         {
             PersonaInfomationViewController *infomation=[PersonaInfomationViewController new];
             [self.navigationController pushViewController:infomation animated:YES];
         }
-        
-                                                     
     }
     else if([mtag2 isEqualToString:@"设置"])
     {
@@ -240,8 +215,6 @@
             SettingViewController *set=[SettingViewController new];
             [self.navigationController pushViewController:set animated:YES];
         }
-        
-        
     }
     else if([mtag2 isEqualToString:@"提建议"])
     {
@@ -250,16 +223,13 @@
             FeedBackViewController *feed=[FeedBackViewController new];
             [self.navigationController pushViewController:feed animated:YES];
         }
-        
-        
     }
 }
 
-
-
-
--(void)showAlertView_desc:(NSString *)desc btnImage:(NSString *)imageName
+-(void)showAlertView_desc:(NSString *)desc btnImage:(NSString *)imageName btnHideFlag:(BOOL)flag ActionType:(NSInteger)type
 {
+    actionType = type;
+    
     if(alertView2==nil)
     {
         alertView2=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64)];
@@ -268,22 +238,24 @@
         [alertView2.layer setMasksToBounds:YES];
         
         [self.view addSubview:alertView2];
-        //------
-        
-        //-------
+
         UIView *view_center=[[UIView alloc]initWithFrame:CGRectMake(30, (kMainScreenBoundheight-64-250)/2, kMainScreenBoundwidth-60, kMainScreenBoundheight-80-200)];
         view_center.tag=886;
         view_center.backgroundColor = COLOR(21, 21, 22);
         [alertView2 addSubview:view_center];
         //-------
-        UIButton *  btnclose = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnclose.frame = CGRectMake(view_center.frame.size.width-50, -10, 60, 60);
-        [btnclose setImage:[UIImage imageNamed:@"btn_close"] forState:UIControlStateNormal];
-        btnclose.backgroundColor=[UIColor clearColor];
-        [btnclose addTarget:self action:@selector(btncloseAction:) forControlEvents:UIControlEventTouchUpInside];
-        [view_center addSubview:btnclose];
+        if (!flag)
+        {
+            UIButton *  btnclose = [UIButton buttonWithType:UIButtonTypeCustom];
+            btnclose.frame = CGRectMake(view_center.frame.size.width-50, -10, 60, 60);
+            [btnclose setImage:[UIImage imageNamed:@"btn_close"] forState:UIControlStateNormal];
+            btnclose.backgroundColor=[UIColor clearColor];
+            [btnclose addTarget:self action:@selector(btncloseAction:) forControlEvents:UIControlEventTouchUpInside];
+            [view_center addSubview:btnclose];
+        }
+        
         //--------
-        float width=view_center.frame.size.width;
+        width = view_center.frame.size.width;
         UILabel *lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(40, 40, width-80, 60)];
         lbldesc.tag=888;
         
@@ -296,10 +268,15 @@
         [view_center addSubview:lbldesc];
         //--------
         UIButton *  btngo = [UIButton buttonWithType:UIButtonTypeCustom];
-        btngo.frame = CGRectMake((width-80)/2, 140, 80, 80);
         btngo.tag = 889;
         [btngo addTarget:self action:@selector(btngoAction:) forControlEvents:UIControlEventTouchUpInside];
         [view_center addSubview:btngo];
+        
+        UIButton* preBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        preBtn.frame = CGRectMake(40, 140, 80, 80);
+        preBtn.tag = 900;
+        [preBtn addTarget:self action:@selector(btngoAction:) forControlEvents:UIControlEventTouchUpInside];
+        [view_center addSubview:preBtn];
     }
     
     UIView *view_center=[alertView2 viewWithTag:886];
@@ -308,9 +285,30 @@
     //---------
     
     UIButton *btngo=(UIButton *)[view_center viewWithTag:889];
-     [btngo setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    UIButton *preBtn=(UIButton *)[view_center viewWithTag:900];
     
-    
+    if (type == 3)
+    {
+        preBtn.hidden = YES;
+        
+        btngo.frame = CGRectMake((width-80)/2, 140, 80, 80);
+        [btngo setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    }
+    else if (type == 2)
+    {
+        [preBtn setImage:[UIImage imageNamed:@"bg_btn_wyrz_on"] forState:UIControlStateNormal];
+        
+        btngo.frame = CGRectMake(width-110, 140, 80, 80);
+        [btngo setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    }
+    else if (type == 1)
+    {
+        [preBtn setImage:[UIImage imageNamed:@"bg_btn_wszl_on"] forState:UIControlStateNormal];
+        
+        btngo.frame = CGRectMake(width-110, 140, 80, 80);
+        [btngo setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    }
+
     alertView2.hidden=NO;
     [self.view bringSubviewToFront:alertView2];
     
@@ -320,14 +318,56 @@
 {
     alertView2.hidden=YES;
     
-    [self.navigationController pushViewController:[[PerfectInfoViewController alloc] init] animated:YES];
+    switch (mbtn.tag)
+    {
+        case 889:
+        {
+            User* user = [[DB sharedInstance]queryUser];
+            if (actionType == 3)
+            {
+                if (user.userLevel == 1)
+                {
+                    [self.navigationController pushViewController:[[PerfectInfoViewController alloc] init] animated:YES];
+                }
+                else if (user.userLevel == 2)
+                {
+                    [self.navigationController pushViewController:[[UploadViewController alloc] init] animated:YES];
+                }
+                else
+                {
+                     [self.navigationController popToRootViewControllerAnimated:YES];
+                }
+            }
+            else
+            {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }
+            
+            break;
+        case 900:
+        {
+            if (actionType == 1)
+            {
+                [self.navigationController pushViewController:[[PerfectInfoViewController alloc] init] animated:YES];
+            }
+            else if(actionType == 2)
+            {
+                [self.navigationController pushViewController:[[UploadViewController alloc] init] animated:YES];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
 -(void)btncloseAction:(UIButton*)mbtn
 {
     alertView2.hidden=YES;
 }
-
 
 
 //--------------------------------------------------------------

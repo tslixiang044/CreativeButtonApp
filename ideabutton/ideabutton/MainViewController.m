@@ -191,6 +191,11 @@
     {
         if (remainderNum == 0)
         {
+            if (user.userLevel == 1)
+            {
+                [self showAlertView_desc:@"今日免费浏览的数量\n已达上限18个\n完善资料可以浏览更多idea" btnImage:@"bg_btn_xcws_on" btnHideFlag:YES ActionType:1];
+            }
+            
             if (user.userLevel == 2)
             {
                 if (user.auditStatus == 0)
@@ -199,7 +204,7 @@
                 }
                 else
                 {
-                    [self showAlertView_desc:@"你上传的资料正在审核中\n审核通过后\n每日可免费浏览81个idea" btnImage:@""];
+                    [self showAlertView_desc:@"你上传的资料正在审核中\n审核通过后\n每日可免费浏览81个idea" btnImage:@"bg_btn_hd_on" btnHideFlag:YES ActionType:3];
                 }
             }
         }
