@@ -13,6 +13,9 @@
 
 
 @synthesize imgview_left,lbltitle;
+@synthesize delegate;
+@synthesize strid;
+@synthesize mrow;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -34,7 +37,7 @@
 //        [btndelete addTarget:self action:@selector(btndeleteAction:) forControlEvents:UIControlEventTouchUpInside];
 //        [self addSubview:btndelete];
         //----------------
-        UIButton *  btnadd = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *btnadd = [UIButton buttonWithType:UIButtonTypeCustom];
         btnadd.frame = CGRectMake(kMainScreenBoundwidth-30, 15, 30, 30);
         [btnadd setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
         [btnadd addTarget:self action:@selector(btnaddAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -49,6 +52,10 @@
 //}
 -(void)btnaddAction:(UIButton*)mbtn
 {
-    NSLog(@"add");
+    if(delegate)
+    {
+        [delegate btnshow:self.strid row:self.mrow];
+    }
 }
+
 @end
