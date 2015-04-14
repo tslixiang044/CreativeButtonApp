@@ -114,7 +114,7 @@
             {
                 if (user.auditStatus == 0)
                 {
-                    [self showAlertView_desc:@"就知道36个满足不了你,\n去上传实名认证资料可看到更多idea" btnImage:@"bg_btn_wyrz_on" btnHideFlag:NO ActionType:3];
+                    [self showAlertView_desc:@"就知道36个满足不了你,\n去上传实名认证可看到更多idea" btnImage:@"bg_btn_wyrz_on" btnHideFlag:NO ActionType:3];
                 }
                 else
                 {

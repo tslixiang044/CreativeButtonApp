@@ -297,17 +297,17 @@
             {
                 if (user.userLevel == 1)
                 {
-                    [self showAlertView_desc:@"今日免费浏览的数量\n已达上限18个\n完善资料可以浏览更多idea" btnImage:@"bg_btn_xcws_on" btnHideFlag:YES ActionType:1];
+                    [self showAlertView_desc:@"今日免费浏览的数量\n\n已达上限18个\n\n完善资料可以浏览更多idea" btnImage:@"bg_btn_xcws_on" btnHideFlag:YES ActionType:1];
                 }
                 else if (user.userLevel == 2)
                 {
                     if (user.auditStatus == 0)
                     {
-                        [self showAlertView_desc:@"今日免费浏览的数量\n已达上限36个\n上传认证资料可以浏览更多idea" btnImage:@"bg_btn_xcrz_on" btnHideFlag:YES ActionType:2];
+                        [self showAlertView_desc:@"今日免费浏览的数量\n\n已达上限36个\n\n上传认证可以浏览更多idea" btnImage:@"bg_btn_xcrz_on" btnHideFlag:YES ActionType:2];
                     }
                     else
                     {
-                        [self showAlertView_desc:@"您上传的资料正在审核中\n审核通过后\n每日可免费浏览81个idea" btnImage:@"bg_btn_hd_on" btnHideFlag:YES ActionType:3];
+                        [self showAlertView_desc:@"您上传的资料正在审核中\n\n审核通过后\n\n每日可免费浏览81个idea" btnImage:@"bg_btn_hd_on" btnHideFlag:YES ActionType:3];
                     }
                 }
             }

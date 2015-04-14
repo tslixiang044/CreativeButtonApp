@@ -256,7 +256,8 @@
         
         //--------
         width = view_center.frame.size.width;
-        UILabel *lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(40, 40, width-80, 60)];
+        UILabel *lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(30, 20, width-60, 100)];
+        lbldesc.font = [UIFont systemFontOfSize:15];
         lbldesc.tag=888;
         
         lbldesc.textAlignment = NSTextAlignmentCenter;
