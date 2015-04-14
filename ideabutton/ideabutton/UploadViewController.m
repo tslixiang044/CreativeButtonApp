@@ -118,7 +118,9 @@
         {
             imagesmallData1 = UIImageJPEGRepresentation(self.image,0.1f);
         }
-        User* user = [[API sharedInstance]realNameAuth:imagesmallData1];
+        
+        [[API sharedInstance]realNameAuth:imagesmallData1];
+        
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -127,9 +129,13 @@
             {
                 [SVProgressHUD dismiss];
                 
-                DB *db = [DB sharedInstance];
-                [db saveUser:user];
-                [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
+                User* user = [[DB sharedInstance] queryUser];
+                if (user)
+                {
+                    user.auditStatus = 1;
+                    
+                    [[DB sharedInstance] saveUser:user];
+                }
                 
                 RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight) Flag:3];
                 suc.delegate = self;

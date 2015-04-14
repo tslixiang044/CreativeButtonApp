@@ -645,7 +645,7 @@
     return inputStr;
 }
 
-- (User*)realNameAuth:(NSData*)data
+- (void)realNameAuth:(NSData*)data
 {
     NSString *boundry=@"------";
     
@@ -684,19 +684,13 @@
     NSURLResponse  *response;
     NSError *err;
     NSData *returnData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    
+    NSString *returnString=[[NSString	alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"returnData=%@",returnData);
+    NSLog(@"returnString=%@",returnString);
     NSDictionary *mdic = [NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableContainers error:&err];
     
     self.code = [mdic objectForKey:@"code"];
     self.msg = [mdic objectForKey:@"msg"];
-    
-    User* user = [[User alloc] initWithDict:[mdic objectForKey:@"data"]];
-    if (user)
-    {
-        self.user = user;
-    }
-    
-    return user;
 }
 
 -(User*)newUserHaveIcon:(NSData *)data1 paramArr:(NSDictionary *)mparamArr

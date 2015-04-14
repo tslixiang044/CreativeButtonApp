@@ -29,19 +29,20 @@
         describeLabel.textAlignment = NSTextAlignmentCenter;
         if (self.flag == 1)
         {
-            describeLabel.text = @"现在你每天可以按出18个idea了,\r继续完善个人资料的话,\r可以按出更多。";
+            describeLabel.text = @"现在你每天可以按出18个idea了,\n\n继续完善个人资料的话,\n\n可以按出更多。";
         }
         else if (self.flag == 2)
         {
-            describeLabel.text = @"现在每天增加到36个idea了,\r还不过瘾?\r上传有效身份证明。";
+            describeLabel.text = @"现在每天增加到36个idea了,\n\n还不过瘾?\n\n上传有效身份证明。";
         }
         else
         {
-            describeLabel.text = @"审核通过以后,\r每天81 idea!\r想想怎么驾驭她们吧。";
+            describeLabel.text = @"审核通过以后,\n\n每天81 idea!\n\n想想怎么驾驭她们吧。";
         }
         describeLabel.textColor = [UIColor whiteColor];
         describeLabel.lineBreakMode = NSLineBreakByWordWrapping;
         describeLabel.numberOfLines = 0;
+        describeLabel.font = [UIFont systemFontOfSize:15];
         [self addSubview:describeLabel];
         
         UIButton* perfectInfoBtn = [[UIButton alloc] initWithFrame:CGRectMake(60, 300, 60, 60)];

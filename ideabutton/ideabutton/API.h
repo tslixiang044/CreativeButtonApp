@@ -24,7 +24,7 @@
 - (User*)updateUserField:(NSDictionary*)dict;    //用户信息按字段更新
 - (NSDictionary*)userInfo:(NSDictionary*)dict;       //用户信息查看
 
-- (User*)realNameAuth:(NSData*)data;           //实名认证
+- (void)realNameAuth:(NSData*)data;           //实名认证
 
 - (void)isEnabledNickname:(NSDictionary*)dict;      //用户名是否合法
 - (void)isEnabledEmail:(NSDictionary*)dict;     //邮箱是否合法

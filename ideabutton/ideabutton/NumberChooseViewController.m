@@ -96,14 +96,37 @@
 
 -(void)buttonClicked:(UIButton*)sender
 {
-    if (sender.tag <= remainderNum)
+    User* user = [[DB sharedInstance]queryUser];
+    if (remainderNum > 0)
     {
-        [self.myDict setValue:[NSString stringWithFormat:@"%d",sender.tag] forKey:@"ideaNum"];
+        if (sender.tag == 27)
+        {
+            if (user)
+            {
+                if (user.userLevel == 1)
+                {
+                    [self showAlertView_desc:@"就知道18个满足不了你,\n去完善个人资料可看到更多idea" btnImage:@"bg_btn_wszl_on" btnHideFlag:NO ActionType:3];
+                    
+                    return;
+                }
+            }
+        }
+        
+        if (sender.tag <= remainderNum)
+        {
+            [self.myDict setValue:[NSString stringWithFormat:@"%d",sender.tag] forKey:@"ideaNum"];
+            
+        }
+        else
+        {
+            [self.myDict setValue:[NSString stringWithFormat:@"%d",remainderNum] forKey:@"ideaNum"];
+        }
+        
         [self.navigationController pushViewController:[[WaitPageViewController alloc]initWithDict:self.myDict] animated:YES];
     }
     else
     {
-        User* user = [[DB sharedInstance]queryUser];
+        
         if (user)
         {
             if (user.userLevel == 1)
