@@ -24,6 +24,7 @@
     UIView *alertView2;
     float width;
     NSInteger actionType;
+    UIWebView *webView;
 }
 @end
 
@@ -49,6 +50,14 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
         self.edgesForExtendedLayout =UIRectEdgeNone ;
     }
+    
+    NSData *gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gif" ofType:@"gif"]];
+    CGRect frame = CGRectMake(0,(kMainScreenBoundheight-64-165)/2-50,220,130);
+    webView = [[UIWebView alloc] initWithFrame:frame];
+    webView.userInteractionEnabled = NO;
+    [webView setBackgroundColor:[UIColor clearColor]];
+    [webView setOpaque:NO];
+    [webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
 }
 
 -(void)setrightbaritem_imgname:(NSString*)icon_img_name title:(NSString*)mtitle
@@ -143,13 +152,7 @@
         loadView.backgroundColor=COLOR(1, 0, 0);
         [self.view addSubview:loadView];
         //-----------------------------
-        NSData *gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gif" ofType:@"gif"]];
-        CGRect frame = CGRectMake(0,(kMainScreenBoundheight-64-165)/2-50,140,65);
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
-        webView.userInteractionEnabled = NO;
-        [webView setBackgroundColor:[UIColor clearColor]];
-        [webView setOpaque:NO];
-        [webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+        
         [loadView addSubview:webView];
         //--------------------------------
         float y=webView.frame.origin.y+webView.frame.size.height+20;
