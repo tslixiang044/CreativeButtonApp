@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>CAA23436-3781-4CED-847F-C97E69BBBC61</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>ideabutton</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>63ACEBD5631C10210D651844B9FEB662460C6DDB</key>
 		<string>https://github.com/tslixiang044/CreativeButtonApp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ideabutton/ideabutton.xcodeproj/project.xcworkspace</string>
+	<string>ideabutton/ideabutton.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>63ACEBD5631C10210D651844B9FEB662460C6DDB</key>

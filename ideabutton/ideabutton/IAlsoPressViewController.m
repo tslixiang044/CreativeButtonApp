@@ -15,7 +15,7 @@
 #import "ISuggestViewController.h"
 #import "FeedBackViewController.h"
 
-@interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate>
+@interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate,ISavedViewControllerDelegate,IChangedViewControllerDelegate>
 {
     UITabBarController *mTabbarController;
 }
@@ -56,11 +56,13 @@
     //---------------------
     ISavedViewController *save=[[ISavedViewController alloc]init];
     save.view.tag=2;
+    save.delegate=self;
     save.tabBarItem.image=[UIImage imageNamed:@"icon_wscd"];
     save.tabBarItem.title=@"我收藏的";
     //---------------------
     IChangedViewController *change=[[IChangedViewController alloc]init];
     change.view.tag=3;
+    change.delegate=self;
     change.tabBarItem.image=[UIImage imageNamed:@"icon_chuizi"];
     change.tabBarItem.title=@"我改造的";
     //---------------------

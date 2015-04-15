@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
-@interface IChangedViewController : MyBaseViewController
 
+
+//---------------------
+@class IChangedViewController;
+@protocol IChangedViewControllerDelegate <NSObject>
+-(void)gotoviewcontroller_changed:(UIViewController *)mviewcontroller;
+@end
+//---------------------
+@interface IChangedViewController : MyBaseViewController
+{
+    
+}
+@property(nonatomic,assign)id<IChangedViewControllerDelegate>delegate;
 @end

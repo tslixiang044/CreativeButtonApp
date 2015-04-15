@@ -1,19 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //
 //  IChangedViewController.m
 //  ideabutton

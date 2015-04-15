@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
+
+
+
+//---------------------
+@class ISavedViewController;
+@protocol ISavedViewControllerDelegate <NSObject>
+-(void)gotoviewcontroller_save:(UIViewController *)mviewcontroller;
+@end
+//---------------------
+
+
 @interface ISavedViewController : MyBaseViewController
 {
     
 }
+@property(nonatomic,assign)id<ISavedViewControllerDelegate>delegate;
 @end
  

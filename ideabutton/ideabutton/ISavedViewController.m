@@ -11,21 +11,29 @@
 #import "SVProgressHUD.h"
 #import "API.h"
 #import "MyUIButton.h"
+#import "ReformIdeaViewController.h"
+
+
+
+
 @interface ISavedViewController ()<UITableViewDataSource,UITableViewDelegate,MysaveCellDelegate,UIScrollViewDelegate>
 {
     UITableView *mtableview;
-    NSArray *marr;
+    NSMutableArray *marr;
     UIView *view_show;
+    int oldrow;
     
     MyUIButton *btndelete;
     MyUIButton *btnwybz;
     MyUIButton *btnwygz;
     
-    int oldrow;
+    
 }
 @end
 
 @implementation ISavedViewController
+@synthesize delegate;
+
 
 -(id)init
 {
@@ -74,14 +82,14 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [mtableview setTableFooterView:v];
     //---------
-    marr=[[NSArray alloc]init];
+    marr=[[NSMutableArray alloc]init];
     
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        marr = [[API sharedInstance] myCollectedIdeas:@{@"range":@"1-10"}];
+        marr = (NSMutableArray*)[[API sharedInstance] myCollectedIdeas:@{@"range":@"1-10"}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -142,7 +150,7 @@
     {
         if([view_show isHidden])
         {
-            [self showview:newCenter];
+            [self showview:newCenter ideaId:mid];
             oldrow=mrow;
         }
         else
@@ -153,7 +161,7 @@
             }
             else
             {
-                [self showview:newCenter];
+                [self showview:newCenter ideaId:mid];
                 oldrow=mrow;
             }
             
@@ -161,12 +169,12 @@
     }
     else
     {
-        [self showview:newCenter];
+        [self showview:newCenter ideaId:mid];
         oldrow=mrow;
     }
 
 }
--(void)showview:(CGPoint)mpoint
+-(void)showview:(CGPoint)mpoint ideaId:(NSString *)mideaId;
 {
     if(view_show==nil)
     {
@@ -199,6 +207,7 @@
         [view_show addSubview:btnwygz];
         
     }
+    btndelete.mtag=mideaId;
     view_show.hidden=NO;
     view_show.frame=CGRectMake(0, mpoint.y+60, kMainScreenBoundwidth, 60-2);
     [self.view bringSubviewToFront:view_show];
@@ -215,15 +224,74 @@
 }
 -(void)btndeleteAction:(MyUIButton*)mbtn
 {
-    NSLog(@"aa");
+   
+    
+    
+    
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        
+        
+        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+        
+        [mdic setValue:mbtn.mtag forKey:@"userCollectId"];
+     
+        
+        [[API sharedInstance] deleteCollectedIdea:mdic];
+        
+        
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            
+            
+            NSInteger codeValue = [[API sharedInstance].code integerValue];
+            CGRect frame = CGRectMake(90,260,150,20);
+            if(codeValue==0)
+            {
+                [self hidenshowview];
+                
+                [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
+                for(int i=0;i<marr.count;i++)
+                {
+                    NSDictionary *dic=[marr objectAtIndex:i];
+                    int mid=[[NSString stringWithFormat:@"%@",[dic objectForKey:@"ideaId"]] intValue];
+                    
+                    if(mid ==[mbtn.mtag intValue])
+                    {
+                        [marr removeObject:dic];
+                    }
+                }
+                [mtableview reloadData];
+            }
+            else
+            {
+                
+                [self showalertview_text:@"删除失败" frame:frame autoHiden:YES];
+            }
+        });
+    });
 }
 -(void)btnwybzAction:(MyUIButton*)mbtn
 {
-    NSLog(@"bb");
+    if(delegate)
+    {
+        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+        
+        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdic Type:1];
+        [delegate gotoviewcontroller_save:reform];
+    }
 }
 -(void)btnwygzAction:(MyUIButton*)mbtn
 {
-    NSLog(@"cc");
+    if(delegate)
+    {
+        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+        
+        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdic Type:2];
+        [delegate gotoviewcontroller_save:reform];
+    }
 }
 
 

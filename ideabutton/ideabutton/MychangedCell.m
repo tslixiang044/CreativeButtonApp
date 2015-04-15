@@ -10,7 +10,8 @@
 
 @implementation MychangedCell
 @synthesize imgview_left,lbltitle;
-
+@synthesize mrow,strid;
+@synthesize delegate;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,11 +27,11 @@
         lbltitle.textColor=[UIColor whiteColor];
         [self addSubview:lbltitle];
         //----------------
-        UIButton *  btndelete = [UIButton buttonWithType:UIButtonTypeCustom];
-        btndelete.frame = CGRectMake(kMainScreenBoundwidth-70, 15, 30, 30);
-        [btndelete setImage:[UIImage imageNamed:@"icon_sc"] forState:UIControlStateNormal];
-        [btndelete addTarget:self action:@selector(btndeleteAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btndelete];
+//        UIButton *  btndelete = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btndelete.frame = CGRectMake(kMainScreenBoundwidth-70, 15, 30, 30);
+//        [btndelete setImage:[UIImage imageNamed:@"icon_sc"] forState:UIControlStateNormal];
+//        [btndelete addTarget:self action:@selector(btndeleteAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:btndelete];
         //----------------
         UIButton *  btnadd = [UIButton buttonWithType:UIButtonTypeCustom];
         btnadd.frame = CGRectMake(kMainScreenBoundwidth-30, 15, 30, 30);
@@ -43,13 +44,16 @@
     return self;
 }
 
--(void)btndeleteAction:(UIButton*)mbtn
-{
-    NSLog(@"delete");
-}
+//-(void)btndeleteAction:(UIButton*)mbtn
+//{
+//    NSLog(@"delete");
+//}
 -(void)btnaddAction:(UIButton*)mbtn
 {
-    NSLog(@"add");
+    if(delegate)
+    {
+        [delegate btnshow:self.strid row:self.mrow];
+    }
 }
 
 @end
