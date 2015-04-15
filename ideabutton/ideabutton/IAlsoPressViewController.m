@@ -138,4 +138,14 @@
     [self.navigationController pushViewController:mviewcontroller animated:YES];
 }
 
+-(void)gotoviewcontroller_save:(UIViewController *)mviewcontroller
+{
+    [self.navigationController pushViewController:mviewcontroller animated:YES];
+}
+
+-(void)gotoviewcontroller_changed:(UIViewController *)mviewcontroller
+{
+    [self.navigationController pushViewController:mviewcontroller animated:YES];
+}
+
 @end

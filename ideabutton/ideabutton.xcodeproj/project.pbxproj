@@ -144,6 +144,8 @@
 		E98DA1AF1AD535160056DA92 /* btn_bzfx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98DA1AD1AD535160056DA92 /* btn_bzfx@2x.png */; };
 		E98DA1B01AD535160056DA92 /* logo_anniu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98DA1AE1AD535160056DA92 /* logo_anniu@2x.png */; };
 		E9963F761ADE39D2005ED01A /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = E9963F751ADE39D2005ED01A /* gif.gif */; };
+		E9963F7E1ADE44BC005ED01A /* bg_btn_qd_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9963F7D1ADE44BC005ED01A /* bg_btn_qd_on@2x.png */; };
+		E9963F841ADE48E6005ED01A /* btn_pull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9963F831ADE48E6005ED01A /* btn_pull@2x.png */; };
 		E9DB90E81AC1569F00F66467 /* PerfectInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90E71AC1569F00F66467 /* PerfectInfoViewController.m */; };
 		E9DB90EB1AC1614100F66467 /* PrefectStudentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB90EA1AC1614100F66467 /* PrefectStudentInfoViewController.m */; };
 		E9F0E0D71A8C862100CAC9E1 /* ImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E0D21A8C862100CAC9E1 /* ImageViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -390,6 +392,8 @@
 		E98DA1AD1AD535160056DA92 /* btn_bzfx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_bzfx@2x.png"; sourceTree = "<group>"; };
 		E98DA1AE1AD535160056DA92 /* logo_anniu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_anniu@2x.png"; sourceTree = "<group>"; };
 		E9963F751ADE39D2005ED01A /* gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif.gif; sourceTree = "<group>"; };
+		E9963F7D1ADE44BC005ED01A /* bg_btn_qd_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_btn_qd_on@2x.png"; sourceTree = "<group>"; };
+		E9963F831ADE48E6005ED01A /* btn_pull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pull@2x.png"; sourceTree = "<group>"; };
 		E9DB90E61AC1569F00F66467 /* PerfectInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectInfoViewController.h; sourceTree = "<group>"; };
 		E9DB90E71AC1569F00F66467 /* PerfectInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectInfoViewController.m; sourceTree = "<group>"; };
 		E9DB90E91AC1614100F66467 /* PrefectStudentInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefectStudentInfoViewController.h; sourceTree = "<group>"; };
@@ -822,6 +826,8 @@
 		E974E2BA1ADCBF1F003D1EC4 /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
+				E9963F831ADE48E6005ED01A /* btn_pull@2x.png */,
+				E9963F7D1ADE44BC005ED01A /* bg_btn_qd_on@2x.png */,
 				E974E2C11ADCC32B003D1EC4 /* bg_btn_hd_on@2x.png */,
 				E974E2C21ADCC32B003D1EC4 /* bg_btn_wyrz_on@2x.png */,
 				E974E2C31ADCC32B003D1EC4 /* bg_btn_xcrz_on@2x.png */,
@@ -1058,6 +1064,7 @@
 				E98190861A885DF30025F284 /* icon_wbzd@2x.png in Resources */,
 				E9963F761ADE39D2005ED01A /* gif.gif in Resources */,
 				E930AE4F1AD672B100A013D9 /* icon_man@2x.png in Resources */,
+				E9963F7E1ADE44BC005ED01A /* bg_btn_qd_on@2x.png in Resources */,
 				E98190871A885DF30025F284 /* icon_wgzd@2x.png in Resources */,
 				894924DE1AD3A7C6000F392C /* icon_tjy@2x.png in Resources */,
 				E974E2A51AD96E56003D1EC4 /* btn_delet@2x.png in Resources */,
@@ -1104,6 +1111,7 @@
 				E97258B61A89A9EF00F0ABB8 /* btn_logo@2x.png in Resources */,
 				E932E5781AB9245300839FA4 /* ideaCreate in Resources */,
 				E98DA1B01AD535160056DA92 /* logo_anniu@2x.png in Resources */,
+				E9963F841ADE48E6005ED01A /* btn_pull@2x.png in Resources */,
 				E94107711AA1A62A002D78B2 /* icon_add@2x.png in Resources */,
 				E974E2C71ADCC32B003D1EC4 /* bg_btn_xcrz_on@2x.png in Resources */,
 				E94E5E9D1AD622A900AB0B9F /* btn_tlak@2x.png in Resources */,

@@ -35,7 +35,7 @@
         //----------------
         UIButton *  btnadd = [UIButton buttonWithType:UIButtonTypeCustom];
         btnadd.frame = CGRectMake(kMainScreenBoundwidth-30, 15, 30, 30);
-        [btnadd setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
+        [btnadd setImage:[UIImage imageNamed:@"btn_pull"] forState:UIControlStateNormal];
         [btnadd addTarget:self action:@selector(btnaddAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnadd];
         

@@ -291,7 +291,7 @@
     UIButton *btngo=(UIButton *)[view_center viewWithTag:889];
     UIButton *preBtn=(UIButton *)[view_center viewWithTag:900];
     
-    if (type == 3)
+    if (type == 3 || type == 4)
     {
         preBtn.hidden = YES;
         
@@ -341,6 +341,10 @@
                 {
                      [self.navigationController popToRootViewControllerAnimated:YES];
                 }
+            }
+            else if (actionType == 4)
+            {
+                
             }
             else
             {

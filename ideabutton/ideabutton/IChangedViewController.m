@@ -135,9 +135,7 @@
     UITableViewCell *cell = [mtableview cellForRowAtIndexPath:[NSIndexPath indexPathForItem:mrow inSection:0]];
     
     CGPoint newCenter = [cell.contentView convertPoint:CGPointMake(0, 0) toView:self.view];
-    
-    
-    
+
     if(view_show)
     {
         if([view_show isHidden])
@@ -175,7 +173,7 @@
         [self.view addSubview:view_show];
         //--------------------
         btndelete = [MyUIButton buttonWithType:UIButtonTypeCustom];
-        btndelete.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-10-80-10, 10, 80, 40);
+        btndelete.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-10-80-20, 10, 80, 40);
         [btndelete setTitle:@"我要删除" forState:UIControlStateNormal];
         btndelete.backgroundColor=COLOR(141, 144, 143);
         [btndelete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -183,7 +181,7 @@
         [view_show addSubview:btndelete];
         //--------------------
         btnwybz = [MyUIButton buttonWithType:UIButtonTypeCustom];
-        btnwybz.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-10, 10, 80, 40);
+        btnwybz.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-20, 10, 80, 40);
         btnwybz.backgroundColor=COLOR(141, 144, 143);
         [btnwybz setTitle:@"我要霸占" forState:UIControlStateNormal];
         [btnwybz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -191,7 +189,7 @@
         [view_show addSubview:btnwybz];
         //--------------------
         btnwygz = [MyUIButton buttonWithType:UIButtonTypeCustom];
-        btnwygz.frame =CGRectMake(kMainScreenBoundwidth-80-10, 10, 80, 40);
+        btnwygz.frame =CGRectMake(kMainScreenBoundwidth-80-20, 10, 80, 40);
         btnwygz.backgroundColor=COLOR(141, 144, 143);
         [btnwygz setTitle:@"我要改造" forState:UIControlStateNormal];
         [btnwygz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -201,7 +199,7 @@
     }
     btndelete.mtag=mideaId;
     view_show.hidden=NO;
-    view_show.frame=CGRectMake(0, mpoint.y+60, kMainScreenBoundwidth, 60-2);
+    view_show.frame=CGRectMake(15, mpoint.y+60, kMainScreenBoundwidth, 60-2);
     [self.view bringSubviewToFront:view_show];
     
 }
@@ -216,74 +214,72 @@
 }
 -(void)btndeleteAction:(MyUIButton*)mbtn
 {
-    
-    
-    
-    
-    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(currentQueue, ^{
-        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        
-        
-        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-        
-        [mdic setValue:mbtn.mtag forKey:@"userReformId"];
-        
-        
-        [[API sharedInstance] deleteReformedIdea:mdic];
-        
-        
-        //处理完上面的后回到主线程去更新UI
-        dispatch_queue_t mainQueue = dispatch_get_main_queue();
-        dispatch_async(mainQueue, ^{
-            
-            
-            NSInteger codeValue = [[API sharedInstance].code integerValue];
-            CGRect frame = CGRectMake(90,260,150,20);
-            if(codeValue==0)
-            {
-                [self hidenshowview];
-                
-                [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
-                for(int i=0;i<marr.count;i++)
-                {
-                    NSDictionary *dic=[marr objectAtIndex:i];
-                    int mid=[[NSString stringWithFormat:@"%@",[dic objectForKey:@"ideaId"]] intValue];
-                    
-                    if(mid ==[mbtn.mtag intValue])
-                    {
-                        [marr removeObject:dic];
-                    }
-                }
-                [mtableview reloadData];
-            }
-            else
-            {
-                
-                [self showalertview_text:@"删除失败" frame:frame autoHiden:YES];
-            }
-        });
-    });
+    [self showAlertView_desc:@"确定?\n删除后可能再也看不到了" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
+
+//    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_async(currentQueue, ^{
+//        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+//        
+//        
+//        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+//        
+//        [mdic setValue:mbtn.mtag forKey:@"userReformId"];
+//        
+//        
+//        [[API sharedInstance] deleteReformedIdea:mdic];
+//        
+//        
+//        //处理完上面的后回到主线程去更新UI
+//        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+//        dispatch_async(mainQueue, ^{
+//            
+//            
+//            NSInteger codeValue = [[API sharedInstance].code integerValue];
+//            CGRect frame = CGRectMake(90,260,150,20);
+//            if(codeValue==0)
+//            {
+//                [self hidenshowview];
+//                
+//                [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
+//                for(int i=0;i<marr.count;i++)
+//                {
+//                    NSDictionary *dic=[marr objectAtIndex:i];
+//                    int mid=[[NSString stringWithFormat:@"%@",[dic objectForKey:@"ideaId"]] intValue];
+//                    
+//                    if(mid ==[mbtn.mtag intValue])
+//                    {
+//                        [marr removeObject:dic];
+//                    }
+//                }
+//                [mtableview reloadData];
+//            }
+//            else
+//            {
+//                
+//                [self showalertview_text:@"删除失败" frame:frame autoHiden:YES];
+//            }
+//        });
+//    });
 }
 -(void)btnwybzAction:(MyUIButton*)mbtn
 {
-//    if(delegate)
-//    {
-//        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-//        
-//        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdic Type:1];
-//        [delegate gotoviewcontroller_save:reform];
-//    }
+    if(delegate)
+    {
+        NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
+        [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
+        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:1];
+        [delegate gotoviewcontroller_changed:reform];
+    }
 }
 -(void)btnwygzAction:(MyUIButton*)mbtn
 {
-//    if(delegate)
-//    {
-//        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-//        
-//        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdic Type:2];
-//        [delegate gotoviewcontroller_save:reform];
-//    }
+    if(delegate)
+    {
+        NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
+        [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
+        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:2];
+        [delegate gotoviewcontroller_changed:reform];
+    }
 }
 
 
