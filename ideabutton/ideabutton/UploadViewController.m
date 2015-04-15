@@ -19,6 +19,10 @@
 {
     UIImageView* pictureImage;
     NSInteger   remainderNum;
+    
+    UILabel* noticelabel;
+    UIImageView* line;
+    UIButton* doneBtn;
 }
 
 @property(nonatomic,strong)UIImage *image;
@@ -52,7 +56,7 @@
     titleLabel.textColor = [UIColor whiteColor];
     [backgroundView addSubview:titleLabel];
     
-    float y = titleLabel.frame.origin.y + titleLabel.frame.size.height + 30;
+    float y = titleLabel.frame.origin.y + titleLabel.frame.size.height + 20;
     
     pictureImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,  y, 240, 90)];
     [pictureImage setImage:[UIImage imageNamed:@"btn_add"]];
@@ -65,10 +69,10 @@
     
     [backgroundView addSubview:pictureImage];
     
-    float x = pictureImage.frame.origin.x + 30;
+    float x = pictureImage.frame.origin.x + 20;
     y = pictureImage.frame.origin.y + pictureImage.frame.size.height + 5;
     
-    UILabel* noticelabel = [[UILabel alloc] initWithFrame:CGRectMake(x , y, 220, 20)];
+    noticelabel = [[UILabel alloc] initWithFrame:CGRectMake(x , y, 220, 20)];
     noticelabel.text = @"上传学生证有效信息页照片或复印件";
     noticelabel.font = [UIFont systemFontOfSize:12];
     noticelabel.textColor = [UIColor grayColor];
@@ -76,13 +80,13 @@
     
     y = noticelabel.frame.origin.y + noticelabel.frame.size.height + 30;
     
-    UIImageView* line = [[UIImageView alloc] initWithFrame:CGRectMake(0, y, 300, 3)];
+    line = [[UIImageView alloc] initWithFrame:CGRectMake(0, y, 300, 3)];
     [line setImage:[UIImage imageNamed:@"public/line"]];
     [backgroundView addSubview:line];
     
     y = line.frame.origin.y + line.frame.size.height + 30;
     
-    UIButton* doneBtn = [[UIButton alloc] initWithFrame:CGRectMake(120, y, 60, 60)];
+    doneBtn = [[UIButton alloc] initWithFrame:CGRectMake(120, y, 60, 60)];
     [doneBtn setImage:[UIImage imageNamed:@"register/btn_ok"] forState:UIControlStateNormal];
     [doneBtn addTarget:self action:@selector(uploadPicture) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:doneBtn];
@@ -157,9 +161,6 @@
         UIImagePickerController *picker=[[UIImagePickerController alloc] init];
         picker.delegate=self;
         
-        picker.allowsEditing=YES;
-        
-        
         picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
         
         [self presentViewController:picker animated:YES completion:nil];
@@ -170,7 +171,6 @@
         {
             UIImagePickerController *picker=[[UIImagePickerController alloc] init];
             picker.delegate=self;
-            picker.allowsEditing=YES;
             picker.sourceType=UIImagePickerControllerSourceTypeCamera;
             
             [self presentViewController:picker animated:YES completion:nil];
@@ -183,7 +183,19 @@
 {
     //------------------------------------
     self.image=[image rotateImage:image];
+    [pictureImage setFrame:CGRectMake(pictureImage.frame.origin.x  + 65, pictureImage.frame.origin.y, 120, 120)];
     [pictureImage setImage:self.image];
+    
+    float x = pictureImage.frame.origin.x - 30;
+    float y = pictureImage.frame.origin.y + pictureImage.frame.size.height + 5;
+    
+    [noticelabel setFrame:CGRectMake(x , y, 220, 20)];
+    
+    y = pictureImage.frame.origin.y + pictureImage.frame.size.height + 30;
+    [line setFrame:CGRectMake(0, y, 300, 3)];
+    
+    y = line.frame.origin.y + line.frame.size.height + 30;
+    [doneBtn setFrame:CGRectMake(120, y, 60, 60)];
     //------------------------------------
     [picker dismissModalViewControllerAnimated:YES];
 }
