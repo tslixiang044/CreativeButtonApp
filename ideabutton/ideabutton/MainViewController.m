@@ -39,6 +39,9 @@
     UITextField *txtsearch;
     
     UIView *bottomView;
+    
+    int pageindex_1;
+    int pageindex_2;
 }
 @end
 
@@ -47,6 +50,9 @@
 
 - (void)viewDidLoad
 {
+    pageindex_1=1;
+    pageindex_2=1;
+    
     isLoadingMore_1=NO;
     isLoadingMore_2=NO;
     
@@ -219,12 +225,15 @@
 {
     if(mtag==1)
     {
+        pageindex_1=1;
         NSString *url=[kgetWaterFlowUrl stringByAppendingString:@"1-20"];
         
         [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_1" delegate:self];
     }
     else if(mtag==2)
     {
+        pageindex_2=1;
+        
         NSString *url=[kgetWaterFlowUrl_suggesion stringByAppendingString:@"1"];
         
         [[Global getInstanse] getHttpRequest_url:url key:@"kgetWaterFlowUrl_2" delegate:self];
@@ -272,6 +281,7 @@
             
             [waterFlow_1 reloadData];
             
+            pageindex_1++;
         }
 
         isLoadingMore_1=NO;
@@ -294,6 +304,8 @@
             }
             
             [waterFlow_2 reloadData];
+            
+            pageindex_2++;
         }
 
         isLoadingMore_2=NO;
@@ -487,7 +499,10 @@
             return;
         }
         isLoadingMore_1=YES;
-        [self loadMore:1 range:@"20-40"];
+        
+        
+        NSString *page=[NSString stringWithFormat:@"%i-%i",(pageindex_1-1)*20+1,20*pageindex_1];
+        [self loadMore:1 range:page];
     }
     else
     {
@@ -496,7 +511,11 @@
             return;
         }
         isLoadingMore_2=YES;
-        [self loadMore:2 range:@"2"];
+        
+        
+        NSString *page=[NSString stringWithFormat:@"%i",pageindex_2];
+        
+        [self loadMore:2 range:page];
     }
 }
 @end
