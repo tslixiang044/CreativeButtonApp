@@ -52,7 +52,6 @@
     
     [super viewDidLoad];
     
-    [self getRemainderNum];
     //------
     mArr_1=[[NSMutableArray alloc]init];
     mArr_2=[[NSMutableArray alloc]init];
@@ -108,24 +107,6 @@
     //------------------
 }
 
--(void)getRemainderNum
-{
-    User* user = [[DB sharedInstance]queryUser];
-    if (user)
-    {
-        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(currentQueue, ^{
-            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode]}];
-            //处理完上面的后回到主线程去更新UI
-            dispatch_queue_t mainQueue = dispatch_get_main_queue();
-            dispatch_async(mainQueue, ^{
-                
-            });
-        });
-    }
-}
-
 -(void)dealloc
 {
     [segmentedControl release];
@@ -145,8 +126,6 @@
             [self.navigationController pushViewController:infomaton animated:YES];
             [infomaton release];
         }
-        
-        
     }
     else if([btntype isEqualToString:@"wyya"])
     {
@@ -154,7 +133,6 @@
         [self.navigationController pushViewController:press animated:YES];
         [press release];
     }
-    
 }
 
 -(void)btnadminAction
@@ -164,13 +142,11 @@
     User* user = [[DB sharedInstance]queryUser];
     if (user)
     {
+        NSString *usercode=[NSString stringWithFormat:@"%d",user.userCode];
+        PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
         
-            NSString *usercode=[NSString stringWithFormat:@"%d",user.userCode];
-            PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
-        
-            [self.navigationController pushViewController:infomaton animated:YES];
-            [infomaton release];
-        
+        [self.navigationController pushViewController:infomaton animated:YES];
+        [infomaton release];
     }
     else
     {
@@ -180,13 +156,17 @@
         [login release];
     }
 }
+
 -(void)btnwyyaAction
 {
+    User* user = [[DB sharedInstance]queryUser];
+    
+    remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode]}];
+    
     self.btntype=@"wyya";
     
     segmentedControl.hidden=YES;
     
-    User* user = [[DB sharedInstance]queryUser];
     if (user)
     {
         if (remainderNum == 0)
@@ -223,6 +203,7 @@
         [login release];
     }
 }
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [txtsearch resignFirstResponder];
@@ -280,9 +261,7 @@
             {
                 [mArr_1 removeAllObjects];
             }
-            
-            
-            
+
             NSArray *typeArr=(NSArray *)result.data;
             
             for(int i=0;i<typeArr.count;i++)
@@ -294,10 +273,7 @@
             [waterFlow_1 reloadData];
             
         }
-        else
-        {
-            //[self showalertview_text:result.msg frame:<#(CGRect)#> autoHiden:<#(BOOL)#>
-        }
+
         isLoadingMore_1=NO;
     }
     if([mkey isEqualToString:@"kgetWaterFlowUrl_2"])
@@ -308,9 +284,7 @@
             {
                 [mArr_2 removeAllObjects];
             }
-            
-            
-            
+
             NSArray *typeArr=(NSArray *)result.data;
             
             for(int i=0;i<typeArr.count;i++)
@@ -321,10 +295,7 @@
             
             [waterFlow_2 reloadData];
         }
-        else
-        {
-            //[self showalertview_text:result.msg frame:<#(CGRect)#> autoHiden:<#(BOOL)#>
-        }
+
         isLoadingMore_2=NO;
     }
 }
@@ -339,7 +310,6 @@
     {
         isLoadingMore_1=NO;
     }
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -353,7 +323,6 @@
 {
     [mseg showlineAnimaton];
     
-    
     if(mseg.selectedSegmentIndex==0)
     {
         [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
@@ -363,6 +332,7 @@
         [mscrollview setContentOffset:CGPointMake(kMainScreenBoundwidth, 0) animated:YES];
     }
 }
+
 -(void)Selectbutton:(UISegmentedControl*)mseg
 {
     if(mseg.selectedSegmentIndex==0)
@@ -377,7 +347,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-   
+    
     [self loadData:1];
     [self loadData:2];
     
@@ -426,7 +396,6 @@
         [imageViewCell setbtnObjct:obj];
         
         [imageViewCell setcenterviewColor:arrIndex%4];
-        
     }
     else
     {
@@ -450,42 +419,37 @@
 {
     if(waterFlowView == waterFlow_1)
     {
-       
-            int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-            WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
-            
-            float width = 0.0f;
-            float height = 0.0f;
-            if (obj)
-            {
-                width =100;// [[dict objectForKey:@"width"] floatValue];
-                height = 160;//[[dict objectForKey:@"height"] floatValue];
-                if(arrIndex%2==0)
-                    height=170;
-            }
-            
-            return waterFlowView.cellWidth * (height/width);
-      
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
         
+        float width = 0.0f;
+        float height = 0.0f;
+        if (obj)
+        {
+            width =100;// [[dict objectForKey:@"width"] floatValue];
+            height = 160;//[[dict objectForKey:@"height"] floatValue];
+            if(arrIndex%2==0)
+                height=170;
+        }
+        
+        return waterFlowView.cellWidth * (height/width);
     }
     else
     {
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
         
-            int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-            WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
-            
-            float width = 0.0f;
-            float height = 0.0f;
-            if (obj)
-            {
-                width =100;// [[dict objectForKey:@"width"] floatValue];
-                height = 160;//[[dict objectForKey:@"height"] floatValue];
-                if(arrIndex%2==0)
-                    height=170;
-            }
-            
-            return waterFlowView.cellWidth * (height/width);
-       
+        float width = 0.0f;
+        float height = 0.0f;
+        if (obj)
+        {
+            width =100;// [[dict objectForKey:@"width"] floatValue];
+            height = 160;//[[dict objectForKey:@"height"] floatValue];
+            if(arrIndex%2==0)
+                height=170;
+        }
+        
+        return waterFlowView.cellWidth * (height/width);
     }
 }
 
@@ -504,7 +468,6 @@
         [self.navigationController pushViewController:detail animated:YES];
         [detail release];
     }
-    
 }
 
 -(void)gotoviewcontroller_imageviewcell_usercode:(int)muserCode
@@ -513,12 +476,10 @@
     PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:ucode ];
     [self.navigationController pushViewController:infomaton animated:YES];
     [infomaton release];
-    
 }
+
 -(void)loadmore:(WaterFlowView *)waterFlowView
 {
-    
-    
     if(waterFlowView==waterFlow_1)
     {
         if(isLoadingMore_1==YES)
@@ -527,7 +488,6 @@
         }
         isLoadingMore_1=YES;
         [self loadMore:1 range:@"20-40"];
-        
     }
     else
     {
@@ -537,11 +497,6 @@
         }
         isLoadingMore_2=YES;
         [self loadMore:2 range:@"2"];
-        
     }
-    
-    
-    
-    
 }
 @end

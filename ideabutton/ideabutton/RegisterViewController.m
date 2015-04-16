@@ -87,7 +87,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dissMissPickerController:) name:@"dissmissPicker" object:nil];
 }
 
--(void)viewDidDisappear:(BOOL)animated
+-(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
