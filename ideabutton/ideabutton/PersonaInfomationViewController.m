@@ -37,6 +37,9 @@
     MyUIButton *btncommit;
     UIView *view_center;
     
+    MyUIButton *btnman;
+    MyUIButton *btnwomen;
+    
 }
 @end
 
@@ -99,15 +102,7 @@
         code=self.userCode;
         [self loadUserInfo:code];
     }
-//    else
-//    {
-//        self.user = [[DB sharedInstance] queryUser];
-//        if(user)
-//        {
-//            code=[NSString stringWithFormat:@"%d",user.userCode];
-//            [self loadUserInfo:code];
-//        }
-//    }
+
 }
 -(void)loadUserInfo:(NSString *)mcode
 {
@@ -138,7 +133,7 @@
                 dic_data=[back_dic objectForKey:@"data"];
                 [self LoadMsgList];
                 [self initview];
-                
+                [mtableview reloadData];
             }
             else
             {
@@ -171,53 +166,60 @@
 }
 -(void)LoadMsgList
 {
-//    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    dispatch_async(currentQueue, ^{
-//        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-//        NSDictionary * back_dic=  [[API sharedInstance] userMessages:nil];
-//
-//        //处理完上面的后回到主线程去更新UI
-//        dispatch_queue_t mainQueue = dispatch_get_main_queue();
-//        dispatch_async(mainQueue, ^{
-//            
-//            
-//            NSInteger codeValue = [[back_dic objectForKey:@"code"] integerValue];
-//            
-//            if(codeValue==0)
-//            {
-//              
-//            }
-//            else
-//            {
-//                
-//            }
-//        });
-//    });
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        NSDictionary * back_dic=  [[API sharedInstance] userMessages:nil];
+
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            
+            
+            NSInteger codeValue = [[API sharedInstance].code integerValue];
+            
+            if(codeValue==0)
+            {
+                marr_msg=[back_dic objectForKey:@"data"];
+                
+                [mtableview reloadData];
+                
+            }
+            else
+            {
+                
+            }
+        });
+    });
 }
 -(void)initview
 {
     //-----------------------------
-    marr_share=[[NSMutableArray alloc]init];
-    marr_infor=[[NSMutableArray alloc]init];
-    marr_msg=[[NSMutableArray alloc]init];
-    //-----------------------------
+    if(mtableview==nil)
+    {
+        marr_share=[[NSMutableArray alloc]init];
+        marr_infor=[[NSMutableArray alloc]init];
+        marr_msg=[[NSMutableArray alloc]init];
+        //-----------------------------
+        
+        mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64) style:UITableViewStylePlain];
+        
+        mtableview.backgroundColor=COLOR(21, 21, 23);;
+        mtableview.backgroundView.backgroundColor=COLOR(21, 21, 23);
+        
+        mtableview.dataSource=self;
+        mtableview.delegate=self;
+        [self.view addSubview:mtableview];
+        
+        UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+        [mtableview setTableFooterView:v];
+        //-----------------------------
+        UIEdgeInsets edgeInset = mtableview.separatorInset;
+        mtableview.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, 0);
+        //修改分隔线长度
+        mtableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
     
-    mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64) style:UITableViewStylePlain];
-    
-    mtableview.backgroundColor=COLOR(21, 21, 23);;
-    mtableview.backgroundView.backgroundColor=COLOR(21, 21, 23);
-    
-    mtableview.dataSource=self;
-    mtableview.delegate=self;
-    [self.view addSubview:mtableview];
-    
-    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
-    [mtableview setTableFooterView:v];
-    //-----------------------------
-    UIEdgeInsets edgeInset = mtableview.separatorInset;
-    mtableview.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, 0);
-    //修改分隔线长度
-    mtableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 
 }
 -(void)btnright
@@ -623,6 +625,22 @@
         [txtcontent_2 setBorderStyle:UITextBorderStyleRoundedRect];
         [view_center addSubview:txtcontent_2];
         txtcontent_2.hidden=YES;
+        //------
+        btnman = [MyUIButton buttonWithType:UIButtonTypeCustom];
+        btnman.mtag=@"0";
+        btnman.frame = CGRectMake(view_center.frame.size.width/2-40-20, 20  , 40, 40);
+        [btnman setBackgroundImage:[UIImage imageNamed:@"icon_man2.png"] forState:UIControlStateNormal];
+        [btnman addTarget:self action:@selector(genderAction:) forControlEvents:UIControlEventTouchUpInside];
+        [view_center addSubview:btnman];
+        btnman.hidden=YES;
+        //---
+        btnwomen = [MyUIButton buttonWithType:UIButtonTypeCustom];
+        btnwomen.mtag=@"0";
+        btnwomen.frame = CGRectMake(view_center.frame.size.width/2+20, 20  , 40, 40);
+        [btnwomen setBackgroundImage:[UIImage imageNamed:@"icon_women.png"] forState:UIControlStateNormal];
+        [btnwomen addTarget:self action:@selector(genderAction:) forControlEvents:UIControlEventTouchUpInside];
+        [view_center addSubview:btnwomen];
+        btnwomen.hidden=YES;
         //--------
         y=txtcontent.frame.origin.y+txtcontent.frame.size.height+20;
         
@@ -632,6 +650,7 @@
         [btncommit setBackgroundImage:[UIImage imageNamed:@"all_btn_qd.png"] forState:UIControlStateNormal];
         [btncommit addTarget:self action:@selector(btncommitAction:) forControlEvents:UIControlEventTouchUpInside];
         [view_center addSubview:btncommit];
+        
         //------
 
         
@@ -640,10 +659,49 @@
     float y=txtcontent.frame.origin.y+txtcontent.frame.size.height+20;
     btncommit.frame = CGRectMake((view_center.frame.size.width-70)/2, y  , 70, 70);
     txtcontent_2.hidden=YES;
+    txtcontent.hidden=NO;
+    btnman.hidden=YES;
+    btnwomen.hidden=YES;
     view_update.hidden=NO;
     [self.view bringSubviewToFront:view_update];
     //----------------------
-    
+    txtcontent.text=@"";
+    txtcontent_2.text=@"";
+    //----------------------
+
+    if([mkey isEqualToString:@"gender"])
+    {
+        
+        txtcontent.hidden=YES;
+        txtcontent.hidden=YES;
+        btnman.hidden=NO;
+        btnwomen.hidden=NO;
+        
+        
+        view_center.frame=CGRectMake(20, (kMainScreenBoundheight-64-150)/2-20, kMainScreenBoundwidth-40, 180+40) ;
+        float y=btnman.frame.origin.y+btnman.frame.size.height+20;
+        btncommit.frame = CGRectMake((view_center.frame.size.width-70)/2, y  , 70, 70);
+        
+         int g=[[dic_data objectForKey:@"gender"] intValue];
+        if(g==1)
+        {
+            [btnwomen setBackgroundImage:[UIImage imageNamed:@"icon_women.png"] forState:UIControlStateNormal];
+            btnwomen.mtag=@"0";
+            
+            [btnman setBackgroundImage:[UIImage imageNamed:@"icon_man2_on.png"] forState:UIControlStateNormal];
+            btnman.mtag=@"1";
+        }
+        else
+        {
+            [btnman setBackgroundImage:[UIImage imageNamed:@"icon_man2.png"] forState:UIControlStateNormal];
+            btnman.mtag=@"0";
+            
+            [btnwomen setBackgroundImage:[UIImage imageNamed:@"icon_women_on.png"] forState:UIControlStateNormal];
+            btnwomen.mtag=@"1";
+        }
+        
+        btncommit.mtag=@"gender";
+    }
     if([mkey isEqualToString:@"email"])
     {
         txtcontent.text=[dic_data objectForKey:@"email"];
@@ -665,16 +723,62 @@
         view_center.frame=CGRectMake(20, (kMainScreenBoundheight-64-150)/2-20, kMainScreenBoundwidth-40, 180+40) ;
         float y=txtcontent_2.frame.origin.y+txtcontent_2.frame.size.height+20;
         btncommit.frame = CGRectMake((view_center.frame.size.width-70)/2, y  , 70, 70);
+        
         txtcontent.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入你的新密码" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
         txtcontent_2.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请再次输入你的新密码" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
-        
-        
-      
         btncommit.mtag=@"password";
     }
     
     
     
+    
+}
+-(void)genderAction:(MyUIButton *)mbtn
+{
+    if(mbtn==btnman)
+    {
+        if([btnman.mtag isEqualToString:@"0"])
+        {
+             [btnman setBackgroundImage:[UIImage imageNamed:@"icon_man2_on.png"] forState:UIControlStateNormal];
+            btnman.mtag=@"1";
+            
+           
+                [btnwomen setBackgroundImage:[UIImage imageNamed:@"icon_women.png"] forState:UIControlStateNormal];
+                btnwomen.mtag=@"0";
+            
+        }
+        else
+        {
+            [btnman setBackgroundImage:[UIImage imageNamed:@"icon_man2.png"] forState:UIControlStateNormal];
+            btnman.mtag=@"0";
+            
+            [btnwomen setBackgroundImage:[UIImage imageNamed:@"icon_women_on.png"] forState:UIControlStateNormal];
+            btnwomen.mtag=@"1";
+            
+        }
+    }
+    else
+    {
+        if([btnwomen.mtag isEqualToString:@"0"])
+        {
+            [btnwomen setBackgroundImage:[UIImage imageNamed:@"icon_women_on.png"] forState:UIControlStateNormal];
+            btnwomen.mtag=@"1";
+            
+            
+            [btnman setBackgroundImage:[UIImage imageNamed:@"icon_man2.png"] forState:UIControlStateNormal];
+            btnman.mtag=@"0";
+            
+        }
+        else
+        {
+            [btnwomen setBackgroundImage:[UIImage imageNamed:@"icon_women.png"] forState:UIControlStateNormal];
+            btnwomen.mtag=@"0";
+            
+            [btnman setBackgroundImage:[UIImage imageNamed:@"icon_man2_on.png"] forState:UIControlStateNormal];
+            btnman.mtag=@"1";
+            
+        }
+    }
     
 }
 -(void)btncloseAction:(UIButton *)mbtn
@@ -683,44 +787,54 @@
 }
 -(void)btncommitAction:(MyUIButton *)mbtn
 {
-   
-    if([mbtn.mtag isEqualToString:@"email"])
+    NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+    if([mbtn.mtag isEqualToString:@"gender"])
     {
-     
-        
-        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(currentQueue, ^{
-            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            
-            
-            NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-
-            [mdic setValue:self.userCode forKey:@"userCode"];
-            [mdic setValue:txtcontent.text forKey:@"email"];
-            
-           User* back_dic=  [[API sharedInstance] updateUser:mdic];
-            
-            
-            //处理完上面的后回到主线程去更新UI
-            dispatch_queue_t mainQueue = dispatch_get_main_queue();
-            dispatch_async(mainQueue, ^{
-                
-                
-                NSInteger codeValue = [[API sharedInstance].code integerValue];
-                
-                if(codeValue==0)
-                {
-                  
-                }
-                else
-                {
-                    
-                }
-            });
-        });
-
+        NSString *g=@"0";
+        if([btnman.mtag isEqualToString:@"1"])
+        {
+            g=@"1";
+        }
+        [mdic setValue:@"gender" forKey:@"key"];
+        [mdic setValue:g forKey:@"value"];
         
     }
+    if([mbtn.mtag isEqualToString:@"email"])
+    {
+        [mdic setValue:@"email" forKey:@"key"];
+        [mdic setValue:txtcontent.text forKey:@"value"];
+        
+    }
+    if([mbtn.mtag isEqualToString:@"password"])
+    {
+        [mdic setValue:@"password" forKey:@"key"];
+        [mdic setValue:txtcontent.text forKey:@"value"];
+    }
+
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        
+         [[API sharedInstance] updateUserField:mdic];
+
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            
+            
+            NSInteger codeValue = [[API sharedInstance].code integerValue];
+            CGRect frame = CGRectMake(90,260,150,20);
+            if(codeValue==0)
+            {
+                [self showalertview_text:@"修改成功" frame:frame autoHiden:YES];
+                [self LoadData];
+                
+            }
+            else
+            {
+                [self showalertview_text:@"删除失败" frame:frame autoHiden:YES];
+            }
+            [self btncloseAction:nil];
+        });
+    });
     
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

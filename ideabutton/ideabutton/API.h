@@ -21,7 +21,7 @@
 - (User*)newUser:(NSDictionary*)userDict;       //用户注册
 - (User*)newUserHaveIcon:(NSData *)data1 paramArr:(NSDictionary *)mparamArr;   //用户注册(带头像)
 - (User*)updateUser:(NSDictionary*)userDict;     //完善用户信息
-- (User*)updateUserField:(NSDictionary*)dict;    //用户信息按字段更新
+- (NSDictionary*)updateUserField:(NSDictionary*)dict;    //用户信息按字段更新
 - (NSDictionary*)userInfo:(NSDictionary*)dict;       //用户信息查看
 
 - (void)realNameAuth:(NSData*)data;           //实名认证

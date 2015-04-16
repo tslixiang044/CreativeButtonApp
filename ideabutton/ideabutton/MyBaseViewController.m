@@ -344,7 +344,7 @@
             }
             else if (actionType == 4)
             {
-                
+                [self btngo];
             }
             else
             {
@@ -371,7 +371,10 @@
     }
     
 }
-
+-(void)btngo
+{
+    
+}
 -(void)btncloseAction:(UIButton*)mbtn
 {
     alertView2.hidden=YES;
