@@ -93,7 +93,7 @@
     [self createInputView];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animatedx
 {
     flag = NO;
 }
@@ -247,21 +247,22 @@
         {
             if (remainderNum > 0)
             {
-                if (index < belongMeIdeaNum - 1)
+                if (index < (belongMeIdeaNum - 1))
                 {
+                    [self updateLog:index];
+                    
                     index++;
                     
                     [self hasIdeaBeenUsed];
-                    
-                    [self updateLog];
-                    
+
                     previousBtn.hidden = NO;
                     
                     detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
                 }
-                
-                if (index == self.data.count - 1)
+                else
                 {
+                    [self updateLog:index];
+                    
                     nextBtn.hidden = YES;
                     doAgianBtn.hidden = NO;
                 }
@@ -292,8 +293,6 @@
             break;
         case DoAgianBtnTag:
         {
-            [self updateLog];
-            
             User* user = [[DB sharedInstance]queryUser];
             if (remainderNum == 0)
             {
@@ -367,12 +366,12 @@
     });
 }
 
-- (void)updateLog
+- (void)updateLog:(NSInteger)upIndex
 {
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        [[API sharedInstance]logIdeaViewed:@{@"sentence":[[self.data objectAtIndex:index] objectForKey:@"sentence"]}];
+        [[API sharedInstance]logIdeaViewed:@{@"sentence":[[self.data objectAtIndex:upIndex] objectForKey:@"sentence"]}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
