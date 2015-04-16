@@ -133,6 +133,8 @@
             {
                 [SVProgressHUD dismiss];
                 
+                [self getRemainderNum];
+                
                 User* user = [[DB sharedInstance] queryUser];
                 if (user)
                 {

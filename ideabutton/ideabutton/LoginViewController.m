@@ -226,11 +226,6 @@
             if(user)
             {
                 [self.navigationController popViewControllerAnimated:NO];
-                
-                if(delegate)
-                {
-                    [delegate loginSuccessfull];
-                }
             }
             else
             {

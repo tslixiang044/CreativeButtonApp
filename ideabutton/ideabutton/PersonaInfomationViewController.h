@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
 #import "DB.h"
+#import "ChooseCityViewController.h"
 
 @interface PersonaInfomationViewController : MyBaseViewController
 {
     User *user;
     BOOL isSelf;
+    
+    ChooseCityViewController* chooseCityViewController;
 }
 @property(nonatomic,strong)User *user;
 @property(nonatomic,strong)NSDictionary *dic_data;

@@ -292,6 +292,8 @@
             break;
         case DoAgianBtnTag:
         {
+            [self updateLog];
+            
             User* user = [[DB sharedInstance]queryUser];
             if (remainderNum == 0)
             {

@@ -335,7 +335,14 @@
                 }
                 else if (user.userLevel == 2)
                 {
-                    [self.navigationController pushViewController:[[UploadViewController alloc] init] animated:YES];
+                    if (user.auditStatus == 0)
+                    {
+                        [self.navigationController pushViewController:[[UploadViewController alloc] init] animated:YES];
+                    }
+                    else
+                    {
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
                 }
                 else
                 {

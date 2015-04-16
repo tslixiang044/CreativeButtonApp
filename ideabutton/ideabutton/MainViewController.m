@@ -200,7 +200,7 @@
             {
                 if (user.auditStatus == 0)
                 {
-                    [self.navigationController pushViewController:[[UploadViewController alloc]init] animated:YES];
+                    [self showAlertView_desc:@"今日免费浏览的数量\n\n已达上限36个\n\n上传认证可以浏览更多idea" btnImage:@"bg_btn_xcrz_on" btnHideFlag:YES ActionType:2];
                 }
                 else
                 {
