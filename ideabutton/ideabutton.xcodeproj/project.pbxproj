@@ -140,7 +140,6 @@
 		E98C48E71A8B68DB00287EF8 /* InteractivePageViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E41A8B68DB00287EF8 /* InteractivePageViewController1.m */; };
 		E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E61A8B68DB00287EF8 /* InteractivePageViewController2.m */; };
 		E98C48ED1A8B761F00287EF8 /* NumberChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */; };
-		E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */; };
 		E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */; };
 		E98DA1A71AD3D3E10056DA92 /* ProductListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */; };
 		E98DA1AB1AD519B90056DA92 /* bg_btn_wszl_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98DA1AA1AD519B90056DA92 /* bg_btn_wszl_on@2x.png */; };
@@ -388,8 +387,6 @@
 		E98C48E61A8B68DB00287EF8 /* InteractivePageViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePageViewController2.m; sourceTree = "<group>"; };
 		E98C48EB1A8B761F00287EF8 /* NumberChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberChooseViewController.h; sourceTree = "<group>"; };
 		E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberChooseViewController.m; sourceTree = "<group>"; };
-		E98C48EE1A8B794800287EF8 /* WaitPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitPageViewController.h; sourceTree = "<group>"; };
-		E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitPageViewController.m; sourceTree = "<group>"; };
 		E98C48F41A8C447100287EF8 /* IdeaGenerateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdeaGenerateViewController.h; sourceTree = "<group>"; };
 		E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaGenerateViewController.m; sourceTree = "<group>"; };
 		E98DA1A51AD3D3E10056DA92 /* ProductListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListTableViewController.h; sourceTree = "<group>"; };
@@ -809,8 +806,6 @@
 		E97258B71A8B310700F0ABB8 /* InteractivePage */ = {
 			isa = PBXGroup;
 			children = (
-				E98C48EE1A8B794800287EF8 /* WaitPageViewController.h */,
-				E98C48EF1A8B794800287EF8 /* WaitPageViewController.m */,
 				E98C48EB1A8B761F00287EF8 /* NumberChooseViewController.h */,
 				E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */,
 				E98C48E31A8B68DB00287EF8 /* InteractivePageViewController1.h */,
@@ -1193,7 +1188,6 @@
 				E941074A1A91B850002D78B2 /* DB.m in Sources */,
 				E972583A1A88B8D400F0ABB8 /* RegisterViewController.m in Sources */,
 				E91E77CF1A84B1C2000174D4 /* MyBaseViewController.m in Sources */,
-				E98C48F01A8B794800287EF8 /* WaitPageViewController.m in Sources */,
 				E91E77A41A84A8CD000174D4 /* ASIInputStream.m in Sources */,
 				E94107521A91BA19002D78B2 /* APLevelDB.mm in Sources */,
 				89BF1FF11AA556780085CD58 /* IoccupyDetailViewController.m in Sources */,

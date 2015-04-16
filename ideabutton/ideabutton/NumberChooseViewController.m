@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "NumberChooseViewController.h"
-#import "WaitPageViewController.h"
 #import "MyUIButton.h"
 #import "API.h"
 #import "DB.h"
+#import "IdeaGenerateViewController.h"
+#import "SVProgressHUD.h"
 
 #define Height  45
 
@@ -21,6 +22,7 @@
 }
 
 @property(nonatomic, strong)NSMutableDictionary* myDict;
+@property(nonatomic, strong)NSArray* ideaArr;
 
 @end
 
@@ -64,6 +66,7 @@
 {
     [self showMenuView];
 }
+
 -(void)createInputView
 {
     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, 240, 30)];
@@ -94,6 +97,39 @@
     [self.view addSubview:NumTwentySevenBtn];
 }
 
+-(void)createIdea
+{
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        self.ideaArr = [[API sharedInstance]createIdea:self.myDict];
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            if ([self.ideaArr count] != 0)
+            {
+                [SVProgressHUD dismiss];
+                
+                [self ShowLoadingView];
+                
+                [self performSelector:@selector(showController) withObject:nil afterDelay:3];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+            }
+        });
+    });
+}
+
+-(void) showController
+{
+    [self hidenLoadingView];
+    
+    [self.navigationController pushViewController:[[IdeaGenerateViewController alloc]initWithData:self.ideaArr] animated:YES];
+}
+
 -(void)buttonClicked:(UIButton*)sender
 {
     User* user = [[DB sharedInstance]queryUser];
@@ -122,11 +158,10 @@
             [self.myDict setValue:[NSString stringWithFormat:@"%d",remainderNum] forKey:@"ideaNum"];
         }
         
-        [self.navigationController pushViewController:[[WaitPageViewController alloc]initWithDict:self.myDict] animated:YES];
+        [self createIdea];
     }
     else
     {
-        
         if (user)
         {
             if (user.userLevel == 1)
