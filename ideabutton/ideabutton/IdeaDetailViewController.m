@@ -128,7 +128,7 @@
     
     y=imgview_header.frame.origin.y+imgview_header.frame.size.height+20;
     
-    view_center=[[UIView alloc]initWithFrame:CGRectMake(10, y, kMainScreenBoundwidth-20, 155)];
+    view_center=[[UIView alloc]initWithFrame:CGRectMake(10, y, kMainScreenBoundwidth-20, 170)];
     view_center.backgroundColor=COLOR(205, 40, 30);
     [self.scrollView addSubview:view_center];
     //---------------
@@ -153,10 +153,10 @@
     [view_center addSubview:lbldesc];
     //---------------
     y=lbldesc.frame.origin.y+lbldesc.frame.size.height;
-    lblproduct=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-40, 80)];
+    lblproduct=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-40, 100)];
     
     lblproduct.textColor=[UIColor whiteColor];
-    lblproduct.font=[UIFont systemFontOfSize:18];
+    lblproduct.font=[UIFont systemFontOfSize:16];
     lblproduct.text=self.data.sentence;
     lblproduct.backgroundColor=[UIColor clearColor];
     lblproduct.lineBreakMode = NSLineBreakByWordWrapping;

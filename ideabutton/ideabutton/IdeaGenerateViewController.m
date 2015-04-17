@@ -127,12 +127,20 @@
     detailLabel = [[UILabel alloc] initWithFrame:backgroundView.frame];
     detailLabel.layer.borderColor = COLOR(142, 142, 142).CGColor;
     detailLabel.layer.borderWidth = 1.0;
-    detailLabel.textAlignment = NSTextAlignmentLeft;
     detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
     detailLabel.numberOfLines = 0;
-    detailLabel.font = [UIFont systemFontOfSize:16];
-    detailLabel.text = [NSString stringWithFormat:@"  %d. %@",titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+    detailLabel.font = [UIFont systemFontOfSize:15.5];
     detailLabel.textColor = [UIColor whiteColor];
+    
+    //设置缩进
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %d. %@",titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.headIndent = 10;//缩进
+    style.firstLineHeadIndent = 0;
+    style.lineSpacing = 5;//行距
+    [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
+    detailLabel.attributedText = text;
+    
     [self.view addSubview:detailLabel];
     
     surplusNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 209, 240, 30)];
@@ -378,7 +386,7 @@
             
             if ([API sharedInstance].code.integerValue == 0)
             {
-                [self getRemainderNum];
+//                [self getRemainderNum];
             }
         });
     });

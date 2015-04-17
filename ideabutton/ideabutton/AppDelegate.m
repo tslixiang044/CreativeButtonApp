@@ -70,7 +70,7 @@
         
         if(i==2)
         {
-            MyUIButton * btnOk=[[MyUIButton alloc]initWithFrame:CGRectMake((kMainScreenBoundwidth-80)/2, kMainScreenBoundheight/2+50, 80, 80) bgimg:@"btn_start.png" title:@""] ;
+            MyUIButton * btnOk=[[MyUIButton alloc]initWithFrame:CGRectMake((kMainScreenBoundwidth-80)/2, kMainScreenBoundheight/2+90, 80, 80) bgimg:@"btn_start.png" title:@""] ;
             [btnOk addTarget:self action:@selector(btnstartAction) forControlEvents:UIControlEventTouchUpInside];
             [img1 addSubview:btnOk];
            

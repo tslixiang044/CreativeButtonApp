@@ -82,11 +82,11 @@
     
     if (self.type == 1)
     {
-        titleStr = [NSString stringWithFormat:@"#霸占宣言#我宣布,我刚刚霸占了一条%@广告,谁也别想再碰!",[self.dict objectForKey:@"product"]];
+        titleStr = [NSString stringWithFormat:@"#霸占宣言#我宣布,我刚刚霸占了一条%@广告,谁也别想再碰!\n\n\n  ",[self.dict objectForKey:@"product"]];
     }
     else
     {
-        titleStr = [NSString stringWithFormat:@"#改造声明#我宣布,我刚刚改造了一条%@广告,谁也别想再碰!",[self.dict objectForKey:@"product"]];
+        titleStr = [NSString stringWithFormat:@"#改造声明#我宣布,我刚刚改造了一条%@广告,谁也别想再碰!\n\n\n  ",[self.dict objectForKey:@"product"]];
     }
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:titleStr];
