@@ -57,9 +57,9 @@
     float y = titleLabel.frame.origin.y + titleLabel.frame.size.height + 10;
     
     txtcontact=[[UITextField alloc]initWithFrame:CGRectMake(5, y, 290, 40)];
-    txtcontact.textColor=[UIColor whiteColor];
+    txtcontact.textColor=[UIColor grayColor];
     txtcontact.clearButtonMode=UITextFieldViewModeWhileEditing;
-    txtcontact.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入你的手机/邮箱/qq(选填)" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+    txtcontact.placeholder = @"请输入你的手机/邮箱/qq(选填)";
     txtcontact.font=[UIFont fontWithName:@"Arial" size:15];
     txtcontact.backgroundColor=[UIColor whiteColor];
     txtcontact.textAlignment=NSTextAlignmentLeft;
@@ -100,11 +100,6 @@
     if([str_content isEqualToString:@""])
     {
         [self showalertview_text:@"建议不能为空" frame:frame autoHiden:YES];
-        return;
-    }
-    if([str_phone isEqualToString:@""])
-    {
-        [self showalertview_text:@"联系方式不能为空" frame:frame autoHiden:YES];
         return;
     }
     

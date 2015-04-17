@@ -183,7 +183,7 @@
     [backgroundView addSubview:checkBtn3];
     
     repineCompanyTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 240, 200, 30)];
-    repineCompanyTextField.placeholder = @"向往公司";
+    repineCompanyTextField.placeholder = @"向往公司(选填)";
     repineCompanyTextField.layer.cornerRadius = 5;
     repineCompanyTextField.delegate = self;
     repineCompanyTextField.backgroundColor = [UIColor whiteColor];
