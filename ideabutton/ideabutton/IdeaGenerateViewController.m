@@ -90,6 +90,16 @@
     
     [self setrightbaritem_imgname:@"icon_more_all" title:nil];
     
+    UISwipeGestureRecognizer *recognizer;
+    
+    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [[self view] addGestureRecognizer:recognizer];
+    
+    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [[self view] addGestureRecognizer:recognizer];
+    
     [self createInputView];
 }
 
@@ -215,7 +225,7 @@
         case HoggedBtnTag:
         {
             flag = YES;
-           [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:self.dict Type:1] animated:YES];
+            [self.navigationController pushViewController:[[ReformIdeaViewController alloc]initWithDict:self.dict Type:1] animated:YES];
         }
             break;
         case CollectionBtnTag:
@@ -262,7 +272,7 @@
                     index++;
                     
                     [self hasIdeaBeenUsed];
-
+                    
                     previousBtn.hidden = NO;
                     
                     detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
@@ -282,7 +292,7 @@
             if (index > 0)
             {
                 index--;
-
+                
                 [self hasIdeaBeenUsed];
                 
                 detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
@@ -386,7 +396,7 @@
             
             if ([API sharedInstance].code.integerValue == 0)
             {
-//                [self getRemainderNum];
+                [self getRemainderNum];
             }
         });
     });
@@ -442,6 +452,57 @@
             }
         });
     });
+}
+
+-(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer
+{
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
+    {
+        if (index > 0)
+        {
+            index--;
+            
+            [self hasIdeaBeenUsed];
+            
+            detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+            
+            if (index == 0)
+            {
+                previousBtn.hidden = YES;
+            }
+            
+            if (index < belongMeIdeaNum - 1)
+            {
+                nextBtn.hidden = NO;
+            }
+        }
+    }
+    
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        if (remainderNum > 0)
+        {
+            if (index < (belongMeIdeaNum - 1))
+            {
+                [self updateLog:index];
+                
+                index++;
+                
+                [self hasIdeaBeenUsed];
+                
+                previousBtn.hidden = NO;
+                
+                detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+            }
+            else
+            {
+                [self updateLog:index];
+                
+                nextBtn.hidden = YES;
+                doAgianBtn.hidden = NO;
+            }
+        }
+    }
 }
 
 -(void)dealloc
