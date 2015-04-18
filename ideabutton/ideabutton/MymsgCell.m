@@ -24,7 +24,7 @@
         imgview_left=[[MyUIImageView alloc]initWithFrame_head:CGRectMake(15, 15, 30, 30)];
         [self addSubview:imgview_left];
         //----------------
-        lbltitle=[[UILabel alloc]initWithFrame:CGRectMake(60, 15, 200-60, 30)];
+        lbltitle=[[UILabel alloc]initWithFrame:CGRectMake(60, 15, kMainScreenBoundwidth-60-80, 30)];
         lbltitle.font=[UIFont systemFontOfSize:14];
         lbltitle.textColor=[UIColor whiteColor];
         [self addSubview:lbltitle];

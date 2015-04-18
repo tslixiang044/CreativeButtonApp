@@ -13,11 +13,21 @@
 #import "UIImageView+WebCache.h"
 #import "API.h"
 #import "MyUIButton.h"
+#import "WaterFlowView.h"
+#import "ImageViewCell.h"
+#import "JsonResult.h"
+#import "WaterFlowObj.h"
+#import "IdeaDetailViewController.h"
+
+
+
+
+
 
 #define headerview_height 150
 
 
-@interface PersonaInfomationViewController ()<UITableViewDataSource,UITableViewDelegate,MySegmentedControlDelegate,UITextFieldDelegate>
+@interface PersonaInfomationViewController ()<UITableViewDataSource,UITableViewDelegate,MySegmentedControlDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,ImageViewCellDelegate>
 {
     UITableView *mtableview;
     MySegmentedControl *msegmentview;
@@ -39,6 +49,16 @@
     
     MyUIButton *btnman;
     MyUIButton *btnwomen;
+    
+    
+    
+    
+    
+    NSMutableArray *mArr_1;
+  
+    
+    WaterFlowView *waterFlow_1;
+
     
 }
 @end
@@ -87,6 +107,11 @@
     [self LoadData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dissMissPickerController:) name:@"dissmissPicker" object:nil];
+    
+    
+    
+    
+    
 }
 
 -(void)dealloc
@@ -125,6 +150,8 @@
             if(codeValue==0)
             {
                 dic_data=[back_dic objectForKey:@"data"];
+                
+                [self LoadShareList];
                 [self LoadMsgList];
                 [self initview];
                 [mtableview reloadData];
@@ -150,7 +177,53 @@
     }
     userCode=muserCode;
 }
+-(void)LoadShareList
+{
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+        
+        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+        //[mdic setValue:self.userCode forKey:@"userCode "];
+        [mdic setValue:@"1-20" forKey:@"range"];
+        
+        
+        
+        
+        //marr_share=  (NSMutableArray *)[[API sharedInstance] userIdeas:mdic];
+        marr_share=  (NSMutableArray *)[[API sharedInstance] friendsIdeas:mdic];
+        
+        
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            
+            
+            if(marr_share==nil)
+                return ;
+            
+            
+            NSInteger codeValue = [[API sharedInstance].code integerValue];
+            
+            if(codeValue==0)
+            {
 
+                for(int i=0;i<marr_share.count;i++)
+                {
+                    WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr_share objectAtIndex:i]];
+                    [mArr_1 addObject:wobj];
+                }
+                
+                [waterFlow_1 reloadData];
+                
+            }
+            else
+            {
+                
+            }
+        });
+    });
+}
 -(void)LoadMsgList
 {
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -184,6 +257,7 @@
     //-----------------------------
     if(mtableview==nil)
     {
+        mArr_1=[[NSMutableArray alloc]init];
         marr_share=[[NSMutableArray alloc]init];
         marr_infor=[[NSMutableArray alloc]init];
         marr_msg=[[NSMutableArray alloc]init];
@@ -228,7 +302,7 @@
     {
         if(msegmentview.selectedSegmentIndex==0)
         {
-            return marr_share.count;
+            return 1;
         }
         else if(msegmentview.selectedSegmentIndex==1)
         {
@@ -236,7 +310,7 @@
         }
         else
         {
-            return 20;//marr_msg.count;
+            return marr_msg.count;
         }
     }
 }
@@ -246,7 +320,17 @@
     if(indexPath.section==0)
         return headerview_height;
     else
-        return 50;
+    {
+        if(msegmentview.selectedSegmentIndex==0)
+        {
+            return kMainScreenBoundheight-64-headerview_height-44;
+        }
+        else
+        {
+            return 50;
+        }
+    }
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -270,7 +354,19 @@
     {
         if(msegmentview.selectedSegmentIndex==0)
         {
-            return nil;
+            static NSString *Identifier = @"cell_share";
+            
+            UITableViewCell *cell=(UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:Identifier];
+            if(cell==nil)
+            {
+                cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
+                cell.backgroundColor=COLOR(21, 21, 23);
+                cell.selectionStyle=UITableViewCellSelectionStyleNone;
+                [cell addSubview:[self getShareview]];
+                //----------------
+            }
+            return cell;
+          
         }
         else if(msegmentview.selectedSegmentIndex==1)
         {
@@ -410,9 +506,19 @@
                 cell.backgroundColor=COLOR(21, 21, 23);
                 cell.selectionStyle=UITableViewCellSelectionStyleNone;
             }
-            cell.imgview_left.image=[UIImage imageNamed:@"userheader.png"];
-            cell.lbltitle.text=@"jack评论了我转发的idea";
-            cell.lbltime.text=@"1分钟前";
+            
+            NSDictionary *dic=[marr_msg objectAtIndex:indexPath.row];
+            
+            NSString *str_img_url= [NSString stringWithFormat:@"%@",[dic objectForKey:@"friendAvatar"]];
+            NSString *str_content=[NSString stringWithFormat:@"%@",[dic objectForKey:@"message"]];
+            NSString *str_time=[NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
+            
+            
+            
+            [cell.imgview_left setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"userheader.png"]];
+            
+            cell.lbltitle.text=str_content;
+            cell.lbltime.text=str_time;
             return cell;
         }
     }
@@ -797,10 +903,30 @@
     }
     if([mbtn.mtag isEqualToString:@"password"])
     {
+        
+        
+        if(![txtcontent.text isEqualToString:txtcontent_2.text])
+        {
+            [self alert:@"前后密码不一致！"];
+            return;
+        }
+        
+        
         [mdic setValue:@"password" forKey:@"key"];
         [mdic setValue:txtcontent.text forKey:@"value"];
     }
+    if([mbtn.mtag isEqualToString:@"college"])
+    {
+        [mdic setValue:@"college" forKey:@"key"];
+        [mdic setValue:txtcontent.text forKey:@"value"];
+    }
+    if([mbtn.mtag isEqualToString:@"major"])
+    {
+        [mdic setValue:@"major" forKey:@"key"];
+        [mdic setValue:txtcontent.text forKey:@"value"];
+    }
     
+
     [self updateByField:mdic];
     
 }
@@ -838,5 +964,110 @@
     [textField resignFirstResponder];
     return YES;
 }
+-(WaterFlowView *)getShareview
+{
+    if(waterFlow_1==nil)
+    {
+        waterFlow_1 = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-headerview_height-44+2)];
+        waterFlow_1.tag=1;
+        waterFlow_1.waterFlowViewDelegate = self;
+        waterFlow_1.waterFlowViewDatasource = self;
+        waterFlow_1.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:waterFlow_1];
+    }
+    return waterFlow_1;
+    //------------------
+}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------waterflow
+- (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
+    
+    return 2;
+}
+
+- (NSInteger)numberOfAllWaterFlowView:(WaterFlowView *)waterFlowView
+{
+   
+        return [marr_share count];
+    
+   
+}
+
+- (UIView *)waterFlowView:(WaterFlowView *)waterFlowView cellForRowAtIndexPath:(IndexPath *)indexPath
+{
+    ImageViewCell *view = [[ImageViewCell alloc] initWithIdentifier:nil];
+    view.delegate=self;
+    
+    return view;
+}
+
+-(void)waterFlowView:(WaterFlowView *)waterFlowView  relayoutCellSubview:(UIView *)view withIndexPath:(IndexPath *)indexPath
+{
+    //arrIndex是某个数据在总数组中的索引
+   
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        
+        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
+        
+        ImageViewCell *imageViewCell = (ImageViewCell *)view;
+        imageViewCell.indexPath = indexPath;
+        imageViewCell.columnCount = waterFlowView.columnCount;
+        [imageViewCell relayoutViews];
+        [imageViewCell setbtnObjct:obj];
+        
+        [imageViewCell setcenterviewColor:arrIndex%4];
+   
+   
+}
+
+
+#pragma mark WaterFlowViewDelegate
+- (CGFloat)waterFlowView:(WaterFlowView *)waterFlowView heightForRowAtIndexPath:(IndexPath *)indexPath
+{
+   
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
+        
+        float width = 0.0f;
+        float height = 0.0f;
+        if (obj)
+        {
+            width =100;// [[dict objectForKey:@"width"] floatValue];
+            height = 160;//[[dict objectForKey:@"height"] floatValue];
+            if(arrIndex%2==0)
+                height=170;
+        }
+        
+        return waterFlowView.cellWidth * (height/width);
+   
+   
+}
+
+- (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
+{
+   
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:[mArr_1 objectAtIndex:arrIndex]];
+        [self.navigationController pushViewController:detail animated:YES];
+    
+  
+}
+-(void)loadmore:(WaterFlowView *)waterFlowView
+{
+}
 @end
