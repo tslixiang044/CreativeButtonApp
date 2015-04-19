@@ -121,6 +121,7 @@
             if(codeValue==0)
             {
                 [self showalertview_text:@"提交成功" frame:frame autoHiden:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
             else
             {
