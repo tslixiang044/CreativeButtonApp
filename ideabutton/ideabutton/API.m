@@ -332,12 +332,13 @@
     return [retDict objectForKey:@"data"];
 }
 
-- (NSArray*)userIdeas:(NSDictionary*)dict
+- (NSDictionary*)userIdeas:(NSDictionary*)dict
 {
     NSMutableString *urlStr = [[NSMutableString alloc] initWithString:self.baseURL];
+    
     [urlStr appendString:@"idea/userIdeas"];
     [urlStr appendString:[self constructQueryParamStr:dict]];
-    
+
     NSDictionary *retDict = [self doRequestAndParseWithURL:urlStr];
     
     if (!retDict)

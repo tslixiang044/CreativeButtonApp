@@ -174,7 +174,9 @@
 
 -(void)setbtnObjct:(WaterFlowObj*)mobj
 {
-    lblnickname.text=mobj.nickname;
+   
+    
+    lblnickname.text=mobj.nickname ;
     
     if (mobj.gender.integerValue == 0)
     {

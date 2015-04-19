@@ -22,7 +22,7 @@
 @property(nonatomic,strong)NSDictionary *dic_data;
 @property(nonatomic,strong)NSString *userCode;
 
-
+@property(nonatomic,retain)NSMutableArray *mArr_1;
 
 
 -(id)initwithuserCode:(NSString *)muserCode;

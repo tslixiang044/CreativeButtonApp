@@ -46,7 +46,7 @@
 - (NSArray*)myCollectedIdeas:(NSDictionary*)dict;    //我收藏的创意
 
 - (NSArray*)friendsIdeas:(NSDictionary*)dict;   //朋友们的创意
-- (NSArray*)userIdeas:(NSDictionary*)dict;   //用户的创意
+- (NSDictionary*)userIdeas:(NSDictionary*)dict;   //用户的创意
 
 - (void)saveSuggestion:(NSDictionary*)dict;     //保存建议
 - (NSArray*)suggestionList:(NSDictionary*)dict;      //建议列表

@@ -54,7 +54,7 @@
     
     
     
-    NSMutableArray *mArr_1;
+    //NSMutableArray *mArr_1;
   
     
     WaterFlowView *waterFlow_1;
@@ -68,6 +68,7 @@
 @synthesize user;
 @synthesize dic_data;
 @synthesize userCode;
+@synthesize mArr_1;
 
 -(id)init
 {
@@ -80,8 +81,6 @@
 }
 -(id)initwithuserCode:(NSString *)muserCode
 {
-    
-    
     self.userCode=muserCode;
     
     return [self init];
@@ -107,16 +106,17 @@
     [self LoadData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dissMissPickerController:) name:@"dissmissPicker" object:nil];
-    
-    
-    
-    
-    
 }
 
 -(void)dealloc
 {
+    [waterFlow_1 release];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    
+    [super dealloc];
+    
 }
 
 -(void)LoadData
@@ -140,7 +140,15 @@
         [mdic setValue:mcode forKey:@"userCode"];
         
         NSDictionary * back_dic=  [[API sharedInstance] userInfo:mdic];
-
+         if(back_dic==nil)
+             return ;
+        
+        
+        
+        
+        
+        
+        
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -149,8 +157,8 @@
             
             if(codeValue==0)
             {
-                dic_data=[back_dic objectForKey:@"data"];
-                
+                dic_data=[[NSDictionary alloc]initWithDictionary:[back_dic objectForKey:@"data"]];
+
                 [self LoadShareList];
                 [self LoadMsgList];
                 [self initview];
@@ -173,7 +181,6 @@
     if(userCode)
     {
         userCode=nil;
-        
     }
     userCode=muserCode;
 }
@@ -184,14 +191,17 @@
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
         
         NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-        //[mdic setValue:self.userCode forKey:@"userCode "];
-        [mdic setValue:@"1-2" forKey:@"range"];
+        [mdic setValue:self.userCode forKey:@"userCode"];
+        [mdic setValue:@"1-20" forKey:@"range"];
         
         
         
         
-        //marr_share=  (NSMutableArray *)[[API sharedInstance] userIdeas:mdic];
-        marr_share=  (NSMutableArray *)[[API sharedInstance] friendsIdeas:mdic];
+        NSDictionary *d=  [(NSDictionary *)[[API sharedInstance] userIdeas:mdic]retain];
+        marr_share=[[d objectForKey:@"recentIdeas"] retain];
+        
+        
+        //marr_share=  [(NSMutableArray *)[[API sharedInstance] friendsIdeas:mdic] retain];
         
         
         //处理完上面的后回到主线程去更新UI
@@ -210,8 +220,13 @@
 
                 for(int i=0;i<marr_share.count;i++)
                 {
+                  
+                    
                     WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr_share objectAtIndex:i]];
+                   
+                    
                     [mArr_1 addObject:wobj];
+                 
                 }
                 
                 [waterFlow_1 reloadData];
@@ -239,7 +254,7 @@
             
             if(codeValue==0)
             {
-                marr_msg=[back_dic objectForKey:@"data"];
+                marr_msg=[[back_dic objectForKey:@"data"] retain];
                 
                 [mtableview reloadData];
                 
@@ -383,7 +398,7 @@
             if(indexPath.row==0)
             {
                 cell.lbltitle.text=@"昵称";
-                NSString *nickname=[dic_data objectForKey:@"nickname"];
+                NSString *nickname= [NSString stringWithFormat:@"%@",[dic_data objectForKey:@"nickname"]];
                 
                 cell.lbldesc.text=nickname;
                 
@@ -412,7 +427,10 @@
             else  if(indexPath.row==2)
             {
                 cell.lbltitle.text=@"邮箱";
-                cell.lbldesc.text=[dic_data objectForKey:@"email"];
+                cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"email"]];
+                
+                
+              
                 
                 if(isSelf)
                 {
@@ -452,7 +470,8 @@
             else if(indexPath.row==5)
             {
                 cell.lbltitle.text=@"所属地";
-                cell.lbldesc.text=[dic_data objectForKey:@"city"];
+                cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"city"]];
+          
                 
                 if(isSelf)
                 {
@@ -466,7 +485,8 @@
             else if(indexPath.row==6)
             {
                 cell.lbltitle.text=@"院校";
-                cell.lbldesc.text=[dic_data objectForKey:@"college"];
+                cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"college"]];
+             
                 
                 if(isSelf)
                 {
@@ -481,7 +501,8 @@
             else if(indexPath.row==7)
             {
                 cell.lbltitle.text=@"专业";
-                cell.lbldesc.text=[dic_data objectForKey:@"major"];
+                cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"major"]];
+               
                 
                 if(isSelf)
                 {
@@ -543,12 +564,19 @@
         [headerview addSubview:lblnickname];
         //---------------
     }
-    lblnickname.text=[dic_data objectForKey:@"nickname"];
     
+    if(dic_data!=nil)
+    {
+        NSString *nickname= [NSString stringWithFormat:@"%@",[dic_data objectForKey:@"nickname"]];
+        NSString *strnickname=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"nickname"]];
+        lblnickname.text=nickname;
+        
+        NSString *str_img_url=[NSString stringWithFormat:@"%@%@",BASEURL,[dic_data objectForKey:@"avatar"]];
+        
+        [imgview_header setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"register_head"]];
+    }
+   
     
-    NSString *str_img_url=[NSString stringWithFormat:@"%@%@",BASEURL,[dic_data objectForKey:@"avatar"]];
-    
-    [imgview_header setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"register_head"]];
     
     return headerview;
 }
@@ -1022,8 +1050,10 @@
    
         int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
         
-        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
-        
+        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex] ;
+
+    
+    
         ImageViewCell *imageViewCell = (ImageViewCell *)view;
         imageViewCell.indexPath = indexPath;
         imageViewCell.columnCount = waterFlowView.columnCount;
@@ -1069,5 +1099,13 @@
 }
 -(void)loadmore:(WaterFlowView *)waterFlowView
 {
+    
+}
+-(void)gotoviewcontroller_imageviewcell_usercode:(int)muserCode
+{
+    NSString *ucode=[NSString stringWithFormat:@"%i",muserCode];
+    PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:ucode ];
+    [self.navigationController pushViewController:infomaton animated:YES];
+    [infomaton release];
 }
 @end
