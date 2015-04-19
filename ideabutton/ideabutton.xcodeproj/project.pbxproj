@@ -21,7 +21,7 @@
 		89A17B0E1AD15A5E007CC8D6 /* MymsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17B0D1AD15A5E007CC8D6 /* MymsgCell.m */; };
 		89A17B141AD22183007CC8D6 /* MyInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17B131AD22183007CC8D6 /* MyInformationCell.m */; };
 		89A85CA71ABC1DC800490339 /* MyWebviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CA61ABC1DC800490339 /* MyWebviewViewController.m */; };
-		89A85CAA1ABC1E2E00490339 /* PersonaInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CA91ABC1E2E00490339 /* PersonaInfomationViewController.m */; };
+		89A85CAA1ABC1E2E00490339 /* PersonaInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CA91ABC1E2E00490339 /* PersonaInfomationViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		89A85CB01ABC1E7500490339 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CAD1ABC1E7500490339 /* FeedBackViewController.m */; };
 		89A85CB11ABC1E7500490339 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CAF1ABC1E7500490339 /* SettingViewController.m */; };
 		89A85CB41ABC1E9100490339 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A85CB31ABC1E9100490339 /* SettingCell.m */; };
