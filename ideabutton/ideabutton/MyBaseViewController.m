@@ -207,8 +207,14 @@
     {
         if(![self.mtag isEqualToString:@"个人资料"])
         {
-            PersonaInfomationViewController *infomation=[PersonaInfomationViewController new];
-            [self.navigationController pushViewController:infomation animated:YES];
+            User *user = [[DB sharedInstance] queryUser];
+            if(user)
+            {
+                NSString *usercode=[NSString stringWithFormat:@"%d",user.userCode];
+                PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
+                [self.navigationController pushViewController:infomaton animated:YES];
+            }
+            
         }
     }
     else if([mtag2 isEqualToString:@"设置"])

@@ -165,7 +165,7 @@
 
 -(void)btnwyyaAction
 {
-    User* user = [[DB sharedInstance]queryUser];
+    User* user = [[DB sharedInstance]  queryUser];
     
     remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode]}];
     
