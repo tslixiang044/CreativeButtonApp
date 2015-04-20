@@ -171,7 +171,16 @@
     }
     else
     {
-        lblproduct.text=self.data.sentence;
+        if ([self.data.shared boolValue])
+        {
+            NSString* textStr = [self.data.sentence substringFromIndex:self.data.sentence.length - 6];
+            NSString* subStr = [self.data.sentence stringByReplacingCharactersInRange:NSMakeRange(3,self.data.sentence.length - 3) withString:@"*********"];
+            lblproduct.text = [subStr stringByAppendingString:textStr];
+        }
+        else
+        {
+            lblproduct.text = self.data.sentence;
+        }
     }
     
     lblproduct.backgroundColor=[UIColor clearColor];
