@@ -183,7 +183,7 @@
         btnwybz = [MyUIButton buttonWithType:UIButtonTypeCustom];
         btnwybz.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-20, 10, 80, 40);
         btnwybz.backgroundColor=COLOR(141, 144, 143);
-        [btnwybz setTitle:@"我要霸占" forState:UIControlStateNormal];
+        [btnwybz setTitle:@"再改造" forState:UIControlStateNormal];
         [btnwybz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnwybz addTarget:self action:@selector(btnwybzAction:) forControlEvents:UIControlEventTouchUpInside];
         [view_show addSubview:btnwybz];
@@ -191,7 +191,7 @@
         btnwygz = [MyUIButton buttonWithType:UIButtonTypeCustom];
         btnwygz.frame =CGRectMake(kMainScreenBoundwidth-80-20, 10, 80, 40);
         btnwygz.backgroundColor=COLOR(141, 144, 143);
-        [btnwygz setTitle:@"我要改造" forState:UIControlStateNormal];
+        [btnwygz setTitle:@"上传成品" forState:UIControlStateNormal];
         [btnwygz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnwygz addTarget:self action:@selector(btnwygzAction:) forControlEvents:UIControlEventTouchUpInside];
         [view_show addSubview:btnwygz];
@@ -269,16 +269,13 @@
 }
 -(void)btnwybzAction:(MyUIButton*)mbtn
 {
-    if(delegate)
-    {
-        NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
-        [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
-        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:1];
-        [delegate gotoviewcontroller_changed:reform];
-    }
-}
--(void)btnwygzAction:(MyUIButton*)mbtn
-{
+//    if(delegate)
+//    {
+//        NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
+//        [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
+//        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:1];
+//        [delegate gotoviewcontroller_changed:reform];
+//    }
     if(delegate)
     {
         NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
@@ -286,6 +283,18 @@
         ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:2];
         [delegate gotoviewcontroller_changed:reform];
     }
+}
+-(void)btnwygzAction:(MyUIButton*)mbtn
+{
+//    if(delegate)
+//    {
+//        NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
+//        [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
+//        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:2];
+//        [delegate gotoviewcontroller_changed:reform];
+//    }
+     CGRect frame = CGRectMake(90,260,150,20);
+    [self showalertview_text:@"此功能将在不久后推出" frame:frame autoHiden:YES];
 }
 
 
