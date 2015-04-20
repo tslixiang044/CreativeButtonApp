@@ -214,7 +214,6 @@
                 PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
                 [self.navigationController pushViewController:infomaton animated:YES];
             }
-            
         }
     }
     else if([mtag2 isEqualToString:@"设置"])
