@@ -46,7 +46,10 @@
     
     return self;
 }
-
+-(void)btnright
+{
+    [self showMenuView];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

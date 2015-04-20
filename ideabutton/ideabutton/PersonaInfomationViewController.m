@@ -653,35 +653,44 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(isSelf)
+    if(msegmentview.selectedSegmentIndex==1)
     {
-        if(msegmentview.selectedSegmentIndex==1)
+        if(isSelf)
         {
-            if(indexPath.row==1)
+            if(msegmentview.selectedSegmentIndex==1)
             {
-                [self showUpdateView:@"gender"];
-            }
-            if(indexPath.row==2)
-            {
-                [self showUpdateView:@"email"];
-            }
-            if(indexPath.row==3)
-            {
-                [self showUpdateView:@"password"];
-            }
-            if(indexPath.row==5)
-            {
-                [self showCityPicker];
-            }
-            if(indexPath.row==6)
-            {
-                [self showUpdateView:@"college"];
-            }
-            if(indexPath.row==7)
-            {
-                [self showUpdateView:@"major"];
+                if(indexPath.row==1)
+                {
+                    [self showUpdateView:@"gender"];
+                }
+                if(indexPath.row==2)
+                {
+                    [self showUpdateView:@"email"];
+                }
+                if(indexPath.row==3)
+                {
+                    [self showUpdateView:@"password"];
+                }
+                if(indexPath.row==5)
+                {
+                    [self showCityPicker];
+                }
+                if(indexPath.row==6)
+                {
+                    [self showUpdateView:@"college"];
+                }
+                if(indexPath.row==7)
+                {
+                    [self showUpdateView:@"major"];
+                }
             }
         }
+
+    }
+    else if(msegmentview.selectedSegmentIndex==2)
+    {
+        NSLog(@"aaa");
+        
     }
 }
 
@@ -1129,4 +1138,9 @@
     [self.navigationController pushViewController:infomaton animated:YES];
     [infomaton release];
 }
+
+
+
+
+
 @end
