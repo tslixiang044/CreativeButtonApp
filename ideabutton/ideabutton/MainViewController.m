@@ -111,6 +111,10 @@
     [btnadmin addTarget:self action:@selector(btnadminAction) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:btnadmin];
     //------------------
+    
+    
+        [self loadData:1];
+        [self loadData:2];
 }
 
 -(void)dealloc
@@ -363,8 +367,19 @@
     [self loadData:1];
     [self loadData:2];
     
+    
+    
     segmentedControl.hidden=NO;
-    segmentedControl.selectedSegmentIndex=0;
+    
+    if( segmentedControl.selectedSegmentIndex==0)
+    {
+        [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
+    else  if(segmentedControl.selectedSegmentIndex==1)
+    {
+        [mscrollview setContentOffset:CGPointMake(kMainScreenBoundwidth, 0) animated:YES];
+    }
+    //segmentedControl.selectedSegmentIndex=0;
 }
 //--------------------------------------------------------------waterflow
 - (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
