@@ -209,7 +209,16 @@
     
     if (mobj.sentence.length > 0)
     {
-        lblproduct.text = mobj.sentence;
+        if ([mobj.shared boolValue])
+        {
+            NSString* textStr = [mobj.sentence substringFromIndex:mobj.sentence.length - 6];
+            NSString* subStr = [mobj.sentence stringByReplacingCharactersInRange:NSMakeRange(3,mobj.sentence.length - 3) withString:@"*********"];
+            lblproduct.text = [subStr stringByAppendingString:textStr];
+        }
+        else
+        {
+            lblproduct.text = mobj.sentence;
+        }
     }
     else if (mobj.content.length > 0)
     {
