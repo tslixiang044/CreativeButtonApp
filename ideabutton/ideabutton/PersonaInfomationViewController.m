@@ -51,7 +51,7 @@
     MyUIButton *btnwomen;
     
     
-    
+    UILabel *lblcount;
     
     
     //NSMutableArray *mArr_1;
@@ -110,6 +110,7 @@
 
 -(void)dealloc
 {
+    [lblcount release];
     [waterFlow_1 release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -230,7 +231,7 @@
                 }
                 
                 [waterFlow_1 reloadData];
-                
+                lblcount.text=[NSString stringWithFormat:@"%i条",mArr_1.count];
             }
             else
             {
@@ -377,6 +378,24 @@
                 cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
                 cell.backgroundColor=COLOR(21, 21, 23);
                 cell.selectionStyle=UITableViewCellSelectionStyleNone;
+                
+                
+                
+                lblcount=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 20)];
+                
+                lblcount.textColor=[UIColor whiteColor];
+                lblcount.font=[UIFont systemFontOfSize:12];
+                lblcount.textAlignment=NSTextAlignmentCenter;
+                [cell addSubview:lblcount];
+                //------------
+                
+                UILabel *lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(0, 20, kMainScreenBoundwidth, 20)];
+                lbldesc.text=@"分享数";
+                lbldesc.textColor=[UIColor whiteColor];
+                lbldesc.font=[UIFont systemFontOfSize:12];
+                [cell addSubview:lbldesc];
+                lbldesc.textAlignment=NSTextAlignmentCenter;
+                //----------------
                 [cell addSubview:[self getShareview]];
                 //----------------
             }
@@ -996,12 +1015,14 @@
 {
     if(waterFlow_1==nil)
     {
-        waterFlow_1 = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64-headerview_height-44+2)];
+        
+        
+        waterFlow_1 = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenBoundwidth, kMainScreenBoundheight-64-headerview_height-44-40)];
         waterFlow_1.tag=1;
         waterFlow_1.waterFlowViewDelegate = self;
         waterFlow_1.waterFlowViewDatasource = self;
         waterFlow_1.backgroundColor = [UIColor blackColor];
-        [self.view addSubview:waterFlow_1];
+        
     }
     return waterFlow_1;
     //------------------
@@ -1039,7 +1060,7 @@
 - (UIView *)waterFlowView:(WaterFlowView *)waterFlowView cellForRowAtIndexPath:(IndexPath *)indexPath
 {
     ImageViewCell *view = [[ImageViewCell alloc] initWithIdentifier:nil];
-    view.delegate=self;
+    //view.delegate=self;
     
     return view;
 }
