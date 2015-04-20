@@ -346,6 +346,11 @@
 
 -(void)btnDelAction
 {
+    [self showAlertView_desc:@"确定?\n删除后可能再也看不到了" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
+}
+
+- (void)btngo
+{
     if (self.data.ideaType.integerValue == 1)
     {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];

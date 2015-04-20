@@ -78,9 +78,7 @@
         UIColor *mcolor=COLOR(60, 60, 60);
         
         [layer setBorderColor:[mcolor CGColor]];
-        
-        
-        
+
         UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom:)];
 
         singleRecognizer.numberOfTapsRequired = 1; // 单击
@@ -89,8 +87,9 @@
          x=imgview_header.frame.origin.x+imgview_header.frame.size.width+5;
         lblnickname=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 65, 25)];
         lblnickname.backgroundColor=[UIColor clearColor];
-        lblnickname.font=[UIFont systemFontOfSize:13];
+        lblnickname.font=[UIFont systemFontOfSize:12];
         lblnickname.textColor=COLOR(98, 98, 98);
+        
         [view_bg addSubview:lblnickname];
         
         sexImageView = [[UIImageView alloc] initWithFrame:CGRectMake(lblnickname.frame.origin.x + lblnickname.frame.size.width, y + 3, 20, 20)];
@@ -174,13 +173,11 @@
 
 -(void)setbtnObjct:(WaterFlowObj*)mobj
 {
-   
-    
-    lblnickname.text=mobj.nickname ;
+    lblnickname.text=mobj.nickname;
     
     if (mobj.gender.integerValue == 0)
     {
-        [sexImageView setImage:[UIImage imageNamed:@"icon_woman"]];
+        [sexImageView setImage:[UIImage imageNamed:@"icon_women_on"]];
     }
     else
     {

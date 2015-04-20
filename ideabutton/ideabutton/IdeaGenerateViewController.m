@@ -275,7 +275,14 @@
                     
                     previousBtn.hidden = NO;
                     
-                    detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+                    //设置缩进
+                    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
+                    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+                    style.headIndent = 10;//缩进
+                    style.firstLineHeadIndent = 0;
+                    style.lineSpacing = 5;//行距
+                    [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
+                    detailLabel.attributedText = text;
                 }
                 else
                 {
@@ -295,7 +302,14 @@
                 
                 [self hasIdeaBeenUsed];
                 
-                detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+                //设置缩进
+                NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
+                NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+                style.headIndent = 10;//缩进
+                style.firstLineHeadIndent = 0;
+                style.lineSpacing = 5;//行距
+                [text addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, text.length)];
+                detailLabel.attributedText = text;
                 
                 if (index == 0)
                 {
