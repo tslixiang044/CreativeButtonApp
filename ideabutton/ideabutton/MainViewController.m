@@ -111,10 +111,9 @@
     [btnadmin addTarget:self action:@selector(btnadminAction) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:btnadmin];
     //------------------
+
     
-    
-        [self loadData:1];
-        [self loadData:2];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aaaaaaaaa:) name:@"aaaaaaaaa" object:nil];
 }
 
 -(void)dealloc
@@ -380,6 +379,16 @@
         [mscrollview setContentOffset:CGPointMake(kMainScreenBoundwidth, 0) animated:YES];
     }
     //segmentedControl.selectedSegmentIndex=0;
+    
+    
+   
+}
+-(void)aaaaaaaaa:(NSNotification*)noti
+{
+    
+    segmentedControl.selectedSegmentIndex=0;
+    [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
+    [segmentedControl showlineAnimaton];
 }
 //--------------------------------------------------------------waterflow
 - (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
@@ -534,4 +543,5 @@
         [self loadMore:2 range:page];
     }
 }
+
 @end

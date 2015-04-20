@@ -201,7 +201,10 @@
 {
     if([mtag2 isEqualToString:@"按友圈"])
     {
+        
         [self.navigationController popToRootViewControllerAnimated:YES];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"aaaaaaaaa" object:@"0"];
     }
     else if([mtag2 isEqualToString:@"我的主页"])
     {
