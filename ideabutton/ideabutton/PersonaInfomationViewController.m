@@ -192,7 +192,7 @@
         
         NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
         [mdic setValue:self.userCode forKey:@"userCode"];
-        [mdic setValue:@"1-20" forKey:@"range"];
+        [mdic setValue:@"1-100" forKey:@"range"];
         
         
         

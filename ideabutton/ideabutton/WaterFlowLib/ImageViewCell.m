@@ -7,7 +7,7 @@
 //
 
 #import "ImageViewCell.h"
-
+#import "MyUILabel.h"
 
 
 #define COLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
@@ -243,6 +243,16 @@
     lblPraise.text = [NSString stringWithFormat:@"%@次赞",mobj.numberOfPraise];
     lblForward.text = [NSString stringWithFormat:@"%@次转发",mobj.numberOfForward];
     
+    
+    
+    
+    for(UIView *v in [view_bg subviews])
+    {
+        if([v isMemberOfClass:[MyUILabel class]])
+        {
+            [v removeFromSuperview];
+        }
+    }
     if (mobj.comments.count > 0)
     {
         float y = lblPraise.frame.origin.y+lblPraise.frame.size.height;
@@ -259,7 +269,7 @@
                 y = y + 20;
             }
             
-            UILabel *lblcomment =[[UILabel alloc]initWithFrame:CGRectMake(30, y, 128, 25)];
+            MyUILabel *lblcomment =[[MyUILabel alloc]initWithFrame:CGRectMake(30, y, 128, 25)];
             lblcomment.textColor=[UIColor grayColor];
             lblcomment.font=[UIFont systemFontOfSize:11];
             lblcomment.backgroundColor=[UIColor clearColor];
