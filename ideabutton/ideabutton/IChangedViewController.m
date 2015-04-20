@@ -36,7 +36,7 @@
     self = [super init];
     if (self)
     {
-
+        
     }
     
     return self;
@@ -50,7 +50,7 @@
     
     UILabel* describeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, kMainScreenBoundwidth, 30)];
     describeLabel.textColor = [UIColor whiteColor];
-     describeLabel.textAlignment=NSTextAlignmentCenter;
+    describeLabel.textAlignment=NSTextAlignmentCenter;
     describeLabel.text = @"我改造的";
     [self.view addSubview:describeLabel];
     //----
@@ -76,17 +76,22 @@
     [mtableview setTableFooterView:v];
     //---------
     marr=[[NSMutableArray alloc]init];
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        marr = [[NSMutableArray alloc] initWithArray:[[API sharedInstance] myReformedIdeas:@{@"range":@"1-10"}]];
+        marr = [[NSMutableArray alloc] initWithArray:[[API sharedInstance] myReformedIdeas:@{@"range":@"1-100"}]];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
             [SVProgressHUD dismiss];
+            
+            [mtableview reloadData];
         });
     });
 }
@@ -94,20 +99,23 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [marr count];
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *Identifier = @"mytoolcell";
@@ -130,12 +138,13 @@
     
     return cell;
 }
+
 -(void)btnshow:(NSString *)mid row:(int)mrow
 {
     UITableViewCell *cell = [mtableview cellForRowAtIndexPath:[NSIndexPath indexPathForItem:mrow inSection:0]];
     
     CGPoint newCenter = [cell.contentView convertPoint:CGPointMake(0, 0) toView:self.view];
-
+    
     if(view_show)
     {
         if([view_show isHidden])
@@ -162,8 +171,8 @@
         [self showview:newCenter ideaId:mid];
         oldrow=mrow;
     }
-
 }
+
 -(void)showview:(CGPoint)mpoint ideaId:(NSString *)mideaId;
 {
     if(view_show==nil)
@@ -208,79 +217,74 @@
 {
     view_show.hidden=YES;
 }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self hidenshowview];
 }
+
 -(void)btngo
 {
-    
-        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(currentQueue, ^{
-            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-    
-    
-            NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-    NSString *strid=[NSString stringWithFormat:@"%@",[marr[oldrow] objectForKey:@"ideaId"]];
-            [mdic setValue:strid forKey:@"userReformId"];
-    
-    
-            [[API sharedInstance] deleteReformedIdea:mdic];
-    
-    
-            //处理完上面的后回到主线程去更新UI
-            dispatch_queue_t mainQueue = dispatch_get_main_queue();
-            dispatch_async(mainQueue, ^{
-    
-    
-                NSInteger codeValue = [[API sharedInstance].code integerValue];
-                CGRect frame = CGRectMake(90,260,150,20);
-                if(codeValue==0)
-                {
-                    [self hidenshowview];
-    
-                    [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
-                    for(int i=0;i<marr.count;i++)
-                    {
-                        NSDictionary *dic=[marr objectAtIndex:i];
-                        int mid=[[NSString stringWithFormat:@"%@",[dic objectForKey:@"ideaId"]] intValue];
-    
-                        if(mid ==[strid intValue])
-                        {
-                            [marr removeObject:dic];
-                        }
-                    }
-                    [mtableview reloadData];
-                }
-                else
-                {
-                    
-                    [self showalertview_text:@"删除失败" frame:frame autoHiden:YES];
-                }
-            });
-        });
+    dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(currentQueue, ^{
+        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
 
-    
+        NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+        NSString *strid=[NSString stringWithFormat:@"%@",[marr[oldrow] objectForKey:@"ideaId"]];
+        [mdic setValue:strid forKey:@"userReformId"];
+
+        [[API sharedInstance] deleteReformedIdea:mdic];
+
+        //处理完上面的后回到主线程去更新UI
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+
+            NSInteger codeValue = [[API sharedInstance].code integerValue];
+            CGRect frame = CGRectMake(90,260,150,20);
+            if(codeValue==0)
+            {
+                [self hidenshowview];
+                
+                [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
+                for(int i=0;i<marr.count;i++)
+                {
+                    NSDictionary *dic=[marr objectAtIndex:i];
+                    int mid=[[NSString stringWithFormat:@"%@",[dic objectForKey:@"ideaId"]] intValue];
+                    
+                    if(mid ==[strid intValue])
+                    {
+                        [marr removeObject:dic];
+                    }
+                }
+                [mtableview reloadData];
+            }
+            else
+            {
+                [self showalertview_text:@"删除失败" frame:frame autoHiden:YES];
+            }
+        });
+    });
 }
+
 -(void)btndeleteAction:(MyUIButton*)mbtn
 {
-    [self showAlertView_desc:@"确定?\n删除后可能再也看不到了" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
-
+    [self showAlertView_desc:@"想好了?\n你不要，别人有可能会霸占她" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
 }
+
 -(void)btnwybzAction:(MyUIButton*)mbtn
 {
-
     if(delegate)
     {
         NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
         [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
-        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:2];
+        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:3];
         [delegate gotoviewcontroller_changed:reform];
     }
 }
+
 -(void)btnwygzAction:(MyUIButton*)mbtn
 {
-     CGRect frame = CGRectMake(90,260,150,20);
+    CGRect frame = CGRectMake(90,260,150,20);
     [self showalertview_text:@"此功能将在不久后推出" frame:frame autoHiden:YES];
 }
 

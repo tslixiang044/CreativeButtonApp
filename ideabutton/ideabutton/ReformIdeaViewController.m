@@ -42,6 +42,12 @@
         userOccupyId = @"";
         userCollectId = @"";
         newSentence = @"";
+        
+        if ([[self.dict objectForKey:@"shared"] integerValue] == 1)
+        {
+            self.agreementChecked = YES;
+        }
+        
         if ([[self.dict objectForKey:@"occupyId"] integerValue] > 0)
         {
             userOccupyId = [self.dict objectForKey:@"occupyId"];
@@ -114,6 +120,13 @@
     sentenceTextView.layer.borderWidth = 1;
     sentenceTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     sentenceTextView.text = [self.dict objectForKey:@"sentence"];
+    if (self.agreementChecked)
+    {
+        NSString* textStr = [sentenceTextView.text substringFromIndex:sentenceTextView.text.length - 6];
+        NSString* subStr = [sentenceTextView.text stringByReplacingCharactersInRange:NSMakeRange(3,sentenceTextView.text.length - 3) withString:@"*********"];
+        sentenceTextView.text = [subStr stringByAppendingString:textStr];
+    }
+
     sentenceTextView.textColor = [UIColor whiteColor];
     sentenceTextView.font = [UIFont systemFontOfSize:15];
     sentenceTextView.returnKeyType = UIReturnKeyDone;
@@ -153,6 +166,7 @@
     if ([text isEqualToString:@"\n"])
     {
         [textView resignFirstResponder];
+        newSentence = textView.text;
         
         return NO;
     }
@@ -166,7 +180,15 @@
     UIButton *btn = (UIButton *)sender;
     if(self.agreementChecked)
     {
-        sentenceTextView.text = [self.dict objectForKey:@"sentence"];
+        if (newSentence.length > 0)
+        {
+            sentenceTextView.text = newSentence;
+        }
+        else
+        {
+            sentenceTextView.text = [self.dict objectForKey:@"sentence"];
+        }
+        
         [btn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
         self.agreementChecked = NO;
     }
@@ -183,6 +205,11 @@
 
 - (void)shareIdea
 {
+    if (newSentence.length == 0)
+    {
+        newSentence = [self.dict objectForKey:@"sentence"];
+    }
+    
     if (self.type == 1)
     {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
@@ -211,7 +238,7 @@
             });
         });
     }
-    else
+    else if(self.type == 2)
     {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -234,6 +261,32 @@
                 {
                     [SVProgressHUD showSuccessWithStatus:@"改造即为霸占,今天仅剩三条!"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
+                }
+            });
+        });
+    }
+    else
+    {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(currentQueue, ^{
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance] updateReformedIdea:@{@"userReformId":[self.dict objectForKey:@"userReformId"],
+                                               @"reformedSentence":newSentence,
+                                               @"adtype":[self.dict objectForKey:@"adType"],
+                                               @"product":@"product"}];
+            //处理完上面的后回到主线程去更新UI
+            dispatch_queue_t mainQueue = dispatch_get_main_queue();
+            dispatch_async(mainQueue, ^{
+                
+                if ([API sharedInstance].code.integerValue == 0)
+                {
+                    [SVProgressHUD showSuccessWithStatus:@"改造成功!"];
                     [self.navigationController popViewControllerAnimated:YES];
                 }
                 else
