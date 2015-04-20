@@ -568,7 +568,7 @@
     if(dic_data!=nil)
     {
         NSString *nickname= [NSString stringWithFormat:@"%@",[dic_data objectForKey:@"nickname"]];
-        NSString *strnickname=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"nickname"]];
+//        NSString *strnickname=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"nickname"]];
         lblnickname.text=nickname;
         
         NSString *str_img_url=[NSString stringWithFormat:@"%@%@",BASEURL,[dic_data objectForKey:@"avatar"]];

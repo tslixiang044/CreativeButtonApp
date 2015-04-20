@@ -476,7 +476,8 @@
     }
     else
     {
-        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]init];
+        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:[mArr_2 objectAtIndex:arrIndex]];
         [self.navigationController pushViewController:detail animated:YES];
         [detail release];
     }

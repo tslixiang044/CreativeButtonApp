@@ -137,15 +137,23 @@
     
     lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(x, y, kMainScreenBoundwidth-40, 40)];
     lbldesc.textColor=[UIColor whiteColor];
-    if (self.data.ideaType.integerValue == 1)
-    {
-        lbldesc.text= [NSString stringWithFormat:@"我宣布，我刚刚霸占了一条%@广告，谁也别想再碰：",self.data.product];
-    }
-    else if(self.data.ideaType.integerValue == 2)
-    {
-        lbldesc.text= [NSString stringWithFormat:@"我宣布，我刚刚改造了一条%@广告，谁也别想再碰：",self.data.product];
-    }
     
+    if (self.data.suggestionId)
+    {
+        lbldesc.text= @"我认真建议,请认真考虑一下:";
+    }
+    else
+    {
+        if (self.data.ideaType.integerValue == 1)
+        {
+            lbldesc.text= [NSString stringWithFormat:@"我宣布，我刚刚霸占了一条%@广告，谁也别想再碰：",self.data.product];
+        }
+        else if(self.data.ideaType.integerValue == 2)
+        {
+            lbldesc.text= [NSString stringWithFormat:@"我宣布，我刚刚改造了一条%@广告，谁也别想再碰：",self.data.product];
+        }
+    }
+
     lbldesc.font=[UIFont systemFontOfSize:15];
     lbldesc.backgroundColor=[UIColor clearColor];
     lbldesc.lineBreakMode = NSLineBreakByWordWrapping;
@@ -157,7 +165,15 @@
     
     lblproduct.textColor=[UIColor whiteColor];
     lblproduct.font=[UIFont systemFontOfSize:16];
-    lblproduct.text=self.data.sentence;
+    if (self.data.suggestionId)
+    {
+        lblproduct.text=self.data.content;
+    }
+    else
+    {
+        lblproduct.text=self.data.sentence;
+    }
+    
     lblproduct.backgroundColor=[UIColor clearColor];
     lblproduct.lineBreakMode = NSLineBreakByWordWrapping;
     lblproduct.numberOfLines=0;

@@ -19,6 +19,7 @@
     UITextView* sentenceTextView;
     NSString* userOccupyId;
     NSString* userCollectId;
+    NSString* newSentence;
 }
 
 @property(nonatomic, strong)NSDictionary* dict;
@@ -40,6 +41,7 @@
         self.type = type;
         userOccupyId = @"";
         userCollectId = @"";
+        newSentence = @"";
         if ([[self.dict objectForKey:@"occupyId"] integerValue] > 0)
         {
             userOccupyId = [self.dict objectForKey:@"occupyId"];
@@ -170,6 +172,7 @@
     }
     else
     {
+        newSentence = sentenceTextView.text;
         NSString* textStr = [sentenceTextView.text substringFromIndex:sentenceTextView.text.length - 6];
         NSString* subStr = [sentenceTextView.text stringByReplacingCharactersInRange:NSMakeRange(3,sentenceTextView.text.length - 3) withString:@"*********"];
         sentenceTextView.text = [subStr stringByAppendingString:textStr];
@@ -218,7 +221,7 @@
                                                                     @"userOccupyId":userOccupyId,
                                                                     @"userCollectId":userCollectId,
                                                                     @"algorithmRule":[self.dict objectForKey:@"algorithmRule"],
-                                                                    @"reformedSentence":sentenceTextView.text,
+                                                                    @"reformedSentence":newSentence,
                                                                     @"sentence":[self.dict objectForKey:@"sentence"],
                                                                     @"adtype":[self.dict objectForKey:@"adtype"],
                                                                     @"product":[self.dict objectForKey:@"product"],
