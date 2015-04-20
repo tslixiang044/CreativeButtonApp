@@ -269,13 +269,7 @@
 }
 -(void)btnwybzAction:(MyUIButton*)mbtn
 {
-//    if(delegate)
-//    {
-//        NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
-//        [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
-//        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:1];
-//        [delegate gotoviewcontroller_changed:reform];
-//    }
+
     if(delegate)
     {
         NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
@@ -286,13 +280,6 @@
 }
 -(void)btnwygzAction:(MyUIButton*)mbtn
 {
-//    if(delegate)
-//    {
-//        NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
-//        [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
-//        ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:2];
-//        [delegate gotoviewcontroller_changed:reform];
-//    }
      CGRect frame = CGRectMake(90,260,150,20);
     [self showalertview_text:@"此功能将在不久后推出" frame:frame autoHiden:YES];
 }

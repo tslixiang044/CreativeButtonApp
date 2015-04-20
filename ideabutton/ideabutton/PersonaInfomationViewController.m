@@ -632,7 +632,7 @@
             }
             else
             {
-                segmentarr=[[NSArray alloc]initWithObjects:@"我的分享",@"我的资料", nil];
+                segmentarr=[[NSArray alloc]initWithObjects:@"他的分享",@"ta的资料", nil];
             }
 
             msegmentview=[[MySegmentedControl alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44)];

@@ -15,7 +15,7 @@
 #import "ISuggestViewController.h"
 #import "FeedBackViewController.h"
 
-@interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate,ISavedViewControllerDelegate,IChangedViewControllerDelegate>
+@interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate,ISavedViewControllerDelegate,IChangedViewControllerDelegate,IoccupyDetailViewControllerDelegate>
 {
     UITabBarController *mTabbarController;
 }
@@ -92,7 +92,7 @@
     {
         //self.title=@"我霸占的";
         IoccupyDetailViewController *detail=[[IoccupyDetailViewController alloc]init];
-        
+        detail.delegate=self;
         [self.navigationController pushViewController:detail animated:YES];
         
         
@@ -147,5 +147,8 @@
 {
     [self.navigationController pushViewController:mviewcontroller animated:YES];
 }
-
+-(void)gotoviewcontroller_Ioccupy_detail:(UIViewController *)mviewcontroller
+{
+    [self.navigationController pushViewController:mviewcontroller animated:YES];
+}
 @end

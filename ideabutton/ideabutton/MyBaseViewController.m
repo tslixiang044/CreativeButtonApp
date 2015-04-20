@@ -115,7 +115,7 @@
 
         UILabel *lblalert=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
         lblalert.tag=100;
-        lblalert.text = mstr;
+        
         lblalert.font = [UIFont systemFontOfSize:12];
         lblalert.textColor=[UIColor whiteColor];
         lblalert.textAlignment=NSTextAlignmentCenter;
@@ -124,7 +124,9 @@
         lblalert.backgroundColor=[UIColor clearColor];
         [alertView addSubview:lblalert];
     }
-
+    UILabel *lblalert=(UILabel *)[alertView viewWithTag:100];
+    lblalert.text=mstr;
+    
     alertView.hidden=NO;
     
     if(isautohiden==true)
