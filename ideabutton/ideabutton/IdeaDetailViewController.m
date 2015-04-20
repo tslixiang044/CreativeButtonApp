@@ -216,6 +216,7 @@
     [commentImageView setImage:[UIImage imageNamed:@"icon_talk"]];
     [self.scrollView addSubview:commentImageView];
     
+    CGSize labelSize;
     if (self.data.comments.count > 0)
     {
         x = x + 30;
@@ -227,17 +228,24 @@
                 y = y + 25;
             }
             
-            UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 260, 25)];
+            NSString* comment = [NSString stringWithFormat:@"%@ : %@",[self.data.comments[i] objectForKey:@"nickname"],[self.data.comments[i] objectForKey:@"content"]];
+
+            labelSize = [comment sizeWithFont:[UIFont systemFontOfSize:15.0f]
+                               constrainedToSize:CGSizeMake(260, 300)
+                                   lineBreakMode:NSLineBreakByWordWrapping];
+            UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 260, labelSize.height + 10)];
+            commentLabel.text = comment;
             commentLabel.textColor = [UIColor grayColor];
-            commentLabel.font = [UIFont systemFontOfSize:15];
-            commentLabel.text = [NSString stringWithFormat:@"%@ : %@",[self.data.comments[i] objectForKey:@"nickname"],[self.data.comments[i] objectForKey:@"content"]];
+            commentLabel.font = [UIFont systemFontOfSize:15.0f];
+            commentLabel.numberOfLines = 0;
+            commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
             [self.scrollView addSubview:commentLabel];
         }
         origin_y = y;
     }
     
     x = 20;
-    y= y + 40;
+    y= y + labelSize.height + 25;
     
     btnzan = [UIButton buttonWithType:UIButtonTypeCustom];
     btnzan.frame = CGRectMake(x, y, 80, 30);
