@@ -85,10 +85,12 @@
         [imgview_header addGestureRecognizer:singleRecognizer];
         //--------------
          x=imgview_header.frame.origin.x+imgview_header.frame.size.width+5;
-        lblnickname=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 65, 25)];
+        lblnickname=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 65, 30)];
         lblnickname.backgroundColor=[UIColor clearColor];
         lblnickname.font=[UIFont systemFontOfSize:12];
         lblnickname.textColor=COLOR(98, 98, 98);
+        lblnickname.lineBreakMode = NSLineBreakByWordWrapping;
+        lblnickname.numberOfLines = 0;
         
         [view_bg addSubview:lblnickname];
         
