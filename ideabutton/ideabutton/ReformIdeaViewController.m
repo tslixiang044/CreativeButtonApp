@@ -43,9 +43,12 @@
         userCollectId = @"";
         newSentence = @"";
         
-        if ([[self.dict objectForKey:@"shared"] integerValue] == 0)
+        if ([self.dict objectForKey:@"shared"])
         {
-            self.agreementChecked = YES;
+            if ([[self.dict objectForKey:@"shared"] integerValue] == 0)
+            {
+                self.agreementChecked = YES;
+            }
         }
         
         if ([[self.dict objectForKey:@"occupyId"] integerValue] > 0)

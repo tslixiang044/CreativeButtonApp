@@ -171,7 +171,7 @@
     }
     else
     {
-        if ([self.data.shared boolValue])
+        if (![self.data.shared boolValue])
         {
             NSString* textStr = [self.data.sentence substringFromIndex:self.data.sentence.length - 6];
             NSString* subStr = [self.data.sentence stringByReplacingCharactersInRange:NSMakeRange(3,self.data.sentence.length - 3) withString:@"*********"];
