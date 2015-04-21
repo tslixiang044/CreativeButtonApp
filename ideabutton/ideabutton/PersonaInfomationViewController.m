@@ -466,7 +466,7 @@
             }
             else if(indexPath.row==5)
             {
-                if (![[dic_data objectForKey:@"userFullnamePrivate"] boolValue])
+                if (![[dic_data objectForKey:@"userFullnamePrivate"] boolValue] || [user.nickName isEqualToString:[dic_data objectForKey:@"nickname"]])
                 {
                     cell.lbltitle.text=@"真实姓名";
                     NSString *name=@"";;
@@ -486,7 +486,7 @@
             }
             else if(indexPath.row==6)
             {
-                if (![[dic_data objectForKey:@"collegePrivate"] boolValue])
+                if (![[dic_data objectForKey:@"collegePrivate"] boolValue] || [user.nickName isEqualToString:[dic_data objectForKey:@"nickname"]])
                 {
                     cell.lbltitle.text=@"院校";
                     cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"college"]];
@@ -510,7 +510,7 @@
             
             else if(indexPath.row==7)
             {
-                if (![[dic_data objectForKey:@"majorPrivate"] boolValue])
+                if (![[dic_data objectForKey:@"majorPrivate"] boolValue] || [user.nickName isEqualToString:[dic_data objectForKey:@"nickname"]])
                 {
                     cell.lbltitle.text=@"专业";
                     cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"major"]];
@@ -676,15 +676,20 @@
                 }
                 if(indexPath.row==6)
                 {
-                    [self showUpdateView:@"college"];
+                    if (![[dic_data objectForKey:@"collegePrivate"] boolValue])
+                    {
+                        [self showUpdateView:@"college"];
+                    }
                 }
                 if(indexPath.row==7)
                 {
-                    [self showUpdateView:@"major"];
+                    if (![[dic_data objectForKey:@"majorPrivate"] boolValue])
+                    {
+                        [self showUpdateView:@"major"];
+                    }
                 }
             }
         }
-
     }
     else if(msegmentview.selectedSegmentIndex==2)
     {
