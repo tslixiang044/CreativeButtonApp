@@ -472,28 +472,6 @@
 {
     if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
     {
-        if (index > 0)
-        {
-            index--;
-            
-            [self hasIdeaBeenUsed];
-            
-            detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
-            
-            if (index == 0)
-            {
-                previousBtn.hidden = YES;
-            }
-            
-            if (index < belongMeIdeaNum - 1)
-            {
-                nextBtn.hidden = NO;
-            }
-        }
-    }
-    
-    if(recognizer.direction == UISwipeGestureRecognizerDirectionRight)
-    {
         if (remainderNum > 0)
         {
             if (index < (belongMeIdeaNum - 1))
@@ -514,6 +492,28 @@
                 
                 nextBtn.hidden = YES;
                 doAgianBtn.hidden = NO;
+            }
+        }
+    }
+    
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        if (index > 0)
+        {
+            index--;
+            
+            [self hasIdeaBeenUsed];
+            
+            detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+            
+            if (index == 0)
+            {
+                previousBtn.hidden = YES;
+            }
+            
+            if (index < belongMeIdeaNum - 1)
+            {
+                nextBtn.hidden = NO;
             }
         }
     }
