@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseCell.h"
-
+#import "MyUIButton.h"
 
 
 
@@ -16,8 +16,12 @@
 @class MysaveCell;
 @protocol MysaveCellDelegate <NSObject>
 
--(void)btnshow:(NSString *)mid row:(int)mrow;
+-(void)btnshow:(NSString *)mid row:(int)mrow ;
 
+
+-(void)btndeleteAction:(MyUIButton *)mbtn;
+-(void)btnwybzAction:(MyUIButton *)mbtn;
+-(void)btnwygzAction:(MyUIButton *)mbtn;
 @end
 //---------------------
 
@@ -28,6 +32,10 @@
     UIImageView *imgview_left;
     UILabel *lbltitle;
     
+    MyUIButton *btndelete;
+    MyUIButton *btnwybz;
+    MyUIButton *btnwygz;
+    UIButton *btnadd;
 }
 @property(nonatomic,strong)NSString *strid;
 @property(nonatomic,assign)int mrow;
@@ -37,9 +45,10 @@
 
 @property(nonatomic,strong)UIImageView *imgview_left;
 @property(nonatomic,strong)UILabel *lbltitle;
-
-
-
+@property(nonatomic,strong)MyUIButton *btndelete;
+@property(nonatomic,strong)MyUIButton *btnwybz;
+@property(nonatomic,strong)MyUIButton *btnwygz;
+@property(nonatomic,strong)UIButton *btnadd;
 
 
 @end

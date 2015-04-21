@@ -25,6 +25,8 @@
     MyUIButton *btnwybz;
     MyUIButton *btnwygz;
     
+    
+    BOOL ishiden;
 }
 @end
 
@@ -44,6 +46,12 @@
 
 - (void)viewDidLoad
 {
+    ishiden=NO;
+    oldrow=-1;
+    
+    
+    
+    
     [super viewDidLoad];
     self.title=@"我改造的";
     //----------
@@ -113,7 +121,24 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    UITableViewCell *cell=[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    float h=cell.frame.size.height;
+    if(indexPath.row==oldrow)
+    {
+        if(ishiden)
+        {
+            return h;
+        }
+        else
+        {
+            return h+60;
+        }
+        
+    }
+    else
+    {
+        return h;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,11 +154,54 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone ;
     }
     
-    cell.lbltitle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSString* comment =[marr[indexPath.row] objectForKey:@"ideaContent"];
+    
+   CGSize  labelSize = [comment sizeWithFont:[UIFont systemFontOfSize:15.0f]
+                    constrainedToSize:CGSizeMake(260, 300)
+                        lineBreakMode:NSLineBreakByWordWrapping];
+  
+    cell.lbltitle.frame=CGRectMake(30, 5, kMainScreenBoundwidth-80 , labelSize.height + 10);
+    cell.lbltitle.text = comment;
+    cell.lbltitle.textColor = [UIColor grayColor];
+    cell.lbltitle.font = [UIFont systemFontOfSize:15.0f];
     cell.lbltitle.numberOfLines = 0;
-    cell.lbltitle.text=[marr[indexPath.row] objectForKey:@"ideaContent"];
+    cell.lbltitle.lineBreakMode = NSLineBreakByWordWrapping;
+
     cell.strid=[marr[indexPath.row] objectForKey:@"ideaId"];
     cell.mrow=indexPath.row;
+    
+    cell.frame=CGRectMake(0, 0, kMainScreenBoundwidth, labelSize.height + 20);
+    
+    float h=labelSize.height+20;
+    
+    
+    cell.btndelete.frame=CGRectMake(kMainScreenBoundwidth-80-10-80-10-80-20, h+5, 80, 40);
+    cell.btnwybz.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-20, h+5, 80, 40);
+    cell.btnwygz.frame =CGRectMake(kMainScreenBoundwidth-80-20, h+5, 80, 40);
+    if(indexPath.row==oldrow)
+    {
+        if(ishiden)
+        {
+            cell.btndelete.hidden=YES;
+            cell.btnwybz.hidden=YES;
+            cell.btnwygz.hidden=YES;
+        }
+        else
+        {
+            cell.btndelete.hidden=NO;
+            cell.btnwybz.hidden=NO;
+            cell.btnwygz.hidden=NO;
+        }
+        
+    }
+    else
+    {
+        cell.btndelete.hidden=YES;
+        cell.btnwybz.hidden=YES;
+        cell.btnwygz.hidden=YES;
+    }
+    
     
     
     return cell;
@@ -141,87 +209,100 @@
 
 -(void)btnshow:(NSString *)mid row:(int)mrow
 {
-    UITableViewCell *cell = [mtableview cellForRowAtIndexPath:[NSIndexPath indexPathForItem:mrow inSection:0]];
-    
-    CGPoint newCenter = [cell.contentView convertPoint:CGPointMake(0, 0) toView:self.view];
-    
-    if(view_show)
+    if(oldrow==mrow)
     {
-        if([view_show isHidden])
-        {
-            [self showview:newCenter ideaId:mid];
-            oldrow=mrow;
-        }
-        else
-        {
-            if(oldrow==mrow)
-            {
-                [self hidenshowview];
-            }
-            else
-            {
-                [self showview:newCenter ideaId:mid];
-                oldrow=mrow;
-            }
-            
-        }
+        
+        ishiden= ishiden==YES?NO:YES;
+        
+        
     }
     else
     {
-        [self showview:newCenter ideaId:mid];
-        oldrow=mrow;
+        ishiden=NO;
     }
+    oldrow=mrow;
+    [mtableview reloadData];
+//    UITableViewCell *cell = [mtableview cellForRowAtIndexPath:[NSIndexPath indexPathForItem:mrow inSection:0]];
+//    
+//    CGPoint newCenter = [cell.contentView convertPoint:CGPointMake(0, 0) toView:self.view];
+//    
+//    if(view_show)
+//    {
+//        if([view_show isHidden])
+//        {
+//            [self showview:newCenter ideaId:mid];
+//            oldrow=mrow;
+//        }
+//        else
+//        {
+//            if(oldrow==mrow)
+//            {
+//                [self hidenshowview];
+//            }
+//            else
+//            {
+//                [self showview:newCenter ideaId:mid];
+//                oldrow=mrow;
+//            }
+//            
+//        }
+//    }
+//    else
+//    {
+//        [self showview:newCenter ideaId:mid];
+//        oldrow=mrow;
+//    }
 }
 
--(void)showview:(CGPoint)mpoint ideaId:(NSString *)mideaId;
-{
-    if(view_show==nil)
-    {
-        view_show=[[UIView alloc]init];
-        view_show.backgroundColor=COLOR(47, 44, 43);
-        [self.view addSubview:view_show];
-        //--------------------
-        btndelete = [MyUIButton buttonWithType:UIButtonTypeCustom];
-        btndelete.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-10-80-20, 10, 80, 40);
-        [btndelete setTitle:@"我要删除" forState:UIControlStateNormal];
-        btndelete.backgroundColor=COLOR(141, 144, 143);
-        [btndelete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btndelete addTarget:self action:@selector(btndeleteAction:) forControlEvents:UIControlEventTouchUpInside];
-        [view_show addSubview:btndelete];
-        //--------------------
-        btnwybz = [MyUIButton buttonWithType:UIButtonTypeCustom];
-        btnwybz.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-20, 10, 80, 40);
-        btnwybz.backgroundColor=COLOR(141, 144, 143);
-        [btnwybz setTitle:@"再改造" forState:UIControlStateNormal];
-        [btnwybz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btnwybz addTarget:self action:@selector(btnwybzAction:) forControlEvents:UIControlEventTouchUpInside];
-        [view_show addSubview:btnwybz];
-        //--------------------
-        btnwygz = [MyUIButton buttonWithType:UIButtonTypeCustom];
-        btnwygz.frame =CGRectMake(kMainScreenBoundwidth-80-20, 10, 80, 40);
-        btnwygz.backgroundColor=COLOR(141, 144, 143);
-        [btnwygz setTitle:@"上传成品" forState:UIControlStateNormal];
-        [btnwygz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btnwygz addTarget:self action:@selector(btnwygzAction:) forControlEvents:UIControlEventTouchUpInside];
-        [view_show addSubview:btnwygz];
-        
-    }
-    btndelete.mtag=mideaId;
-    view_show.hidden=NO;
-    view_show.frame=CGRectMake(15, mpoint.y+60, kMainScreenBoundwidth, 60-2);
-    [self.view bringSubviewToFront:view_show];
-    
-}
-
--(void)hidenshowview
-{
-    view_show.hidden=YES;
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self hidenshowview];
-}
+//-(void)showview:(CGPoint)mpoint ideaId:(NSString *)mideaId;
+//{
+//    if(view_show==nil)
+//    {
+//        view_show=[[UIView alloc]init];
+//        view_show.backgroundColor=COLOR(47, 44, 43);
+//        [self.view addSubview:view_show];
+//        //--------------------
+//        btndelete = [MyUIButton buttonWithType:UIButtonTypeCustom];
+//        btndelete.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-10-80-20, 10, 80, 40);
+//        [btndelete setTitle:@"我要删除" forState:UIControlStateNormal];
+//        btndelete.backgroundColor=COLOR(141, 144, 143);
+//        [btndelete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [btndelete addTarget:self action:@selector(btndeleteAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [view_show addSubview:btndelete];
+//        //--------------------
+//        btnwybz = [MyUIButton buttonWithType:UIButtonTypeCustom];
+//        btnwybz.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-20, 10, 80, 40);
+//        btnwybz.backgroundColor=COLOR(141, 144, 143);
+//        [btnwybz setTitle:@"再改造" forState:UIControlStateNormal];
+//        [btnwybz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [btnwybz addTarget:self action:@selector(btnwybzAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [view_show addSubview:btnwybz];
+//        //--------------------
+//        btnwygz = [MyUIButton buttonWithType:UIButtonTypeCustom];
+//        btnwygz.frame =CGRectMake(kMainScreenBoundwidth-80-20, 10, 80, 40);
+//        btnwygz.backgroundColor=COLOR(141, 144, 143);
+//        [btnwygz setTitle:@"上传成品" forState:UIControlStateNormal];
+//        [btnwygz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [btnwygz addTarget:self action:@selector(btnwygzAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [view_show addSubview:btnwygz];
+//        
+//    }
+//    btndelete.mtag=mideaId;
+//    view_show.hidden=NO;
+//    view_show.frame=CGRectMake(15, mpoint.y+60, kMainScreenBoundwidth, 60-2);
+//    [self.view bringSubviewToFront:view_show];
+//    
+//}
+//
+//-(void)hidenshowview
+//{
+//    view_show.hidden=YES;
+//}
+//
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    [self hidenshowview];
+//}
 
 -(void)btngo
 {
@@ -243,7 +324,7 @@
             CGRect frame = CGRectMake(90,260,150,20);
             if(codeValue==0)
             {
-                [self hidenshowview];
+//                [self hidenshowview];
                 
                 [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
                 for(int i=0;i<marr.count;i++)
@@ -256,6 +337,9 @@
                         [marr removeObject:dic];
                     }
                 }
+                
+                oldrow=-1;
+                ishiden=YES;
                 [mtableview reloadData];
             }
             else
