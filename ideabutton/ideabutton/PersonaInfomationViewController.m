@@ -224,7 +224,10 @@
                   
                     
                     WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr_share objectAtIndex:i]];
-                   
+                    wobj.nickname=[NSString stringWithFormat:@"%@",[d objectForKey:@"nickname"]];
+                    wobj.gender=[d objectForKey:@"gender"];
+                    wobj.city=[d objectForKey:@"city"];
+                    wobj.avatar=[d objectForKey:@"avatar"];
                     
                     [mArr_1 addObject:wobj];
                  
@@ -689,8 +692,58 @@
     }
     else if(msegmentview.selectedSegmentIndex==2)
     {
-        NSLog(@"aaa");
+        NSDictionary *dic=[marr_msg objectAtIndex:indexPath.row];
+        NSString *mid=[NSString stringWithFormat:@"%@",[dic objectForKey:@"bizId"]];
+        NSString *mtype=[NSString stringWithFormat:@"%@",[dic objectForKey:@"bizType"]];
         
+        dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(currentQueue, ^{
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            
+            NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
+            [mdic setValue:self.userCode forKey:@"userCode"];
+            [mdic setValue:@"1-1" forKey:@"range"];
+            [mdic setValue:mid forKey:@"bizId"];
+            [mdic setValue:mtype forKey:@"bizType"];
+
+            NSDictionary *d=  [(NSDictionary *)[[API sharedInstance] userIdeas:mdic]retain];
+           NSMutableArray *  marr=[[d objectForKey:@"recentIdeas"] retain];
+            
+            
+
+            //处理完上面的后回到主线程去更新UI
+            dispatch_queue_t mainQueue = dispatch_get_main_queue();
+            dispatch_async(mainQueue, ^{
+                NSInteger codeValue = [[API sharedInstance].code integerValue];
+                if(codeValue==0)
+                {
+
+                    WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr objectAtIndex:0]];
+                    wobj.nickname=[NSString stringWithFormat:@"%@",[d objectForKey:@"nickname"]];
+                    wobj.gender=[d objectForKey:@"gender"];
+                    wobj.city=[d objectForKey:@"city"];
+                    wobj.avatar=[d objectForKey:@"avatar"];
+                    
+                    
+                    
+                    
+                    
+                   if(wobj)
+                   {
+                       IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:wobj];
+                       [self.navigationController pushViewController:detail animated:YES];
+                   }
+                    
+                    
+                    
+                    
+                }
+                else
+                {
+                    
+                }
+            });
+        });
     }
 }
 
