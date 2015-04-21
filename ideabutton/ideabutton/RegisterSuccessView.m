@@ -65,13 +65,15 @@
         if (self.flag == 3)
         {
             startBtn.frame = CGRectMake(130, 300, 60, 60);
+            [startBtn setImage:[UIImage imageNamed:@"all_btn_qd"] forState:UIControlStateNormal];
         }
         else
         {
             startBtn.frame = CGRectMake(200, 300, 60, 60);
+            [startBtn setImage:[UIImage imageNamed:@"register/all_btn_ljka"] forState:UIControlStateNormal];
         }
         
-        [startBtn setImage:[UIImage imageNamed:@"all_btn_qd"] forState:UIControlStateNormal];
+        
         [startBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         startBtn.tag = StartBtnTag;
         [self addSubview:startBtn];

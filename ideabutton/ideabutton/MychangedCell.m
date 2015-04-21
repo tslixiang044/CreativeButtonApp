@@ -50,7 +50,7 @@
         btnwybz = [MyUIButton buttonWithType:UIButtonTypeCustom];
         btnwybz.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-20, 10, 80, 40);
         btnwybz.backgroundColor=COLOR(141, 144, 143);
-        [btnwybz setTitle:@"我要霸占" forState:UIControlStateNormal];
+        [btnwybz setTitle:@"我要改造" forState:UIControlStateNormal];
         [btnwybz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnwybz addTarget:self action:@selector(btnwybzAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnwybz];
@@ -58,7 +58,7 @@
         btnwygz = [MyUIButton buttonWithType:UIButtonTypeCustom];
         btnwygz.frame =CGRectMake(kMainScreenBoundwidth-80-20, 10, 80, 40);
         btnwygz.backgroundColor=COLOR(141, 144, 143);
-        [btnwygz setTitle:@"我要改造" forState:UIControlStateNormal];
+        [btnwygz setTitle:@"上传成品" forState:UIControlStateNormal];
         [btnwygz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnwygz addTarget:self action:@selector(btnwygzAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnwygz];
