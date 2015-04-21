@@ -19,13 +19,7 @@
 #import "WaterFlowObj.h"
 #import "IdeaDetailViewController.h"
 
-
-
-
-
-
 #define headerview_height 150
-
 
 @interface PersonaInfomationViewController ()<UITableViewDataSource,UITableViewDelegate,MySegmentedControlDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,ImageViewCellDelegate>
 {
@@ -50,16 +44,9 @@
     MyUIButton *btnman;
     MyUIButton *btnwomen;
     
-    
     UILabel *lblcount;
     
-    
-    //NSMutableArray *mArr_1;
-  
-    
     WaterFlowView *waterFlow_1;
-
-    
 }
 @end
 
@@ -79,6 +66,7 @@
     }
     return self;
 }
+
 -(id)initwithuserCode:(NSString *)muserCode
 {
     self.userCode=muserCode;
@@ -114,10 +102,8 @@
     [waterFlow_1 release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    
+
     [super dealloc];
-    
 }
 
 -(void)LoadData
@@ -143,13 +129,7 @@
         NSDictionary * back_dic=  [[API sharedInstance] userInfo:mdic];
          if(back_dic==nil)
              return ;
-        
-        
-        
-        
-        
-        
-        
+
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -185,6 +165,7 @@
     }
     userCode=muserCode;
 }
+
 -(void)LoadShareList
 {
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -194,35 +175,25 @@
         NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
         [mdic setValue:self.userCode forKey:@"userCode"];
         [mdic setValue:@"1-100" forKey:@"range"];
-        
-        
-        
-        
+
         NSDictionary *d=  [(NSDictionary *)[[API sharedInstance] userIdeas:mdic]retain];
         marr_share=[[d objectForKey:@"recentIdeas"] retain];
-        
-        
-        //marr_share=  [(NSMutableArray *)[[API sharedInstance] friendsIdeas:mdic] retain];
-        
         
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
             
-            
             if(marr_share==nil)
+            {
                 return ;
-            
-            
+            }
+
             NSInteger codeValue = [[API sharedInstance].code integerValue];
             
             if(codeValue==0)
             {
-
                 for(int i=0;i<marr_share.count;i++)
                 {
-                  
-                    
                     WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr_share objectAtIndex:i]];
                     wobj.nickname=[NSString stringWithFormat:@"%@",[d objectForKey:@"nickname"]];
                     wobj.gender=[d objectForKey:@"gender"];
@@ -243,6 +214,7 @@
         });
     });
 }
+
 -(void)LoadMsgList
 {
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -479,21 +451,9 @@
             }
             else if(indexPath.row==4)
             {
-                cell.lbltitle.text=@"真实姓名";
-                NSString *name=@"";;
-                if([dic_data objectForKey:@"userFullname"]!=nil)
-                {
-                    name=[dic_data objectForKey:@"userFullname"];
-                }
-                cell.lbldesc.text=name;
-                
-                cell.accessoryType=UITableViewCellAccessoryNone;
-            }
-            else if(indexPath.row==5)
-            {
                 cell.lbltitle.text=@"所属地";
                 cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"city"]];
-          
+                
                 
                 if(isSelf)
                 {
@@ -501,38 +461,59 @@
                 }
                 else
                 {
+                    cell.accessoryType=UITableViewCellAccessoryNone;
+                }
+            }
+            else if(indexPath.row==5)
+            {
+                if (![[dic_data objectForKey:@"userFullnamePrivate"] boolValue])
+                {
+                    cell.lbltitle.text=@"真实姓名";
+                    NSString *name=@"";;
+                    if([dic_data objectForKey:@"userFullname"]!=nil)
+                    {
+                        name=[dic_data objectForKey:@"userFullname"];
+                    }
+                    cell.lbldesc.text=name;
+                    
                     cell.accessoryType=UITableViewCellAccessoryNone;
                 }
             }
             else if(indexPath.row==6)
             {
-                cell.lbltitle.text=@"院校";
-                cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"college"]];
-             
-                
-                if(isSelf)
+                if (![[dic_data objectForKey:@"collegePrivate"] boolValue])
                 {
-                    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-                }
-                else
-                {
-                    cell.accessoryType=UITableViewCellAccessoryNone;
+                    cell.lbltitle.text=@"院校";
+                    cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"college"]];
+                    
+                    
+                    if(isSelf)
+                    {
+                        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+                    }
+                    else
+                    {
+                        cell.accessoryType=UITableViewCellAccessoryNone;
+                    }
                 }
             }
             
             else if(indexPath.row==7)
             {
-                cell.lbltitle.text=@"专业";
-                cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"major"]];
-               
-                
-                if(isSelf)
+                if (![[dic_data objectForKey:@"majorPrivate"] boolValue])
                 {
-                    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-                }
-                else
-                {
-                    cell.accessoryType=UITableViewCellAccessoryNone;
+                    cell.lbltitle.text=@"专业";
+                    cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"major"]];
+                    
+                    
+                    if(isSelf)
+                    {
+                        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+                    }
+                    else
+                    {
+                        cell.accessoryType=UITableViewCellAccessoryNone;
+                    }
                 }
             }
             
@@ -674,7 +655,7 @@
                 {
                     [self showUpdateView:@"password"];
                 }
-                if(indexPath.row==5)
+                if(indexPath.row==4)
                 {
                     [self showCityPicker];
                 }
@@ -708,8 +689,6 @@
 
             NSDictionary *d=  [(NSDictionary *)[[API sharedInstance] userIdeas:mdic]retain];
            NSMutableArray *  marr=[[d objectForKey:@"recentIdeas"] retain];
-            
-            
 
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
@@ -717,26 +696,17 @@
                 NSInteger codeValue = [[API sharedInstance].code integerValue];
                 if(codeValue==0)
                 {
-
                     WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr objectAtIndex:0]];
                     wobj.nickname=[NSString stringWithFormat:@"%@",[d objectForKey:@"nickname"]];
                     wobj.gender=[d objectForKey:@"gender"];
                     wobj.city=[d objectForKey:@"city"];
                     wobj.avatar=[d objectForKey:@"avatar"];
-                    
-                    
-                    
-                    
-                    
+
                    if(wobj)
                    {
                        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:wobj];
                        [self.navigationController pushViewController:detail animated:YES];
                    }
-                    
-                    
-                    
-                    
                 }
                 else
                 {
@@ -777,7 +747,6 @@
     
     [mtableview reloadData];
 }
-
 
 -(void)showUpdateView:(NSString *)mkey
 {
