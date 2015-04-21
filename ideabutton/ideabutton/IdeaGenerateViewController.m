@@ -68,7 +68,7 @@
         occupyID = @"0";
         collectID = @"0";
         
-        [self getRemainderNum];
+        [self updateLog:index];
         
         self.dict = [[NSMutableDictionary alloc] init];
         [self.dict setValue:[[self.data objectAtIndex:0] objectForKey:@"adtype"] forKey:@"adtype"];
@@ -267,9 +267,9 @@
             {
                 if (index < (belongMeIdeaNum - 1))
                 {
-                    [self updateLog:index];
-                    
                     index++;
+                    
+                    [self updateLog:index];
                     
                     [self hasIdeaBeenUsed];
                     
@@ -286,11 +286,14 @@
                 }
                 else
                 {
-                    [self updateLog:index];
-                    
                     nextBtn.hidden = YES;
                     doAgianBtn.hidden = NO;
                 }
+            }
+            else
+            {
+                nextBtn.hidden = YES;
+                doAgianBtn.hidden = NO;
             }
         }
             break;
@@ -476,9 +479,9 @@
         {
             if (index < (belongMeIdeaNum - 1))
             {
-                [self updateLog:index];
-                
                 index++;
+                
+                [self updateLog:index];
                 
                 [self hasIdeaBeenUsed];
                 
