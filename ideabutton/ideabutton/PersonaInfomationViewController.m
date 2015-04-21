@@ -478,6 +478,11 @@
                     
                     cell.accessoryType=UITableViewCellAccessoryNone;
                 }
+                else
+                {
+                    cell.lbltitle.text=@"";
+                    cell.lbldesc.text=@"";
+                }
             }
             else if(indexPath.row==6)
             {
@@ -495,6 +500,11 @@
                     {
                         cell.accessoryType=UITableViewCellAccessoryNone;
                     }
+                }
+                else
+                {
+                    cell.lbltitle.text=@"";
+                    cell.lbldesc.text=@"";
                 }
             }
             
@@ -514,6 +524,11 @@
                     {
                         cell.accessoryType=UITableViewCellAccessoryNone;
                     }
+                }
+                else
+                {
+                    cell.lbltitle.text=@"";
+                    cell.lbldesc.text=@"";
                 }
             }
             
