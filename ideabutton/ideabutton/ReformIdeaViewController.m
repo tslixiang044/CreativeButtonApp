@@ -43,7 +43,7 @@
         userCollectId = @"";
         newSentence = @"";
         
-        if ([[self.dict objectForKey:@"shared"] integerValue] == 1)
+        if ([[self.dict objectForKey:@"shared"] integerValue] == 0)
         {
             self.agreementChecked = YES;
         }
@@ -220,7 +220,7 @@
                                                                     @"sentence":[self.dict objectForKey:@"sentence"],
                                                                     @"adtype":[self.dict objectForKey:@"adtype"],
                                                                     @"product":[self.dict objectForKey:@"product"],
-                                                                    @"share":@(self.agreementChecked)}];
+                                                                    @"share":@(!self.agreementChecked)}];
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
@@ -252,7 +252,7 @@
                                                                     @"sentence":[self.dict objectForKey:@"sentence"],
                                                                     @"adtype":[self.dict objectForKey:@"adtype"],
                                                                     @"product":[self.dict objectForKey:@"product"],
-                                                                    @"share":@(self.agreementChecked)}];
+                                                                    @"share":@(!self.agreementChecked)}];
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{

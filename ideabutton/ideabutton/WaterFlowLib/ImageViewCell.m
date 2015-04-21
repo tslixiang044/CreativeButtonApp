@@ -206,7 +206,7 @@
     
     if (mobj.sentence.length > 0)
     {
-        if ([mobj.shared boolValue])
+        if (![mobj.shared boolValue])
         {
             NSString* textStr = [mobj.sentence substringFromIndex:mobj.sentence.length - 6];
             NSString* subStr = [mobj.sentence stringByReplacingCharactersInRange:NSMakeRange(3,mobj.sentence.length - 3) withString:@"*********"];
