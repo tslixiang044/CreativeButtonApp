@@ -113,7 +113,8 @@
     //------------------
 
     
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aaaaaaaaa:) name:@"aaaaaaaaa" object:nil];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToFriend:) name:@"aaaaaaaaa" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToSuggestion:) name:@"backToSuggestion" object:nil];
 }
 
 -(void)dealloc
@@ -383,13 +384,20 @@
     
    
 }
--(void)aaaaaaaaa:(NSNotification*)noti
+-(void)backToFriend:(NSNotification*)noti
 {
-    
     segmentedControl.selectedSegmentIndex=0;
     [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
     [segmentedControl showlineAnimaton];
 }
+
+-(void)backToSuggestion:(NSNotification*)noti
+{
+    segmentedControl.selectedSegmentIndex=1;
+    [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
+    [segmentedControl showlineAnimaton];
+}
+
 //--------------------------------------------------------------waterflow
 - (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
     

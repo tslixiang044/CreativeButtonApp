@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
+
+
+//---------------------
+@class FeedBackViewController;
+@protocol FeedBackViewControllerDelegate <NSObject>
+-(void)gotorootviewcontroller;
+@end
+//---------------------
 @interface FeedBackViewController : MyBaseViewController<UITextViewDelegate,UIAlertViewDelegate,Globaldelegate>
 {
     UITextView *txtfeedback;
@@ -16,4 +24,5 @@
     UILabel *lbldesc;
     ASIHTTPRequest *mrequest;
 }
+@property(nonatomic,strong)id<FeedBackViewControllerDelegate>delegate;
 @end

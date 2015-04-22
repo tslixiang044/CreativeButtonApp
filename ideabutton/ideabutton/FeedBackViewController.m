@@ -14,6 +14,7 @@
 @end
 
 @implementation FeedBackViewController
+@synthesize delegate;
 
 - (void)viewDidLoad
 {
@@ -121,7 +122,17 @@
             if(codeValue==0)
             {
                 [self showalertview_text:@"提交成功" frame:frame autoHiden:YES];
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"backToSuggestion" object:nil];
+                
+                if(delegate)
+                {
+                    [delegate gotorootviewcontroller];
+                }
+                else
+                {
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }
             }
             else
             {

@@ -15,7 +15,7 @@
 #import "ISuggestViewController.h"
 #import "FeedBackViewController.h"
 
-@interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate,ISavedViewControllerDelegate,IChangedViewControllerDelegate,IoccupyDetailViewControllerDelegate>
+@interface IAlsoPressViewController ()<UITabBarControllerDelegate,IoccupyViewControllerDelegate,ISavedViewControllerDelegate,IChangedViewControllerDelegate,IoccupyDetailViewControllerDelegate,FeedBackViewControllerDelegate>
 {
     UITabBarController *mTabbarController;
 }
@@ -67,6 +67,7 @@
     change.tabBarItem.title=@"我改造的";
     //---------------------
     FeedBackViewController *back=[[FeedBackViewController alloc]init];
+    back.delegate=self;
     back.view.tag=4;
     back.tabBarItem.image=[UIImage imageNamed:@"icon_tjy"];
     back.tabBarItem.title=@"我要建议";
@@ -150,5 +151,9 @@
 -(void)gotoviewcontroller_Ioccupy_detail:(UIViewController *)mviewcontroller
 {
     [self.navigationController pushViewController:mviewcontroller animated:YES];
+}
+-(void)gotorootviewcontroller
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 @end

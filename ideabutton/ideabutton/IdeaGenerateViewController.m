@@ -395,7 +395,15 @@
         dispatch_async(mainQueue, ^{
             if (surplusNumLabel)
             {
-                surplusNumLabel.text =[NSString stringWithFormat:@"今日剩余%d个",remainderNum];
+                if (remainderNum == 0)
+                {
+                    nextBtn.hidden = YES;
+                    doAgianBtn.hidden = NO;
+                }
+                else
+                {
+                    surplusNumLabel.text =[NSString stringWithFormat:@"今日剩余%d个",remainderNum];
+                }
             }
         });
     });

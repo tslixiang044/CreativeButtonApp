@@ -355,7 +355,7 @@
 }
 -(void)btndeleteAction:(MyUIButton*)mbtn
 {
-    [self showAlertView_desc:@"确定?\n删除后可能再也看不到了" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
+    [self showAlertView_desc:@"确定?\n\n删除后可能再也看不到了" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
 
 }
 

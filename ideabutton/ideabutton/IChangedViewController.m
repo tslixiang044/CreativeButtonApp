@@ -7,13 +7,13 @@
 //
 
 #import "IChangedViewController.h"
-#import "MychangedCell.h"
+#import "MyOccupyCell.h"
 #import "SVProgressHUD.h"
 #import "API.h"
 #import "MyUIButton.h"
 #import "ReformIdeaViewController.h"
 
-@interface IChangedViewController ()<UITableViewDataSource,UITableViewDelegate,MychangedCellDelegate>
+@interface IChangedViewController ()<UITableViewDataSource,UITableViewDelegate,MyOccupyCellDelegate>
 {
     UITableView *mtableview;
     NSMutableArray *marr;
@@ -145,10 +145,10 @@
 {
     static NSString *Identifier = @"mytoolcell";
     
-    MychangedCell *cell=(MychangedCell *)[tableView dequeueReusableCellWithIdentifier:Identifier];
+    MyOccupyCell *cell=(MyOccupyCell *)[tableView dequeueReusableCellWithIdentifier:Identifier];
     if(cell==nil)
     {
-        cell=[[MychangedCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
+        cell=[[MyOccupyCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
         cell.delegate=self;
         cell.backgroundColor=COLOR(21, 21, 23);
         cell.selectionStyle=UITableViewCellSelectionStyleNone ;
@@ -352,7 +352,7 @@
 
 -(void)btndeleteAction:(MyUIButton*)mbtn
 {
-    [self showAlertView_desc:@"想好了?\n你不要，别人有可能会霸占她" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
+    [self showAlertView_desc:@"想好了?\n\n你不要，别人有可能会霸占她" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
 }
 
 -(void)btnwybzAction:(MyUIButton*)mbtn

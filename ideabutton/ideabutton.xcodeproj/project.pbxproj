@@ -96,6 +96,7 @@
 		E94E5E881AD6216F00AB0B9F /* icon_talk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94E5E861AD6216F00AB0B9F /* icon_talk@2x.png */; };
 		E94E5E9C1AD622A900AB0B9F /* btn_good@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94E5E9A1AD622A900AB0B9F /* btn_good@2x.png */; };
 		E94E5E9D1AD622A900AB0B9F /* btn_tlak@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94E5E9B1AD622A900AB0B9F /* btn_tlak@2x.png */; };
+		E95AC9B51AE73EF3007EC93F /* MyOccupyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E95AC9B41AE73EF3007EC93F /* MyOccupyCell.m */; };
 		E971B5331ABBBFB1001B3950 /* ChooseCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E971B52F1ABBBFB1001B3950 /* ChooseCityViewController.m */; };
 		E971B5341ABBBFB1001B3950 /* YMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E971B5311ABBBFB1001B3950 /* YMUtils.m */; };
 		E971B5351ABBBFB1001B3950 /* zh_CN.json in Resources */ = {isa = PBXBuildFile; fileRef = E971B5321ABBBFB1001B3950 /* zh_CN.json */; };
@@ -315,6 +316,8 @@
 		E94E5E861AD6216F00AB0B9F /* icon_talk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_talk@2x.png"; sourceTree = "<group>"; };
 		E94E5E9A1AD622A900AB0B9F /* btn_good@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_good@2x.png"; sourceTree = "<group>"; };
 		E94E5E9B1AD622A900AB0B9F /* btn_tlak@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_tlak@2x.png"; sourceTree = "<group>"; };
+		E95AC9B31AE73EF3007EC93F /* MyOccupyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOccupyCell.h; sourceTree = "<group>"; };
+		E95AC9B41AE73EF3007EC93F /* MyOccupyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOccupyCell.m; sourceTree = "<group>"; };
 		E971B52E1ABBBFB1001B3950 /* ChooseCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChooseCityViewController.h; path = CityPicker/ChooseCityViewController.h; sourceTree = "<group>"; };
 		E971B52F1ABBBFB1001B3950 /* ChooseCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChooseCityViewController.m; path = CityPicker/ChooseCityViewController.m; sourceTree = "<group>"; };
 		E971B5301ABBBFB1001B3950 /* YMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMUtils.h; path = CityPicker/YMUtils.h; sourceTree = "<group>"; };
@@ -584,6 +587,8 @@
 				89A17B0D1AD15A5E007CC8D6 /* MymsgCell.m */,
 				89A17B121AD22183007CC8D6 /* MyInformationCell.h */,
 				89A17B131AD22183007CC8D6 /* MyInformationCell.m */,
+				E95AC9B31AE73EF3007EC93F /* MyOccupyCell.h */,
+				E95AC9B41AE73EF3007EC93F /* MyOccupyCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1198,6 +1203,7 @@
 				E9DB90E81AC1569F00F66467 /* PerfectInfoViewController.m in Sources */,
 				E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */,
 				E98DA1A71AD3D3E10056DA92 /* ProductListTableViewController.m in Sources */,
+				E95AC9B51AE73EF3007EC93F /* MyOccupyCell.m in Sources */,
 				E91E77C81A84B143000174D4 /* RMMapper.m in Sources */,
 				E94107441A91B666002D78B2 /* API.m in Sources */,
 				89A85CA71ABC1DC800490339 /* MyWebviewViewController.m in Sources */,

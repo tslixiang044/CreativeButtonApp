@@ -346,7 +346,7 @@
 
 -(void)btnDelAction
 {
-    [self showAlertView_desc:@"想好了?\n你不要，别人有可能会霸占她" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
+    [self showAlertView_desc:@"想好了?\n\n你不要，别人有可能会霸占她" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
 }
 
 - (void)btngo
