@@ -7,7 +7,7 @@
 //
 
 #import "WaterFlowView.h"
-
+#import "Config.h"
 #define TABLEVIEWTAG 1000
 #define CELLSUBVIEWTAG 10000
 
@@ -100,6 +100,11 @@
 
     _waterFlowViewDelegate = waterFlowViewDelegate;
   
+}
+
+-(void)scorlltotopaaa
+{
+    [self scrollRectToVisible:CGRectMake(0, 0,kMainScreenBoundwidth, kMainScreenBoundheight-64) animated:YES];
 }
 
 - (void)reloadData{

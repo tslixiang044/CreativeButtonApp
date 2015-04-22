@@ -43,7 +43,7 @@
 - (void)reloadData;  
 - (NSInteger)waterFlowView:(WaterFlowView *)waterFlowView numberOfRowsInColumn:(NSInteger)colunm;
 -(void)relayoutDisplaySubviews;
-
+-(void)scorlltotopaaa;
 @end
 
 /*

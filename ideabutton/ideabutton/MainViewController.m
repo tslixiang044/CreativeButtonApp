@@ -284,7 +284,10 @@
             }
             
             [waterFlow_1 reloadData];
-            
+            if(!isLoadingMore_1)
+            {
+                [waterFlow_1 scorlltotopaaa];
+            }
             pageindex_1++;
         }
 
@@ -308,6 +311,11 @@
             }
             
             [waterFlow_2 reloadData];
+            
+            if(!isLoadingMore_2)
+            {
+                [waterFlow_2 scorlltotopaaa];
+            }
             
             pageindex_2++;
         }
