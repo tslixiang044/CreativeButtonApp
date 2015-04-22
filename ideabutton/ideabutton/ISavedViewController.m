@@ -120,6 +120,11 @@
 {
     UITableViewCell *cell=[self tableView:tableView cellForRowAtIndexPath:indexPath];
     float h=cell.frame.size.height;
+    if (h < 40)
+    {
+        h = h + 15;
+    }
+    
     if(indexPath.row==oldrow)
     {
         if(ishiden)

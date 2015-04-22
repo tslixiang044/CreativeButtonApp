@@ -353,9 +353,7 @@
                 cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
                 cell.backgroundColor=COLOR(21, 21, 23);
                 cell.selectionStyle=UITableViewCellSelectionStyleNone;
-                
-                
-                
+
                 lblcount=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 20)];
                 
                 lblcount.textColor=[UIColor whiteColor];
@@ -422,10 +420,7 @@
             {
                 cell.lbltitle.text=@"邮箱";
                 cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"email"]];
-                
-                
-              
-                
+
                 if(isSelf)
                 {
                     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
@@ -552,8 +547,6 @@
             NSString *str_content=[NSString stringWithFormat:@"%@",[dic objectForKey:@"message"]];
             NSString *str_time=[NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
             
-            
-            
             [cell.imgview_left setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"userheader.png"]];
             
             cell.lbltitle.text=str_content;
@@ -570,8 +563,7 @@
         headerview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, headerview_height)];
         headerview.backgroundColor=[UIColor clearColor];
         //---------------
-        imgview_header=[[UIImageView alloc]initWithFrame:CGRectMake((kMainScreenBoundwidth-60)/2, 30, 60, 60)];
-        //imgview_header.image=[UIImage imageNamed:@"btn_wyya.png"];
+        imgview_header=[[MyUIImageView alloc]initWithFrame_head:CGRectMake((kMainScreenBoundwidth-60)/2, 30, 60, 60)];
         [headerview addSubview:imgview_header];
         //---------------
         float y=imgview_header.frame.origin.y+imgview_header.frame.size.height+20;
@@ -586,16 +578,13 @@
     if(dic_data!=nil)
     {
         NSString *nickname= [NSString stringWithFormat:@"%@",[dic_data objectForKey:@"nickname"]];
-//        NSString *strnickname=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"nickname"]];
         lblnickname.text=nickname;
         
-        NSString *str_img_url=[NSString stringWithFormat:@"%@%@",BASEURL,[dic_data objectForKey:@"avatar"]];
+        NSString *str_img_url=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"avatar"]];
         
         [imgview_header setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"register_head"]];
     }
-   
-    
-    
+
     return headerview;
 }
 

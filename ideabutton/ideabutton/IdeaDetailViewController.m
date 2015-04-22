@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 #import "API.h"
 #import "PersonaInfomationViewController.h"
+#import "UIButton+WebCache.h"
 
 @interface IdeaDetailViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
@@ -73,7 +74,8 @@
     [self.view addSubview:self.scrollView];
     
     imgview_header=[[UIButton alloc]initWithFrame:CGRectMake(x, y, 60, 60)];
-    [imgview_header setImage:[UIImage imageNamed:@"register_head"] forState:UIControlStateNormal];
+    NSString* url = self.data.avatar;
+    [imgview_header setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"register_head"]];
     [imgview_header addTarget:self action:@selector(showUserInfo) forControlEvents:UIControlEventTouchUpInside];
     
     [self.scrollView addSubview:imgview_header];

@@ -236,7 +236,7 @@
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        productListArray = [[API sharedInstance]productList:@{@"productName":@"",@"pageNo":@"1",@"pageSize":@"10"}];
+        productListArray = [[API sharedInstance]productList:@{@"productName":@"",@"pageNo":@"1",@"pageSize":@"100"}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -254,7 +254,7 @@
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        appealListArray = [[API sharedInstance]appealList:@{@"productName":self.productTextField.text,@"appealName":@"",@"pageNo":@"1",@"pageSize":@"10"}];
+        appealListArray = [[API sharedInstance]appealList:@{@"productName":self.productTextField.text,@"appealName":@"",@"pageNo":@"1",@"pageSize":@"100"}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{

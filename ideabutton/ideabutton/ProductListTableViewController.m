@@ -92,11 +92,11 @@
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
         if (self.type == 1)
         {
-            self.productList = [[API sharedInstance]productList:@{@"productName":searchTextField.text,@"pageNo":@"1",@"pageSize":@"10"}];
+            self.productList = [[API sharedInstance]productList:@{@"productName":searchTextField.text,@"pageNo":@"1",@"pageSize":@"100"}];
         }
         else
         {
-            self.productList = [[API sharedInstance]appealList:@{@"productName":self.productName,@"appealName":searchTextField.text,@"pageNo":@"1",@"pageSize":@"10"}];
+            self.productList = [[API sharedInstance]appealList:@{@"productName":self.productName,@"appealName":searchTextField.text,@"pageNo":@"1",@"pageSize":@"100"}];
         }
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
