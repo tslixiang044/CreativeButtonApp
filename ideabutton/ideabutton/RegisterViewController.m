@@ -434,7 +434,7 @@
 
 -(void)registerAccount
 {
-    CGRect frame = CGRectMake(90,380,150,20);
+    CGRect frame = CGRectMake(90,380,150,50);
 
     NSDictionary *params = [self invalidateInput];
     if(!params)

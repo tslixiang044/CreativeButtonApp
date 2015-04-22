@@ -231,7 +231,7 @@
             {
                 if ([API sharedInstance].msg)
                 {
-                    [self showalertview_text:[API sharedInstance].msg frame:CGRectMake(80, 300, 170, 20) autoHiden:YES];
+                    [self showalertview_text:[API sharedInstance].msg frame:CGRectMake(80, 300, 170, 50) autoHiden:YES];
                 }
             }
         });

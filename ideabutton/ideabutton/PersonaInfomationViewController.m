@@ -102,7 +102,7 @@
     [waterFlow_1 release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
+    
     [super dealloc];
 }
 
@@ -121,25 +121,25 @@
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-
+        
         NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
-
+        
         [mdic setValue:mcode forKey:@"userCode"];
         
         NSDictionary * back_dic=  [[API sharedInstance] userInfo:mdic];
-         if(back_dic==nil)
-             return ;
-
+        if(back_dic==nil)
+            return ;
+        
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
-
+            
             NSInteger codeValue = [[back_dic objectForKey:@"code"] integerValue];
             
             if(codeValue==0)
             {
                 dic_data=[[NSDictionary alloc]initWithDictionary:[back_dic objectForKey:@"data"]];
-
+                
                 [self LoadShareList];
                 [self LoadMsgList];
                 [self initview];
@@ -175,7 +175,7 @@
         NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
         [mdic setValue:self.userCode forKey:@"userCode"];
         [mdic setValue:@"1-100" forKey:@"range"];
-
+        
         NSDictionary *d=  [(NSDictionary *)[[API sharedInstance] userIdeas:mdic]retain];
         marr_share=[[d objectForKey:@"recentIdeas"] retain];
         
@@ -187,7 +187,7 @@
             {
                 return ;
             }
-
+            
             NSInteger codeValue = [[API sharedInstance].code integerValue];
             
             if(codeValue==0)
@@ -199,9 +199,11 @@
                     wobj.gender=[d objectForKey:@"gender"];
                     wobj.city=[d objectForKey:@"city"];
                     wobj.avatar=[d objectForKey:@"avatar"];
+                    wobj.userOccupyId = [[[d objectForKey:@"recentIdeas"] objectAtIndex:i] objectForKey:@"ideaId"];
+                    wobj.userCode = [NSString stringWithFormat:@"%d",self.user.userCode];
                     
                     [mArr_1 addObject:wobj];
-                 
+                    
                 }
                 
                 [waterFlow_1 reloadData];
@@ -225,7 +227,7 @@
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
- 
+            
             NSInteger codeValue = [[API sharedInstance].code integerValue];
             
             if(codeValue==0)
@@ -353,7 +355,7 @@
                 cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier ];
                 cell.backgroundColor=COLOR(21, 21, 23);
                 cell.selectionStyle=UITableViewCellSelectionStyleNone;
-
+                
                 lblcount=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 20)];
                 
                 lblcount.textColor=[UIColor whiteColor];
@@ -373,7 +375,7 @@
                 //----------------
             }
             return cell;
-          
+            
         }
         else if(msegmentview.selectedSegmentIndex==1)
         {
@@ -406,7 +408,7 @@
                     str_sex=@"女";
                 }
                 cell.lbldesc.text=str_sex;
-
+                
                 if(isSelf)
                 {
                     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
@@ -420,7 +422,7 @@
             {
                 cell.lbltitle.text=@"邮箱";
                 cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"email"]];
-
+                
                 if(isSelf)
                 {
                     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
@@ -500,7 +502,7 @@
                         {
                             cell.accessoryType=UITableViewCellAccessoryNone;
                         }
-
+                        
                     }
                 }
                 else
@@ -594,7 +596,7 @@
         
         [imgview_header setImageWithURL:[NSURL URLWithString:str_img_url] placeholderImage:[UIImage imageNamed:@"register_head"]];
     }
-
+    
     return headerview;
 }
 
@@ -632,7 +634,7 @@
             {
                 segmentarr=[[NSArray alloc]initWithObjects:@"他的分享",@"ta的资料", nil];
             }
-
+            
             msegmentview=[[MySegmentedControl alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, 44)];
             msegmentview.items=segmentarr;
             msegmentview.delegate=self;
@@ -705,10 +707,10 @@
             [mdic setValue:@"1-1" forKey:@"range"];
             [mdic setValue:mid forKey:@"bizId"];
             [mdic setValue:mtype forKey:@"bizType"];
-
+            
             NSDictionary *d=  [(NSDictionary *)[[API sharedInstance] userIdeas:mdic]retain];
-           NSMutableArray *  marr=[[d objectForKey:@"recentIdeas"] retain];
-
+            NSMutableArray *  marr=[[d objectForKey:@"recentIdeas"] retain];
+            
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
@@ -720,12 +722,14 @@
                     wobj.gender=[d objectForKey:@"gender"];
                     wobj.city=[d objectForKey:@"city"];
                     wobj.avatar=[d objectForKey:@"avatar"];
-
-                   if(wobj)
-                   {
-                       IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:wobj];
-                       [self.navigationController pushViewController:detail animated:YES];
-                   }
+                    wobj.userOccupyId = [[[d objectForKey:@"recentIdeas"] objectAtIndex:0] objectForKey:@"ideaId"];
+                    wobj.userCode = [NSString stringWithFormat:@"%d",self.user.userCode];
+                    
+                    if(wobj)
+                    {
+                        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:wobj];
+                        [self.navigationController pushViewController:detail animated:YES];
+                    }
                 }
                 else
                 {
@@ -752,7 +756,7 @@
     [mdic setValue:[userInfo objectForKey:@"location"] forKey:@"value"];
     
     [self updateByField:mdic];
-
+    
     if (chooseCityViewController)
     {
         [chooseCityViewController.view removeFromSuperview];
@@ -819,7 +823,7 @@
         txtcontent_2.textAlignment=NSTextAlignmentLeft;
         txtcontent_2.returnKeyType=UIReturnKeyDone;
         txtcontent_2.delegate=self;
-
+        
         [txtcontent_2.layer setBorderColor: [[UIColor whiteColor] CGColor]];
         [txtcontent_2.layer setBorderWidth: 1.0];
         [txtcontent_2.layer setCornerRadius:8.0f];
@@ -1023,7 +1027,7 @@
         [mdic setValue:txtcontent.text forKey:@"value"];
     }
     
-
+    
     [self updateByField:mdic];
     
 }
@@ -1039,7 +1043,7 @@
         dispatch_async(mainQueue, ^{
             
             NSInteger codeValue = [[API sharedInstance].code integerValue];
-            CGRect frame = CGRectMake(90,260,150,20);
+            CGRect frame = CGRectMake(90,260,150,50);
             if(codeValue==0)
             {
                 [self showalertview_text:@"修改成功" frame:frame autoHiden:YES];
@@ -1053,7 +1057,7 @@
             [self btncloseAction:nil];
         });
     });
-
+    
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -1101,10 +1105,10 @@
 
 - (NSInteger)numberOfAllWaterFlowView:(WaterFlowView *)waterFlowView
 {
-   
-        return [marr_share count];
     
-   
+    return [marr_share count];
+    
+    
 }
 
 - (UIView *)waterFlowView:(WaterFlowView *)waterFlowView cellForRowAtIndexPath:(IndexPath *)indexPath
@@ -1118,60 +1122,60 @@
 -(void)waterFlowView:(WaterFlowView *)waterFlowView  relayoutCellSubview:(UIView *)view withIndexPath:(IndexPath *)indexPath
 {
     //arrIndex是某个数据在总数组中的索引
-   
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-        
-        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex] ;
-
+    
+    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+    
+    WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex] ;
     
     
-        ImageViewCell *imageViewCell = (ImageViewCell *)view;
-        imageViewCell.indexPath = indexPath;
-        imageViewCell.columnCount = waterFlowView.columnCount;
-        [imageViewCell relayoutViews];
-        [imageViewCell setbtnObjct:obj];
-        
-        [imageViewCell setcenterviewColor:arrIndex%4];
-   
-   
+    
+    ImageViewCell *imageViewCell = (ImageViewCell *)view;
+    imageViewCell.indexPath = indexPath;
+    imageViewCell.columnCount = waterFlowView.columnCount;
+    [imageViewCell relayoutViews];
+    [imageViewCell setbtnObjct:obj];
+    
+    [imageViewCell setcenterviewColor:arrIndex%4];
+    
+    
 }
 
 
 #pragma mark WaterFlowViewDelegate
 - (CGFloat)waterFlowView:(WaterFlowView *)waterFlowView heightForRowAtIndexPath:(IndexPath *)indexPath
 {
-   
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-        WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
-        
-        float width = 0.0f;
-        float height = 0.0f;
-        if (obj)
-        {
-            width =100;// [[dict objectForKey:@"width"] floatValue];
-            height = 160;//[[dict objectForKey:@"height"] floatValue];
-            if(arrIndex%2==0)
-                height=170;
-        }
-        
-        return waterFlowView.cellWidth * (height/width);
-   
-   
+    
+    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+    WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
+    
+    float width = 0.0f;
+    float height = 0.0f;
+    if (obj)
+    {
+        width =100;// [[dict objectForKey:@"width"] floatValue];
+        height = 160;//[[dict objectForKey:@"height"] floatValue];
+        if(arrIndex%2==0)
+            height=170;
+    }
+    
+    return waterFlowView.cellWidth * (height/width);
+    
+    
 }
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
-   
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:[mArr_1 objectAtIndex:arrIndex]];
-        [self.navigationController pushViewController:detail animated:YES];
+    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     
-  
+    IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:[mArr_1 objectAtIndex:arrIndex]];
+    [self.navigationController pushViewController:detail animated:YES];
 }
+
 -(void)loadmore:(WaterFlowView *)waterFlowView
 {
     
 }
+
 -(void)gotoviewcontroller_imageviewcell_usercode:(int)muserCode
 {
     NSString *ucode=[NSString stringWithFormat:@"%i",muserCode];
@@ -1179,9 +1183,5 @@
     [self.navigationController pushViewController:infomaton animated:YES];
     [infomaton release];
 }
-
-
-
-
 
 @end

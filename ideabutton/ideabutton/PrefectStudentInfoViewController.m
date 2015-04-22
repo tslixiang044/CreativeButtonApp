@@ -435,7 +435,7 @@
                 }
                 else
                 {
-                    [self showalertview_text:[API sharedInstance].msg frame:CGRectMake(90, 340, 150, 20) autoHiden:YES];
+                    [self showalertview_text:[API sharedInstance].msg frame:CGRectMake(90, 340, 150, 50) autoHiden:YES];
                 }
             });
         });
