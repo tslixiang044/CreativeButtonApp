@@ -717,19 +717,28 @@
                 NSInteger codeValue = [[API sharedInstance].code integerValue];
                 if(codeValue==0)
                 {
-                    WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr objectAtIndex:indexPath.row]];
-                    wobj.nickname=[NSString stringWithFormat:@"%@",[d objectForKey:@"nickname"]];
-                    wobj.gender=[d objectForKey:@"gender"];
-                    wobj.city=[d objectForKey:@"city"];
-                    wobj.avatar=[d objectForKey:@"avatar"];
-                    wobj.userOccupyId = [[[d objectForKey:@"recentIdeas"] objectAtIndex:indexPath.row] objectForKey:@"ideaId"];
-                    wobj.userCode = [NSString stringWithFormat:@"%d",self.user.userCode];
-                    
-                    if(wobj)
+                    for (int i = 0; i < marr.count; i++)
                     {
-                        IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:wobj];
-                        [self.navigationController pushViewController:detail animated:YES];
+                        NSString* bizID = [[marr objectAtIndex:i] objectForKey:@"ideaId"];
+                        if ([bizID isEqualToString:mid])
+                        {
+                            WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr objectAtIndex:i]];
+                            wobj.nickname=[NSString stringWithFormat:@"%@",[d objectForKey:@"nickname"]];
+                            wobj.gender=[d objectForKey:@"gender"];
+                            wobj.city=[d objectForKey:@"city"];
+                            wobj.avatar=[d objectForKey:@"avatar"];
+                            wobj.userOccupyId = bizID;
+                            wobj.userCode = [NSString stringWithFormat:@"%d",self.user.userCode];
+                            
+                            if(wobj)
+                            {
+                                IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:wobj];
+                                [self.navigationController pushViewController:detail animated:YES];
+                            }
+
+                        }
                     }
+                    
                 }
                 else
                 {
