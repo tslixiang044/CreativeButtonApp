@@ -704,7 +704,7 @@
             
             NSMutableDictionary *mdic=[[NSMutableDictionary alloc]init];
             [mdic setValue:self.userCode forKey:@"userCode"];
-            [mdic setValue:@"1-1" forKey:@"range"];
+            [mdic setValue:@"1-100" forKey:@"range"];
             [mdic setValue:mid forKey:@"bizId"];
             [mdic setValue:mtype forKey:@"bizType"];
             
@@ -717,12 +717,12 @@
                 NSInteger codeValue = [[API sharedInstance].code integerValue];
                 if(codeValue==0)
                 {
-                    WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr objectAtIndex:0]];
+                    WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[marr objectAtIndex:indexPath.row]];
                     wobj.nickname=[NSString stringWithFormat:@"%@",[d objectForKey:@"nickname"]];
                     wobj.gender=[d objectForKey:@"gender"];
                     wobj.city=[d objectForKey:@"city"];
                     wobj.avatar=[d objectForKey:@"avatar"];
-                    wobj.userOccupyId = [[[d objectForKey:@"recentIdeas"] objectAtIndex:0] objectForKey:@"ideaId"];
+                    wobj.userOccupyId = [[[d objectForKey:@"recentIdeas"] objectAtIndex:indexPath.row] objectForKey:@"ideaId"];
                     wobj.userCode = [NSString stringWithFormat:@"%d",self.user.userCode];
                     
                     if(wobj)
