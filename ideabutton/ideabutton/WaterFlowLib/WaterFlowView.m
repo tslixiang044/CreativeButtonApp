@@ -104,7 +104,7 @@
 
 -(void)scorlltotopaaa
 {
-    [self scrollRectToVisible:CGRectMake(0, 0,kMainScreenBoundwidth, kMainScreenBoundheight-64) animated:YES];
+    [self scrollRectToVisible:CGRectMake(0, 0,kMainScreenBoundwidth, kMainScreenBoundheight-114) animated:YES];
 }
 
 - (void)reloadData{

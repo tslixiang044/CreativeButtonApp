@@ -463,15 +463,18 @@
             {
                 if (![[dic_data objectForKey:@"userFullnamePrivate"] boolValue] || [user.nickName isEqualToString:[dic_data objectForKey:@"nickname"]])
                 {
-                    cell.lbltitle.text=@"真实姓名";
-                    NSString *name=@"";;
-                    if([dic_data objectForKey:@"userFullname"]!=nil)
+                    if (user.userLevel == 2)
                     {
-                        name=[dic_data objectForKey:@"userFullname"];
+                        cell.lbltitle.text=@"真实姓名";
+                        NSString *name=@"";;
+                        if([dic_data objectForKey:@"userFullname"]!=nil)
+                        {
+                            name=[dic_data objectForKey:@"userFullname"];
+                        }
+                        cell.lbldesc.text=name;
+                        
+                        cell.accessoryType=UITableViewCellAccessoryNone;
                     }
-                    cell.lbldesc.text=name;
-                    
-                    cell.accessoryType=UITableViewCellAccessoryNone;
                 }
                 else
                 {
@@ -483,17 +486,21 @@
             {
                 if (![[dic_data objectForKey:@"collegePrivate"] boolValue] || [user.nickName isEqualToString:[dic_data objectForKey:@"nickname"]])
                 {
-                    cell.lbltitle.text=@"院校";
-                    cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"college"]];
-                    
-                    
-                    if(isSelf)
+                    if (user.userLevel == 2)
                     {
-                        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-                    }
-                    else
-                    {
-                        cell.accessoryType=UITableViewCellAccessoryNone;
+                        cell.lbltitle.text=@"院校";
+                        cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"college"]];
+                        
+                        
+                        if(isSelf)
+                        {
+                            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+                        }
+                        else
+                        {
+                            cell.accessoryType=UITableViewCellAccessoryNone;
+                        }
+
                     }
                 }
                 else
@@ -507,17 +514,20 @@
             {
                 if (![[dic_data objectForKey:@"majorPrivate"] boolValue] || [user.nickName isEqualToString:[dic_data objectForKey:@"nickname"]])
                 {
-                    cell.lbltitle.text=@"专业";
-                    cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"major"]];
-                    
-                    
-                    if(isSelf)
+                    if (user.userLevel == 2)
                     {
-                        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-                    }
-                    else
-                    {
-                        cell.accessoryType=UITableViewCellAccessoryNone;
+                        cell.lbltitle.text=@"专业";
+                        cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"major"]];
+                        
+                        
+                        if(isSelf)
+                        {
+                            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+                        }
+                        else
+                        {
+                            cell.accessoryType=UITableViewCellAccessoryNone;
+                        }
                     }
                 }
                 else
@@ -665,14 +675,14 @@
                 }
                 if(indexPath.row==6)
                 {
-                    if (![[dic_data objectForKey:@"collegePrivate"] boolValue])
+                    if (![[dic_data objectForKey:@"collegePrivate"] boolValue] && [[dic_data objectForKey:@"college"] length] > 0)
                     {
                         [self showUpdateView:@"college"];
                     }
                 }
                 if(indexPath.row==7)
                 {
-                    if (![[dic_data objectForKey:@"majorPrivate"] boolValue])
+                    if (![[dic_data objectForKey:@"majorPrivate"] boolValue] && [[dic_data objectForKey:@"major"] length] > 0)
                     {
                         [self showUpdateView:@"major"];
                     }
