@@ -249,7 +249,14 @@
     }
     
     x = 20;
-    y= y + labelSize.height + 10;
+    if (self.data.comments.count > 0)
+    {
+        y= y + labelSize.height + 10;
+    }
+    else
+    {
+        y= y + labelSize.height + 25;
+    }
     
     btnzan = [UIButton buttonWithType:UIButtonTypeCustom];
     btnzan.frame = CGRectMake(x, y, 80, 30);
