@@ -470,13 +470,22 @@
                 {
                     if (user.userLevel == 2)
                     {
-                        cell.lbltitle.text=@"真实姓名";
-                        NSString *name=@"";;
-                        if([dic_data objectForKey:@"userFullname"]!=nil)
+                        if([dic_data objectForKey:@"userFullname"]!=nil  )
                         {
-                            name=[dic_data objectForKey:@"userFullname"];
+                            cell.lbltitle.text=@"真实姓名";
+                            NSString *name=@"";;
+                            if([dic_data objectForKey:@"userFullname"]!=nil)
+                            {
+                                name=[dic_data objectForKey:@"userFullname"];
+                            }
+                            cell.lbldesc.text=name;
                         }
-                        cell.lbldesc.text=name;
+                        else
+                        {
+                            cell.lbltitle.text=@"";
+                            cell.lbldesc.text=@"";
+                        }
+                        
                         
                         cell.accessoryType=UITableViewCellAccessoryNone;
                     }
@@ -493,8 +502,17 @@
                 {
                     if (user.userLevel == 2)
                     {
-                        cell.lbltitle.text=@"院校";
-                        cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"college"]];
+                        if([dic_data objectForKey:@"college"]!=nil  )
+                        {
+                            cell.lbltitle.text=@"院校";
+                            
+                            cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"college"]];
+                        }
+                        else
+                        {
+                            cell.lbltitle.text=@"";
+                            cell.lbldesc.text=@"";
+                        }
                         
                         
                         if(isSelf)
@@ -521,8 +539,18 @@
                 {
                     if (user.userLevel == 2)
                     {
-                        cell.lbltitle.text=@"专业";
-                        cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"major"]];
+                        
+                        if([dic_data objectForKey:@"major"]!=nil  )
+                        {
+                            cell.lbltitle.text=@"专业";
+                            cell.lbldesc.text=[NSString stringWithFormat:@"%@",[dic_data objectForKey:@"major"]];
+                        }
+                        else
+                        {
+                            cell.lbltitle.text=@"";
+                            cell.lbldesc.text=@"";
+                        }
+                        
                         
                         
                         if(isSelf)
