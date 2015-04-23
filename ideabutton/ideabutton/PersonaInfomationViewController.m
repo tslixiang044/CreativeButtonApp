@@ -18,6 +18,7 @@
 #import "JsonResult.h"
 #import "WaterFlowObj.h"
 #import "IdeaDetailViewController.h"
+#import "SVProgressHUD.h"
 
 #define headerview_height 150
 
@@ -80,8 +81,10 @@
     self.title=kgettitle;
     self.mtag=@"个人资料";
     [self setrightbaritem_imgname:@"icon_more_all.png" title:@""];
-    self.user = [[DB sharedInstance] queryUser];
-    NSString *ucode=[NSString stringWithFormat:@"%d",user.userCode];
+//    self.user = [[DB sharedInstance] queryUser];
+    self.user = [User GetInstance];
+    
+    NSString *ucode=[NSString stringWithFormat:@"%ld",(long)user.userCode];
     if([ucode isEqualToString:self.userCode] )
     {
         isSelf=YES;
@@ -200,14 +203,14 @@
                     wobj.city=[d objectForKey:@"city"];
                     wobj.avatar=[d objectForKey:@"avatar"];
                     wobj.userOccupyId = [[[d objectForKey:@"recentIdeas"] objectAtIndex:i] objectForKey:@"ideaId"];
-                    wobj.userCode = [NSString stringWithFormat:@"%d",self.user.userCode];
+                    wobj.userCode = [NSString stringWithFormat:@"%ld",(long)self.user.userCode];
                     
                     [mArr_1 addObject:wobj];
                     
                 }
                 
                 [waterFlow_1 reloadData];
-                lblcount.text=[NSString stringWithFormat:@"%i条",mArr_1.count];
+                lblcount.text=[NSString stringWithFormat:@"%ld条",(unsigned long)mArr_1.count];
             }
             else
             {
@@ -624,7 +627,7 @@
         NSArray *segmentarr;
         if(msegmentview==nil)
         {
-            NSString *ucode=[NSString stringWithFormat:@"%d",user.userCode];
+            NSString *ucode=[NSString stringWithFormat:@"%ld",(long)user.userCode];
             if([ucode isEqualToString:self.userCode] )
             {
                 segmentarr=[[NSArray alloc]initWithObjects:@"我的分享",@"我的资料",@"我的消息", nil];
@@ -728,7 +731,7 @@
                             wobj.city=[d objectForKey:@"city"];
                             wobj.avatar=[d objectForKey:@"avatar"];
                             wobj.userOccupyId = bizID;
-                            wobj.userCode = [NSString stringWithFormat:@"%d",self.user.userCode];
+                            wobj.userCode = [NSString stringWithFormat:@"%ld",(long)self.user.userCode];
                             
                             if(wobj)
                             {
@@ -1052,16 +1055,15 @@
         dispatch_async(mainQueue, ^{
             
             NSInteger codeValue = [[API sharedInstance].code integerValue];
-            CGRect frame = CGRectMake(90,260,150,50);
             if(codeValue==0)
             {
-                [self showalertview_text:@"修改成功" frame:frame autoHiden:YES];
+                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
                 [self LoadData];
                 
             }
             else
             {
-                [self showalertview_text:[API sharedInstance].msg frame:frame autoHiden:YES];
+                [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
             }
             [self btncloseAction:nil];
         });
@@ -1090,21 +1092,6 @@
     return waterFlow_1;
     //------------------
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //--------------------------------------------------------------waterflow
 - (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
@@ -1135,9 +1122,7 @@
     int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     
     WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex] ;
-    
-    
-    
+
     ImageViewCell *imageViewCell = (ImageViewCell *)view;
     imageViewCell.indexPath = indexPath;
     imageViewCell.columnCount = waterFlowView.columnCount;
@@ -1145,8 +1130,6 @@
     [imageViewCell setbtnObjct:obj];
     
     [imageViewCell setcenterviewColor:arrIndex%4];
-    
-    
 }
 
 
@@ -1185,9 +1168,9 @@
     
 }
 
--(void)gotoviewcontroller_imageviewcell_usercode:(int)muserCode
+-(void)gotoviewcontroller_imageviewcell_usercode:(NSInteger)muserCode
 {
-    NSString *ucode=[NSString stringWithFormat:@"%i",muserCode];
+    NSString *ucode=[NSString stringWithFormat:@"%li",(long)muserCode];
     PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:ucode ];
     [self.navigationController pushViewController:infomaton animated:YES];
     [infomaton release];

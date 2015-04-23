@@ -14,17 +14,17 @@
 #define StartBtnTag             2
 
 @implementation RegisterSuccessView
-@synthesize delegate;
+@synthesize delegate,flag;
 
 
--(id)initWithFrame:(CGRect)frame Flag:(NSInteger)flag
+-(id)initWithFrame:(CGRect)frame Flag:(NSInteger)mflag
 {
     self=[super initWithFrame:frame];
     if(self)
     {
         self.backgroundColor=[UIColor blackColor];
         
-        self.flag = flag;
+        self.flag = mflag;
         UILabel* describeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 120, 300, 100)];
         describeLabel.textAlignment = NSTextAlignmentCenter;
         if (self.flag == 1)
@@ -87,8 +87,6 @@
     {
         case PerfectInfoBtnTag:
         {
-            [self removeFromSuperview];
-            
             if (self.flag == 1)
             {
                 if (delegate)
@@ -103,15 +101,18 @@
                     [delegate uploadData];
                 }
             }
+            
+            [self removeFromSuperview];
         }
             break;
         case StartBtnTag:
         {
-            [self removeFromSuperview];
             if(delegate)
             {
                 [delegate start];
             }
+            
+            [self removeFromSuperview];
         }
             break;
             

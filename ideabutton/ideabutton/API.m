@@ -7,7 +7,8 @@
 //
 
 #import "API.h"
-#import "DB.h"
+#import "ZTModel.h"
+//#import "DB.h"
 #import "Base64.h"
 
 @interface API ()
@@ -38,11 +39,12 @@
     self=[super init];
     if(self)
     {
-//        self.baseURL = @"http://121.41.123.182:8091/web/mobile/api/";//             测试
+        self.baseURL = @"http://121.41.123.182:8091/web/mobile/api/";//             测试
         
-        self.baseURL = @"http://www.button4creative.com/web/mobile/api/";//         生产
+//        self.baseURL = @"http://www.button4creative.com/web/mobile/api/";//         生产
         
-        self.user = [[DB sharedInstance] queryUser];
+        self.user = [User GetInstance];
+//        self.user = [[DB sharedInstance] queryUser];
     }
     return self;
 }

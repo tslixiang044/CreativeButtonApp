@@ -16,7 +16,7 @@
 //---------------------
 @class ImageViewCell;
 @protocol ImageViewCellDelegate <NSObject>
--(void)gotoviewcontroller_imageviewcell_usercode:(int )muserCode;
+-(void)gotoviewcontroller_imageviewcell_usercode:(NSInteger)muserCode;
 @end
 //---------------------
 

@@ -279,7 +279,7 @@
     [btnping setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
     [self.scrollView addSubview:btnping];
     
-    User* user = [[DB sharedInstance]queryUser];
+    User* user = [User GetInstance];//[[DB sharedInstance]queryUser];
     if (user.userCode == self.data.userCode.integerValue)
     {
         x= btnping.frame.origin.x + btnping.frame.size.width + 10;

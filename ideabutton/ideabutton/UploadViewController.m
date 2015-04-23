@@ -12,8 +12,9 @@
 #import "API.h"
 #import "RegisterSuccessView.h"
 #import "IAlsoPressViewController.h"
-#import "DB.h"
-#import "APLevelDB.h"
+#import "ZTModel.h"
+//#import "DB.h"
+//#import "APLevelDB.h"
 
 @interface UploadViewController ()<UIGestureRecognizerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RegisterSuccessViewDelegate>
 {
@@ -134,13 +135,19 @@
                 [SVProgressHUD dismiss];
                 
                 [self getRemainderNum];
-                
-                User* user = [[DB sharedInstance] queryUser];
-                if (user)
+
+                User* user = [User GetInstance];
+//                User* user = [[DB sharedInstance] queryUser];
+                if (user.nickName.length > 0)
                 {
                     user.auditStatus = 1;
                     
-                    [[DB sharedInstance] saveUser:user];
+                    [User setLogin:user];
+                    NSMutableArray *dataarr=[[NSMutableArray alloc]init];
+                    [dataarr addObject:user];
+                    NSData *mdata = [NSKeyedArchiver archivedDataWithRootObject:dataarr];
+                    [[NSUserDefaults standardUserDefaults] setObject:mdata forKey:@"userDataInfo"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
                 }
                 
                 RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight) Flag:3];
@@ -233,13 +240,15 @@
 
 -(void)getRemainderNum
 {
-    User* user = [[DB sharedInstance]queryUser];
-    if (user)
+//    User* user = [[DB sharedInstance]queryUser];
+    User* user = [User GetInstance];
+    
+    if (user.userCode > 0)
     {
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode]}];
+            remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%ld",(long)user.userCode]}];
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{

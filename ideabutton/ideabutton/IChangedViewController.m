@@ -216,10 +216,7 @@
 {
     if(oldrow==mrow)
     {
-        
         ishiden= ishiden==YES?NO:YES;
-        
-        
     }
     else
     {
@@ -227,87 +224,7 @@
     }
     oldrow=mrow;
     [mtableview reloadData];
-//    UITableViewCell *cell = [mtableview cellForRowAtIndexPath:[NSIndexPath indexPathForItem:mrow inSection:0]];
-//    
-//    CGPoint newCenter = [cell.contentView convertPoint:CGPointMake(0, 0) toView:self.view];
-//    
-//    if(view_show)
-//    {
-//        if([view_show isHidden])
-//        {
-//            [self showview:newCenter ideaId:mid];
-//            oldrow=mrow;
-//        }
-//        else
-//        {
-//            if(oldrow==mrow)
-//            {
-//                [self hidenshowview];
-//            }
-//            else
-//            {
-//                [self showview:newCenter ideaId:mid];
-//                oldrow=mrow;
-//            }
-//            
-//        }
-//    }
-//    else
-//    {
-//        [self showview:newCenter ideaId:mid];
-//        oldrow=mrow;
-//    }
 }
-
-//-(void)showview:(CGPoint)mpoint ideaId:(NSString *)mideaId;
-//{
-//    if(view_show==nil)
-//    {
-//        view_show=[[UIView alloc]init];
-//        view_show.backgroundColor=COLOR(47, 44, 43);
-//        [self.view addSubview:view_show];
-//        //--------------------
-//        btndelete = [MyUIButton buttonWithType:UIButtonTypeCustom];
-//        btndelete.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-10-80-20, 10, 80, 40);
-//        [btndelete setTitle:@"我要删除" forState:UIControlStateNormal];
-//        btndelete.backgroundColor=COLOR(141, 144, 143);
-//        [btndelete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [btndelete addTarget:self action:@selector(btndeleteAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [view_show addSubview:btndelete];
-//        //--------------------
-//        btnwybz = [MyUIButton buttonWithType:UIButtonTypeCustom];
-//        btnwybz.frame =CGRectMake(kMainScreenBoundwidth-80-10-80-20, 10, 80, 40);
-//        btnwybz.backgroundColor=COLOR(141, 144, 143);
-//        [btnwybz setTitle:@"再改造" forState:UIControlStateNormal];
-//        [btnwybz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [btnwybz addTarget:self action:@selector(btnwybzAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [view_show addSubview:btnwybz];
-//        //--------------------
-//        btnwygz = [MyUIButton buttonWithType:UIButtonTypeCustom];
-//        btnwygz.frame =CGRectMake(kMainScreenBoundwidth-80-20, 10, 80, 40);
-//        btnwygz.backgroundColor=COLOR(141, 144, 143);
-//        [btnwygz setTitle:@"上传成品" forState:UIControlStateNormal];
-//        [btnwygz setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [btnwygz addTarget:self action:@selector(btnwygzAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [view_show addSubview:btnwygz];
-//        
-//    }
-//    btndelete.mtag=mideaId;
-//    view_show.hidden=NO;
-//    view_show.frame=CGRectMake(15, mpoint.y+60, kMainScreenBoundwidth, 60-2);
-//    [self.view bringSubviewToFront:view_show];
-//    
-//}
-//
-//-(void)hidenshowview
-//{
-//    view_show.hidden=YES;
-//}
-//
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    [self hidenshowview];
-//}
 
 -(void)btngo
 {
@@ -326,12 +243,11 @@
         dispatch_async(mainQueue, ^{
 
             NSInteger codeValue = [[API sharedInstance].code integerValue];
-            CGRect frame = CGRectMake(90,260,150,20);
+
             if(codeValue==0)
             {
-//                [self hidenshowview];
-                
-                [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
+                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+
                 for(int i=0;i<marr.count;i++)
                 {
                     NSDictionary *dic=[marr objectAtIndex:i];
@@ -349,7 +265,7 @@
             }
             else
             {
-                [self showalertview_text:@"删除失败" frame:frame autoHiden:YES];
+                [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
             }
         });
     });
@@ -373,8 +289,7 @@
 
 -(void)btnwygzAction:(MyUIButton*)mbtn
 {
-    CGRect frame = CGRectMake(90,260,150,20);
-    [self showalertview_text:@"此功能将在不久后推出" frame:frame autoHiden:YES];
+    [SVProgressHUD showErrorWithStatus:@"此功能将在不久后推出"];
 }
 
 

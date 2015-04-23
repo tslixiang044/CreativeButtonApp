@@ -18,6 +18,9 @@
 //---------------------
 
 @interface RegisterSuccessView : UIView
+{
+    NSInteger flag;
+}
 
 @property(nonatomic,assign)NSInteger flag;
 @property(assign)id<RegisterSuccessViewDelegate>delegate;

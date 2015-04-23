@@ -10,6 +10,38 @@
 
 @implementation User
 
+static User *mlogin;
+
++(void)setLogin:(User *)obj
+{
+    if(mlogin)
+    {
+        mlogin = nil;
+    }
+    
+    mlogin= obj;
+}
+
++(User*) GetInstance
+{
+    @synchronized(self)
+    {
+        if (!mlogin)
+        {
+            mlogin = [[User alloc] init];
+        }
+        return mlogin;
+    }
+}
+
++(void)ClearLoginResult
+{
+    mlogin = nil;
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userDataInfo"];
+    [[NSUserDefaults standardUserDefaults] synchronize]; 
+}
+
 - (User*)initWithDict:(NSDictionary*)uDict{
     if(!uDict){
         return nil;
@@ -30,6 +62,7 @@
         self.auditStatus = [[uDict objectForKey:@"auditStatus"] integerValue];
         self.avatar = [uDict objectForKey:@"avatar"];
         self.email = [uDict objectForKey:@"email"];
+        self.password = [uDict objectForKey:@"password"];
     }
     return self;
 }
@@ -54,5 +87,49 @@
         return userDict;
     }
 }
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.collegePrivate] forKey:@"collegePrivate"];
+    [aCoder encodeObject:self.nickName forKey:@"nickname"];
+    [aCoder encodeObject:self.token forKey:@"token"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.userStatus] forKey:@"userStatus"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.gender] forKey:@"gender"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.majorPrivate] forKey:@"majorPrivate"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.userCode] forKey:@"userCode"];
+    
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.userFullnamePrivate] forKey:@"userFullnamePrivate"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.userLevel] forKey:@"userLevel"];
+    
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.auditStatus] forKey:@"auditStatus"];
+    
+    [aCoder encodeObject:self.avatar forKey:@"avatar"];
+    [aCoder encodeObject:self.email forKey:@"email"];
+    [aCoder encodeObject:self.password forKey:@"password"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self)
+    {
+        self.collegePrivate = [[aDecoder decodeObjectForKey:@"collegePrivate"] integerValue];
+        self.nickName = [aDecoder decodeObjectForKey:@"nickname"];
+        self.token = [aDecoder decodeObjectForKey:@"token"];
+        self.userStatus = [[aDecoder decodeObjectForKey:@"userStatus"] integerValue];
+        self.gender = [[aDecoder decodeObjectForKey:@"gender"] integerValue];
+        self.majorPrivate = [[aDecoder decodeObjectForKey:@"majorPrivate"] integerValue];
+        self.userCode = [[aDecoder decodeObjectForKey:@"userCode"] integerValue];
+        self.userFullnamePrivate = [[aDecoder decodeObjectForKey:@"userFullnamePrivate"] integerValue];
+        self.userLevel = [[aDecoder decodeObjectForKey:@"userLevel"] integerValue];
+        self.auditStatus = [[aDecoder decodeObjectForKey:@"auditStatus"] integerValue];
+        self.avatar = [aDecoder decodeObjectForKey:@"avatar"];
+        self.email = [aDecoder decodeObjectForKey:@"email"];
+        self.password = [aDecoder decodeObjectForKey:@"password"];
+        
+    }
+    return self;
+}
+
 
 @end

@@ -9,6 +9,8 @@
 #import "FeedBackViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "API.h"
+#import "SVProgressHUD.h"
+
 @interface FeedBackViewController ()<UITextFieldDelegate>
 
 @end
@@ -96,11 +98,9 @@
     NSString *str_content=[txtfeedback.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *str_phone=[txtcontact.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    CGRect frame = CGRectMake(90,260,150,20);
-    
     if([str_content isEqualToString:@""])
     {
-        [self showalertview_text:@"建议不能为空" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"建议不能为空"];
         return;
     }
     
@@ -121,7 +121,7 @@
             NSInteger codeValue = [[back_dic objectForKey:@"code"] integerValue];
             if(codeValue==0)
             {
-                [self showalertview_text:@"提交成功" frame:frame autoHiden:YES];
+                [SVProgressHUD showSuccessWithStatus:@"提交成功"];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"backToSuggestion" object:nil];
                 
@@ -136,7 +136,7 @@
             }
             else
             {
-                [self showalertview_text:@"提交失败" frame:frame autoHiden:YES];
+                [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
             }
         });
     });

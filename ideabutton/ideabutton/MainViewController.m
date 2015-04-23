@@ -17,7 +17,7 @@
 #import "ReformIdeaViewController.h"
 #import "API.h"
 #import "IdeaDetailViewController.h"
-#import "DB.h"
+//#import "DB.h"
 #import "PersonaInfomationViewController.h"
 #import "MySegmentedControl.h"
 #import "UploadViewController.h"
@@ -128,10 +128,10 @@
 {
     if([btntype isEqualToString:@"admin"])
     {
-        User *user = [[DB sharedInstance] queryUser];
-        if(user)
+        User *user = [User GetInstance];//[[DB sharedInstance] queryUser];
+        if(user.userCode != 0)
         {
-            NSString *usercode=[NSString stringWithFormat:@"%d",user.userCode];
+            NSString *usercode=[NSString stringWithFormat:@"%ld",(long)user.userCode];
             PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
             [self.navigationController pushViewController:infomaton animated:YES];
             [infomaton release];
@@ -149,10 +149,11 @@
 {
     self.btntype=@"admin";
     
-    User* user = [[DB sharedInstance]queryUser];
-    if (user)
+    User *user = [User GetInstance];
+//    User* user = [[DB sharedInstance]queryUser];
+    if (user.userCode != 0)
     {
-        NSString *usercode=[NSString stringWithFormat:@"%d",user.userCode];
+        NSString *usercode=[NSString stringWithFormat:@"%ld",(long)user.userCode];
         PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
         
         [self.navigationController pushViewController:infomaton animated:YES];
@@ -169,15 +170,16 @@
 
 -(void)btnwyyaAction
 {
-    User* user = [[DB sharedInstance]  queryUser];
+//    User* user = [[DB sharedInstance]  queryUser];
+    User *user = [User GetInstance];
     
-    remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode]}];
+    remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%ld",(long)user.userCode]}];
     
     self.btntype=@"wyya";
     
     segmentedControl.hidden=YES;
     
-    if (user)
+    if (user.userCode != 0)
     {
         if (remainderNum == 0)
         {
@@ -523,9 +525,9 @@
     }
 }
 
--(void)gotoviewcontroller_imageviewcell_usercode:(int)muserCode
+-(void)gotoviewcontroller_imageviewcell_usercode:(NSInteger)muserCode
 {
-    NSString *ucode=[NSString stringWithFormat:@"%i",muserCode];
+    NSString *ucode=[NSString stringWithFormat:@"%li",(long)muserCode];
     PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:ucode ];
     [self.navigationController pushViewController:infomaton animated:YES];
     [infomaton release];

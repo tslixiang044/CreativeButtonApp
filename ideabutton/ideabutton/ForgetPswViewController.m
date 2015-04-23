@@ -7,6 +7,7 @@
 //
 
 #import "ForgetPswViewController.h"
+#import "SVProgressHUD.h"
 
 @implementation ForgetPswViewController
 {
@@ -92,23 +93,21 @@
 
 -(void)resetPassword
 {
-    CGRect frame = CGRectMake(90,380,150,20);
-    
     if(getIdentifyCodeTextField.text.length == 0)
     {
-        [self showalertview_text:@"请输入验证码" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
         return;
     }
     
     if(newPSWTextField.text.length == 0)
     {
-        [self showalertview_text:@"请输入新的密码" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"请输入新的密码"];
         return;
     }
     
     if(![confirmPSWTextField.text isEqualToString:newPSWTextField.text])
     {
-        [self showalertview_text:@"两次输入的密码不一致" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"两次输入的密码不一致"];
         return;
     }
 }

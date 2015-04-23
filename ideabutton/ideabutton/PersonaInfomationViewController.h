@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MyBaseViewController.h"
-#import "DB.h"
+//#import "DB.h"
+#import "ZTModel.h"
 #import "ChooseCityViewController.h"
 
 @interface PersonaInfomationViewController : MyBaseViewController

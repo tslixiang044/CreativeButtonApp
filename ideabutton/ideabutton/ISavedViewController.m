@@ -327,12 +327,10 @@
             dispatch_async(mainQueue, ^{
     
                 NSInteger codeValue = [[API sharedInstance].code integerValue];
-                CGRect frame = CGRectMake(90,260,150,50);
                 if(codeValue==0)
                 {
-                    //[self hidenshowview];
-    
-                    [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
+                    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+
                     for(int i=0;i<marr.count;i++)
                     {
                         NSDictionary *dic=[marr objectAtIndex:i];
@@ -352,7 +350,7 @@
                 }
                 else
                 {
-                    [self showalertview_text:[API sharedInstance].msg frame:frame autoHiden:YES];
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
                 }
             });
         });

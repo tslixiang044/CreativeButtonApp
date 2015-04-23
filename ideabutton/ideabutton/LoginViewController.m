@@ -10,8 +10,9 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "SVProgressHUD.h"
 #import "API.h"
-#import "DB.h"
-#import "APLevelDB.h"
+//#import "DB.h"
+//#import "APLevelDB.h"
+#import "ZTModel.h"
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "IAlsoPressViewController.h"
@@ -60,7 +61,10 @@
     {
         if (self.agreementChecked)
         {
-            [[DB sharedInstance] saveArbitraryObject:self.loginPSWTextField.text withKey:@"LoginPSW"];
+//            [[DB sharedInstance] saveArbitraryObject:self.loginPSWTextField.text withKey:@"LoginPSW"];
+            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+            [defaults setObject:self.loginPSWTextField.text forKey:@"LoginPSW"];
+            [defaults synchronize];
         }
     }
     [textField resignFirstResponder];
@@ -70,12 +74,14 @@
 
 - (void)checkboxClicked:(id)sender
 {
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
     UIButton *btn = (UIButton *)sender;
     if(self.agreementChecked)
     {
         [btn setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
         self.agreementChecked = NO;
-        [[DB sharedInstance] saveArbitraryObject:nil withKey:@"LoginPSW"];
+//        [[DB sharedInstance] saveArbitraryObject:nil withKey:@"LoginPSW"];
+        [defaults setObject:nil forKey:@"LoginPSW"];
     }
     else
     {
@@ -83,9 +89,11 @@
         self.agreementChecked = YES;
         if (self.loginNameTextField.text.length > 0)
         {
-            [[DB sharedInstance] saveArbitraryObject:self.loginPSWTextField.text withKey:@"LoginPSW"];
+//            [[DB sharedInstance] saveArbitraryObject:self.loginPSWTextField.text withKey:@"LoginPSW"];
+            [defaults setObject:self.loginPSWTextField.text forKey:@"LoginPSW"];
         }
     }
+    [defaults synchronize];
 }
 
 -(void)createInputView
@@ -108,10 +116,15 @@
     _loginNameTextField.placeholder = @"昵称/邮箱/手机";
     _loginNameTextField.keyboardType = UIKeyboardTypeDefault;
     
-    DB *db = [DB sharedInstance];
-    NSData *lastLoginNameData = [db.indb dataForKey:@"ctrler:login:last-login-name"];
-    NSString *lastLoginName = [[NSString alloc]initWithData:lastLoginNameData encoding:NSUTF8StringEncoding];
-    _loginNameTextField.text = lastLoginName;
+//    DB *db = [DB sharedInstance];
+//    NSData *lastLoginNameData = [db.indb dataForKey:@"ctrler:login:last-login-name"];
+//    NSString *lastLoginName = [[NSString alloc]initWithData:lastLoginNameData encoding:NSUTF8StringEncoding];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastLoginName = [NSString stringWithFormat:@"%@",[defaults objectForKey:@"ctrler:login:last-login-name"]];
+    if (![lastLoginName isEqualToString:@"(null)"])
+    {
+        _loginNameTextField.text = lastLoginName;
+    }
     
     [loginNameView addSubview:_loginNameTextField];
     
@@ -128,8 +141,8 @@
     _loginPSWTextField.delegate = self;
     _loginPSWTextField.secureTextEntry = YES;
     _loginPSWTextField.tag = 1111;
-    NSString* password = [[DB sharedInstance] queryArbitraryObjectWithKey:@"LoginPSW"];
-    if (password)
+    NSString* password = [NSString stringWithFormat:@"%@",[defaults objectForKey:@"LoginPSW"]];//[[DB sharedInstance] queryArbitraryObjectWithKey:@"LoginPSW"];
+    if (![password isEqualToString:@"(null)"])
     {
         self.loginPSWTextField.text = password;
         self.agreementChecked = YES;
@@ -192,13 +205,13 @@
     
     if (self.loginNameTextField.text.length == 0)
     {
-        [self showalertview_text:@"账号不能为空" frame:CGRectMake(80, 300, 150, 20) autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"账号不能为空"];
         return;
     }
     
     if (self.loginPSWTextField.text.length == 0)
     {
-        [self showalertview_text:@"密码不能为空" frame:CGRectMake(80, 300, 150, 20) autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
         return;
     }
     [SVProgressHUD showWithStatus:@"登录中" maskType:SVProgressHUDMaskTypeClear];
@@ -212,13 +225,16 @@
         User *user = [[API sharedInstance] queryUser:@{@"Auth":credential}];
         if(user)
         {
-            DB *db = [DB sharedInstance];
-
-            [db saveUser:user];
-            [db.indb setData:[loginName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
+            [User setLogin:user];
+            NSMutableArray *dataarr=[[NSMutableArray alloc]init];
+            [dataarr addObject:user];
+            NSData *mdata = [NSKeyedArchiver archivedDataWithRootObject:dataarr];
+            [[NSUserDefaults standardUserDefaults] setObject:mdata forKey:@"userDataInfo"];
+            [[NSUserDefaults standardUserDefaults] setObject:loginName forKey:@"ctrler:login:last-login-name"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
-        
-        user = [[DB sharedInstance]queryUser];
+
+        user = [User GetInstance];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -231,7 +247,7 @@
             {
                 if ([API sharedInstance].msg)
                 {
-                    [self showalertview_text:[API sharedInstance].msg frame:CGRectMake(80, 300, 170, 50) autoHiden:YES];
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
                 }
             }
         });

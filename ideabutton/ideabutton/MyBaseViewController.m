@@ -12,7 +12,7 @@
 #import "SettingViewController.h"
 #import "FeedBackViewController.h"
 #import "PerfectInfoViewController.h"
-#import "DB.h"
+//#import "DB.h"
 #import "UploadViewController.h"
 
 
@@ -113,7 +113,7 @@
         [self.view addSubview:alertView];
         [self.view bringSubviewToFront:alertView];
 
-        UILabel *lblalert=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
+        UILabel *lblalert=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 50)];
         lblalert.tag=100;
         
         lblalert.font = [UIFont systemFontOfSize:12];
@@ -212,10 +212,11 @@
     {
         if(![self.mtag isEqualToString:@"个人资料"])
         {
-            User *user = [[DB sharedInstance] queryUser];
-            if(user)
+//            User *user = [[DB sharedInstance] queryUser];
+            User *user = [User GetInstance];
+            if(user.userCode > 0)
             {
-                NSString *usercode=[NSString stringWithFormat:@"%d",user.userCode];
+                NSString *usercode=[NSString stringWithFormat:@"%ld",(long)user.userCode];
                 PersonaInfomationViewController *infomaton=[[PersonaInfomationViewController alloc]initwithuserCode:usercode ];
                 [self.navigationController pushViewController:infomaton animated:YES];
             }
@@ -336,7 +337,9 @@
     {
         case 889:
         {
-            User* user = [[DB sharedInstance]queryUser];
+//            User* user = [[DB sharedInstance]queryUser];
+            User *user = [User GetInstance];
+            
             if (actionType == 3)
             {
                 if (user.userLevel == 1)

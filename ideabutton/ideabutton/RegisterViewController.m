@@ -10,8 +10,9 @@
 #import "RegisterViewController.h"
 #import "SVProgressHUD.h"
 #import "API.h"
-#import "DB.h"
-#import "APLevelDB.h"
+//#import "DB.h"
+//#import "APLevelDB.h"
+#import "ZTModel.h"
 #import "ChooseCityViewController.h"
 #import "RegisterSuccessView.h"
 #import "Config.h"
@@ -196,7 +197,7 @@
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
         if(![emailTest evaluateWithObject:self.registerMailTextField.text])
         {
-            [self showalertview_text:@"请输入正确的邮箱地址" frame:CGRectMake(90,380,150,20) autoHiden:YES];
+            [SVProgressHUD showErrorWithStatus:@"请输入正确的邮箱地址"];
             [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
             return YES;
         }
@@ -460,10 +461,14 @@
             
             if(user)
             {
-                DB *db = [DB sharedInstance];
-                [db saveUser:user];
-                [db.indb setData:[user.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
-                
+                [User setLogin:user];
+                NSMutableArray *dataarr=[[NSMutableArray alloc]init];
+                [dataarr addObject:user];
+                NSData *mdata = [NSKeyedArchiver archivedDataWithRootObject:dataarr];
+                [[NSUserDefaults standardUserDefaults] setObject:mdata forKey:@"userDataInfo"];
+                [[NSUserDefaults standardUserDefaults] setObject:user.nickName forKey:@"ctrler:login:last-login-name"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+
                 RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight) Flag:1];
                 suc.delegate=self;
 
@@ -473,7 +478,7 @@
             {
                 if ([API sharedInstance].msg)
                 {
-                    [self showalertview_text:[API sharedInstance].msg frame:frame autoHiden:YES];
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
                 }
             }
         });
@@ -498,41 +503,39 @@
 
 -(NSDictionary*)invalidateInput
 {
-    CGRect frame = CGRectMake(90,380,150,20);
+    if (self.mimg==nil)
+    {
+        [SVProgressHUD showErrorWithStatus:@"请上传头像"];
+        return nil;
+    }
     
     if (gender == -1)
     {
-        [self showalertview_text:@"请选择性别" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"请选择性别"];
         return nil;
     }
     
     if (self.nickNameTextField.text.length == 0)
     {
-        [self showalertview_text:@"昵称不能为空" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"昵称不能为空"];
         return nil;
     }
     
     if (self.registerMailTextField.text.length == 0)
     {
-        [self showalertview_text:@"邮箱不能为空" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"邮箱不能为空"];
         return nil;
     }
     
     if (self.registerPSWTextField.text.length == 0)
     {
-        [self showalertview_text:@"密码不能为空" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
         return nil;
     }
     
     if (![self.registerPSWTextField.text isEqualToString:self.confirmPSWTextField.text])
     {
-        [self showalertview_text:@"两次输入的密码不一致" frame:frame autoHiden:YES];
-        return nil;
-    }
-    
-    if (self.mimg==nil)
-    {
-        [self showalertview_text:@"请上传头像" frame:frame autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"两次输入的密码不一致"];
         return nil;
     }
 

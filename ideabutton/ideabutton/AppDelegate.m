@@ -10,6 +10,8 @@
 #import "MainViewController.h"
 #import "MyNavigationViewController.h"
 #import "MyUIButton.h"
+#import "ZTModel.h"
+
 @interface AppDelegate ()<UIScrollViewDelegate>
 {
     UIScrollView *mscrollview;
@@ -37,13 +39,29 @@
         [self gomain];
     }
     
-   
+    [self getLoginResult];
     
     //-----------------------------------
     
     
     return YES;
 }
+
+-(void)getLoginResult
+{
+    NSData *mdata = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDataInfo"];
+    if(mdata)
+    {
+        NSArray *dataarr = [NSKeyedUnarchiver unarchiveObjectWithData: mdata];
+        
+        if(dataarr.count>0)
+        {
+            [User setLogin:[dataarr objectAtIndex:0]];
+//            NSLog(@"%@",[User GetInstance].nickName);
+        }
+    }
+}
+
 -(void)initStartPage
 {
     mscrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight)];
@@ -75,8 +93,6 @@
             [img1 addSubview:btnOk];
            
         }
-        
-        
     }
     mscrollview.contentSize=CGSizeMake(kMainScreenBoundwidth*3, kMainScreenBoundheight);
 }

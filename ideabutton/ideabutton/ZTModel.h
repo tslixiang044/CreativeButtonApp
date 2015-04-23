@@ -17,7 +17,7 @@
 
 @end
 
-@interface User : NSObject <ZTModel>
+@interface User : NSObject <ZTModel,NSCoding>
 
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *nickName;
@@ -31,5 +31,10 @@
 @property (nonatomic, assign) NSInteger auditStatus;
 @property (nonatomic, strong) NSString *avatar;
 @property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *password;
+
++(User*) GetInstance;
++(void)setLogin:(User *)obj;
++(void)ClearLoginResult;
 
 @end

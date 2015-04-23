@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "IdeaGenerateViewController.h"
 #import "InteractivePageViewController.h"
-#import "DB.h"
+//#import "DB.h"
 #import "API.h"
 #import "SVProgressHUD.h"
 #import "ReformIdeaViewController.h"
+#import "ZTModel.h"
 
 #define HoggedBtnTag    0
 #define CollectionBtnTag    1
@@ -143,7 +144,7 @@
     detailLabel.textColor = [UIColor whiteColor];
     
     //设置缩进
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %d. %@",titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %ld. %@",(long)titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.headIndent = 10;//缩进
     style.firstLineHeadIndent = 0;
@@ -157,7 +158,7 @@
     surplusNumLabel.layer.borderColor = COLOR(142, 142, 142).CGColor;
     surplusNumLabel.layer.borderWidth = 1.0;
     surplusNumLabel.backgroundColor = COLOR(47, 44, 43);
-    surplusNumLabel.text =[NSString stringWithFormat:@"今日剩余%d个",remainderNum];
+    surplusNumLabel.text =[NSString stringWithFormat:@"今日剩余%ld个",(long)remainderNum];
     surplusNumLabel.textColor = [UIColor whiteColor];
     surplusNumLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:surplusNumLabel];
@@ -276,7 +277,7 @@
                     previousBtn.hidden = NO;
                     
                     //设置缩进
-                    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
+                    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %ld. %@",(long)++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
                     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
                     style.headIndent = 10;//缩进
                     style.firstLineHeadIndent = 0;
@@ -306,7 +307,7 @@
                 [self hasIdeaBeenUsed];
                 
                 //设置缩进
-                NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
+                NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  %ld. %@",(long)--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]]];
                 NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
                 style.headIndent = 10;//缩进
                 style.firstLineHeadIndent = 0;
@@ -328,7 +329,8 @@
             break;
         case DoAgianBtnTag:
         {
-            User* user = [[DB sharedInstance]queryUser];
+//            User* user = [[DB sharedInstance]queryUser];
+            User* user = [User GetInstance];
             if (remainderNum == 0)
             {
                 if (user.userLevel == 1)
@@ -385,11 +387,12 @@
 
 -(void)getRemainderNum
 {
-    User* user = [[DB sharedInstance]queryUser];
+//    User* user = [[DB sharedInstance]queryUser];
+    User* user = [User GetInstance];
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
         //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%d",user.userCode]}];
+        remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%ld",(long)user.userCode]}];
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -402,7 +405,7 @@
                 }
                 else
                 {
-                    surplusNumLabel.text =[NSString stringWithFormat:@"今日剩余%d个",remainderNum];
+                    surplusNumLabel.text =[NSString stringWithFormat:@"今日剩余%ld个",(long)remainderNum];
                 }
             }
         });
@@ -495,7 +498,7 @@
                 
                 previousBtn.hidden = NO;
                 
-                detailLabel.text = [NSString stringWithFormat:@"  %d. %@",++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+                detailLabel.text = [NSString stringWithFormat:@"  %ld. %@",(long)++titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
             }
             else
             {
@@ -515,7 +518,7 @@
             
             [self hasIdeaBeenUsed];
             
-            detailLabel.text = [NSString stringWithFormat:@"  %d. %@",--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
+            detailLabel.text = [NSString stringWithFormat:@"  %ld. %@",(long)--titleNumber,[[self.data objectAtIndex:index] objectForKey:@"sentence"]];
             
             if (index == 0)
             {

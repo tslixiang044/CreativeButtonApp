@@ -318,14 +318,10 @@
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
             
-            
             NSInteger codeValue = [[API sharedInstance].code integerValue];
-            CGRect frame = CGRectMake(90,260,150,20);
             if(codeValue==0)
             {
-                //[self hidenshowview];
-                
-                [self showalertview_text:@"删除成功" frame:frame autoHiden:YES];
+                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
                 for(int i=0;i<marr.count;i++)
                 {
                     NSDictionary *dic=[marr objectAtIndex:i];
@@ -344,18 +340,12 @@
             }
             else
             {
-                
-                [self showalertview_text:@"删除失败" frame:frame autoHiden:YES];
+                [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
             }
         });
-    });
-    
-    
+    }); 
 }
-//-(void)hidenshowview
-//{
-//    view_show.hidden=YES;
-//}
+
 -(void)btndeleteAction:(MyUIButton*)mbtn
 {
     [self showAlertView_desc:@"想好了?\n\n你不要，别人有可能会霸占她" btnImage:@"bg_btn_qd_on" btnHideFlag:NO ActionType:4];
@@ -374,14 +364,9 @@
 }
 -(void)btnwygzAction:(MyUIButton*)mbtn
 {
-    CGRect frame = CGRectMake(90,260,150,20);
-    [self showalertview_text:@"此功能将在不久后推出" frame:frame autoHiden:YES];
+   [SVProgressHUD showErrorWithStatus:@"此功能将在不久后推出"];
 }
 
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    [self hidenshowview];
-//}
 
 @end
 

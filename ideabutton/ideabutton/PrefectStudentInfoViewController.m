@@ -8,12 +8,13 @@
 
 #import "PrefectStudentInfoViewController.h"
 #import "API.h"
-#import "DB.h"
+//#import "DB.h"
 #import "RegisterSuccessView.h"
-#import "APLevelDB.h"
+//#import "APLevelDB.h"
 #import "IAlsoPressViewController.h"
 #import "SVProgressHUD.h"
 #import "UploadViewController.h"
+#import "ZTModel.h"
 
 #define CheckButtonTag1     0
 #define CheckButtonTag2     1
@@ -374,33 +375,32 @@
 
 - (void)updateUserInfo
 {
-    CGRect rect = CGRectMake(90, 340, 150, 20);
     if (realNameTextField.text.length == 0)
     {
-        [self showalertview_text:@"真实姓名不能为空" frame:rect autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"真实姓名不能为空"];
         return;
     }
     
     if (schoolNameTextField.text.length == 0)
     {
-        [self showalertview_text:@"院校简称不能为空" frame:rect autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"院校简称不能为空"];
         return;
     }
     
     if (majorTextField.text.length == 0)
     {
-        [self showalertview_text:@"专业不能为空" frame:rect autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"专业不能为空"];
         return;
     }
     
     if (graduationTextField.text.length == 0)
     {
-        [self showalertview_text:@"毕业时间不能为空" frame:rect autoHiden:YES];
+        [SVProgressHUD showErrorWithStatus:@"毕业时间不能为空"];
         return;
     }
     
-    User* user = [[DB sharedInstance]queryUser];
-    if (user)
+    User *user = [User GetInstance];
+    if (user.userCode > 0)
     {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -424,10 +424,15 @@
                 if ([API sharedInstance].code.integerValue == 0)
                 {
                     [SVProgressHUD dismiss];
-                    DB *db = [DB sharedInstance];
-                    [db saveUser:newUserInfo];
-                    [db.indb setData:[newUserInfo.nickName dataUsingEncoding:NSUTF8StringEncoding] forKey:@"ctrler:login:last-login-name"];
                     
+                    [User setLogin:newUserInfo];
+                    NSMutableArray *dataarr=[[NSMutableArray alloc]init];
+                    [dataarr addObject:newUserInfo];
+                    NSData *mdata = [NSKeyedArchiver archivedDataWithRootObject:dataarr];
+                    [[NSUserDefaults standardUserDefaults] setObject:mdata forKey:@"userDataInfo"];
+                    [[NSUserDefaults standardUserDefaults] setObject:user.nickName forKey:@"ctrler:login:last-login-name"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+
                     RegisterSuccessView *suc=[[RegisterSuccessView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight) Flag:2];
                     suc.delegate = self;
                     
@@ -435,7 +440,7 @@
                 }
                 else
                 {
-                    [self showalertview_text:[API sharedInstance].msg frame:CGRectMake(90, 340, 150, 50) autoHiden:YES];
+                    [SVProgressHUD showErrorWithStatus:[API sharedInstance].msg];
                 }
             });
         });

@@ -38,7 +38,7 @@
 @property(nonatomic,assign)id<MyOccupyCellDelegate>delegate;
 
 @property(nonatomic,strong)NSString *strid;
-@property(nonatomic,assign)int mrow;
+@property(nonatomic,assign)NSInteger mrow;
 
 
 @property(nonatomic,strong)UIImageView *imgview_left;

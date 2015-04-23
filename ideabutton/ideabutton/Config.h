@@ -5,8 +5,8 @@
 
 
 //-------------------------
-//#define BASEURL @"http://121.41.123.182:8091/web"   //测试
-#define BASEURL @"http://www.button4creative.com/web"   //发布
+#define BASEURL @"http://121.41.123.182:8091/web"   //测试
+//#define BASEURL @"http://www.button4creative.com/web"   //发布
 
 #define kgetLoginUrl [BASEURL stringByAppendingString:@"/web/mobile/api/login"]//登录
 #define kgetWaterFlowUrl [BASEURL stringByAppendingString:@"/mobile/api/idea/friendsIdeas?range="]//瀑布流 测试url

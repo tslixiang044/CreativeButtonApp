@@ -9,9 +9,9 @@
 #import "MyToolView.h"
 #import "MytoolviewCell.h"
 #import "Config.h"
-#import "DB.h"
+//#import "DB.h"
 #import "API.h"
-
+#import "ZTModel.h"
 
 
 
@@ -24,7 +24,9 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        user = [[DB sharedInstance]queryUser];
+//        user = [[DB sharedInstance]queryUser];
+        user = [User GetInstance];
+        
         btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
         btnClose.frame = CGRectMake(0, 0, kMainScreenBoundwidth, kMainScreenBoundheight-64);
         btnClose.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0];
@@ -37,7 +39,7 @@
         //---------
         mtableview=[[UITableView alloc]initWithFrame:CGRectMake(kMainScreenBoundwidth-200-10, 20, 200, kMainScreenBoundheight-64-80) style:UITableViewStylePlain];
         
-        if(user)
+        if(user.nickName.length > 0)
         {
             mtableview.frame=CGRectMake(kMainScreenBoundwidth-200-10, 20, 200, 300-2);
         }
@@ -69,7 +71,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (user)
+    if (user.nickName.length > 0)
     {
         return 5;
     }
@@ -178,8 +180,12 @@
 {
     if(buttonIndex==1)
     {
-        [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name",@"LoginPSW"]];
+//        [[DB sharedInstance]clearCacheExcept:@[@"ctrler:login:last-login-name",@"LoginPSW"]];
+        
+        [User ClearLoginResult];
+        
         [API sharedInstance].user = nil;
+        
         if(delegate)
         {
             [delegate LoginOUt];
