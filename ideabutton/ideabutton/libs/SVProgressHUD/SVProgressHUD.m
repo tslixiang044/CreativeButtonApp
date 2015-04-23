@@ -885,7 +885,7 @@ static const CGFloat SVProgressHUDRingThickness = 6;
 #endif
     
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    return self.tintColor;
+    return [UIColor whiteColor];
 #else
     return [UIColor whiteColor];
 #endif
@@ -939,7 +939,7 @@ static const CGFloat SVProgressHUDRingThickness = 6;
 #endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    return [UIImage imageNamed:@"SVProgressHUD.bundle/success-black"];
+    return [UIImage imageNamed:@"SVProgressHUD.bundle/success.png"];
 #else
     return [UIImage imageNamed:@"SVProgressHUD.bundle/success.png"];
 #endif

@@ -378,6 +378,7 @@
     {
         NSMutableDictionary* mdict = [[NSMutableDictionary alloc] initWithDictionary:[marr objectAtIndex:oldrow]];
         [mdict setObject:[mdict objectForKey:@"ideaContent"] forKey:@"sentence"];
+        [mdict setValue:@(3) forKey:@"type"];
         ReformIdeaViewController *reform=[[ReformIdeaViewController alloc]initWithDict:mdict Type:2];
         [delegate gotoviewcontroller_save:reform];
     }

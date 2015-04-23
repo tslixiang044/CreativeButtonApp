@@ -227,7 +227,7 @@
         {
             if (i > 0)
             {
-                y = y + 25;
+                y = y + 5;
             }
             
             NSString* comment = [NSString stringWithFormat:@"%@ : %@",[self.data.comments[i] objectForKey:@"nickname"],[self.data.comments[i] objectForKey:@"content"]];
@@ -242,12 +242,14 @@
             commentLabel.numberOfLines = 0;
             commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
             [self.scrollView addSubview:commentLabel];
+            
+            y = y + labelSize.height;
         }
         origin_y = y;
     }
     
     x = 20;
-    y= y + labelSize.height + 25;
+    y= y + labelSize.height + 10;
     
     btnzan = [UIButton buttonWithType:UIButtonTypeCustom];
     btnzan.frame = CGRectMake(x, y, 80, 30);
@@ -330,7 +332,7 @@
             if ([API sharedInstance].code.integerValue == 0)
             {
                 [SVProgressHUD showSuccessWithStatus:@"点赞成功"];
-                goodLabel.text = [NSString stringWithFormat:@"%d次赞",[self.data.numberOfPraise integerValue]  + 1];
+                goodLabel.text = [NSString stringWithFormat:@"%ld次赞",[self.data.numberOfPraise integerValue]  + 1];
             }
             else
             {
