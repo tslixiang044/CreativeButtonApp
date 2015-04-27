@@ -218,12 +218,26 @@
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
-            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            NSString* occupyID = [[API sharedInstance] occupyIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],
-                                                                    @"sentence":[self.dict objectForKey:@"sentence"],
-                                                                    @"adtype":[self.dict objectForKey:@"adtype"],
-                                                                    @"product":[self.dict objectForKey:@"product"],
-                                                                    @"share":@(!self.agreementChecked)}];
+            NSString* occupyID = nil;
+            if ([[self.dict objectForKey:@"adtype"] length] > 0)
+            {
+                //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+                occupyID = [[API sharedInstance] occupyIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],
+                                                                        @"sentence":[self.dict objectForKey:@"sentence"],
+                                                                        @"adtype":[self.dict objectForKey:@"adtype"],
+                                                                        @"product":[self.dict objectForKey:@"product"],
+                                                                        @"share":@(!self.agreementChecked)}];
+            }
+            else if([[self.dict objectForKey:@"adType"] length] > 0)
+            {
+                //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+                occupyID = [[API sharedInstance] occupyIdea:@{@"algorithmRule":[self.dict objectForKey:@"algorithmRule"],
+                                                                        @"sentence":[self.dict objectForKey:@"sentence"],
+                                                                        @"adtype":[self.dict objectForKey:@"adType"],
+                                                                        @"product":[self.dict objectForKey:@"product"],
+                                                                        @"share":@(!self.agreementChecked)}];
+            }
+           
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
