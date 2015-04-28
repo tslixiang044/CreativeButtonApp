@@ -13,6 +13,7 @@
 #import "API.h"
 #import "PersonaInfomationViewController.h"
 #import "UIButton+WebCache.h"
+#import "ZTModel.h"
 
 @interface IdeaDetailViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
@@ -327,6 +328,7 @@
 
 -(void)btnzanAction:(UIButton*)mbtn
 {
+    User* user = [User GetInstance];
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
@@ -334,13 +336,13 @@
         if (self.data.userOccupyId)
         {
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            [[API sharedInstance] clickPraise:@{@"bizId":self.data.userOccupyId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode}];
+            [[API sharedInstance] clickPraise:@{@"bizId":self.data.userOccupyId,@"bizType":self.data.ideaType,@"bizOwner":[NSString stringWithFormat:@"%ld",(long)user.userCode]}];
         }
         
         if (self.data.suggestionId)
         {
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            [[API sharedInstance] clickPraise:@{@"bizId":self.data.suggestionId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode}];
+            [[API sharedInstance] clickPraise:@{@"bizId":self.data.suggestionId,@"bizType":self.data.ideaType,@"bizOwner":[NSString stringWithFormat:@"%ld",(long)user.userCode]}];
         }
         
         //处理完上面的后回到主线程去更新UI
@@ -495,6 +497,7 @@
 
 -(void)btncommitAction
 {
+    User* user = [User GetInstance];
     if (txtcontent.text.length == 0)
     {
         [SVProgressHUD showErrorWithStatus:@"建议不能为空"];
@@ -510,13 +513,13 @@
         if (self.data.userOccupyId)
         {
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            [[API sharedInstance] saveComment:@{@"bizId":self.data.userOccupyId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode,@"content":txtcontent.text}];
+            [[API sharedInstance] saveComment:@{@"bizId":self.data.userOccupyId,@"bizType":self.data.ideaType,@"bizOwner":[NSString stringWithFormat:@"%ld",(long)user.userCode],@"content":txtcontent.text}];
         }
         
         if (self.data.suggestionId)
         {
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            [[API sharedInstance] saveComment:@{@"bizId":self.data.suggestionId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode,@"content":txtcontent.text}];
+            [[API sharedInstance] saveComment:@{@"bizId":self.data.suggestionId,@"bizType":self.data.ideaType,@"bizOwner":[NSString stringWithFormat:@"%ld",(long)user.userCode],@"content":txtcontent.text}];
         }
         
         //处理完上面的后回到主线程去更新UI
