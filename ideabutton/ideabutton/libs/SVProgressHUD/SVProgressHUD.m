@@ -957,7 +957,7 @@ static const CGFloat SVProgressHUDRingThickness = 6;
 #endif
     
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    return [UIImage imageNamed:@"SVProgressHUD.bundle/error-black"];
+    return [UIImage imageNamed:@"SVProgressHUD.bundle/error.png"];
 #else
     return [UIImage imageNamed:@"SVProgressHUD.bundle/error.png"];
 #endif

@@ -231,7 +231,7 @@
             }
             
             NSString* comment = [NSString stringWithFormat:@"%@ : %@",[self.data.comments[i] objectForKey:@"nickname"],[self.data.comments[i] objectForKey:@"content"]];
-
+            
             labelSize = [comment sizeWithFont:[UIFont systemFontOfSize:15.0f]
                                constrainedToSize:CGSizeMake(260, 300)
                                    lineBreakMode:NSLineBreakByWordWrapping];
@@ -245,21 +245,21 @@
             
             y = y + labelSize.height;
         }
-        origin_y = y;
+        origin_y = y - 20;
     }
     
     x = 20;
     if (self.data.comments.count > 0)
     {
-        y= y + labelSize.height + 10;
+        y= y + 10;
     }
     else
     {
-        y= y + labelSize.height + 25;
+        y= y + 25;
     }
     
     btnzan = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnzan.frame = CGRectMake(x, y, 80, 30);
+    btnzan.frame = CGRectMake(x, y + 10, 80, 30);
     [btnzan setImage:[UIImage imageNamed:@"btn_good"] forState:UIControlStateNormal];
     [btnzan setTitle:@"赞" forState:UIControlStateNormal];
     [btnzan setTitleColor:COLOR(47, 44, 43) forState:UIControlStateNormal];
@@ -275,7 +275,7 @@
     x= btnzan.frame.origin.x + btnzan.frame.size.width + 10;
     
     btnping = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnping.frame = CGRectMake(x, y, 80, 30);
+    btnping.frame = CGRectMake(x, y + 10, 80, 30);
     [btnping setImage:[UIImage imageNamed:@"btn_tlak"] forState:UIControlStateNormal];
     [btnping setTitle:@"评" forState:UIControlStateNormal];
     [btnping setTitleColor:COLOR(47, 44, 43) forState:UIControlStateNormal];
@@ -289,12 +289,12 @@
     [self.scrollView addSubview:btnping];
     
     User* user = [User GetInstance];//[[DB sharedInstance]queryUser];
-    if (user.userCode == self.data.userCode.integerValue)
+    if (user.userCode == self.data.userCode.integerValue && self.data.userOccupyId)
     {
         x= btnping.frame.origin.x + btnping.frame.size.width + 10;
         
         btndel = [UIButton buttonWithType:UIButtonTypeCustom];
-        btndel.frame = CGRectMake(x, y, 80, 30);
+        btndel.frame = CGRectMake(x, y + 10, 80, 30);
         [btndel setImage:[UIImage imageNamed:@"btn_delet"] forState:UIControlStateNormal];
         [btndel setTitle:@"删" forState:UIControlStateNormal];
         [btndel setTitleColor:COLOR(47, 44, 43) forState:UIControlStateNormal];
@@ -330,8 +330,19 @@
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
-        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        [[API sharedInstance] clickPraise:@{@"bizId":self.data.userOccupyId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode}];
+        
+        if (self.data.userOccupyId)
+        {
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance] clickPraise:@{@"bizId":self.data.userOccupyId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode}];
+        }
+        
+        if (self.data.suggestionId)
+        {
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance] clickPraise:@{@"bizId":self.data.suggestionId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode}];
+        }
+        
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -368,7 +379,11 @@
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            [[API sharedInstance]deleteOccupiedIdea:@{@"userOccupyId":self.data.userOccupyId}];
+            if (self.data.userOccupyId)
+            {
+                [[API sharedInstance]deleteOccupiedIdea:@{@"userOccupyId":self.data.userOccupyId}];
+            }
+            
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
@@ -390,7 +405,11 @@
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-            [[API sharedInstance] deleteReformedIdea:@{@"userReformId":self.data.userOccupyId}];
+            if (self.data.userOccupyId)
+            {
+                [[API sharedInstance] deleteReformedIdea:@{@"userReformId":self.data.userOccupyId}];
+            }
+            
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
@@ -445,6 +464,7 @@
         txtcontent.textAlignment=NSTextAlignmentLeft;
         txtcontent.delegate = self;
         txtcontent.returnKeyType = UIReturnKeyDone;
+        txtcontent.clearsOnBeginEditing = YES;
         
         [txtcontent.layer setBorderColor: [[UIColor whiteColor] CGColor]];
         [txtcontent.layer setBorderWidth: 1.0];
@@ -475,13 +495,30 @@
 
 -(void)btncommitAction
 {
+    if (txtcontent.text.length == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"建议不能为空"];
+        return;
+    }
+    
     [self btncloseAction];
     
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(currentQueue, ^{
-        //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
-        [[API sharedInstance] saveComment:@{@"bizId":self.data.userOccupyId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode,@"content":txtcontent.text}];
+        
+        if (self.data.userOccupyId)
+        {
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance] saveComment:@{@"bizId":self.data.userOccupyId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode,@"content":txtcontent.text}];
+        }
+        
+        if (self.data.suggestionId)
+        {
+            //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
+            [[API sharedInstance] saveComment:@{@"bizId":self.data.suggestionId,@"bizType":self.data.ideaType,@"bizOwner":self.data.userCode,@"content":txtcontent.text}];
+        }
+        
         //处理完上面的后回到主线程去更新UI
         dispatch_queue_t mainQueue = dispatch_get_main_queue();
         dispatch_async(mainQueue, ^{
@@ -498,13 +535,29 @@
                 {
                     origin_y = goodLabel.frame.origin.y + goodLabel.frame.size.height + 10;
                 }
-                UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, origin_y, 260, 25)];
-                commentLabel.textColor = COLOR(98, 98, 98);
-                commentLabel.text = [NSString stringWithFormat:@"%@ : %@",self.data.nickname,txtcontent.text];
+                
+                NSString* comment = [NSString stringWithFormat:@"%@ : %@",self.data.nickname,txtcontent.text];
+                
+                CGSize labelSize = [comment sizeWithFont:[UIFont systemFontOfSize:15.0f]
+                                constrainedToSize:CGSizeMake(260, 300)
+                                    lineBreakMode:NSLineBreakByWordWrapping];
+                UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, origin_y, 260, labelSize.height + 10)];
+                commentLabel.text = comment;
+                commentLabel.textColor = [UIColor grayColor];
+                commentLabel.font = [UIFont systemFontOfSize:15.0f];
+                commentLabel.numberOfLines = 0;
+                commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
                 [self.scrollView addSubview:commentLabel];
                 
                 btnzan.frame = CGRectMake(20, origin_y + 40, 80, 30);
                 btnping.frame = CGRectMake(110, origin_y + 40, 80, 30);
+                
+                if (btndel)
+                {
+                    btndel.frame = CGRectMake(200, origin_y + 40, 80, 30);
+                }
+                
+                [self.scrollView setContentSize:CGSizeMake(kMainScreenBoundwidth, origin_y + btnping.frame.size.height + 120)];
             }
             else
             {
@@ -517,6 +570,7 @@
 -(void)btncloseAction
 {
     view_update.hidden=YES;
+    view_update = nil;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

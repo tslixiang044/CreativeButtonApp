@@ -309,6 +309,7 @@
             for(int i=0;i<typeArr.count;i++)
             {
                 WaterFlowObj *wobj=[[WaterFlowObj alloc]initwithDic:[typeArr objectAtIndex:i]];
+                wobj.ideaType = @"3";
                 [mArr_2 addObject:wobj];
             }
             
