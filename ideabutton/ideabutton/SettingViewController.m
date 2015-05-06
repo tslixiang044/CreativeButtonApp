@@ -51,7 +51,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,19 +77,19 @@
         cell.lbldesc.text=@"新消息通知";
         
     }
+//    else if(indexPath.row==1)
+//    {
+//        cell.lbldesc.text=@"检测自动更新(仅WIFI环境使用)";
+//        cell.mswitch.on = NO;
+//        
+//    }
     else if(indexPath.row==1)
-    {
-        cell.lbldesc.text=@"检测自动更新(仅WIFI环境使用)";
-        cell.mswitch.on = NO;
-        
-    }
-    else if(indexPath.row==2)
     {
         cell.lbldesc.text=@"清除缓存";
         cell.mswitch.hidden=YES;
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }
-    else if(indexPath.row==3)
+    else if(indexPath.row==2)
     {
         cell.lbldesc.text=@"关于";
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
@@ -102,13 +102,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row==2)
+    if(indexPath.row==1)
     {
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定清除缓存吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
         [alert show];
         
     }
-    else if(indexPath.row==3)
+    else if(indexPath.row==2)
     {
         MyWebviewViewController *web=[[MyWebviewViewController alloc]init];
         web.title=kgettitle;
