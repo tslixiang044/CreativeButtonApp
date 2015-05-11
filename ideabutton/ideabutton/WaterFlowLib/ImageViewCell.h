@@ -37,6 +37,7 @@
     
     UILabel *lblPraise;
     UILabel *lblForward;
+    UILabel *lblComments;
     UIImageView* sexImageView;
 }
 

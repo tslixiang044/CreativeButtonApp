@@ -986,7 +986,7 @@
 				TargetAttributes = {
 					E91E774C1A849E87000174D4 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 59S8QBMSR8;
+						DevelopmentTeam = 69386JC5KD;
 					};
 				};
 			};
@@ -1207,7 +1207,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "4d50e06b-5162-4e2e-83d2-c70e3017706e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "armv7 arm64";
@@ -1246,7 +1246,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "4d50e06b-5162-4e2e-83d2-c70e3017706e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALIDATE_PRODUCT = YES;
@@ -1259,7 +1259,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: liang ren (C97KGTXX8Q)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: liang ren (C97KGTXX8Q)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1274,7 +1274,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d50e06b-5162-4e2e-83d2-c70e3017706e";
+				PROVISIONING_PROFILE = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
@@ -1284,7 +1284,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: YUNCONG YIN (59S8QBMSR8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YUNCONG YIN (59S8QBMSR8)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1299,7 +1299,7 @@
 					"$(PROJECT_DIR)/ideabutton/libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d50e06b-5162-4e2e-83d2-c70e3017706e";
+				PROVISIONING_PROFILE = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Release;

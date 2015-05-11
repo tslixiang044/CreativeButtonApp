@@ -138,7 +138,7 @@
         lbltime.backgroundColor=[UIColor clearColor];
         [view_center addSubview:lbltime];
         //---------------
-        x=10;
+        x=5;
         y=view_center.frame.origin.y+view_center.frame.size.height+5;
         //--
         UIImageView *imgview_praise=[[UIImageView alloc]initWithFrame:CGRectMake(x, y+5, 15, 15)];
@@ -146,17 +146,23 @@
         [view_bg addSubview:imgview_praise];
         //--
         
-        lblPraise=[[UILabel alloc]initWithFrame:CGRectMake(x+20, y, 128, 25)];
+        lblPraise=[[UILabel alloc]initWithFrame:CGRectMake(x+20, y, 40, 25)];
         lblPraise.textColor=[UIColor grayColor];
         lblPraise.font=[UIFont systemFontOfSize:12];
         lblPraise.backgroundColor=[UIColor clearColor];
         [view_bg addSubview:lblPraise];
         //--
-        y=lblPraise.frame.origin.y+lblPraise.frame.size.height;
+        x=lblPraise.frame.origin.x+lblPraise.frame.size.width;
 
-        UIImageView *imgview_comment=[[UIImageView alloc]initWithFrame:CGRectMake(x, y+5, 15, 15)];
+        UIImageView *imgview_comment=[[UIImageView alloc]initWithFrame:CGRectMake(x + 5, y + 5, 15, 15)];
         imgview_comment.image=[UIImage imageNamed:@"icon_talk"];
         [view_bg addSubview:imgview_comment];
+        
+        lblComments = [[UILabel alloc]initWithFrame:CGRectMake(x + 25, y, 50, 25)];
+        lblComments.textColor = [UIColor grayColor];
+        lblComments.font = [UIFont systemFontOfSize:12];
+        lblComments.backgroundColor = [UIColor clearColor];
+        [view_bg addSubview:lblComments];
         //--
 	}
 	
@@ -241,10 +247,8 @@
     
     lblPraise.text = [NSString stringWithFormat:@"%@次赞",mobj.numberOfPraise];
     lblForward.text = [NSString stringWithFormat:@"%@次转发",mobj.numberOfForward];
-    
-    
-    
-    
+    lblComments.text = [NSString stringWithFormat:@"%lu条评论",(unsigned long)[mobj.comments count]];
+
     for(UIView *v in [view_bg subviews])
     {
         if([v isMemberOfClass:[MyUILabel class]])
@@ -265,10 +269,10 @@
             
             if (i > 0)
             {
-                y = y + 20;
+                y = y + 15;
             }
             
-            MyUILabel *lblcomment =[[MyUILabel alloc]initWithFrame:CGRectMake(30, y, 128, 25)];
+            MyUILabel *lblcomment =[[MyUILabel alloc]initWithFrame:CGRectMake(25, y - 5, 128, 25)];
             lblcomment.textColor=[UIColor grayColor];
             lblcomment.font=[UIFont systemFontOfSize:11];
             lblcomment.backgroundColor=[UIColor clearColor];

@@ -20,8 +20,8 @@
 @interface WaterFlowView : UIScrollView<UITableViewDelegate,UITableViewDataSource>
 {
 
-    int _columnCount;   //列数
-    int _cellsTotal;    //总的数据项
+    NSInteger _columnCount;   //列数
+    NSInteger _cellsTotal;    //总的数据项
     float _cellWidth;   //每列的宽度
 
     UIActivityIndicatorView *activityViewLoad;
@@ -34,8 +34,8 @@
     float Content_old_y;
 }
 
-@property (nonatomic,assign) int columnCount; 
-@property (nonatomic,assign) int cellsTotal; 
+@property (nonatomic,assign) NSInteger columnCount;
+@property (nonatomic,assign) NSInteger cellsTotal;
 @property (nonatomic,assign) float cellWidth;
 @property (nonatomic,assign) id<WaterFlowViewDelegate> waterFlowViewDelegate;
 @property (nonatomic,assign) id<WaterFlowViewDataSource> waterFlowViewDatasource;

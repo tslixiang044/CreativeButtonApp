@@ -57,7 +57,8 @@
 }
 
 
--(void)relayoutDisplaySubviews{
+-(void)relayoutDisplaySubviews
+{
 
     self.columnCount = [self.waterFlowViewDatasource numberOfColumsInWaterFlowView:self];  
     self.cellsTotal = [self.waterFlowViewDatasource numberOfAllWaterFlowView:self];
@@ -69,11 +70,11 @@
     
     self.cellWidth = CGRectGetWidth(self.frame)/_columnCount; //每列的宽度
     
-    if (!tableviews) {
-        
+    if (!tableviews)
+    {
         tableviews = [[NSMutableArray alloc] initWithCapacity:_columnCount];
-        for (int i = 0; i < _columnCount; i++) {
-            
+        for (int i = 0; i < _columnCount; i++)
+        {
             UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(_cellWidth*i, 0, _cellWidth, CGRectGetHeight(self.frame)) style:UITableViewStylePlain];
             tableView.delegate = self;
             tableView.dataSource = self;
@@ -91,15 +92,14 @@
     }
 }
 
--(void)setWaterFlowViewDatasource:(id<WaterFlowViewDataSource>)waterFlowViewDatasource{
-
+-(void)setWaterFlowViewDatasource:(id<WaterFlowViewDataSource>)waterFlowViewDatasource
+{
     _waterFlowViewDatasource = waterFlowViewDatasource;
 }
 
--(void)setWaterFlowViewDelegate:(id<WaterFlowViewDelegate>)waterFlowViewDelegate{
-
+-(void)setWaterFlowViewDelegate:(id<WaterFlowViewDelegate>)waterFlowViewDelegate
+{
     _waterFlowViewDelegate = waterFlowViewDelegate;
-  
 }
 
 -(void)scorlltotopaaa
@@ -107,10 +107,10 @@
     [self scrollRectToVisible:CGRectMake(0, 0,kMainScreenBoundwidth, kMainScreenBoundheight-114) animated:YES];
 }
 
-- (void)reloadData{
-    
-    if (activityViewLoad) {
-        
+- (void)reloadData
+{
+    if (activityViewLoad)
+    {
         [activityViewLoad stopAnimating];
         [activityViewLoad removeFromSuperview];
         activityViewLoad = nil;
@@ -120,10 +120,12 @@
     
     float contenSizeHeight = 0.0f;
     
-    for (UITableView *tabelview in tableviews) {
-        
+    for (UITableView *tabelview in tableviews)
+    {
          [tabelview reloadData];
-        if (contenSizeHeight < tabelview.contentSize.height) {
+        
+        if (contenSizeHeight < tabelview.contentSize.height)
+        {
             
             contenSizeHeight = tabelview.contentSize.height;
         }
@@ -133,24 +135,25 @@
     self.contentSize = CGSizeMake(self.contentSize.width, contenSizeHeight);
 }
 
-
 - (NSInteger)waterFlowView:(WaterFlowView *)waterFlowView numberOfRowsInColumn:(NSInteger)colunm{
     
-    if (waterFlowView.cellsTotal -(colunm + 1) < 0) {
-        
+    if (waterFlowView.cellsTotal -(colunm + 1) < 0)
+    {
         return 0;
-    }else{
+    }
+    else
+    {
         return (waterFlowView.cellsTotal -(colunm + 1))/waterFlowView.columnCount+1;
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [self waterFlowView:self numberOfRowsInColumn:tableView.tag - TABLEVIEWTAG];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-     
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     IndexPath *_indextPath = [IndexPath initWithRow:indexPath.row  withColumn:tableView.tag - TABLEVIEWTAG];
     CGFloat cellHeight = [self.waterFlowViewDelegate waterFlowView:self heightForRowAtIndexPath:_indextPath];
     return cellHeight;
@@ -159,11 +162,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell = nil;
-    NSString *cellIndetify = [NSString stringWithFormat:@"cell%d",tableView.tag -TABLEVIEWTAG];
+    NSString *cellIndetify = [NSString stringWithFormat:@"cell%ld",tableView.tag -TABLEVIEWTAG];
     
     cell = [tableView dequeueReusableCellWithIdentifier:cellIndetify];
-    if (cell == nil) {
-        
+    if (cell == nil)
+    {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndetify] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -185,14 +188,14 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     IndexPath *_indextPath = [IndexPath initWithRow:indexPath.row  withColumn:tableView.tag - TABLEVIEWTAG];
     [self.waterFlowViewDelegate waterFlowView:self didSelectRowAtIndexPath:_indextPath];
 }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
     //-------------------------------------------------------------
     CGPoint contentOffsetPoint = scrollView.contentOffset;
     CGRect frame = scrollView.frame;
@@ -200,19 +203,11 @@
     
     if (contentOffsetPoint.y == scrollView.contentSize.height - frame.size.height || scrollView.contentSize.height < frame.size.height)
     {
-        NSLog(@"  cc     ");
         if(self.waterFlowViewDelegate)
         {
             [self.waterFlowViewDelegate loadmore:self];
         }
     }
-    
-    
-
-}
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   
 }
 
 @end

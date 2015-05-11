@@ -58,6 +58,9 @@
     
     [super viewDidLoad];
     
+    [self loadData:1];
+    [self loadData:2];
+    
     //------
     mArr_1=[[NSMutableArray alloc]init];
     mArr_2=[[NSMutableArray alloc]init];
@@ -375,8 +378,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    [self loadData:1];
-    [self loadData:2];
+//    [self loadData:1];
+//    [self loadData:2];
     
     
     

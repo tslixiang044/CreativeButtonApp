@@ -25,6 +25,7 @@
     UILabel *lbldesc;
     UILabel *lblproduct;
     UILabel *lbltime;
+    UILabel *lblComments;
     
     MyToolView *toolview;
     
@@ -214,15 +215,24 @@
     goodLabel.text = [NSString stringWithFormat:@"%@次赞",self.data.numberOfPraise];
     [self.scrollView addSubview:goodLabel];
     
-    y= goodLabel.frame.origin.y + goodLabel.frame.size.height + 10;
-    UIImageView* commentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, 20, 20)];
-    [commentImageView setImage:[UIImage imageNamed:@"icon_talk"]];
-    [self.scrollView addSubview:commentImageView];
+    x=goodLabel.frame.origin.x+goodLabel.frame.size.width;
+    
+    UIImageView *imgview_comment=[[UIImageView alloc]initWithFrame:CGRectMake(x + 5, y + 5, 15, 15)];
+    imgview_comment.image=[UIImage imageNamed:@"icon_talk"];
+    [self.scrollView addSubview:imgview_comment];
+    
+    lblComments = [[UILabel alloc]initWithFrame:CGRectMake(x + 25, y, 70, 25)];
+    lblComments.textColor = [UIColor grayColor];
+    lblComments.font = [UIFont systemFontOfSize:15];
+    lblComments.text = [NSString stringWithFormat:@"%@条评论",self.data.numberOfComment];
+    [self.scrollView addSubview:lblComments];
+    
+    y= goodLabel.frame.origin.y + goodLabel.frame.size.height;
     
     CGSize labelSize;
     if (self.data.comments.count > 0)
     {
-        x = x + 30;
+        x = 50;
         y = y - 3;
         for (int i = 0; i < self.data.comments.count; i++)
         {
