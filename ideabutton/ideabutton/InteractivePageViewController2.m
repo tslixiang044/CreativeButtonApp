@@ -115,7 +115,7 @@
 
 -(void)buttonClicked:(UIButton*)sender
 {
-    [self.myDict setValue:[NSString stringWithFormat:@"%d",sender.tag] forKey:@"number"];
+    [self.myDict setValue:[NSString stringWithFormat:@"%ld",(long)sender.tag] forKey:@"number"];
     [self.navigationController pushViewController:[[NumberChooseViewController alloc]initWithDict:self.myDict] animated:YES];
 }
 

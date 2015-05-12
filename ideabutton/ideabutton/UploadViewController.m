@@ -11,7 +11,7 @@
 #import "SVProgressHUD.h"
 #import "API.h"
 #import "RegisterSuccessView.h"
-#import "IAlsoPressViewController.h"
+#import "IoccupyViewController.h"
 #import "ZTModel.h"
 //#import "DB.h"
 //#import "APLevelDB.h"
@@ -222,8 +222,10 @@
     }
     else
     {
-        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-        [self.navigationController pushViewController:press animated:YES];
+//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//        [self.navigationController pushViewController:press animated:YES];
+        IoccupyViewController * controller = [[IoccupyViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

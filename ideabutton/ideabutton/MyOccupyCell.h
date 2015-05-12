@@ -14,7 +14,7 @@
 @class MyOccupyCell;
 @protocol MyOccupyCellDelegate <NSObject>
 
--(void)btnshow:(NSString *)mid row:(int)mrow;
+-(void)btnshow:(NSString *)mid row:(NSInteger)mrow;
 
 
 -(void)btndeleteAction:(MyUIButton *)mbtn;

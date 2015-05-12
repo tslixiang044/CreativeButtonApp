@@ -21,7 +21,7 @@
     UITableView *mtableview;
     NSMutableArray *marr;
     UIView *view_show;
-    int oldrow;
+    NSInteger oldrow;
   
     
     MyUIButton *btndelete;
@@ -210,14 +210,11 @@
     return cell;
 }
 
--(void)btnshow:(NSString *)mid row:(int)mrow 
+-(void)btnshow:(NSString *)mid row:(NSInteger)mrow
 {
     if(oldrow==mrow)
     {
-        
         ishiden= ishiden==YES?NO:YES;
-        
-            
     }
     else
     {

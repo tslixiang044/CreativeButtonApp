@@ -11,7 +11,7 @@
 //#import "DB.h"
 #import "RegisterSuccessView.h"
 //#import "APLevelDB.h"
-#import "IAlsoPressViewController.h"
+#import "IoccupyViewController.h"
 #import "SVProgressHUD.h"
 #import "UploadViewController.h"
 #import "ZTModel.h"
@@ -454,8 +454,11 @@
 
 -(void)start
 {
-    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-    [self.navigationController pushViewController:press animated:YES];
+//    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//    [self.navigationController pushViewController:press animated:YES];
+    IoccupyViewController * controller = [[IoccupyViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+
 }
 
 -(void)perfectInfo

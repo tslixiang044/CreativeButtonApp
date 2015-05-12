@@ -15,7 +15,6 @@
 #import "ZTModel.h"
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
-#import "IAlsoPressViewController.h"
 #import "ForgetPswViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>

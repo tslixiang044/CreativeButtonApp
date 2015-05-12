@@ -14,7 +14,7 @@
 @class MychangedCell;
 @protocol MychangedCellDelegate <NSObject>
 
--(void)btnshow:(NSString *)mid row:(int)mrow;
+-(void)btnshow:(NSString *)mid row:(NSInteger)mrow;
 
 
 -(void)btndeleteAction:(MyUIButton *)mbtn;
@@ -38,7 +38,7 @@
 @property(nonatomic,assign)id<MychangedCellDelegate>delegate;
 
 @property(nonatomic,strong)NSString *strid;
-@property(nonatomic,assign)int mrow;
+@property(nonatomic,assign)NSInteger mrow;
 
 
 @property(nonatomic,strong)UIImageView *imgview_left;

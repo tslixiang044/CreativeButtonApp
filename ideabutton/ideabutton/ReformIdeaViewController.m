@@ -93,11 +93,11 @@
     
     if (self.type == 1)
     {
-        titleStr = [NSString stringWithFormat:@"#霸占宣言#我宣布,我刚刚霸占了一条%@广告,谁也别想再碰!\n\n\n  ",[self.dict objectForKey:@"product"]];
+        titleStr = [NSString stringWithFormat:@"#霸占宣言#我宣告,我刚刚霸占了一条%@广告,谁也别想再碰!\n\n\n  ",[self.dict objectForKey:@"product"]];
     }
     else
     {
-        titleStr = [NSString stringWithFormat:@"#改造声明#我宣布,我刚刚改造了一条%@广告,谁也别想再碰!\n\n\n  ",[self.dict objectForKey:@"product"]];
+        titleStr = [NSString stringWithFormat:@"#改造声明#我宣告,我刚刚改造了一条%@广告,谁也别想再碰!\n\n\n  ",[self.dict objectForKey:@"product"]];
     }
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:titleStr];
@@ -244,7 +244,7 @@
                 
                 if ([API sharedInstance].code.integerValue == 0)
                 {
-                    [SVProgressHUD showSuccessWithStatus:@"你今天可霸占3条idea!"];
+                    [SVProgressHUD showSuccessWithStatus:@"宣告次数每日仅限3次!"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil userInfo:@{@"occupyID":occupyID}];
                     [self.navigationController popViewControllerAnimated:YES];
                 }
@@ -293,7 +293,7 @@
                 
                 if ([API sharedInstance].code.integerValue == 0)
                 {
-                    [SVProgressHUD showSuccessWithStatus:@"改造即为霸占,今天仅剩三条!"];
+                    [SVProgressHUD showSuccessWithStatus:@"宣告次数每日仅限3次!"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reformIdeaSuccess" object:nil];
                     [self.navigationController popViewControllerAnimated:YES];
                 }

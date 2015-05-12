@@ -1147,7 +1147,7 @@
 {
     //arrIndex是某个数据在总数组中的索引
     
-    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+    NSInteger arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     
     WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex] ;
 
@@ -1165,7 +1165,7 @@
 - (CGFloat)waterFlowView:(WaterFlowView *)waterFlowView heightForRowAtIndexPath:(IndexPath *)indexPath
 {
     
-    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+    NSInteger arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
     
     float width = 0.0f;
@@ -1178,14 +1178,12 @@
             height=170;
     }
     
-    return waterFlowView.cellWidth * (height/width);
-    
-    
+    return waterFlowView.cellWidth * (height/width); 
 }
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
-    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+    NSInteger arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     
     IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:[mArr_1 objectAtIndex:arrIndex]];
     [self.navigationController pushViewController:detail animated:YES];

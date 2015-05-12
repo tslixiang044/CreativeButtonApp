@@ -7,7 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "IAlsoPressViewController.h"
 #import "LoginViewController.h"
 #import "IdeaGenerateViewController.h"
 #import "WaterFlowView.h"
@@ -17,7 +16,7 @@
 #import "ReformIdeaViewController.h"
 #import "API.h"
 #import "IdeaDetailViewController.h"
-//#import "DB.h"
+#import "IoccupyViewController.h"
 #import "PersonaInfomationViewController.h"
 #import "MySegmentedControl.h"
 #import "UploadViewController.h"
@@ -115,10 +114,37 @@
     [bottomView addSubview:btnadmin];
     //------------------
 
+    UISwipeGestureRecognizer *recognizer;
+    
+    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [[self view] addGestureRecognizer:recognizer];
+    
+    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [[self view] addGestureRecognizer:recognizer];
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToFriend:) name:@"aaaaaaaaa" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToSuggestion:) name:@"backToSuggestion" object:nil];
 }
+
+-(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer
+{
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
+    {
+        segmentedControl.selectedSegmentIndex = 1;
+        [segmentedControl showlineAnimaton];
+        [mscrollview setContentOffset:CGPointMake(kMainScreenBoundwidth, 0) animated:YES];
+    }
+    
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        segmentedControl.selectedSegmentIndex = 0;
+        [segmentedControl showlineAnimaton];
+        [mscrollview setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
+}
+
 
 -(void)dealloc
 {
@@ -142,9 +168,12 @@
     }
     else if([btntype isEqualToString:@"wyya"])
     {
-        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-        [self.navigationController pushViewController:press animated:YES];
-        [press release];
+//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//        [self.navigationController pushViewController:press animated:YES];
+//        [press release];
+        IoccupyViewController * controller = [[IoccupyViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
 }
 
@@ -205,9 +234,12 @@
         }
         else
         {
-            IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-            [self.navigationController pushViewController:press animated:YES];
-            [press release];
+//            IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//            [self.navigationController pushViewController:press animated:YES];
+//            [press release];
+            IoccupyViewController * controller = [[IoccupyViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         }
     }
     else
@@ -443,7 +475,7 @@
     //arrIndex是某个数据在总数组中的索引
     if(waterFlowView == waterFlow_1)
     {
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        NSInteger arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
         
         WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
         
@@ -457,7 +489,7 @@
     }
     else
     {
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        NSInteger arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
         
         WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
         
@@ -477,7 +509,7 @@
 {
     if(waterFlowView == waterFlow_1)
     {
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        NSInteger arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
         WaterFlowObj *obj = [mArr_1 objectAtIndex:arrIndex];
         
         float width = 0.0f;
@@ -494,7 +526,7 @@
     }
     else
     {
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+        NSInteger arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
         WaterFlowObj *obj = [mArr_2 objectAtIndex:arrIndex];
         
         float width = 0.0f;
@@ -513,16 +545,16 @@
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath
 {
+    NSInteger arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+    
     if(waterFlowView==waterFlow_1)
     {
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
         IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:[mArr_1 objectAtIndex:arrIndex]];
         [self.navigationController pushViewController:detail animated:YES];
         [detail release];
     }
     else
     {
-        int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
         IdeaDetailViewController *detail=[[IdeaDetailViewController alloc]initWithData:[mArr_2 objectAtIndex:arrIndex]];
         [self.navigationController pushViewController:detail animated:YES];
         [detail release];

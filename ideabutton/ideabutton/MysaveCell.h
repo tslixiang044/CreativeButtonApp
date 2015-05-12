@@ -16,7 +16,7 @@
 @class MysaveCell;
 @protocol MysaveCellDelegate <NSObject>
 
--(void)btnshow:(NSString *)mid row:(int)mrow ;
+-(void)btnshow:(NSString *)mid row:(NSInteger)mrow ;
 
 
 -(void)btndeleteAction:(MyUIButton *)mbtn;
@@ -38,7 +38,7 @@
     UIButton *btnadd;
 }
 @property(nonatomic,strong)NSString *strid;
-@property(nonatomic,assign)int mrow;
+@property(nonatomic,assign)NSInteger mrow;
 
 
 @property(nonatomic,assign)id<MysaveCellDelegate>delegate;

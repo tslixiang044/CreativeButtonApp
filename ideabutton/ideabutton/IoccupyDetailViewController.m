@@ -27,7 +27,7 @@
     MyUIButton *btndelete;
     MyUIButton *btnwybz;
     MyUIButton *btnwygz;
-    int oldrow;
+    NSInteger oldrow;
     BOOL ishiden;
 }
 @end
@@ -212,14 +212,11 @@
     
     return cell;
 }
--(void)btnshow:(NSString *)mid row:(int)mrow
+-(void)btnshow:(NSString *)mid row:(NSInteger)mrow
 {
     if(oldrow==mrow)
     {
-        
         ishiden= ishiden==YES?NO:YES;
-        
-        
     }
     else
     {

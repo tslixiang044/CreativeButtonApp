@@ -79,10 +79,11 @@
     {
         case PrintAdBtnTag:
 
-              if(delegate)
+//              if(delegate)
               {
                   ProContentViewController *pro= [[ProContentViewController alloc]initWithDict:@{@"adtype":@"1"}];
-                  [delegate gotoviewcontroller_Ioccupy:pro];
+//                  [delegate gotoviewcontroller_Ioccupy:pro];
+                  [self.navigationController pushViewController:pro animated:YES];
                   
               }
             break;

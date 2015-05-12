@@ -46,7 +46,7 @@
 @implementation IndexPath
 @synthesize row = _row,column = _column;
 
-+(IndexPath *)initWithRow:(int)indexRow withColumn:(int)indexColumn{
++(IndexPath *)initWithRow:(NSInteger)indexRow withColumn:(NSInteger)indexColumn{
 
     IndexPath *indexPath = [[IndexPath alloc] init];
     indexPath.row = indexRow;

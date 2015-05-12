@@ -17,7 +17,7 @@
 #import "RegisterSuccessView.h"
 #import "Config.h"
 #import "UIImage+UIImageScale.h"
-#import "IAlsoPressViewController.h"
+#import "IoccupyViewController.h"
 #import "PrefectStudentInfoViewController.h"
 #import "PerfectInfoViewController.h"
 #import "MyUIButton.h"
@@ -487,8 +487,10 @@
 
 -(void)start
 {
-    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-    [self.navigationController pushViewController:press animated:YES];
+//    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
+//    [self.navigationController pushViewController:press animated:YES];
+    IoccupyViewController * controller = [[IoccupyViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 -(void)perfectInfo

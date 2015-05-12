@@ -19,7 +19,7 @@
     NSMutableArray *marr;
     
     UIView *view_show;
-    int oldrow;
+    NSInteger oldrow;
     
     MyUIButton *btndelete;
     MyUIButton *btnwybz;
@@ -212,7 +212,7 @@
     return cell;
 }
 
--(void)btnshow:(NSString *)mid row:(int)mrow
+-(void)btnshow:(NSString *)mid row:(NSInteger)mrow
 {
     if(oldrow==mrow)
     {

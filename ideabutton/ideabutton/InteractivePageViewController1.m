@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "InteractivePageViewController1.h"
-#import "InteractivePageViewController2.h"
 #import "MyUIButton.h"
+#import "NumberChooseViewController.h"
 
 #define Height  45
 
@@ -115,7 +115,7 @@
 -(void)buttonClicked:(UIButton*)sender
 {
     [self.myDict setValue:sender.titleLabel.text forKey:@"letter"];
-    [self.navigationController pushViewController:[[InteractivePageViewController2 alloc]initWithDict:self.myDict] animated:YES];
+    [self.navigationController pushViewController:[[NumberChooseViewController alloc]initWithDict:self.myDict] animated:YES];
 }
 
 @end
