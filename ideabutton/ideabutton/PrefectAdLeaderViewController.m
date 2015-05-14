@@ -1,16 +1,14 @@
 //
-//  PrefectStudentInfoViewController.m
+//  PrefectAdLeaderViewController.m
 //  ideabutton
 //
-//  Created by Li Xiang on 15/3/24.
+//  Created by Li Xiang on 15/5/13.
 //  Copyright (c) 2015年 ttt. All rights reserved.
 //
 
-#import "PrefectStudentInfoViewController.h"
+#import "PrefectAdLeaderViewController.h"
 #import "API.h"
-//#import "DB.h"
 #import "RegisterSuccessView.h"
-//#import "APLevelDB.h"
 #import "IoccupyViewController.h"
 #import "SVProgressHUD.h"
 #import "UploadViewController.h"
@@ -18,13 +16,12 @@
 
 #define CheckButtonTag1     0
 #define CheckButtonTag2     1
-#define CheckButtonTag3     2
-#define SendCodeBtnTag      3
-#define OkButtonTag         4
+#define SendCodeBtnTag      2
+#define OkButtonTag         3
 
 #define Height  45
 
-@interface PrefectStudentInfoViewController ()<UITextFieldDelegate,UIActionSheetDelegate,RegisterSuccessViewDelegate>
+@interface PrefectAdLeaderViewController ()<UITextFieldDelegate,UIActionSheetDelegate,RegisterSuccessViewDelegate>
 
 @property(nonatomic, strong)UIScrollView *mainScroll;
 @property(nonatomic, assign)CGFloat lastScrollOffset;
@@ -32,21 +29,18 @@
 
 @end
 
-@implementation PrefectStudentInfoViewController
+@implementation PrefectAdLeaderViewController
 {
     UITextField* realNameTextField;
-    UITextField* schoolNameTextField;
+    UITextField* companyTextField;
     UITextField* telTextField;
-    UITextField* graduationTextField;
     UITextField* codeTextField;
     
     UIButton* checkBtn;
     UIButton* checkBtn1;
-    UIButton* checkBtn2;
     
     BOOL checkBtnFlag;
     BOOL checkBtnFlag1;
-    BOOL checkBtnFlag2;
 }
 
 - (void)viewDidLoad
@@ -97,8 +91,8 @@
     backgroundView.backgroundColor = COLOR(21, 21, 22);
     [self.view addSubview:backgroundView];
     
-    UILabel* title = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 50, 30)];
-    title.text = @"学生";
+    UILabel* title = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 100, 30)];
+    title.text = @"广告主";
     title.textColor = [UIColor whiteColor];
     [backgroundView addSubview:title];
     
@@ -121,12 +115,12 @@
     [checkBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:checkBtn];
     
-    schoolNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 105, 200, 35)];
-    schoolNameTextField.placeholder = @"院校简称";
-    schoolNameTextField.layer.cornerRadius = 5;
-    schoolNameTextField.delegate = self;
-    schoolNameTextField.backgroundColor = [UIColor whiteColor];
-    [backgroundView addSubview:schoolNameTextField];
+    companyTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 105, 200, 35)];
+    companyTextField.placeholder = @"公司简称";
+    companyTextField.layer.cornerRadius = 5;
+    companyTextField.delegate = self;
+    companyTextField.backgroundColor = [UIColor whiteColor];
+    [backgroundView addSubview:companyTextField];
     
     UILabel* flagLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(215, 115, 35, 15)];
     flagLabel1.textColor = [UIColor whiteColor];
@@ -140,33 +134,14 @@
     [checkBtn1 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:checkBtn1];
     
-    graduationTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 150, 200, 35)];
-    graduationTextField.placeholder = @"毕业时间";
-    graduationTextField.layer.cornerRadius = 5;
-    graduationTextField.delegate = self;
-    graduationTextField.backgroundColor = [UIColor whiteColor];
-    [backgroundView addSubview:graduationTextField];
-    
-    UILabel* flagLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(215, 160, 35, 15)];
-    flagLabel3.textColor = [UIColor whiteColor];
-    flagLabel3.text = @"不公开";
-    flagLabel3.font = [UIFont systemFontOfSize:11.5];
-    [backgroundView addSubview:flagLabel3];
-    
-    checkBtn2 = [[UIButton alloc] initWithFrame:CGRectMake(255, 160, 15, 15)];
-    checkBtn2.tag = CheckButtonTag3;
-    [checkBtn2 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
-    [checkBtn2 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [backgroundView addSubview:checkBtn2];
-    
     float x = 0;
-    float y = graduationTextField.frame.origin.y + graduationTextField.frame.size.height + 10;
+    float y = companyTextField.frame.origin.y + companyTextField.frame.size.height + 15;
     
     UIImageView* line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"public/line"]];
     line.frame = CGRectMake(0, y, 280, 3);
     [backgroundView addSubview:line];
     
-    y = y + 15;
+    y = y + 20;
     
     telTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, y, 260, 35)];
     telTextField.placeholder = @"手机(只做验证用)";
@@ -196,13 +171,13 @@
     [sendCodeBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:sendCodeBtn];
     
-    y = sendCodeBtn.frame.origin.y + sendCodeBtn.frame.size.height + 10;
+    y = sendCodeBtn.frame.origin.y + sendCodeBtn.frame.size.height + 15;
     
     UIImageView* line1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"public/line"]];
     line1.frame = CGRectMake(0, y, 280, 3);
     [backgroundView addSubview:line1];
-
-    UIButton* okBtn = [[UIButton alloc] initWithFrame:CGRectMake(110, y + 20, 60, 60)];
+    
+    UIButton* okBtn = [[UIButton alloc] initWithFrame:CGRectMake(110, y + 35, 60, 60)];
     okBtn.tag = OkButtonTag;
     [okBtn setImage:[UIImage imageNamed:@"register/btn_ok"] forState:UIControlStateNormal];
     [okBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -214,24 +189,8 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     self.inFocusTextField = textField;
-    //    if ([telTextField isFirstResponder])
-    //    {
-    //        [majorTextField resignFirstResponder];
-    //        [self chooseGraduation];
-    //    }
-    if (textField == graduationTextField)
-    {
-        [self chooseGraduation];
-    }
-    return YES;
-}
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    if (textField == graduationTextField)
-    {
-        [textField resignFirstResponder];
-    }
+    return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -241,16 +200,6 @@
     [self.mainScroll setContentOffset:CGPointMake(0, self.lastScrollOffset) animated:YES];
     
     return YES;
-}
-
-- (void)chooseGraduation
-{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"毕业时间"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:@"2015"
-                                                    otherButtonTitles:@"2016", @"2017",@"2018", nil];
-    [actionSheet showInView:self.view];
 }
 
 - (void)buttonClicked:(UIButton*)sender
@@ -286,18 +235,9 @@
             }
         }
             break;
-        case CheckButtonTag3:
+        case SendCodeBtnTag:
         {
-            if (!checkBtnFlag2)
-            {
-                checkBtnFlag2 = YES;
-                [checkBtn2 setImage:[UIImage imageNamed:@"login/checkbox-checked"] forState:UIControlStateNormal];
-            }
-            else
-            {
-                checkBtnFlag2 = NO;
-                [checkBtn2 setImage:[UIImage imageNamed:@"login/checkbox-unchecked"] forState:UIControlStateNormal];
-            }
+            
         }
             break;
             
@@ -306,39 +246,9 @@
             [self updateUserInfo];
         }
             break;
+    
         default:
             break;
-    }
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == actionSheet.cancelButtonIndex)
-    {
-        return;
-    }
-    switch (buttonIndex)
-    {
-        case 0:
-        {
-            graduationTextField.text = @"2015";
-            break;
-        }
-        case 1:
-        {
-            graduationTextField.text = @"2016";
-            break;
-        }
-        case 2:
-        {
-            graduationTextField.text = @"2017";
-            break;
-        }
-        case 3:
-        {
-            graduationTextField.text = @"2018";
-            break;
-        }
     }
 }
 
@@ -350,15 +260,9 @@
         return;
     }
     
-    if (schoolNameTextField.text.length == 0)
+    if (companyTextField.text.length == 0)
     {
         [SVProgressHUD showErrorWithStatus:@"院校简称不能为空"];
-        return;
-    }
-    
-    if (graduationTextField.text.length == 0)
-    {
-        [SVProgressHUD showErrorWithStatus:@"毕业时间不能为空"];
         return;
     }
     
@@ -373,10 +277,8 @@
                                                                    @"userFullName":realNameTextField.text,
                                                                    @"userFullNamePrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag)],
                                                                    @"carrerType":@(self.carrerType),
-                                                                   @"college":schoolNameTextField.text,
-                                                                   @"collegePrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag1)],
-                                                                   @"graduationTime":graduationTextField.text,
-                                                                   @"graduationTimePrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag2)]}];
+                                                                   @"favCompany":companyTextField.text,
+                                                                   @"favCompanyPrivate":[NSString stringWithFormat:@"%@",@(checkBtnFlag1)]}];
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
@@ -437,3 +339,4 @@
 }
 
 @end
+

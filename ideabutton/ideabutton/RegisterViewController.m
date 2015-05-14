@@ -42,7 +42,7 @@
 @property(nonatomic, strong)UITextField *inFocusTextField;
 
 @property(nonatomic, strong)UITextField* nickNameTextField;
-@property(nonatomic, strong)UITextField* registerMailTextField;
+//@property(nonatomic, strong)UITextField* registerMailTextField;
 @property(nonatomic, strong)UITextField* registerPSWTextField;
 @property(nonatomic, strong)UITextField* confirmPSWTextField;
 @property(nonatomic, strong)UITextField* registerAddressTextField;
@@ -160,26 +160,25 @@
             });
         }
         
-        if (textField.tag == MailTag)
-        {
-            
-            dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-            dispatch_async(currentQueue, ^{
-                [[API sharedInstance] isEnabledEmail:@{@"email":textField.text}];
-                dispatch_queue_t mainQueue = dispatch_get_main_queue();
-                dispatch_async(mainQueue, ^{
-                    
-                    if ([[API sharedInstance].code integerValue] == 0)
-                    {
-                        [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_right"] forState:UIControlStateNormal];
-                    }
-                    else
-                    {
-                        [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
-                    }
-                });
-            });
-        }
+//        if (textField.tag == MailTag)
+//        {
+//            dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//            dispatch_async(currentQueue, ^{
+//                [[API sharedInstance] isEnabledEmail:@{@"email":textField.text}];
+//                dispatch_queue_t mainQueue = dispatch_get_main_queue();
+//                dispatch_async(mainQueue, ^{
+//                    
+//                    if ([[API sharedInstance].code integerValue] == 0)
+//                    {
+//                        [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_right"] forState:UIControlStateNormal];
+//                    }
+//                    else
+//                    {
+//                        [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
+//                    }
+//                });
+//            });
+//        }
     }
     
     return YES;
@@ -191,17 +190,17 @@
     
     [self.mainScroll setContentOffset:CGPointMake(0, self.lastScrollOffset) animated:YES];
     
-    if (textField ==  self.registerMailTextField)
-    {
-        NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-        NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-        if(![emailTest evaluateWithObject:self.registerMailTextField.text])
-        {
-            [SVProgressHUD showErrorWithStatus:@"请输入正确的邮箱地址"];
-            [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
-            return YES;
-        }
-    }
+//    if (textField == self.registerMailTextField)
+//    {
+//        NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+//        NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+//        if(![emailTest evaluateWithObject:self.registerMailTextField.text])
+//        {
+//            [SVProgressHUD showErrorWithStatus:@"请输入正确的邮箱地址"];
+//            [self.emailCheckBtn setImage:[UIImage imageNamed:@"register/icon_worong"] forState:UIControlStateNormal];
+//            return YES;
+//        }
+//    }
     
     return YES;
 }
@@ -262,7 +261,7 @@
     [imageView addSubview:self.womenLabel];
     
     self.nickNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 115, 220, 40)];
-    self.nickNameTextField.placeholder = @"昵称(不可修改)";
+    self.nickNameTextField.placeholder = @"昵称";
     self.nickNameTextField.backgroundColor = [UIColor whiteColor];
     self.nickNameTextField.layer.cornerRadius = 5;
     _nickNameTextField.delegate = self;
@@ -272,16 +271,16 @@
     self.nickNameCheckBtn = [[UIButton alloc] initWithFrame:CGRectMake(255, 125, 20, 20)];
     [registerView addSubview:self.nickNameCheckBtn];
     
-    self.registerMailTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 170, 220, 40)];
-    _registerMailTextField.delegate = self;
-    _registerMailTextField.placeholder = @"邮箱";
-    self.registerMailTextField.backgroundColor = [UIColor whiteColor];
-    self.registerMailTextField.layer.cornerRadius = 5;
-    self.registerMailTextField.tag = MailTag;
-    [registerView addSubview:_registerMailTextField];
+//    self.registerMailTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 170, 220, 40)];
+//    _registerMailTextField.delegate = self;
+//    _registerMailTextField.placeholder = @"邮箱";
+//    self.registerMailTextField.backgroundColor = [UIColor whiteColor];
+//    self.registerMailTextField.layer.cornerRadius = 5;
+//    self.registerMailTextField.tag = MailTag;
+//    [registerView addSubview:_registerMailTextField];
     
-    self.emailCheckBtn = [[UIButton alloc] initWithFrame:CGRectMake(255, 185, 20, 20)];
-    [registerView addSubview:self.emailCheckBtn];
+//    self.emailCheckBtn = [[UIButton alloc] initWithFrame:CGRectMake(255, 185, 20, 20)];
+//    [registerView addSubview:self.emailCheckBtn];
     
     self.registerPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 225, 220, 40)];
     _registerPSWTextField.delegate = self;
@@ -291,7 +290,7 @@
     self.registerPSWTextField.layer.cornerRadius = 5;
     [registerView addSubview:_registerPSWTextField];
     
-    self.confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 280, 220, 40)];
+    self.confirmPSWTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 170, 220, 40)];
     _confirmPSWTextField.delegate = self;
     _confirmPSWTextField.secureTextEntry = YES;
     self.confirmPSWTextField.placeholder = @"确认密码";
@@ -299,7 +298,7 @@
     self.confirmPSWTextField.layer.cornerRadius = 5;
     [registerView addSubview:_confirmPSWTextField];
     
-    self.registerAddressTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 335, 220, 40)];
+    self.registerAddressTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 280, 220, 40)];
     self.registerAddressTextField.delegate = self;
     self.registerAddressTextField.placeholder = @"所在地";
     self.registerAddressTextField.backgroundColor = [UIColor whiteColor];
@@ -307,7 +306,7 @@
     [self.registerAddressTextField addTarget:self action:@selector(showCityPicker) forControlEvents:UIControlEventTouchUpInside];
     [registerView addSubview:self.registerAddressTextField];
     
-    UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 390, 70, 70)];
+    UIButton* registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 355, 70, 70)];
     [registerBtn setBackgroundImage:[UIImage imageNamed:@"public/all_btn_zc"] forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerAccount) forControlEvents:UIControlEventTouchUpInside];
     [registerView addSubview:registerBtn];
@@ -338,10 +337,9 @@
             sheet.cancelButtonIndex=sheet.numberOfButtons-1;
             
             [sheet showInView:[UIApplication sharedApplication].keyWindow];
-            
-            
         }
             break;
+            
         case SelectMan:
             if (self.womenSelected)
             {
@@ -364,6 +362,7 @@
                 [self.manLabel setTextColor:[UIColor redColor]];
             }
             break;
+            
         case SelectWonman:
             if (self.manSelected)
             {
@@ -386,6 +385,7 @@
                 [self.womenLabel setTextColor:[UIColor redColor]];
             }
             break;
+            
         default:
             break;
     }
@@ -398,8 +398,7 @@
         picker.delegate=self;
         
         picker.allowsEditing=YES;
-        
-        
+
         picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
         
         [self presentViewController:picker animated:YES completion:nil];
@@ -417,6 +416,7 @@
         }
     }
 }
+
 -(void)imagePickerController:(UIImagePickerController *)picker  didFinishPickingImage:(UIImage  *)image
                  editingInfo:(NSDictionary *)editinginfo
 {
@@ -429,14 +429,11 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)registerAccount
 {
-    CGRect frame = CGRectMake(90,380,150,50);
-
     NSDictionary *params = [self invalidateInput];
     if(!params)
     {
@@ -487,8 +484,6 @@
 
 -(void)start
 {
-//    IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-//    [self.navigationController pushViewController:press animated:YES];
     IoccupyViewController * controller = [[IoccupyViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -523,11 +518,11 @@
         return nil;
     }
     
-    if (self.registerMailTextField.text.length == 0)
-    {
-        [SVProgressHUD showErrorWithStatus:@"邮箱不能为空"];
-        return nil;
-    }
+//    if (self.registerMailTextField.text.length == 0)
+//    {
+//        [SVProgressHUD showErrorWithStatus:@"邮箱不能为空"];
+//        return nil;
+//    }
     
     if (self.registerPSWTextField.text.length == 0)
     {
@@ -541,7 +536,8 @@
         return nil;
     }
 
-    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":self.registerAddressTextField.text};
+//    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"email":self.registerMailTextField.text,@"location":self.registerAddressTextField.text};
+    return @{@"nickname":self.nickNameTextField.text,@"password":self.registerPSWTextField.text,@"gender":@(gender),@"location":self.registerAddressTextField.text};
 }
 
 @end

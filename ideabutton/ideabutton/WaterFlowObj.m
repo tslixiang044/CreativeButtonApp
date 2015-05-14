@@ -9,7 +9,7 @@
 #import "WaterFlowObj.h"
 
 @implementation WaterFlowObj
-@synthesize avatar,ideaType,nickname,numberOfPraise,sentence,time,timeStamp,userCode,userOccupyId,product,carrerType,city,collegePrivate,college,gender,comments,numberOfComment,numberOfForward,shared,userReformId,company,content,suggestionId;
+@synthesize avatar,ideaType,nickname,numberOfPraise,sentence,time,timeStamp,userCode,userOccupyId,product,carrerType,city,collegePrivate,college,gender,comments,numberOfComment,numberOfForward,shared,userReformId,favCompany,content,suggestionId;
 
 
 

@@ -79,6 +79,7 @@
 		E932E5741AB913F100839FA4 /* register in Resources */ = {isa = PBXBuildFile; fileRef = E932E5701AB913F100839FA4 /* register */; };
 		E932E5761AB9146600839FA4 /* ideaRuleChoose in Resources */ = {isa = PBXBuildFile; fileRef = E932E5751AB9146600839FA4 /* ideaRuleChoose */; };
 		E932E5781AB9245300839FA4 /* ideaCreate in Resources */ = {isa = PBXBuildFile; fileRef = E932E5771AB9245300839FA4 /* ideaCreate */; };
+		E93E41DB1B03A0B40080677E /* PrefectAdLeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93E41DA1B03A0B40080677E /* PrefectAdLeaderViewController.m */; };
 		E94107441A91B666002D78B2 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107431A91B666002D78B2 /* API.m */; };
 		E94107651A91C75D002D78B2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E94107641A91C75D002D78B2 /* User.m */; };
 		E941076B1A91CC4A002D78B2 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E94107681A91CC4A002D78B2 /* SVProgressHUD.bundle */; };
@@ -118,7 +119,6 @@
 		E974E2C71ADCC32B003D1EC4 /* bg_btn_xcrz_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E974E2C31ADCC32B003D1EC4 /* bg_btn_xcrz_on@2x.png */; };
 		E974E2C81ADCC32B003D1EC4 /* bg_btn_xcws_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E974E2C41ADCC32B003D1EC4 /* bg_btn_xcws_on@2x.png */; };
 		E98190701A884BC20025F284 /* MyNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E981906F1A884BC20025F284 /* MyNavigationViewController.m */; };
-		E98190741A8850030025F284 /* IAlsoPressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190731A8850030025F284 /* IAlsoPressViewController.m */; };
 		E98190771A8851D60025F284 /* IoccupyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190761A8851D60025F284 /* IoccupyViewController.m */; };
 		E981907A1A8852110025F284 /* ISavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190791A8852110025F284 /* ISavedViewController.m */; };
 		E981907D1A88526E0025F284 /* IChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E981907C1A88526E0025F284 /* IChangedViewController.m */; };
@@ -136,7 +136,6 @@
 		E98190A91A886E5E0025F284 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E98190A21A886E5E0025F284 /* UIImageView+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E98C48E21A8B378700287EF8 /* InteractivePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */; };
 		E98C48E71A8B68DB00287EF8 /* InteractivePageViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E41A8B68DB00287EF8 /* InteractivePageViewController1.m */; };
-		E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48E61A8B68DB00287EF8 /* InteractivePageViewController2.m */; };
 		E98C48ED1A8B761F00287EF8 /* NumberChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */; };
 		E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C48F51A8C448800287EF8 /* IdeaGenerateViewController.m */; };
 		E98DA1A71AD3D3E10056DA92 /* ProductListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DA1A61AD3D3E10056DA92 /* ProductListTableViewController.m */; };
@@ -275,6 +274,8 @@
 		E932E5701AB913F100839FA4 /* register */ = {isa = PBXFileReference; lastKnownFileType = folder; path = register; sourceTree = "<group>"; };
 		E932E5751AB9146600839FA4 /* ideaRuleChoose */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ideaRuleChoose; sourceTree = "<group>"; };
 		E932E5771AB9245300839FA4 /* ideaCreate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ideaCreate; sourceTree = "<group>"; };
+		E93E41D91B03A0B40080677E /* PrefectAdLeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefectAdLeaderViewController.h; sourceTree = "<group>"; };
+		E93E41DA1B03A0B40080677E /* PrefectAdLeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefectAdLeaderViewController.m; sourceTree = "<group>"; };
 		E94107421A91B666002D78B2 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		E94107431A91B666002D78B2 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		E941074C1A91B949002D78B2 /* ZTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTModel.h; sourceTree = "<group>"; };
@@ -328,8 +329,6 @@
 		E974E2C41ADCC32B003D1EC4 /* bg_btn_xcws_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_btn_xcws_on@2x.png"; sourceTree = "<group>"; };
 		E981906E1A884BC20025F284 /* MyNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationViewController.h; sourceTree = "<group>"; };
 		E981906F1A884BC20025F284 /* MyNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationViewController.m; sourceTree = "<group>"; };
-		E98190721A8850030025F284 /* IAlsoPressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAlsoPressViewController.h; sourceTree = "<group>"; };
-		E98190731A8850030025F284 /* IAlsoPressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAlsoPressViewController.m; sourceTree = "<group>"; };
 		E98190751A8851D60025F284 /* IoccupyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoccupyViewController.h; sourceTree = "<group>"; };
 		E98190761A8851D60025F284 /* IoccupyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoccupyViewController.m; sourceTree = "<group>"; };
 		E98190781A8852110025F284 /* ISavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISavedViewController.h; sourceTree = "<group>"; };
@@ -365,8 +364,6 @@
 		E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePageViewController.m; sourceTree = "<group>"; };
 		E98C48E31A8B68DB00287EF8 /* InteractivePageViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractivePageViewController1.h; sourceTree = "<group>"; };
 		E98C48E41A8B68DB00287EF8 /* InteractivePageViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePageViewController1.m; sourceTree = "<group>"; };
-		E98C48E51A8B68DB00287EF8 /* InteractivePageViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractivePageViewController2.h; sourceTree = "<group>"; };
-		E98C48E61A8B68DB00287EF8 /* InteractivePageViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePageViewController2.m; sourceTree = "<group>"; };
 		E98C48EB1A8B761F00287EF8 /* NumberChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberChooseViewController.h; sourceTree = "<group>"; };
 		E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberChooseViewController.m; sourceTree = "<group>"; };
 		E98C48F41A8C447100287EF8 /* IdeaGenerateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdeaGenerateViewController.h; sourceTree = "<group>"; };
@@ -759,8 +756,6 @@
 				E98C48EC1A8B761F00287EF8 /* NumberChooseViewController.m */,
 				E98C48E31A8B68DB00287EF8 /* InteractivePageViewController1.h */,
 				E98C48E41A8B68DB00287EF8 /* InteractivePageViewController1.m */,
-				E98C48E51A8B68DB00287EF8 /* InteractivePageViewController2.h */,
-				E98C48E61A8B68DB00287EF8 /* InteractivePageViewController2.m */,
 				E98C48E01A8B378700287EF8 /* InteractivePageViewController.h */,
 				E98C48E11A8B378700287EF8 /* InteractivePageViewController.m */,
 			);
@@ -793,8 +788,6 @@
 		E98190711A884FDA0025F284 /* IAlsoPress */ = {
 			isa = PBXGroup;
 			children = (
-				E98190721A8850030025F284 /* IAlsoPressViewController.h */,
-				E98190731A8850030025F284 /* IAlsoPressViewController.m */,
 				E98190751A8851D60025F284 /* IoccupyViewController.h */,
 				E98190761A8851D60025F284 /* IoccupyViewController.m */,
 				E98190781A8852110025F284 /* ISavedViewController.h */,
@@ -938,6 +931,8 @@
 				E9DB90E71AC1569F00F66467 /* PerfectInfoViewController.m */,
 				E9DB90E91AC1614100F66467 /* PrefectStudentInfoViewController.h */,
 				E9DB90EA1AC1614100F66467 /* PrefectStudentInfoViewController.m */,
+				E93E41D91B03A0B40080677E /* PrefectAdLeaderViewController.h */,
+				E93E41DA1B03A0B40080677E /* PrefectAdLeaderViewController.m */,
 			);
 			name = PerfectInfo;
 			sourceTree = "<group>";
@@ -1116,7 +1111,6 @@
 				E98190A61A886E5E0025F284 /* SDWebImageManager.m in Sources */,
 				E98C48F61A8C448800287EF8 /* IdeaGenerateViewController.m in Sources */,
 				E91E77C51A84B143000174D4 /* NSObject+RMArchivable.m in Sources */,
-				E98190741A8850030025F284 /* IAlsoPressViewController.m in Sources */,
 				E97258561A89A96300F0ABB8 /* ProContentViewController.m in Sources */,
 				E91E77B81A84B0EE000174D4 /* BaseCell.m in Sources */,
 				E91E779E1A84A8CD000174D4 /* ASIAuthenticationDialog.m in Sources */,
@@ -1143,7 +1137,6 @@
 				E981908F1A885FBB0025F284 /* EGORefreshTableHeaderView.m in Sources */,
 				89AC5C6E1AA154A4005DA279 /* MyToolView.m in Sources */,
 				E9DB90E81AC1569F00F66467 /* PerfectInfoViewController.m in Sources */,
-				E98C48E81A8B68DB00287EF8 /* InteractivePageViewController2.m in Sources */,
 				E98DA1A71AD3D3E10056DA92 /* ProductListTableViewController.m in Sources */,
 				E95AC9B51AE73EF3007EC93F /* MyOccupyCell.m in Sources */,
 				E91E77C81A84B143000174D4 /* RMMapper.m in Sources */,
@@ -1153,6 +1146,7 @@
 				E981907A1A8852110025F284 /* ISavedViewController.m in Sources */,
 				E9F0E0DF1A8C93BE00CAC9E1 /* WaterFlowObj.m in Sources */,
 				E98C48E71A8B68DB00287EF8 /* InteractivePageViewController1.m in Sources */,
+				E93E41DB1B03A0B40080677E /* PrefectAdLeaderViewController.m in Sources */,
 				E971B5331ABBBFB1001B3950 /* ChooseCityViewController.m in Sources */,
 				894924E21AD3F4B0000F392C /* RegisterSuccessView.m in Sources */,
 				89A17B0E1AD15A5E007CC8D6 /* MymsgCell.m in Sources */,

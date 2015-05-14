@@ -37,36 +37,36 @@
     view.frame = CGRectMake(0, 70, 320, 1);
     [self.view addSubview:view];
     
-    UIButton* printAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 110, 50, 50)];
+    UIButton* printAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 120, 50, 50)];
     [printAdBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_pmgg"] forState:UIControlStateNormal];
     [printAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     printAdBtn.tag = PrintAdBtnTag;
     [self.view addSubview:printAdBtn];
     
-    UILabel* printAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 165, 70, 20)];
+    UILabel* printAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 175, 70, 20)];
     printAdLabel.text = @"平面广告";
     printAdLabel.font = [UIFont systemFontOfSize:14];
     printAdLabel.textColor = [UIColor lightGrayColor];
     [self.view addSubview:printAdLabel];
     
-    UIButton* videoAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 50, 50)];
+    UIButton* videoAdBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 230, 50, 50)];
     [videoAdBtn setImage:[UIImage imageNamed:@"btn_video"] forState:UIControlStateNormal];
     [videoAdBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     videoAdBtn.tag = VideoAdBtnTag;
     [self.view addSubview:videoAdBtn];
     
-    UILabel* videoAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 265, 70, 20)];
+    UILabel* videoAdLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 285, 70, 20)];
     videoAdLabel.text = @"视频广告";
     videoAdLabel.font = [UIFont systemFontOfSize:14];
     videoAdLabel.textColor = [UIColor lightGrayColor];
     [self.view addSubview:videoAdLabel];
     
-    UIButton* marketingBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 310, 50, 50)];
+    UIButton* marketingBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 340, 50, 50)];
     [marketingBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_sjyx1"] forState:UIControlStateNormal];
     [marketingBtn addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:marketingBtn];
     
-    UILabel* marketingLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 365, 70, 20)];
+    UILabel* marketingLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 395, 70, 20)];
     marketingLabel.text = @"事件营销";
     marketingLabel.font = [UIFont systemFontOfSize:14];
     marketingLabel.textColor = [UIColor lightGrayColor];

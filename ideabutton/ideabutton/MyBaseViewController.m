@@ -270,7 +270,7 @@
         
         //--------
         width = view_center.frame.size.width;
-        UILabel *lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(30, 20, width-60, 100)];
+        UILabel *lbldesc=[[UILabel alloc]initWithFrame:CGRectMake(30, 40, width-60, 100)];
         lbldesc.font = [UIFont systemFontOfSize:15];
         lbldesc.tag=888;
         
@@ -306,21 +306,21 @@
     {
         preBtn.hidden = YES;
         
-        btngo.frame = CGRectMake((width-80)/2, 140, 80, 80);
+        btngo.frame = CGRectMake((width-80)/2, 160, 80, 80);
         [btngo setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     }
     else if (type == 2)
     {
         [preBtn setImage:[UIImage imageNamed:@"bg_btn_wyrz_on"] forState:UIControlStateNormal];
         
-        btngo.frame = CGRectMake(width-110, 140, 80, 80);
+        btngo.frame = CGRectMake(width-110, 160, 80, 80);
         [btngo setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     }
     else if (type == 1)
     {
         [preBtn setImage:[UIImage imageNamed:@"bg_btn_wszl_on"] forState:UIControlStateNormal];
         
-        btngo.frame = CGRectMake(width-110, 140, 80, 80);
+        btngo.frame = CGRectMake(width-110, 160, 80, 80);
         [btngo setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     }
 

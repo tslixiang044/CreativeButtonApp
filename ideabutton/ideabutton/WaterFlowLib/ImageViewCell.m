@@ -100,7 +100,7 @@
         
         y=lblnickname.frame.origin.y+lblnickname.frame.size.height;
         
-        lblsource=[[UILabel alloc]initWithFrame:CGRectMake(x, y, 100, 25)];
+        lblsource=[[UILabel alloc]initWithFrame:CGRectMake(x, y - 5, 100, 25)];
         lblsource.backgroundColor=[UIColor clearColor];
         lblsource.font=[UIFont systemFontOfSize:12];
         lblsource.textColor=COLOR(98, 98, 98);
@@ -232,19 +232,38 @@
     
     lbltime.text=mobj.timeStamp;
     
-    if (mobj.city.length > 0 && mobj.college.length > 0)
+    if (mobj.carrerType.integerValue == 0)
     {
-        lblsource.text = [NSString stringWithFormat:@"%@    %@",mobj.city,mobj.college];
+        if (mobj.college.length > 0 && !mobj.collegePrivate.boolValue)
+        {
+            lblsource.text = [NSString stringWithFormat:@"%@",mobj.college];
+        }
+        else
+        {
+            lblsource.text = [NSString stringWithFormat:@"%@",mobj.city];
+        }
     }
-    else if (mobj.city.length > 0)
+    else if (mobj.carrerType.integerValue == 2)
     {
-        lblsource.text = [NSString stringWithFormat:@"%@",mobj.city];
-    }
-    else if(mobj.college.length > 0)
-    {
-        lblsource.text = [NSString stringWithFormat:@"%@",mobj.college];
+        if (mobj.favCompany.length > 0 && !mobj.favCompanyPrivate.boolValue)
+        {
+            lblsource.text = [NSString stringWithFormat:@"%@",mobj.favCompany];
+        }
+        else
+        {
+            lblsource.text = [NSString stringWithFormat:@"%@",mobj.city];
+        }
     }
     
+    if (mobj.numberOfPraise.integerValue >= 100)
+    {
+        lblPraise.font = [UIFont systemFontOfSize:10];
+    }
+    
+    if (mobj.comments.count >= 100)
+    {
+        lblComments.font = [UIFont systemFontOfSize:10];
+    }
     lblPraise.text = [NSString stringWithFormat:@"%@次赞",mobj.numberOfPraise];
     lblForward.text = [NSString stringWithFormat:@"%@次转发",mobj.numberOfForward];
     lblComments.text = [NSString stringWithFormat:@"%lu条评论",(unsigned long)[mobj.comments count]];

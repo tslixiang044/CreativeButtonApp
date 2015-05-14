@@ -31,7 +31,8 @@
 @property(nonatomic,retain)NSString *college;
 @property(nonatomic,retain)NSArray *comments;
 @property(nonatomic,retain)NSString *userReformId;
-@property(nonatomic,retain)NSString *company;
+@property(nonatomic,retain)NSString *favCompany;
+@property(nonatomic,retain)NSString *favCompanyPrivate;
 @property(nonatomic,retain)NSString *content;
 @property(nonatomic,retain)NSString *suggestionId;
 

@@ -39,7 +39,7 @@
         
         User *user = [User GetInstance];
         
-//        User* user = [[DB sharedInstance]queryUser];
+        //        User* user = [[DB sharedInstance]queryUser];
         dispatch_queue_t currentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(currentQueue, ^{
             //后台处理代码, 一般 http 请求在这里发, 然后阻塞等待返回, 收到返回处理
@@ -47,7 +47,7 @@
             //处理完上面的后回到主线程去更新UI
             dispatch_queue_t mainQueue = dispatch_get_main_queue();
             dispatch_async(mainQueue, ^{
-             
+                
             });
         });
     }
@@ -82,19 +82,19 @@
     [self.view addSubview:view];
     
     UIButton* NumNineBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 120, 60, 60)];
-    NumNineBtn.tag = 9;
+    NumNineBtn.tag = 18;
     [NumNineBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber09"] forState:UIControlStateNormal];
     [NumNineBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumNineBtn];
     
-    UIButton* NumeighteenBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 60, 60)];
-    NumeighteenBtn.tag = 18;
+    UIButton* NumeighteenBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 230, 60, 60)];
+    NumeighteenBtn.tag = 36;
     [NumeighteenBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber18"] forState:UIControlStateNormal];
     [NumeighteenBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumeighteenBtn];
     
-    UIButton* NumTwentySevenBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 60, 60)];
-    NumTwentySevenBtn.tag = 27;
+    UIButton* NumTwentySevenBtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 340, 60, 60)];
+    NumTwentySevenBtn.tag = 81;
     [NumTwentySevenBtn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_muber27"] forState:UIControlStateNormal];
     [NumTwentySevenBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:NumTwentySevenBtn];
@@ -136,10 +136,10 @@
 -(void)buttonClicked:(UIButton*)sender
 {
     User *user = [User GetInstance];
-//    User* user = [[DB sharedInstance]queryUser];
+
     if (remainderNum > 0)
     {
-        if (sender.tag == 27)
+        if (sender.tag == 36)
         {
             if (user)
             {
@@ -151,11 +151,34 @@
                 }
             }
         }
+        else if(sender.tag == 81)
+        {
+            if (user.userLevel == 1)
+            {
+                [self showAlertView_desc:@"就知道18个满足不了你,\n去完善个人资料可看到更多idea" btnImage:@"bg_btn_wszl_on" btnHideFlag:NO ActionType:3];
+                
+                return;
+            }
+            else if (user.userLevel == 2)
+            {
+                if (user.auditStatus == 0)
+                {
+                    [self showAlertView_desc:@"就知道36个满足不了你,\n去上传实名认证可看到更多idea" btnImage:@"bg_btn_wyrz_on" btnHideFlag:NO ActionType:3];
+                    
+                    return;
+                }
+                else
+                {
+                    [self showAlertView_desc:@"实名认证资料正在审核中,\n审核通过后每日可免费浏览81个idea" btnImage:@"bg_btn_hd_on" btnHideFlag:NO ActionType:3];
+                    
+                    return;
+                }
+            }
+        }
         
         if (sender.tag <= remainderNum)
         {
             [self.myDict setValue:[NSString stringWithFormat:@"%ld",(long)sender.tag] forKey:@"ideaNum"];
-            
         }
         else
         {

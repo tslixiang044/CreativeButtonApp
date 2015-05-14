@@ -8,18 +8,14 @@
 
 #import "MainViewController.h"
 #import "LoginViewController.h"
-#import "IdeaGenerateViewController.h"
 #import "WaterFlowView.h"
 #import "ImageViewCell.h"
 #import "JsonResult.h"
-#import "WaterFlowObj.h"
-#import "ReformIdeaViewController.h"
 #import "API.h"
 #import "IdeaDetailViewController.h"
 #import "IoccupyViewController.h"
 #import "PersonaInfomationViewController.h"
 #import "MySegmentedControl.h"
-#import "UploadViewController.h"
 
 
 @interface MainViewController ()<UIScrollViewDelegate,UITextFieldDelegate,WaterFlowViewDelegate,WaterFlowViewDataSource,Globaldelegate,LoginViewControllerDelegate,MySegmentedControlDelegate,ImageViewCellDelegate>
@@ -157,7 +153,7 @@
 {
     if([btntype isEqualToString:@"admin"])
     {
-        User *user = [User GetInstance];//[[DB sharedInstance] queryUser];
+        User *user = [User GetInstance];
         if(user.userCode != 0)
         {
             NSString *usercode=[NSString stringWithFormat:@"%ld",(long)user.userCode];
@@ -168,9 +164,6 @@
     }
     else if([btntype isEqualToString:@"wyya"])
     {
-//        IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-//        [self.navigationController pushViewController:press animated:YES];
-//        [press release];
         IoccupyViewController * controller = [[IoccupyViewController alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
@@ -182,7 +175,7 @@
     self.btntype=@"admin";
     
     User *user = [User GetInstance];
-//    User* user = [[DB sharedInstance]queryUser];
+
     if (user.userCode != 0)
     {
         NSString *usercode=[NSString stringWithFormat:@"%ld",(long)user.userCode];
@@ -202,10 +195,12 @@
 
 -(void)btnwyyaAction
 {
-//    User* user = [[DB sharedInstance]  queryUser];
     User *user = [User GetInstance];
     
-    remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%ld",(long)user.userCode]}];
+    if (user.userCode != 0)
+    {
+        remainderNum = [[API sharedInstance]userIdeasRemainderNumber:@{@"userCode":[NSString stringWithFormat:@"%ld",(long)user.userCode]}];
+    }
     
     self.btntype=@"wyya";
     
@@ -219,8 +214,7 @@
             {
                 [self showAlertView_desc:@"今日免费浏览的数量\n\n已达上限18个\n\n完善资料可以浏览更多idea" btnImage:@"bg_btn_xcws_on" btnHideFlag:YES ActionType:1];
             }
-            
-            if (user.userLevel == 2)
+            else if (user.userLevel == 2)
             {
                 if (user.auditStatus == 0)
                 {
@@ -231,12 +225,13 @@
                     [self showAlertView_desc:@"你上传的资料正在审核中\n\n审核通过后\n\n每日可免费浏览81个idea" btnImage:@"bg_btn_hd_on" btnHideFlag:YES ActionType:3];
                 }
             }
+            else
+            {
+                [self showAlertView_desc:@"今日免费浏览的数量\n\n已达上限81个\n\n欢迎明日继续使用" btnImage:@"bg_btn_hd_on" btnHideFlag:YES ActionType:3];
+            }
         }
         else
         {
-//            IAlsoPressViewController *press=[[IAlsoPressViewController alloc]init];
-//            [self.navigationController pushViewController:press animated:YES];
-//            [press release];
             IoccupyViewController * controller = [[IoccupyViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];

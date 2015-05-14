@@ -76,36 +76,36 @@
     [D_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:D_Btn];
     
-    UIButton* G_Btn = [[UIButton alloc] initWithFrame:CGRectMake(40, 210, 60, 60)];
+    UIButton* G_Btn = [[UIButton alloc] initWithFrame:CGRectMake(40, 230, 60, 60)];
     G_Btn.titleLabel.text = @"G";
     [G_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_g"] forState:UIControlStateNormal];
     [G_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:G_Btn];
     
-    UIButton* B_Btn = [[UIButton alloc] initWithFrame:CGRectMake(130, 210, 60, 60)];
+    UIButton* B_Btn = [[UIButton alloc] initWithFrame:CGRectMake(130, 230, 60, 60)];
     B_Btn.titleLabel.text = @"B";
     [B_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_b"] forState:UIControlStateNormal];
     [B_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:B_Btn];
     
-    UIButton* C_Btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 210, 60, 60)];
+    UIButton* C_Btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 230, 60, 60)];
     C_Btn.titleLabel.text = @"C";
     [C_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_c"] forState:UIControlStateNormal];
     [C_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:C_Btn];
     
-    UIButton* I_Btn = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 60, 60)];
+    UIButton* I_Btn = [[UIButton alloc] initWithFrame:CGRectMake(40, 340, 60, 60)];
     [I_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_i"] forState:UIControlStateNormal];
     [I_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:I_Btn];
     
-    UIButton* H_Btn = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 60, 60)];
+    UIButton* H_Btn = [[UIButton alloc] initWithFrame:CGRectMake(130, 340, 60, 60)];
     H_Btn.titleLabel.text = @"H";
     [H_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_h"] forState:UIControlStateNormal];
     [H_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:H_Btn];
     
-    UIButton* A_Btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 300, 60, 60)];
+    UIButton* A_Btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 340, 60, 60)];
     A_Btn.titleLabel.text = @"A";
     [A_Btn setImage:[UIImage imageNamed:@"ideaRuleChoose/btn_a"] forState:UIControlStateNormal];
     [A_Btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
